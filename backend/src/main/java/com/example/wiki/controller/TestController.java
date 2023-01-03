@@ -1,5 +1,6 @@
 package com.example.wiki.controller;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,10 +21,11 @@ public class TestController {
     *
     * /user/1
     * */
-
+    @Value("${test.hello:Hi}")
+    private String testHello;
     @RequestMapping("/hello")
     public String hello(){
-        return "hello world";
+        return "hello world"+testHello;
     }
     @PostMapping("/hello/post")
     public String helloPost(String name){
