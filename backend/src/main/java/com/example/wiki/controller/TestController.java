@@ -21,7 +21,7 @@ public class TestController {
     *
     * /user/1
     * */
-    @Value("${test.hello:Hi}")
+    @Value("${test.hello:Hi2}")
     private String testHello;
     @RequestMapping("/hello")
     public String hello(){
