@@ -9,3 +9,6 @@ Content-Type:  application/x-www-form-urlencoded
 name=Test
 
 ###
+
+GET http://127.0.0.1:8080/test/list
+Accept: application/json

@@ -1,11 +1,13 @@
 package com.example.wiki.controller;
 
+import com.example.wiki.domain.Test;
+import com.example.wiki.service.TestService;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.ComponentScan;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import javax.annotation.Resource;
+import java.util.List;
 
 @RestController
 public class TestController {
@@ -23,6 +25,8 @@ public class TestController {
     * */
     @Value("${test.hello:Hi2}")
     private String testHello;
+    @Resource
+    private TestService testService;
     @RequestMapping("/hello")
     public String hello(){
         return "hello world"+testHello;
@@ -30,5 +34,10 @@ public class TestController {
     @PostMapping("/hello/post")
     public String helloPost(String name){
         return "hello world! Post."+name ;
+    }
+
+    @GetMapping("test/list")
+    public List<Test> list(){
+        return testService.list();
     }
 }
