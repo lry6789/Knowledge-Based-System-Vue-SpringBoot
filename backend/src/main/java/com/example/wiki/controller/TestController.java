@@ -25,8 +25,7 @@ public class TestController {
     * */
     @Value("${test.hello:Hi2}")
     private String testHello;
-    @Resource
-    private TestService testService;
+
     @RequestMapping("/hello")
     public String hello(){
         return "hello world"+testHello;
@@ -36,6 +35,9 @@ public class TestController {
         return "hello world! Post."+name ;
     }
 
+
+    @Resource
+    private TestService testService;
     @GetMapping("test/list")
     public List<Test> list(){
         return testService.list();
