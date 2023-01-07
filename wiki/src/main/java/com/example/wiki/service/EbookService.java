@@ -5,6 +5,7 @@ import com.example.wiki.domain.EbookExample;
 import com.example.wiki.mapper.EbookMapper;
 import com.example.wiki.req.EbookReq;
 import com.example.wiki.resp.EbookResp;
+import com.example.wiki.resp.PageResp;
 import com.example.wiki.util.CopyUtil;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
@@ -23,7 +24,7 @@ public class EbookService {
     @Resource
     private EbookMapper ebookMapper;
     private static final Logger LOG = LoggerFactory.getLogger(EbookService.class);
-    public List<EbookResp> list(EbookReq req){
+    public PageResp<EbookResp> list(EbookReq req){
 
 
         EbookExample ebookExample = new EbookExample();
@@ -33,7 +34,7 @@ public class EbookService {
         }
 
         //only work for the next one SQL
-        PageHelper.startPage(1,3);
+        PageHelper.startPage(req.getPage(),req.getSize());
         List<Ebook> ebookList = ebookMapper.selectByExample(ebookExample);
         PageInfo<Ebook> pageInfo = new PageInfo<>(ebookList);
         LOG.info("总行数 {}",pageInfo.getTotal());
@@ -50,8 +51,12 @@ public class EbookService {
 //            respList.add(ebookResp);
 //
 //        }
-        //copy list
+
+         //copy list
         List<EbookResp> list = CopyUtil.copyList(ebookList, EbookResp.class);
-        return list;
+        PageResp<EbookResp> pageResp = new PageResp();
+        pageResp.setTotal(pageInfo.getTotal());
+        pageResp.setList(list);
+        return pageResp;
     }
 }
