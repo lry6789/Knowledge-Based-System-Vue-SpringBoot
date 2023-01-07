@@ -8,6 +8,7 @@ import com.example.wiki.req.EbookSaveReq;
 import com.example.wiki.resp.EbookQueryResp;
 import com.example.wiki.resp.PageResp;
 import com.example.wiki.util.CopyUtil;
+import com.example.wiki.util.SnowFlake;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.slf4j.Logger;
@@ -20,8 +21,12 @@ import java.util.List;
 
 @Service
 public class EbookService {
+
     @Resource
     private EbookMapper ebookMapper;
+
+    @Resource
+    private SnowFlake snowFlake;
     private static final Logger LOG = LoggerFactory.getLogger(EbookService.class);
 
     /*
@@ -68,6 +73,7 @@ public class EbookService {
     public void save(EbookSaveReq req){
         Ebook ebook = CopyUtil.copy(req, Ebook.class);
         if(ObjectUtils.isEmpty(req.getId())){
+            ebook.setId(snowFlake.nextId());
             //add new
             ebookMapper.insert(ebook);
         }
