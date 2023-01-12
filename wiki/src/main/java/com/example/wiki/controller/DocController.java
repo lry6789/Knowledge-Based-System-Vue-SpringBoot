@@ -27,7 +27,16 @@ public class DocController {
         PageResp<DocQueryResp> list = docService.list(req);
         resp.setContent(list);
         return resp;
-    }    @GetMapping("/all")
+    }
+    @GetMapping("/find-content/{id}")
+    public CommonResp findContent(@Valid Long id){
+        CommonResp<String> resp = new CommonResp<>();
+        String content = docService.findContent(id);
+        resp.setContent(content);
+        return resp;
+    }
+
+    @GetMapping("/all")
     public CommonResp all(){
         CommonResp<List<DocQueryResp>> resp = new CommonResp<>();
         List<DocQueryResp> list = docService.all();
