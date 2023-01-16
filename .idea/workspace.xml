@@ -5,6 +5,25 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="da40c7e0-5646-4fec-96d9-4c54c107b589" name="Changes" comment="edit folder name">
+      <change afterPath="$PROJECT_DIR$/wiki/web/.browserslistrc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/wiki/web/.eslintrc.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/wiki/web/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/wiki/web/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/wiki/web/package-lock.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/wiki/web/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/wiki/web/public/favicon.ico" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/wiki/web/public/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/wiki/web/src/App.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/wiki/web/src/assets/logo.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/wiki/web/src/components/HelloWorld.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/wiki/web/src/main.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/wiki/web/src/router/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/wiki/web/src/shims-vue.d.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/wiki/web/src/store/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/wiki/web/src/views/About.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/wiki/web/src/views/Home.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/wiki/web/tsconfig.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -14,6 +33,19 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings">
+    <option name="selectedUrlAndAccountId">
+      <UrlAndAccount>
+        <option name="accountId" value="a0e29ffd-54d4-4a62-9535-e494f249b8a1" />
+        <option name="url" value="https://github.com/lry6789/Knowledge-Based-System.git" />
+      </UrlAndAccount>
+    </option>
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -39,29 +71,30 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
-    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
-    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
-    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/Code/SpringBoot+Vue/Knowledge-Based-System/wiki&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;MavenSettings&quot;,
-    &quot;spring.configuration.checksum&quot;: &quot;bf111e3622a72a3b5dc784b5903983ca&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "D:/Code/SpringBoot+Vue/Knowledge-Based-System/wiki",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "MavenSettings",
+    "spring.configuration.checksum": "bf111e3622a72a3b5dc784b5903983ca",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RunManager">
     <configuration name="WikiApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <module name="Wiki" />
@@ -84,6 +117,7 @@
       <workItem from="1673111439883" duration="66000" />
       <workItem from="1673111520318" duration="239000" />
       <workItem from="1673111766774" duration="11000" />
+      <workItem from="1673840271151" duration="2209000" />
     </task>
     <task id="LOCAL-00001" summary="edit folder name">
       <created>1673111664367</created>
