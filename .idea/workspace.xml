@@ -4,12 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="da40c7e0-5646-4fec-96d9-4c54c107b589" name="Changes" comment="create web using Vue CLI">
+    <list default="true" id="da40c7e0-5646-4fec-96d9-4c54c107b589" name="Changes" comment="integrated Ant Design Vue">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/wiki/web/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/wiki/web/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/wiki/web/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/wiki/web/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wiki/web/src/main.ts" beforeDir="false" afterPath="$PROJECT_DIR$/wiki/web/src/main.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wiki/web/src/views/Home.vue" beforeDir="false" afterPath="$PROJECT_DIR$/wiki/web/src/views/Home.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wiki/web/src/App.vue" beforeDir="false" afterPath="$PROJECT_DIR$/wiki/web/src/App.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -103,7 +102,7 @@
       <workItem from="1673111439883" duration="66000" />
       <workItem from="1673111520318" duration="239000" />
       <workItem from="1673111766774" duration="11000" />
-      <workItem from="1673840271151" duration="2742000" />
+      <workItem from="1673840271151" duration="4726000" />
     </task>
     <task id="LOCAL-00001" summary="edit folder name">
       <created>1673111664367</created>
@@ -119,7 +118,14 @@
       <option name="project" value="LOCAL" />
       <updated>1673908344801</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="integrated Ant Design Vue">
+      <created>1673908968953</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1673908968953</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -140,6 +146,7 @@
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="edit folder name" />
     <MESSAGE value="create web using Vue CLI" />
-    <option name="LAST_COMMIT_MESSAGE" value="create web using Vue CLI" />
+    <MESSAGE value="integrated Ant Design Vue" />
+    <option name="LAST_COMMIT_MESSAGE" value="integrated Ant Design Vue" />
   </component>
 </project>
