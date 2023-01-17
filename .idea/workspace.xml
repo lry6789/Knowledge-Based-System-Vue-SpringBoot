@@ -4,12 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="da40c7e0-5646-4fec-96d9-4c54c107b589" name="Changes" comment="implement homepage router and close vue/no-unused-components">
-      <change afterPath="$PROJECT_DIR$/wiki/web/src/components/the-footer.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/wiki/web/src/components/the-header.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wiki/web/src/App.vue" beforeDir="false" afterPath="$PROJECT_DIR$/wiki/web/src/App.vue" afterDir="false" />
-    </list>
+    <list default="true" id="da40c7e0-5646-4fec-96d9-4c54c107b589" name="Changes" comment="create component footer and header" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -102,7 +97,7 @@
       <workItem from="1673111439883" duration="66000" />
       <workItem from="1673111520318" duration="239000" />
       <workItem from="1673111766774" duration="11000" />
-      <workItem from="1673840271151" duration="6783000" />
+      <workItem from="1673840271151" duration="7088000" />
     </task>
     <task id="LOCAL-00001" summary="edit folder name">
       <created>1673111664367</created>
@@ -139,7 +134,14 @@
       <option name="project" value="LOCAL" />
       <updated>1673911486052</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="create component footer and header">
+      <created>1673930492106</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1673930492106</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -163,7 +165,8 @@
     <MESSAGE value="integrated Ant Design Vue" />
     <MESSAGE value="web homepage development" />
     <MESSAGE value="implement homepage router and close vue/no-unused-components" />
-    <option name="LAST_COMMIT_MESSAGE" value="implement homepage router and close vue/no-unused-components" />
+    <MESSAGE value="create component footer and header" />
+    <option name="LAST_COMMIT_MESSAGE" value="create component footer and header" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
