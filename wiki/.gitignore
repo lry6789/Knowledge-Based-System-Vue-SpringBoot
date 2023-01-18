@@ -1,4 +1,5 @@
 /log/
+/application.properties/
 
 target/
 !.mvn/wrapper/maven-wrapper.jar
