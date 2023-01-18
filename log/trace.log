@@ -527,3 +527,478 @@ java.sql.SQLSyntaxErrorException: Unknown database 'wiki'
 2023-01-18 16:21:45.221 INFO  com.example.wiki.service.EbookService             :52   [32m                  [0;39m 总页数 0
 2023-01-18 16:21:45.221 INFO  com.example.wiki.aspect.LogAspect                 :75   [32m                  [0;39m 返回结果: {"content":{"list":[{"description":"零基础入门 Java 开发，企业级应用开发最佳首选框架","docCount":0,"id":1,"name":"Spring Boot 入门教程","viewCount":0,"voteCount":0}],"total":1},"success":true}
 2023-01-18 16:21:45.222 INFO  com.example.wiki.aspect.LogAspect                 :76   [32m                  [0;39m ------------- 结束 耗时：15 ms -------------
+2023-01-18 16:44:58.976 INFO  com.example.wiki.aspect.LogAspect                 :40   [32m                  [0;39m ------------- 开始 -------------
+2023-01-18 16:44:58.977 INFO  com.example.wiki.aspect.LogAspect                 :41   [32m                  [0;39m 请求地址: http://127.0.0.1:8080/ebook/list GET
+2023-01-18 16:44:58.977 INFO  com.example.wiki.aspect.LogAspect                 :42   [32m                  [0;39m 类名方法: com.example.wiki.controller.EbookController.list
+2023-01-18 16:44:58.978 INFO  com.example.wiki.aspect.LogAspect                 :43   [32m                  [0;39m 远程地址: 127.0.0.1
+2023-01-18 16:44:58.978 INFO  com.example.wiki.aspect.LogAspect                 :63   [32m                  [0;39m 请求参数: [{"name":"Spring","page":0,"size":0}]
+2023-01-18 16:44:58.981 DEBUG c.e.wiki.mapper.EbookMapper.selectByExample_COUNT :137  [32m                  [0;39m ==>  Preparing: SELECT count(0) FROM ebook WHERE (`name` LIKE ?)
+2023-01-18 16:44:58.982 DEBUG c.e.wiki.mapper.EbookMapper.selectByExample_COUNT :137  [32m                  [0;39m ==> Parameters: %Spring%(String)
+2023-01-18 16:44:58.984 TRACE c.e.wiki.mapper.EbookMapper.selectByExample_COUNT :143  [32m                  [0;39m <==    Columns: count(0)
+2023-01-18 16:44:58.984 TRACE c.e.wiki.mapper.EbookMapper.selectByExample_COUNT :143  [32m                  [0;39m <==        Row: 1
+2023-01-18 16:44:58.985 DEBUG c.e.wiki.mapper.EbookMapper.selectByExample_COUNT :137  [32m                  [0;39m <==      Total: 1
+2023-01-18 16:44:58.985 DEBUG c.example.wiki.mapper.EbookMapper.selectByExample :137  [32m                  [0;39m ==>  Preparing: select id, `name`, category1_id, category2_id, description, cover, doc_count, view_count, vote_count from ebook WHERE ( `name` like ? )
+2023-01-18 16:44:58.985 DEBUG c.example.wiki.mapper.EbookMapper.selectByExample :137  [32m                  [0;39m ==> Parameters: %Spring%(String)
+2023-01-18 16:44:58.987 TRACE c.example.wiki.mapper.EbookMapper.selectByExample :143  [32m                  [0;39m <==    Columns: id, name, category1_id, category2_id, description, cover, doc_count, view_count, vote_count
+2023-01-18 16:44:58.987 TRACE c.example.wiki.mapper.EbookMapper.selectByExample :143  [32m                  [0;39m <==        Row: 1, Spring Boot 入门教程, null, null, 零基础入门 Java 开发，企业级应用开发最佳首选框架, null, 0, 0, 0
+2023-01-18 16:44:58.988 DEBUG c.example.wiki.mapper.EbookMapper.selectByExample :137  [32m                  [0;39m <==      Total: 1
+2023-01-18 16:44:58.988 INFO  com.example.wiki.service.EbookService             :51   [32m                  [0;39m 总行数 1
+2023-01-18 16:44:58.988 INFO  com.example.wiki.service.EbookService             :52   [32m                  [0;39m 总页数 0
+2023-01-18 16:44:58.988 INFO  com.example.wiki.aspect.LogAspect                 :75   [32m                  [0;39m 返回结果: {"content":{"list":[{"description":"零基础入门 Java 开发，企业级应用开发最佳首选框架","docCount":0,"id":1,"name":"Spring Boot 入门教程","viewCount":0,"voteCount":0}],"total":1},"success":true}
+2023-01-18 16:44:58.988 INFO  com.example.wiki.aspect.LogAspect                 :76   [32m                  [0;39m ------------- 结束 耗时：12 ms -------------
+2023-01-18 16:45:32.671 INFO  com.example.wiki.aspect.LogAspect                 :40   [32m                  [0;39m ------------- 开始 -------------
+2023-01-18 16:45:32.671 INFO  com.example.wiki.aspect.LogAspect                 :41   [32m                  [0;39m 请求地址: http://127.0.0.1:8080/ebook/list GET
+2023-01-18 16:45:32.672 INFO  com.example.wiki.aspect.LogAspect                 :42   [32m                  [0;39m 类名方法: com.example.wiki.controller.EbookController.list
+2023-01-18 16:45:32.672 INFO  com.example.wiki.aspect.LogAspect                 :43   [32m                  [0;39m 远程地址: 127.0.0.1
+2023-01-18 16:45:32.672 INFO  com.example.wiki.aspect.LogAspect                 :63   [32m                  [0;39m 请求参数: [{"name":"Spring","page":0,"size":0}]
+2023-01-18 16:45:32.675 DEBUG c.e.wiki.mapper.EbookMapper.selectByExample_COUNT :137  [32m                  [0;39m ==>  Preparing: SELECT count(0) FROM ebook WHERE (`name` LIKE ?)
+2023-01-18 16:45:32.675 DEBUG c.e.wiki.mapper.EbookMapper.selectByExample_COUNT :137  [32m                  [0;39m ==> Parameters: %Spring%(String)
+2023-01-18 16:45:32.676 TRACE c.e.wiki.mapper.EbookMapper.selectByExample_COUNT :143  [32m                  [0;39m <==    Columns: count(0)
+2023-01-18 16:45:32.677 TRACE c.e.wiki.mapper.EbookMapper.selectByExample_COUNT :143  [32m                  [0;39m <==        Row: 1
+2023-01-18 16:45:32.677 DEBUG c.e.wiki.mapper.EbookMapper.selectByExample_COUNT :137  [32m                  [0;39m <==      Total: 1
+2023-01-18 16:45:32.677 DEBUG c.example.wiki.mapper.EbookMapper.selectByExample :137  [32m                  [0;39m ==>  Preparing: select id, `name`, category1_id, category2_id, description, cover, doc_count, view_count, vote_count from ebook WHERE ( `name` like ? )
+2023-01-18 16:45:32.678 DEBUG c.example.wiki.mapper.EbookMapper.selectByExample :137  [32m                  [0;39m ==> Parameters: %Spring%(String)
+2023-01-18 16:45:32.679 TRACE c.example.wiki.mapper.EbookMapper.selectByExample :143  [32m                  [0;39m <==    Columns: id, name, category1_id, category2_id, description, cover, doc_count, view_count, vote_count
+2023-01-18 16:45:32.679 TRACE c.example.wiki.mapper.EbookMapper.selectByExample :143  [32m                  [0;39m <==        Row: 1, Spring Boot 入门教程, null, null, 零基础入门 Java 开发，企业级应用开发最佳首选框架, null, 0, 0, 0
+2023-01-18 16:45:32.681 DEBUG c.example.wiki.mapper.EbookMapper.selectByExample :137  [32m                  [0;39m <==      Total: 1
+2023-01-18 16:45:32.682 INFO  com.example.wiki.service.EbookService             :51   [32m                  [0;39m 总行数 1
+2023-01-18 16:45:32.682 INFO  com.example.wiki.service.EbookService             :52   [32m                  [0;39m 总页数 0
+2023-01-18 16:45:32.683 INFO  com.example.wiki.aspect.LogAspect                 :75   [32m                  [0;39m 返回结果: {"content":{"list":[{"description":"零基础入门 Java 开发，企业级应用开发最佳首选框架","docCount":0,"id":1,"name":"Spring Boot 入门教程","viewCount":0,"voteCount":0}],"total":1},"success":true}
+2023-01-18 16:45:32.683 INFO  com.example.wiki.aspect.LogAspect                 :76   [32m                  [0;39m ------------- 结束 耗时：12 ms -------------
+2023-01-18 16:55:23.143 INFO  com.example.wiki.aspect.LogAspect                 :40   [32m                  [0;39m ------------- 开始 -------------
+2023-01-18 16:55:23.144 INFO  com.example.wiki.aspect.LogAspect                 :41   [32m                  [0;39m 请求地址: http://127.0.0.1:8080/ebook/list GET
+2023-01-18 16:55:23.144 INFO  com.example.wiki.aspect.LogAspect                 :42   [32m                  [0;39m 类名方法: com.example.wiki.controller.EbookController.list
+2023-01-18 16:55:23.145 INFO  com.example.wiki.aspect.LogAspect                 :43   [32m                  [0;39m 远程地址: 127.0.0.1
+2023-01-18 16:55:23.145 INFO  com.example.wiki.aspect.LogAspect                 :63   [32m                  [0;39m 请求参数: [{"name":"Spring","page":0,"size":0}]
+2023-01-18 16:55:23.149 DEBUG c.e.wiki.mapper.EbookMapper.selectByExample_COUNT :137  [32m                  [0;39m ==>  Preparing: SELECT count(0) FROM ebook WHERE (`name` LIKE ?)
+2023-01-18 16:55:23.149 DEBUG c.e.wiki.mapper.EbookMapper.selectByExample_COUNT :137  [32m                  [0;39m ==> Parameters: %Spring%(String)
+2023-01-18 16:55:23.155 TRACE c.e.wiki.mapper.EbookMapper.selectByExample_COUNT :143  [32m                  [0;39m <==    Columns: count(0)
+2023-01-18 16:55:23.156 TRACE c.e.wiki.mapper.EbookMapper.selectByExample_COUNT :143  [32m                  [0;39m <==        Row: 1
+2023-01-18 16:55:23.156 DEBUG c.e.wiki.mapper.EbookMapper.selectByExample_COUNT :137  [32m                  [0;39m <==      Total: 1
+2023-01-18 16:55:23.157 DEBUG c.example.wiki.mapper.EbookMapper.selectByExample :137  [32m                  [0;39m ==>  Preparing: select id, `name`, category1_id, category2_id, description, cover, doc_count, view_count, vote_count from ebook WHERE ( `name` like ? )
+2023-01-18 16:55:23.158 DEBUG c.example.wiki.mapper.EbookMapper.selectByExample :137  [32m                  [0;39m ==> Parameters: %Spring%(String)
+2023-01-18 16:55:23.159 TRACE c.example.wiki.mapper.EbookMapper.selectByExample :143  [32m                  [0;39m <==    Columns: id, name, category1_id, category2_id, description, cover, doc_count, view_count, vote_count
+2023-01-18 16:55:23.160 TRACE c.example.wiki.mapper.EbookMapper.selectByExample :143  [32m                  [0;39m <==        Row: 1, Spring Boot 入门教程, null, null, 零基础入门 Java 开发，企业级应用开发最佳首选框架, null, 0, 0, 0
+2023-01-18 16:55:23.161 DEBUG c.example.wiki.mapper.EbookMapper.selectByExample :137  [32m                  [0;39m <==      Total: 1
+2023-01-18 16:55:23.161 INFO  com.example.wiki.service.EbookService             :51   [32m                  [0;39m 总行数 1
+2023-01-18 16:55:23.161 INFO  com.example.wiki.service.EbookService             :52   [32m                  [0;39m 总页数 0
+2023-01-18 16:55:23.162 INFO  com.example.wiki.aspect.LogAspect                 :75   [32m                  [0;39m 返回结果: {"content":{"list":[{"description":"零基础入门 Java 开发，企业级应用开发最佳首选框架","docCount":0,"id":1,"name":"Spring Boot 入门教程","viewCount":0,"voteCount":0}],"total":1},"success":true}
+2023-01-18 16:55:23.162 INFO  com.example.wiki.aspect.LogAspect                 :76   [32m                  [0;39m ------------- 结束 耗时：19 ms -------------
+2023-01-18 16:56:18.509 INFO  com.example.wiki.aspect.LogAspect                 :40   [32m                  [0;39m ------------- 开始 -------------
+2023-01-18 16:56:18.509 INFO  com.example.wiki.aspect.LogAspect                 :41   [32m                  [0;39m 请求地址: http://127.0.0.1:8080/ebook/list GET
+2023-01-18 16:56:18.509 INFO  com.example.wiki.aspect.LogAspect                 :42   [32m                  [0;39m 类名方法: com.example.wiki.controller.EbookController.list
+2023-01-18 16:56:18.509 INFO  com.example.wiki.aspect.LogAspect                 :43   [32m                  [0;39m 远程地址: 127.0.0.1
+2023-01-18 16:56:18.511 INFO  com.example.wiki.aspect.LogAspect                 :63   [32m                  [0;39m 请求参数: [{"name":"Spring","page":0,"size":0}]
+2023-01-18 16:56:18.513 DEBUG c.e.wiki.mapper.EbookMapper.selectByExample_COUNT :137  [32m                  [0;39m ==>  Preparing: SELECT count(0) FROM ebook WHERE (`name` LIKE ?)
+2023-01-18 16:56:18.514 DEBUG c.e.wiki.mapper.EbookMapper.selectByExample_COUNT :137  [32m                  [0;39m ==> Parameters: %Spring%(String)
+2023-01-18 16:56:18.515 TRACE c.e.wiki.mapper.EbookMapper.selectByExample_COUNT :143  [32m                  [0;39m <==    Columns: count(0)
+2023-01-18 16:56:18.515 TRACE c.e.wiki.mapper.EbookMapper.selectByExample_COUNT :143  [32m                  [0;39m <==        Row: 1
+2023-01-18 16:56:18.516 DEBUG c.e.wiki.mapper.EbookMapper.selectByExample_COUNT :137  [32m                  [0;39m <==      Total: 1
+2023-01-18 16:56:18.516 DEBUG c.example.wiki.mapper.EbookMapper.selectByExample :137  [32m                  [0;39m ==>  Preparing: select id, `name`, category1_id, category2_id, description, cover, doc_count, view_count, vote_count from ebook WHERE ( `name` like ? )
+2023-01-18 16:56:18.517 DEBUG c.example.wiki.mapper.EbookMapper.selectByExample :137  [32m                  [0;39m ==> Parameters: %Spring%(String)
+2023-01-18 16:56:18.518 TRACE c.example.wiki.mapper.EbookMapper.selectByExample :143  [32m                  [0;39m <==    Columns: id, name, category1_id, category2_id, description, cover, doc_count, view_count, vote_count
+2023-01-18 16:56:18.518 TRACE c.example.wiki.mapper.EbookMapper.selectByExample :143  [32m                  [0;39m <==        Row: 1, Spring Boot 入门教程, null, null, 零基础入门 Java 开发，企业级应用开发最佳首选框架, null, 0, 0, 0
+2023-01-18 16:56:18.519 DEBUG c.example.wiki.mapper.EbookMapper.selectByExample :137  [32m                  [0;39m <==      Total: 1
+2023-01-18 16:56:18.519 INFO  com.example.wiki.service.EbookService             :51   [32m                  [0;39m 总行数 1
+2023-01-18 16:56:18.519 INFO  com.example.wiki.service.EbookService             :52   [32m                  [0;39m 总页数 0
+2023-01-18 16:56:18.520 INFO  com.example.wiki.aspect.LogAspect                 :75   [32m                  [0;39m 返回结果: {"content":{"list":[{"description":"零基础入门 Java 开发，企业级应用开发最佳首选框架","docCount":0,"id":1,"name":"Spring Boot 入门教程","viewCount":0,"voteCount":0}],"total":1},"success":true}
+2023-01-18 16:56:18.520 INFO  com.example.wiki.aspect.LogAspect                 :76   [32m                  [0;39m ------------- 结束 耗时：11 ms -------------
+2023-01-18 16:56:46.554 INFO  com.example.wiki.aspect.LogAspect                 :40   [32m                  [0;39m ------------- 开始 -------------
+2023-01-18 16:56:46.554 INFO  com.example.wiki.aspect.LogAspect                 :41   [32m                  [0;39m 请求地址: http://127.0.0.1:8080/ebook/list GET
+2023-01-18 16:56:46.555 INFO  com.example.wiki.aspect.LogAspect                 :42   [32m                  [0;39m 类名方法: com.example.wiki.controller.EbookController.list
+2023-01-18 16:56:46.555 INFO  com.example.wiki.aspect.LogAspect                 :43   [32m                  [0;39m 远程地址: 127.0.0.1
+2023-01-18 16:56:46.555 INFO  com.example.wiki.aspect.LogAspect                 :63   [32m                  [0;39m 请求参数: [{"name":"Spring","page":0,"size":0}]
+2023-01-18 16:56:46.561 DEBUG c.e.wiki.mapper.EbookMapper.selectByExample_COUNT :137  [32m                  [0;39m ==>  Preparing: SELECT count(0) FROM ebook WHERE (`name` LIKE ?)
+2023-01-18 16:56:46.563 DEBUG c.e.wiki.mapper.EbookMapper.selectByExample_COUNT :137  [32m                  [0;39m ==> Parameters: %Spring%(String)
+2023-01-18 16:56:46.564 TRACE c.e.wiki.mapper.EbookMapper.selectByExample_COUNT :143  [32m                  [0;39m <==    Columns: count(0)
+2023-01-18 16:56:46.565 TRACE c.e.wiki.mapper.EbookMapper.selectByExample_COUNT :143  [32m                  [0;39m <==        Row: 1
+2023-01-18 16:56:46.565 DEBUG c.e.wiki.mapper.EbookMapper.selectByExample_COUNT :137  [32m                  [0;39m <==      Total: 1
+2023-01-18 16:56:46.566 DEBUG c.example.wiki.mapper.EbookMapper.selectByExample :137  [32m                  [0;39m ==>  Preparing: select id, `name`, category1_id, category2_id, description, cover, doc_count, view_count, vote_count from ebook WHERE ( `name` like ? )
+2023-01-18 16:56:46.566 DEBUG c.example.wiki.mapper.EbookMapper.selectByExample :137  [32m                  [0;39m ==> Parameters: %Spring%(String)
+2023-01-18 16:56:46.568 TRACE c.example.wiki.mapper.EbookMapper.selectByExample :143  [32m                  [0;39m <==    Columns: id, name, category1_id, category2_id, description, cover, doc_count, view_count, vote_count
+2023-01-18 16:56:46.568 TRACE c.example.wiki.mapper.EbookMapper.selectByExample :143  [32m                  [0;39m <==        Row: 1, Spring Boot 入门教程, null, null, 零基础入门 Java 开发，企业级应用开发最佳首选框架, null, 0, 0, 0
+2023-01-18 16:56:46.568 DEBUG c.example.wiki.mapper.EbookMapper.selectByExample :137  [32m                  [0;39m <==      Total: 1
+2023-01-18 16:56:46.569 INFO  com.example.wiki.service.EbookService             :51   [32m                  [0;39m 总行数 1
+2023-01-18 16:56:46.569 INFO  com.example.wiki.service.EbookService             :52   [32m                  [0;39m 总页数 0
+2023-01-18 16:56:46.569 INFO  com.example.wiki.aspect.LogAspect                 :75   [32m                  [0;39m 返回结果: {"content":{"list":[{"description":"零基础入门 Java 开发，企业级应用开发最佳首选框架","docCount":0,"id":1,"name":"Spring Boot 入门教程","viewCount":0,"voteCount":0}],"total":1},"success":true}
+2023-01-18 16:56:46.570 INFO  com.example.wiki.aspect.LogAspect                 :76   [32m                  [0;39m ------------- 结束 耗时：16 ms -------------
+2023-01-18 16:57:06.739 INFO  com.example.wiki.aspect.LogAspect                 :40   [32m                  [0;39m ------------- 开始 -------------
+2023-01-18 16:57:06.739 INFO  com.example.wiki.aspect.LogAspect                 :41   [32m                  [0;39m 请求地址: http://127.0.0.1:8080/ebook/list GET
+2023-01-18 16:57:06.740 INFO  com.example.wiki.aspect.LogAspect                 :42   [32m                  [0;39m 类名方法: com.example.wiki.controller.EbookController.list
+2023-01-18 16:57:06.740 INFO  com.example.wiki.aspect.LogAspect                 :43   [32m                  [0;39m 远程地址: 127.0.0.1
+2023-01-18 16:57:06.740 INFO  com.example.wiki.aspect.LogAspect                 :63   [32m                  [0;39m 请求参数: [{"name":"Spring","page":0,"size":0}]
+2023-01-18 16:57:06.742 DEBUG c.e.wiki.mapper.EbookMapper.selectByExample_COUNT :137  [32m                  [0;39m ==>  Preparing: SELECT count(0) FROM ebook WHERE (`name` LIKE ?)
+2023-01-18 16:57:06.743 DEBUG c.e.wiki.mapper.EbookMapper.selectByExample_COUNT :137  [32m                  [0;39m ==> Parameters: %Spring%(String)
+2023-01-18 16:57:06.744 TRACE c.e.wiki.mapper.EbookMapper.selectByExample_COUNT :143  [32m                  [0;39m <==    Columns: count(0)
+2023-01-18 16:57:06.746 TRACE c.e.wiki.mapper.EbookMapper.selectByExample_COUNT :143  [32m                  [0;39m <==        Row: 1
+2023-01-18 16:57:06.746 DEBUG c.e.wiki.mapper.EbookMapper.selectByExample_COUNT :137  [32m                  [0;39m <==      Total: 1
+2023-01-18 16:57:06.747 DEBUG c.example.wiki.mapper.EbookMapper.selectByExample :137  [32m                  [0;39m ==>  Preparing: select id, `name`, category1_id, category2_id, description, cover, doc_count, view_count, vote_count from ebook WHERE ( `name` like ? )
+2023-01-18 16:57:06.748 DEBUG c.example.wiki.mapper.EbookMapper.selectByExample :137  [32m                  [0;39m ==> Parameters: %Spring%(String)
+2023-01-18 16:57:06.750 TRACE c.example.wiki.mapper.EbookMapper.selectByExample :143  [32m                  [0;39m <==    Columns: id, name, category1_id, category2_id, description, cover, doc_count, view_count, vote_count
+2023-01-18 16:57:06.750 TRACE c.example.wiki.mapper.EbookMapper.selectByExample :143  [32m                  [0;39m <==        Row: 1, Spring Boot 入门教程, null, null, 零基础入门 Java 开发，企业级应用开发最佳首选框架, null, 0, 0, 0
+2023-01-18 16:57:06.751 DEBUG c.example.wiki.mapper.EbookMapper.selectByExample :137  [32m                  [0;39m <==      Total: 1
+2023-01-18 16:57:06.752 INFO  com.example.wiki.service.EbookService             :51   [32m                  [0;39m 总行数 1
+2023-01-18 16:57:06.752 INFO  com.example.wiki.service.EbookService             :52   [32m                  [0;39m 总页数 0
+2023-01-18 16:57:06.752 INFO  com.example.wiki.aspect.LogAspect                 :75   [32m                  [0;39m 返回结果: {"content":{"list":[{"description":"零基础入门 Java 开发，企业级应用开发最佳首选框架","docCount":0,"id":1,"name":"Spring Boot 入门教程","viewCount":0,"voteCount":0}],"total":1},"success":true}
+2023-01-18 16:57:06.753 INFO  com.example.wiki.aspect.LogAspect                 :76   [32m                  [0;39m ------------- 结束 耗时：14 ms -------------
+2023-01-18 16:59:10.284 INFO  com.example.wiki.aspect.LogAspect                 :40   [32m                  [0;39m ------------- 开始 -------------
+2023-01-18 16:59:10.285 INFO  com.example.wiki.aspect.LogAspect                 :41   [32m                  [0;39m 请求地址: http://127.0.0.1:8080/ebook/list GET
+2023-01-18 16:59:10.285 INFO  com.example.wiki.aspect.LogAspect                 :42   [32m                  [0;39m 类名方法: com.example.wiki.controller.EbookController.list
+2023-01-18 16:59:10.285 INFO  com.example.wiki.aspect.LogAspect                 :43   [32m                  [0;39m 远程地址: 127.0.0.1
+2023-01-18 16:59:10.286 INFO  com.example.wiki.aspect.LogAspect                 :63   [32m                  [0;39m 请求参数: [{"name":"Spring","page":0,"size":0}]
+2023-01-18 16:59:10.288 DEBUG c.e.wiki.mapper.EbookMapper.selectByExample_COUNT :137  [32m                  [0;39m ==>  Preparing: SELECT count(0) FROM ebook WHERE (`name` LIKE ?)
+2023-01-18 16:59:10.289 DEBUG c.e.wiki.mapper.EbookMapper.selectByExample_COUNT :137  [32m                  [0;39m ==> Parameters: %Spring%(String)
+2023-01-18 16:59:10.290 TRACE c.e.wiki.mapper.EbookMapper.selectByExample_COUNT :143  [32m                  [0;39m <==    Columns: count(0)
+2023-01-18 16:59:10.290 TRACE c.e.wiki.mapper.EbookMapper.selectByExample_COUNT :143  [32m                  [0;39m <==        Row: 1
+2023-01-18 16:59:10.291 DEBUG c.e.wiki.mapper.EbookMapper.selectByExample_COUNT :137  [32m                  [0;39m <==      Total: 1
+2023-01-18 16:59:10.291 DEBUG c.example.wiki.mapper.EbookMapper.selectByExample :137  [32m                  [0;39m ==>  Preparing: select id, `name`, category1_id, category2_id, description, cover, doc_count, view_count, vote_count from ebook WHERE ( `name` like ? )
+2023-01-18 16:59:10.292 DEBUG c.example.wiki.mapper.EbookMapper.selectByExample :137  [32m                  [0;39m ==> Parameters: %Spring%(String)
+2023-01-18 16:59:10.293 TRACE c.example.wiki.mapper.EbookMapper.selectByExample :143  [32m                  [0;39m <==    Columns: id, name, category1_id, category2_id, description, cover, doc_count, view_count, vote_count
+2023-01-18 16:59:10.293 TRACE c.example.wiki.mapper.EbookMapper.selectByExample :143  [32m                  [0;39m <==        Row: 1, Spring Boot 入门教程, null, null, 零基础入门 Java 开发，企业级应用开发最佳首选框架, null, 0, 0, 0
+2023-01-18 16:59:10.294 DEBUG c.example.wiki.mapper.EbookMapper.selectByExample :137  [32m                  [0;39m <==      Total: 1
+2023-01-18 16:59:10.294 INFO  com.example.wiki.service.EbookService             :51   [32m                  [0;39m 总行数 1
+2023-01-18 16:59:10.294 INFO  com.example.wiki.service.EbookService             :52   [32m                  [0;39m 总页数 0
+2023-01-18 16:59:10.295 INFO  com.example.wiki.aspect.LogAspect                 :75   [32m                  [0;39m 返回结果: {"content":{"list":[{"description":"零基础入门 Java 开发，企业级应用开发最佳首选框架","docCount":0,"id":1,"name":"Spring Boot 入门教程","viewCount":0,"voteCount":0}],"total":1},"success":true}
+2023-01-18 16:59:10.295 INFO  com.example.wiki.aspect.LogAspect                 :76   [32m                  [0;39m ------------- 结束 耗时：11 ms -------------
+2023-01-18 17:05:06.503 INFO  com.example.wiki.aspect.LogAspect                 :40   [32m                  [0;39m ------------- 开始 -------------
+2023-01-18 17:05:06.503 INFO  com.example.wiki.aspect.LogAspect                 :41   [32m                  [0;39m 请求地址: http://127.0.0.1:8080/ebook/list GET
+2023-01-18 17:05:06.504 INFO  com.example.wiki.aspect.LogAspect                 :42   [32m                  [0;39m 类名方法: com.example.wiki.controller.EbookController.list
+2023-01-18 17:05:06.504 INFO  com.example.wiki.aspect.LogAspect                 :43   [32m                  [0;39m 远程地址: 127.0.0.1
+2023-01-18 17:05:06.504 INFO  com.example.wiki.aspect.LogAspect                 :63   [32m                  [0;39m 请求参数: [{"name":"Spring","page":0,"size":0}]
+2023-01-18 17:05:06.507 DEBUG c.e.wiki.mapper.EbookMapper.selectByExample_COUNT :137  [32m                  [0;39m ==>  Preparing: SELECT count(0) FROM ebook WHERE (`name` LIKE ?)
+2023-01-18 17:05:06.507 DEBUG c.e.wiki.mapper.EbookMapper.selectByExample_COUNT :137  [32m                  [0;39m ==> Parameters: %Spring%(String)
+2023-01-18 17:05:06.509 TRACE c.e.wiki.mapper.EbookMapper.selectByExample_COUNT :143  [32m                  [0;39m <==    Columns: count(0)
+2023-01-18 17:05:06.509 TRACE c.e.wiki.mapper.EbookMapper.selectByExample_COUNT :143  [32m                  [0;39m <==        Row: 1
+2023-01-18 17:05:06.510 DEBUG c.e.wiki.mapper.EbookMapper.selectByExample_COUNT :137  [32m                  [0;39m <==      Total: 1
+2023-01-18 17:05:06.511 DEBUG c.example.wiki.mapper.EbookMapper.selectByExample :137  [32m                  [0;39m ==>  Preparing: select id, `name`, category1_id, category2_id, description, cover, doc_count, view_count, vote_count from ebook WHERE ( `name` like ? )
+2023-01-18 17:05:06.511 DEBUG c.example.wiki.mapper.EbookMapper.selectByExample :137  [32m                  [0;39m ==> Parameters: %Spring%(String)
+2023-01-18 17:05:06.513 TRACE c.example.wiki.mapper.EbookMapper.selectByExample :143  [32m                  [0;39m <==    Columns: id, name, category1_id, category2_id, description, cover, doc_count, view_count, vote_count
+2023-01-18 17:05:06.513 TRACE c.example.wiki.mapper.EbookMapper.selectByExample :143  [32m                  [0;39m <==        Row: 1, Spring Boot 入门教程, null, null, 零基础入门 Java 开发，企业级应用开发最佳首选框架, null, 0, 0, 0
+2023-01-18 17:05:06.513 DEBUG c.example.wiki.mapper.EbookMapper.selectByExample :137  [32m                  [0;39m <==      Total: 1
+2023-01-18 17:05:06.514 INFO  com.example.wiki.service.EbookService             :51   [32m                  [0;39m 总行数 1
+2023-01-18 17:05:06.515 INFO  com.example.wiki.service.EbookService             :52   [32m                  [0;39m 总页数 0
+2023-01-18 17:05:06.515 INFO  com.example.wiki.aspect.LogAspect                 :75   [32m                  [0;39m 返回结果: {"content":{"list":[{"description":"零基础入门 Java 开发，企业级应用开发最佳首选框架","docCount":0,"id":1,"name":"Spring Boot 入门教程","viewCount":0,"voteCount":0}],"total":1},"success":true}
+2023-01-18 17:05:06.515 INFO  com.example.wiki.aspect.LogAspect                 :76   [32m                  [0;39m ------------- 结束 耗时：12 ms -------------
+2023-01-18 17:05:09.039 INFO  com.example.wiki.aspect.LogAspect                 :40   [32m                  [0;39m ------------- 开始 -------------
+2023-01-18 17:05:09.040 INFO  com.example.wiki.aspect.LogAspect                 :41   [32m                  [0;39m 请求地址: http://127.0.0.1:8080/ebook/list GET
+2023-01-18 17:05:09.040 INFO  com.example.wiki.aspect.LogAspect                 :42   [32m                  [0;39m 类名方法: com.example.wiki.controller.EbookController.list
+2023-01-18 17:05:09.040 INFO  com.example.wiki.aspect.LogAspect                 :43   [32m                  [0;39m 远程地址: 127.0.0.1
+2023-01-18 17:05:09.041 INFO  com.example.wiki.aspect.LogAspect                 :63   [32m                  [0;39m 请求参数: [{"name":"Spring","page":0,"size":0}]
+2023-01-18 17:05:09.042 DEBUG c.e.wiki.mapper.EbookMapper.selectByExample_COUNT :137  [32m                  [0;39m ==>  Preparing: SELECT count(0) FROM ebook WHERE (`name` LIKE ?)
+2023-01-18 17:05:09.043 DEBUG c.e.wiki.mapper.EbookMapper.selectByExample_COUNT :137  [32m                  [0;39m ==> Parameters: %Spring%(String)
+2023-01-18 17:05:09.044 TRACE c.e.wiki.mapper.EbookMapper.selectByExample_COUNT :143  [32m                  [0;39m <==    Columns: count(0)
+2023-01-18 17:05:09.044 TRACE c.e.wiki.mapper.EbookMapper.selectByExample_COUNT :143  [32m                  [0;39m <==        Row: 1
+2023-01-18 17:05:09.044 DEBUG c.e.wiki.mapper.EbookMapper.selectByExample_COUNT :137  [32m                  [0;39m <==      Total: 1
+2023-01-18 17:05:09.045 DEBUG c.example.wiki.mapper.EbookMapper.selectByExample :137  [32m                  [0;39m ==>  Preparing: select id, `name`, category1_id, category2_id, description, cover, doc_count, view_count, vote_count from ebook WHERE ( `name` like ? )
+2023-01-18 17:05:09.045 DEBUG c.example.wiki.mapper.EbookMapper.selectByExample :137  [32m                  [0;39m ==> Parameters: %Spring%(String)
+2023-01-18 17:05:09.046 TRACE c.example.wiki.mapper.EbookMapper.selectByExample :143  [32m                  [0;39m <==    Columns: id, name, category1_id, category2_id, description, cover, doc_count, view_count, vote_count
+2023-01-18 17:05:09.047 TRACE c.example.wiki.mapper.EbookMapper.selectByExample :143  [32m                  [0;39m <==        Row: 1, Spring Boot 入门教程, null, null, 零基础入门 Java 开发，企业级应用开发最佳首选框架, null, 0, 0, 0
+2023-01-18 17:05:09.047 DEBUG c.example.wiki.mapper.EbookMapper.selectByExample :137  [32m                  [0;39m <==      Total: 1
+2023-01-18 17:05:09.048 INFO  com.example.wiki.service.EbookService             :51   [32m                  [0;39m 总行数 1
+2023-01-18 17:05:09.048 INFO  com.example.wiki.service.EbookService             :52   [32m                  [0;39m 总页数 0
+2023-01-18 17:05:09.048 INFO  com.example.wiki.aspect.LogAspect                 :75   [32m                  [0;39m 返回结果: {"content":{"list":[{"description":"零基础入门 Java 开发，企业级应用开发最佳首选框架","docCount":0,"id":1,"name":"Spring Boot 入门教程","viewCount":0,"voteCount":0}],"total":1},"success":true}
+2023-01-18 17:05:09.049 INFO  com.example.wiki.aspect.LogAspect                 :76   [32m                  [0;39m ------------- 结束 耗时：10 ms -------------
+2023-01-18 17:06:12.246 INFO  com.example.wiki.aspect.LogAspect                 :40   [32m                  [0;39m ------------- 开始 -------------
+2023-01-18 17:06:12.247 INFO  com.example.wiki.aspect.LogAspect                 :41   [32m                  [0;39m 请求地址: http://127.0.0.1:8080/ebook/list GET
+2023-01-18 17:06:12.247 INFO  com.example.wiki.aspect.LogAspect                 :42   [32m                  [0;39m 类名方法: com.example.wiki.controller.EbookController.list
+2023-01-18 17:06:12.247 INFO  com.example.wiki.aspect.LogAspect                 :43   [32m                  [0;39m 远程地址: 127.0.0.1
+2023-01-18 17:06:12.247 INFO  com.example.wiki.aspect.LogAspect                 :63   [32m                  [0;39m 请求参数: [{"name":"Spring","page":0,"size":0}]
+2023-01-18 17:06:12.248 DEBUG c.e.wiki.mapper.EbookMapper.selectByExample_COUNT :137  [32m                  [0;39m ==>  Preparing: SELECT count(0) FROM ebook WHERE (`name` LIKE ?)
+2023-01-18 17:06:12.249 DEBUG c.e.wiki.mapper.EbookMapper.selectByExample_COUNT :137  [32m                  [0;39m ==> Parameters: %Spring%(String)
+2023-01-18 17:06:12.250 TRACE c.e.wiki.mapper.EbookMapper.selectByExample_COUNT :143  [32m                  [0;39m <==    Columns: count(0)
+2023-01-18 17:06:12.251 TRACE c.e.wiki.mapper.EbookMapper.selectByExample_COUNT :143  [32m                  [0;39m <==        Row: 1
+2023-01-18 17:06:12.251 DEBUG c.e.wiki.mapper.EbookMapper.selectByExample_COUNT :137  [32m                  [0;39m <==      Total: 1
+2023-01-18 17:06:12.251 DEBUG c.example.wiki.mapper.EbookMapper.selectByExample :137  [32m                  [0;39m ==>  Preparing: select id, `name`, category1_id, category2_id, description, cover, doc_count, view_count, vote_count from ebook WHERE ( `name` like ? )
+2023-01-18 17:06:12.252 DEBUG c.example.wiki.mapper.EbookMapper.selectByExample :137  [32m                  [0;39m ==> Parameters: %Spring%(String)
+2023-01-18 17:06:12.253 TRACE c.example.wiki.mapper.EbookMapper.selectByExample :143  [32m                  [0;39m <==    Columns: id, name, category1_id, category2_id, description, cover, doc_count, view_count, vote_count
+2023-01-18 17:06:12.253 TRACE c.example.wiki.mapper.EbookMapper.selectByExample :143  [32m                  [0;39m <==        Row: 1, Spring Boot 入门教程, null, null, 零基础入门 Java 开发，企业级应用开发最佳首选框架, null, 0, 0, 0
+2023-01-18 17:06:12.254 DEBUG c.example.wiki.mapper.EbookMapper.selectByExample :137  [32m                  [0;39m <==      Total: 1
+2023-01-18 17:06:12.254 INFO  com.example.wiki.service.EbookService             :51   [32m                  [0;39m 总行数 1
+2023-01-18 17:06:12.254 INFO  com.example.wiki.service.EbookService             :52   [32m                  [0;39m 总页数 0
+2023-01-18 17:06:12.255 INFO  com.example.wiki.aspect.LogAspect                 :75   [32m                  [0;39m 返回结果: {"content":{"list":[{"description":"零基础入门 Java 开发，企业级应用开发最佳首选框架","docCount":0,"id":1,"name":"Spring Boot 入门教程","viewCount":0,"voteCount":0}],"total":1},"success":true}
+2023-01-18 17:06:12.255 INFO  com.example.wiki.aspect.LogAspect                 :76   [32m                  [0;39m ------------- 结束 耗时：9 ms -------------
+2023-01-18 17:06:22.686 INFO  com.example.wiki.aspect.LogAspect                 :40   [32m                  [0;39m ------------- 开始 -------------
+2023-01-18 17:06:22.687 INFO  com.example.wiki.aspect.LogAspect                 :41   [32m                  [0;39m 请求地址: http://127.0.0.1:8080/ebook/list GET
+2023-01-18 17:06:22.687 INFO  com.example.wiki.aspect.LogAspect                 :42   [32m                  [0;39m 类名方法: com.example.wiki.controller.EbookController.list
+2023-01-18 17:06:22.687 INFO  com.example.wiki.aspect.LogAspect                 :43   [32m                  [0;39m 远程地址: 127.0.0.1
+2023-01-18 17:06:22.687 INFO  com.example.wiki.aspect.LogAspect                 :63   [32m                  [0;39m 请求参数: [{"name":"Spring","page":0,"size":0}]
+2023-01-18 17:06:22.690 DEBUG c.e.wiki.mapper.EbookMapper.selectByExample_COUNT :137  [32m                  [0;39m ==>  Preparing: SELECT count(0) FROM ebook WHERE (`name` LIKE ?)
+2023-01-18 17:06:22.691 DEBUG c.e.wiki.mapper.EbookMapper.selectByExample_COUNT :137  [32m                  [0;39m ==> Parameters: %Spring%(String)
+2023-01-18 17:06:22.692 TRACE c.e.wiki.mapper.EbookMapper.selectByExample_COUNT :143  [32m                  [0;39m <==    Columns: count(0)
+2023-01-18 17:06:22.693 TRACE c.e.wiki.mapper.EbookMapper.selectByExample_COUNT :143  [32m                  [0;39m <==        Row: 1
+2023-01-18 17:06:22.693 DEBUG c.e.wiki.mapper.EbookMapper.selectByExample_COUNT :137  [32m                  [0;39m <==      Total: 1
+2023-01-18 17:06:22.693 DEBUG c.example.wiki.mapper.EbookMapper.selectByExample :137  [32m                  [0;39m ==>  Preparing: select id, `name`, category1_id, category2_id, description, cover, doc_count, view_count, vote_count from ebook WHERE ( `name` like ? )
+2023-01-18 17:06:22.694 DEBUG c.example.wiki.mapper.EbookMapper.selectByExample :137  [32m                  [0;39m ==> Parameters: %Spring%(String)
+2023-01-18 17:06:22.695 TRACE c.example.wiki.mapper.EbookMapper.selectByExample :143  [32m                  [0;39m <==    Columns: id, name, category1_id, category2_id, description, cover, doc_count, view_count, vote_count
+2023-01-18 17:06:22.695 TRACE c.example.wiki.mapper.EbookMapper.selectByExample :143  [32m                  [0;39m <==        Row: 1, Spring Boot 入门教程, null, null, 零基础入门 Java 开发，企业级应用开发最佳首选框架, null, 0, 0, 0
+2023-01-18 17:06:22.696 DEBUG c.example.wiki.mapper.EbookMapper.selectByExample :137  [32m                  [0;39m <==      Total: 1
+2023-01-18 17:06:22.696 INFO  com.example.wiki.service.EbookService             :51   [32m                  [0;39m 总行数 1
+2023-01-18 17:06:22.697 INFO  com.example.wiki.service.EbookService             :52   [32m                  [0;39m 总页数 0
+2023-01-18 17:06:22.697 INFO  com.example.wiki.aspect.LogAspect                 :75   [32m                  [0;39m 返回结果: {"content":{"list":[{"description":"零基础入门 Java 开发，企业级应用开发最佳首选框架","docCount":0,"id":1,"name":"Spring Boot 入门教程","viewCount":0,"voteCount":0}],"total":1},"success":true}
+2023-01-18 17:06:22.697 INFO  com.example.wiki.aspect.LogAspect                 :76   [32m                  [0;39m ------------- 结束 耗时：11 ms -------------
+2023-01-18 17:07:02.404 INFO  com.example.wiki.aspect.LogAspect                 :40   [32m                  [0;39m ------------- 开始 -------------
+2023-01-18 17:07:02.405 INFO  com.example.wiki.aspect.LogAspect                 :41   [32m                  [0;39m 请求地址: http://127.0.0.1:8080/ebook/list GET
+2023-01-18 17:07:02.405 INFO  com.example.wiki.aspect.LogAspect                 :42   [32m                  [0;39m 类名方法: com.example.wiki.controller.EbookController.list
+2023-01-18 17:07:02.405 INFO  com.example.wiki.aspect.LogAspect                 :43   [32m                  [0;39m 远程地址: 127.0.0.1
+2023-01-18 17:07:02.405 INFO  com.example.wiki.aspect.LogAspect                 :63   [32m                  [0;39m 请求参数: [{"name":"Spring","page":0,"size":0}]
+2023-01-18 17:07:02.409 DEBUG c.e.wiki.mapper.EbookMapper.selectByExample_COUNT :137  [32m                  [0;39m ==>  Preparing: SELECT count(0) FROM ebook WHERE (`name` LIKE ?)
+2023-01-18 17:07:02.410 DEBUG c.e.wiki.mapper.EbookMapper.selectByExample_COUNT :137  [32m                  [0;39m ==> Parameters: %Spring%(String)
+2023-01-18 17:07:02.411 TRACE c.e.wiki.mapper.EbookMapper.selectByExample_COUNT :143  [32m                  [0;39m <==    Columns: count(0)
+2023-01-18 17:07:02.412 TRACE c.e.wiki.mapper.EbookMapper.selectByExample_COUNT :143  [32m                  [0;39m <==        Row: 1
+2023-01-18 17:07:02.412 DEBUG c.e.wiki.mapper.EbookMapper.selectByExample_COUNT :137  [32m                  [0;39m <==      Total: 1
+2023-01-18 17:07:02.412 DEBUG c.example.wiki.mapper.EbookMapper.selectByExample :137  [32m                  [0;39m ==>  Preparing: select id, `name`, category1_id, category2_id, description, cover, doc_count, view_count, vote_count from ebook WHERE ( `name` like ? )
+2023-01-18 17:07:02.413 DEBUG c.example.wiki.mapper.EbookMapper.selectByExample :137  [32m                  [0;39m ==> Parameters: %Spring%(String)
+2023-01-18 17:07:02.414 TRACE c.example.wiki.mapper.EbookMapper.selectByExample :143  [32m                  [0;39m <==    Columns: id, name, category1_id, category2_id, description, cover, doc_count, view_count, vote_count
+2023-01-18 17:07:02.414 TRACE c.example.wiki.mapper.EbookMapper.selectByExample :143  [32m                  [0;39m <==        Row: 1, Spring Boot 入门教程, null, null, 零基础入门 Java 开发，企业级应用开发最佳首选框架, null, 0, 0, 0
+2023-01-18 17:07:02.415 DEBUG c.example.wiki.mapper.EbookMapper.selectByExample :137  [32m                  [0;39m <==      Total: 1
+2023-01-18 17:07:02.415 INFO  com.example.wiki.service.EbookService             :51   [32m                  [0;39m 总行数 1
+2023-01-18 17:07:02.415 INFO  com.example.wiki.service.EbookService             :52   [32m                  [0;39m 总页数 0
+2023-01-18 17:07:02.416 INFO  com.example.wiki.aspect.LogAspect                 :75   [32m                  [0;39m 返回结果: {"content":{"list":[{"description":"零基础入门 Java 开发，企业级应用开发最佳首选框架","docCount":0,"id":1,"name":"Spring Boot 入门教程","viewCount":0,"voteCount":0}],"total":1},"success":true}
+2023-01-18 17:07:02.416 INFO  com.example.wiki.aspect.LogAspect                 :76   [32m                  [0;39m ------------- 结束 耗时：12 ms -------------
+2023-01-18 17:07:22.321 INFO  com.example.wiki.aspect.LogAspect                 :40   [32m                  [0;39m ------------- 开始 -------------
+2023-01-18 17:07:22.322 INFO  com.example.wiki.aspect.LogAspect                 :41   [32m                  [0;39m 请求地址: http://127.0.0.1:8080/ebook/list GET
+2023-01-18 17:07:22.322 INFO  com.example.wiki.aspect.LogAspect                 :42   [32m                  [0;39m 类名方法: com.example.wiki.controller.EbookController.list
+2023-01-18 17:07:22.322 INFO  com.example.wiki.aspect.LogAspect                 :43   [32m                  [0;39m 远程地址: 127.0.0.1
+2023-01-18 17:07:22.323 INFO  com.example.wiki.aspect.LogAspect                 :63   [32m                  [0;39m 请求参数: [{"name":"Spring","page":0,"size":0}]
+2023-01-18 17:07:22.325 DEBUG c.e.wiki.mapper.EbookMapper.selectByExample_COUNT :137  [32m                  [0;39m ==>  Preparing: SELECT count(0) FROM ebook WHERE (`name` LIKE ?)
+2023-01-18 17:07:22.326 DEBUG c.e.wiki.mapper.EbookMapper.selectByExample_COUNT :137  [32m                  [0;39m ==> Parameters: %Spring%(String)
+2023-01-18 17:07:22.327 TRACE c.e.wiki.mapper.EbookMapper.selectByExample_COUNT :143  [32m                  [0;39m <==    Columns: count(0)
+2023-01-18 17:07:22.327 TRACE c.e.wiki.mapper.EbookMapper.selectByExample_COUNT :143  [32m                  [0;39m <==        Row: 1
+2023-01-18 17:07:22.328 DEBUG c.e.wiki.mapper.EbookMapper.selectByExample_COUNT :137  [32m                  [0;39m <==      Total: 1
+2023-01-18 17:07:22.328 DEBUG c.example.wiki.mapper.EbookMapper.selectByExample :137  [32m                  [0;39m ==>  Preparing: select id, `name`, category1_id, category2_id, description, cover, doc_count, view_count, vote_count from ebook WHERE ( `name` like ? )
+2023-01-18 17:07:22.329 DEBUG c.example.wiki.mapper.EbookMapper.selectByExample :137  [32m                  [0;39m ==> Parameters: %Spring%(String)
+2023-01-18 17:07:22.330 TRACE c.example.wiki.mapper.EbookMapper.selectByExample :143  [32m                  [0;39m <==    Columns: id, name, category1_id, category2_id, description, cover, doc_count, view_count, vote_count
+2023-01-18 17:07:22.330 TRACE c.example.wiki.mapper.EbookMapper.selectByExample :143  [32m                  [0;39m <==        Row: 1, Spring Boot 入门教程, null, null, 零基础入门 Java 开发，企业级应用开发最佳首选框架, null, 0, 0, 0
+2023-01-18 17:07:22.331 DEBUG c.example.wiki.mapper.EbookMapper.selectByExample :137  [32m                  [0;39m <==      Total: 1
+2023-01-18 17:07:22.331 INFO  com.example.wiki.service.EbookService             :51   [32m                  [0;39m 总行数 1
+2023-01-18 17:07:22.331 INFO  com.example.wiki.service.EbookService             :52   [32m                  [0;39m 总页数 0
+2023-01-18 17:07:22.331 INFO  com.example.wiki.aspect.LogAspect                 :75   [32m                  [0;39m 返回结果: {"content":{"list":[{"description":"零基础入门 Java 开发，企业级应用开发最佳首选框架","docCount":0,"id":1,"name":"Spring Boot 入门教程","viewCount":0,"voteCount":0}],"total":1},"success":true}
+2023-01-18 17:07:22.331 INFO  com.example.wiki.aspect.LogAspect                 :76   [32m                  [0;39m ------------- 结束 耗时：10 ms -------------
+2023-01-18 17:07:39.023 INFO  com.example.wiki.aspect.LogAspect                 :40   [32m                  [0;39m ------------- 开始 -------------
+2023-01-18 17:07:39.024 INFO  com.example.wiki.aspect.LogAspect                 :41   [32m                  [0;39m 请求地址: http://127.0.0.1:8080/ebook/list GET
+2023-01-18 17:07:39.024 INFO  com.example.wiki.aspect.LogAspect                 :42   [32m                  [0;39m 类名方法: com.example.wiki.controller.EbookController.list
+2023-01-18 17:07:39.024 INFO  com.example.wiki.aspect.LogAspect                 :43   [32m                  [0;39m 远程地址: 127.0.0.1
+2023-01-18 17:07:39.024 INFO  com.example.wiki.aspect.LogAspect                 :63   [32m                  [0;39m 请求参数: [{"name":"Spring","page":0,"size":0}]
+2023-01-18 17:07:39.026 DEBUG c.e.wiki.mapper.EbookMapper.selectByExample_COUNT :137  [32m                  [0;39m ==>  Preparing: SELECT count(0) FROM ebook WHERE (`name` LIKE ?)
+2023-01-18 17:07:39.027 DEBUG c.e.wiki.mapper.EbookMapper.selectByExample_COUNT :137  [32m                  [0;39m ==> Parameters: %Spring%(String)
+2023-01-18 17:07:39.028 TRACE c.e.wiki.mapper.EbookMapper.selectByExample_COUNT :143  [32m                  [0;39m <==    Columns: count(0)
+2023-01-18 17:07:39.028 TRACE c.e.wiki.mapper.EbookMapper.selectByExample_COUNT :143  [32m                  [0;39m <==        Row: 1
+2023-01-18 17:07:39.029 DEBUG c.e.wiki.mapper.EbookMapper.selectByExample_COUNT :137  [32m                  [0;39m <==      Total: 1
+2023-01-18 17:07:39.029 DEBUG c.example.wiki.mapper.EbookMapper.selectByExample :137  [32m                  [0;39m ==>  Preparing: select id, `name`, category1_id, category2_id, description, cover, doc_count, view_count, vote_count from ebook WHERE ( `name` like ? )
+2023-01-18 17:07:39.029 DEBUG c.example.wiki.mapper.EbookMapper.selectByExample :137  [32m                  [0;39m ==> Parameters: %Spring%(String)
+2023-01-18 17:07:39.030 TRACE c.example.wiki.mapper.EbookMapper.selectByExample :143  [32m                  [0;39m <==    Columns: id, name, category1_id, category2_id, description, cover, doc_count, view_count, vote_count
+2023-01-18 17:07:39.031 TRACE c.example.wiki.mapper.EbookMapper.selectByExample :143  [32m                  [0;39m <==        Row: 1, Spring Boot 入门教程, null, null, 零基础入门 Java 开发，企业级应用开发最佳首选框架, null, 0, 0, 0
+2023-01-18 17:07:39.032 DEBUG c.example.wiki.mapper.EbookMapper.selectByExample :137  [32m                  [0;39m <==      Total: 1
+2023-01-18 17:07:39.033 INFO  com.example.wiki.service.EbookService             :51   [32m                  [0;39m 总行数 1
+2023-01-18 17:07:39.033 INFO  com.example.wiki.service.EbookService             :52   [32m                  [0;39m 总页数 0
+2023-01-18 17:07:39.036 INFO  com.example.wiki.aspect.LogAspect                 :75   [32m                  [0;39m 返回结果: {"content":{"list":[{"description":"零基础入门 Java 开发，企业级应用开发最佳首选框架","docCount":0,"id":1,"name":"Spring Boot 入门教程","viewCount":0,"voteCount":0}],"total":1},"success":true}
+2023-01-18 17:07:39.036 INFO  com.example.wiki.aspect.LogAspect                 :76   [32m                  [0;39m ------------- 结束 耗时：13 ms -------------
+2023-01-18 17:07:42.060 INFO  com.example.wiki.aspect.LogAspect                 :40   [32m                  [0;39m ------------- 开始 -------------
+2023-01-18 17:07:42.060 INFO  com.example.wiki.aspect.LogAspect                 :41   [32m                  [0;39m 请求地址: http://127.0.0.1:8080/ebook/list GET
+2023-01-18 17:07:42.061 INFO  com.example.wiki.aspect.LogAspect                 :42   [32m                  [0;39m 类名方法: com.example.wiki.controller.EbookController.list
+2023-01-18 17:07:42.062 INFO  com.example.wiki.aspect.LogAspect                 :43   [32m                  [0;39m 远程地址: 127.0.0.1
+2023-01-18 17:07:42.062 INFO  com.example.wiki.aspect.LogAspect                 :63   [32m                  [0;39m 请求参数: [{"name":"Spring","page":0,"size":0}]
+2023-01-18 17:07:42.063 DEBUG c.e.wiki.mapper.EbookMapper.selectByExample_COUNT :137  [32m                  [0;39m ==>  Preparing: SELECT count(0) FROM ebook WHERE (`name` LIKE ?)
+2023-01-18 17:07:42.063 DEBUG c.e.wiki.mapper.EbookMapper.selectByExample_COUNT :137  [32m                  [0;39m ==> Parameters: %Spring%(String)
+2023-01-18 17:07:42.064 TRACE c.e.wiki.mapper.EbookMapper.selectByExample_COUNT :143  [32m                  [0;39m <==    Columns: count(0)
+2023-01-18 17:07:42.064 TRACE c.e.wiki.mapper.EbookMapper.selectByExample_COUNT :143  [32m                  [0;39m <==        Row: 1
+2023-01-18 17:07:42.064 DEBUG c.e.wiki.mapper.EbookMapper.selectByExample_COUNT :137  [32m                  [0;39m <==      Total: 1
+2023-01-18 17:07:42.065 DEBUG c.example.wiki.mapper.EbookMapper.selectByExample :137  [32m                  [0;39m ==>  Preparing: select id, `name`, category1_id, category2_id, description, cover, doc_count, view_count, vote_count from ebook WHERE ( `name` like ? )
+2023-01-18 17:07:42.065 DEBUG c.example.wiki.mapper.EbookMapper.selectByExample :137  [32m                  [0;39m ==> Parameters: %Spring%(String)
+2023-01-18 17:07:42.066 TRACE c.example.wiki.mapper.EbookMapper.selectByExample :143  [32m                  [0;39m <==    Columns: id, name, category1_id, category2_id, description, cover, doc_count, view_count, vote_count
+2023-01-18 17:07:42.066 TRACE c.example.wiki.mapper.EbookMapper.selectByExample :143  [32m                  [0;39m <==        Row: 1, Spring Boot 入门教程, null, null, 零基础入门 Java 开发，企业级应用开发最佳首选框架, null, 0, 0, 0
+2023-01-18 17:07:42.066 DEBUG c.example.wiki.mapper.EbookMapper.selectByExample :137  [32m                  [0;39m <==      Total: 1
+2023-01-18 17:07:42.067 INFO  com.example.wiki.service.EbookService             :51   [32m                  [0;39m 总行数 1
+2023-01-18 17:07:42.067 INFO  com.example.wiki.service.EbookService             :52   [32m                  [0;39m 总页数 0
+2023-01-18 17:07:42.067 INFO  com.example.wiki.aspect.LogAspect                 :75   [32m                  [0;39m 返回结果: {"content":{"list":[{"description":"零基础入门 Java 开发，企业级应用开发最佳首选框架","docCount":0,"id":1,"name":"Spring Boot 入门教程","viewCount":0,"voteCount":0}],"total":1},"success":true}
+2023-01-18 17:07:42.067 INFO  com.example.wiki.aspect.LogAspect                 :76   [32m                  [0;39m ------------- 结束 耗时：7 ms -------------
+2023-01-18 17:08:48.388 INFO  com.example.wiki.aspect.LogAspect                 :40   [32m                  [0;39m ------------- 开始 -------------
+2023-01-18 17:08:48.389 INFO  com.example.wiki.aspect.LogAspect                 :41   [32m                  [0;39m 请求地址: http://127.0.0.1:8080/ebook/list GET
+2023-01-18 17:08:48.389 INFO  com.example.wiki.aspect.LogAspect                 :42   [32m                  [0;39m 类名方法: com.example.wiki.controller.EbookController.list
+2023-01-18 17:08:48.389 INFO  com.example.wiki.aspect.LogAspect                 :43   [32m                  [0;39m 远程地址: 127.0.0.1
+2023-01-18 17:08:48.391 INFO  com.example.wiki.aspect.LogAspect                 :63   [32m                  [0;39m 请求参数: [{"name":"Spring","page":0,"size":0}]
+2023-01-18 17:08:48.393 DEBUG c.e.wiki.mapper.EbookMapper.selectByExample_COUNT :137  [32m                  [0;39m ==>  Preparing: SELECT count(0) FROM ebook WHERE (`name` LIKE ?)
+2023-01-18 17:08:48.393 DEBUG c.e.wiki.mapper.EbookMapper.selectByExample_COUNT :137  [32m                  [0;39m ==> Parameters: %Spring%(String)
+2023-01-18 17:08:48.394 TRACE c.e.wiki.mapper.EbookMapper.selectByExample_COUNT :143  [32m                  [0;39m <==    Columns: count(0)
+2023-01-18 17:08:48.395 TRACE c.e.wiki.mapper.EbookMapper.selectByExample_COUNT :143  [32m                  [0;39m <==        Row: 1
+2023-01-18 17:08:48.395 DEBUG c.e.wiki.mapper.EbookMapper.selectByExample_COUNT :137  [32m                  [0;39m <==      Total: 1
+2023-01-18 17:08:48.395 DEBUG c.example.wiki.mapper.EbookMapper.selectByExample :137  [32m                  [0;39m ==>  Preparing: select id, `name`, category1_id, category2_id, description, cover, doc_count, view_count, vote_count from ebook WHERE ( `name` like ? )
+2023-01-18 17:08:48.395 DEBUG c.example.wiki.mapper.EbookMapper.selectByExample :137  [32m                  [0;39m ==> Parameters: %Spring%(String)
+2023-01-18 17:08:48.396 TRACE c.example.wiki.mapper.EbookMapper.selectByExample :143  [32m                  [0;39m <==    Columns: id, name, category1_id, category2_id, description, cover, doc_count, view_count, vote_count
+2023-01-18 17:08:48.396 TRACE c.example.wiki.mapper.EbookMapper.selectByExample :143  [32m                  [0;39m <==        Row: 1, Spring Boot 入门教程, null, null, 零基础入门 Java 开发，企业级应用开发最佳首选框架, null, 0, 0, 0
+2023-01-18 17:08:48.397 DEBUG c.example.wiki.mapper.EbookMapper.selectByExample :137  [32m                  [0;39m <==      Total: 1
+2023-01-18 17:08:48.397 INFO  com.example.wiki.service.EbookService             :51   [32m                  [0;39m 总行数 1
+2023-01-18 17:08:48.397 INFO  com.example.wiki.service.EbookService             :52   [32m                  [0;39m 总页数 0
+2023-01-18 17:08:48.398 INFO  com.example.wiki.aspect.LogAspect                 :75   [32m                  [0;39m 返回结果: {"content":{"list":[{"description":"零基础入门 Java 开发，企业级应用开发最佳首选框架","docCount":0,"id":1,"name":"Spring Boot 入门教程","viewCount":0,"voteCount":0}],"total":1},"success":true}
+2023-01-18 17:08:48.398 INFO  com.example.wiki.aspect.LogAspect                 :76   [32m                  [0;39m ------------- 结束 耗时：10 ms -------------
+2023-01-18 17:08:56.352 INFO  com.example.wiki.aspect.LogAspect                 :40   [32m                  [0;39m ------------- 开始 -------------
+2023-01-18 17:08:56.353 INFO  com.example.wiki.aspect.LogAspect                 :41   [32m                  [0;39m 请求地址: http://127.0.0.1:8080/ebook/list GET
+2023-01-18 17:08:56.353 INFO  com.example.wiki.aspect.LogAspect                 :42   [32m                  [0;39m 类名方法: com.example.wiki.controller.EbookController.list
+2023-01-18 17:08:56.353 INFO  com.example.wiki.aspect.LogAspect                 :43   [32m                  [0;39m 远程地址: 127.0.0.1
+2023-01-18 17:08:56.353 INFO  com.example.wiki.aspect.LogAspect                 :63   [32m                  [0;39m 请求参数: [{"name":"Spring","page":0,"size":0}]
+2023-01-18 17:08:56.354 DEBUG c.e.wiki.mapper.EbookMapper.selectByExample_COUNT :137  [32m                  [0;39m ==>  Preparing: SELECT count(0) FROM ebook WHERE (`name` LIKE ?)
+2023-01-18 17:08:56.355 DEBUG c.e.wiki.mapper.EbookMapper.selectByExample_COUNT :137  [32m                  [0;39m ==> Parameters: %Spring%(String)
+2023-01-18 17:08:56.356 TRACE c.e.wiki.mapper.EbookMapper.selectByExample_COUNT :143  [32m                  [0;39m <==    Columns: count(0)
+2023-01-18 17:08:56.356 TRACE c.e.wiki.mapper.EbookMapper.selectByExample_COUNT :143  [32m                  [0;39m <==        Row: 1
+2023-01-18 17:08:56.357 DEBUG c.e.wiki.mapper.EbookMapper.selectByExample_COUNT :137  [32m                  [0;39m <==      Total: 1
+2023-01-18 17:08:56.357 DEBUG c.example.wiki.mapper.EbookMapper.selectByExample :137  [32m                  [0;39m ==>  Preparing: select id, `name`, category1_id, category2_id, description, cover, doc_count, view_count, vote_count from ebook WHERE ( `name` like ? )
+2023-01-18 17:08:56.357 DEBUG c.example.wiki.mapper.EbookMapper.selectByExample :137  [32m                  [0;39m ==> Parameters: %Spring%(String)
+2023-01-18 17:08:56.358 TRACE c.example.wiki.mapper.EbookMapper.selectByExample :143  [32m                  [0;39m <==    Columns: id, name, category1_id, category2_id, description, cover, doc_count, view_count, vote_count
+2023-01-18 17:08:56.359 TRACE c.example.wiki.mapper.EbookMapper.selectByExample :143  [32m                  [0;39m <==        Row: 1, Spring Boot 入门教程, null, null, 零基础入门 Java 开发，企业级应用开发最佳首选框架, null, 0, 0, 0
+2023-01-18 17:08:56.359 DEBUG c.example.wiki.mapper.EbookMapper.selectByExample :137  [32m                  [0;39m <==      Total: 1
+2023-01-18 17:08:56.359 INFO  com.example.wiki.service.EbookService             :51   [32m                  [0;39m 总行数 1
+2023-01-18 17:08:56.360 INFO  com.example.wiki.service.EbookService             :52   [32m                  [0;39m 总页数 0
+2023-01-18 17:08:56.360 INFO  com.example.wiki.aspect.LogAspect                 :75   [32m                  [0;39m 返回结果: {"content":{"list":[{"description":"零基础入门 Java 开发，企业级应用开发最佳首选框架","docCount":0,"id":1,"name":"Spring Boot 入门教程","viewCount":0,"voteCount":0}],"total":1},"success":true}
+2023-01-18 17:08:56.360 INFO  com.example.wiki.aspect.LogAspect                 :76   [32m                  [0;39m ------------- 结束 耗时：8 ms -------------
+2023-01-18 17:09:28.437 INFO  com.example.wiki.aspect.LogAspect                 :40   [32m                  [0;39m ------------- 开始 -------------
+2023-01-18 17:09:28.437 INFO  com.example.wiki.aspect.LogAspect                 :41   [32m                  [0;39m 请求地址: http://127.0.0.1:8080/ebook/list GET
+2023-01-18 17:09:28.438 INFO  com.example.wiki.aspect.LogAspect                 :42   [32m                  [0;39m 类名方法: com.example.wiki.controller.EbookController.list
+2023-01-18 17:09:28.439 INFO  com.example.wiki.aspect.LogAspect                 :43   [32m                  [0;39m 远程地址: 127.0.0.1
+2023-01-18 17:09:28.439 INFO  com.example.wiki.aspect.LogAspect                 :63   [32m                  [0;39m 请求参数: [{"name":"Spring","page":0,"size":0}]
+2023-01-18 17:09:28.441 DEBUG c.e.wiki.mapper.EbookMapper.selectByExample_COUNT :137  [32m                  [0;39m ==>  Preparing: SELECT count(0) FROM ebook WHERE (`name` LIKE ?)
+2023-01-18 17:09:28.441 DEBUG c.e.wiki.mapper.EbookMapper.selectByExample_COUNT :137  [32m                  [0;39m ==> Parameters: %Spring%(String)
+2023-01-18 17:09:28.443 TRACE c.e.wiki.mapper.EbookMapper.selectByExample_COUNT :143  [32m                  [0;39m <==    Columns: count(0)
+2023-01-18 17:09:28.443 TRACE c.e.wiki.mapper.EbookMapper.selectByExample_COUNT :143  [32m                  [0;39m <==        Row: 1
+2023-01-18 17:09:28.443 DEBUG c.e.wiki.mapper.EbookMapper.selectByExample_COUNT :137  [32m                  [0;39m <==      Total: 1
+2023-01-18 17:09:28.444 DEBUG c.example.wiki.mapper.EbookMapper.selectByExample :137  [32m                  [0;39m ==>  Preparing: select id, `name`, category1_id, category2_id, description, cover, doc_count, view_count, vote_count from ebook WHERE ( `name` like ? )
+2023-01-18 17:09:28.444 DEBUG c.example.wiki.mapper.EbookMapper.selectByExample :137  [32m                  [0;39m ==> Parameters: %Spring%(String)
+2023-01-18 17:09:28.445 TRACE c.example.wiki.mapper.EbookMapper.selectByExample :143  [32m                  [0;39m <==    Columns: id, name, category1_id, category2_id, description, cover, doc_count, view_count, vote_count
+2023-01-18 17:09:28.446 TRACE c.example.wiki.mapper.EbookMapper.selectByExample :143  [32m                  [0;39m <==        Row: 1, Spring Boot 入门教程, null, null, 零基础入门 Java 开发，企业级应用开发最佳首选框架, null, 0, 0, 0
+2023-01-18 17:09:28.446 DEBUG c.example.wiki.mapper.EbookMapper.selectByExample :137  [32m                  [0;39m <==      Total: 1
+2023-01-18 17:09:28.455 INFO  com.example.wiki.service.EbookService             :51   [32m                  [0;39m 总行数 1
+2023-01-18 17:09:28.456 INFO  com.example.wiki.service.EbookService             :52   [32m                  [0;39m 总页数 0
+2023-01-18 17:09:28.457 INFO  com.example.wiki.aspect.LogAspect                 :75   [32m                  [0;39m 返回结果: {"content":{"list":[{"description":"零基础入门 Java 开发，企业级应用开发最佳首选框架","docCount":0,"id":1,"name":"Spring Boot 入门教程","viewCount":0,"voteCount":0}],"total":1},"success":true}
+2023-01-18 17:09:28.457 INFO  com.example.wiki.aspect.LogAspect                 :76   [32m                  [0;39m ------------- 结束 耗时：20 ms -------------
+2023-01-18 17:10:30.358 INFO  com.example.wiki.aspect.LogAspect                 :40   [32m                  [0;39m ------------- 开始 -------------
+2023-01-18 17:10:30.358 INFO  com.example.wiki.aspect.LogAspect                 :41   [32m                  [0;39m 请求地址: http://127.0.0.1:8080/ebook/list GET
+2023-01-18 17:10:30.358 INFO  com.example.wiki.aspect.LogAspect                 :42   [32m                  [0;39m 类名方法: com.example.wiki.controller.EbookController.list
+2023-01-18 17:10:30.359 INFO  com.example.wiki.aspect.LogAspect                 :43   [32m                  [0;39m 远程地址: 127.0.0.1
+2023-01-18 17:10:30.359 INFO  com.example.wiki.aspect.LogAspect                 :63   [32m                  [0;39m 请求参数: [{"name":"Spring","page":0,"size":0}]
+2023-01-18 17:10:30.361 DEBUG c.e.wiki.mapper.EbookMapper.selectByExample_COUNT :137  [32m                  [0;39m ==>  Preparing: SELECT count(0) FROM ebook WHERE (`name` LIKE ?)
+2023-01-18 17:10:30.362 DEBUG c.e.wiki.mapper.EbookMapper.selectByExample_COUNT :137  [32m                  [0;39m ==> Parameters: %Spring%(String)
+2023-01-18 17:10:30.363 TRACE c.e.wiki.mapper.EbookMapper.selectByExample_COUNT :143  [32m                  [0;39m <==    Columns: count(0)
+2023-01-18 17:10:30.363 TRACE c.e.wiki.mapper.EbookMapper.selectByExample_COUNT :143  [32m                  [0;39m <==        Row: 1
+2023-01-18 17:10:30.364 DEBUG c.e.wiki.mapper.EbookMapper.selectByExample_COUNT :137  [32m                  [0;39m <==      Total: 1
+2023-01-18 17:10:30.364 DEBUG c.example.wiki.mapper.EbookMapper.selectByExample :137  [32m                  [0;39m ==>  Preparing: select id, `name`, category1_id, category2_id, description, cover, doc_count, view_count, vote_count from ebook WHERE ( `name` like ? )
+2023-01-18 17:10:30.365 DEBUG c.example.wiki.mapper.EbookMapper.selectByExample :137  [32m                  [0;39m ==> Parameters: %Spring%(String)
+2023-01-18 17:10:30.367 TRACE c.example.wiki.mapper.EbookMapper.selectByExample :143  [32m                  [0;39m <==    Columns: id, name, category1_id, category2_id, description, cover, doc_count, view_count, vote_count
+2023-01-18 17:10:30.367 TRACE c.example.wiki.mapper.EbookMapper.selectByExample :143  [32m                  [0;39m <==        Row: 1, Spring Boot 入门教程, null, null, 零基础入门 Java 开发，企业级应用开发最佳首选框架, null, 0, 0, 0
+2023-01-18 17:10:30.368 DEBUG c.example.wiki.mapper.EbookMapper.selectByExample :137  [32m                  [0;39m <==      Total: 1
+2023-01-18 17:10:30.368 INFO  com.example.wiki.service.EbookService             :51   [32m                  [0;39m 总行数 1
+2023-01-18 17:10:30.369 INFO  com.example.wiki.service.EbookService             :52   [32m                  [0;39m 总页数 0
+2023-01-18 17:10:30.369 INFO  com.example.wiki.aspect.LogAspect                 :75   [32m                  [0;39m 返回结果: {"content":{"list":[{"description":"零基础入门 Java 开发，企业级应用开发最佳首选框架","docCount":0,"id":1,"name":"Spring Boot 入门教程","viewCount":0,"voteCount":0}],"total":1},"success":true}
+2023-01-18 17:10:30.369 INFO  com.example.wiki.aspect.LogAspect                 :76   [32m                  [0;39m ------------- 结束 耗时：11 ms -------------
+2023-01-18 17:10:58.621 INFO  com.example.wiki.aspect.LogAspect                 :40   [32m                  [0;39m ------------- 开始 -------------
+2023-01-18 17:10:58.622 INFO  com.example.wiki.aspect.LogAspect                 :41   [32m                  [0;39m 请求地址: http://127.0.0.1:8080/ebook/list GET
+2023-01-18 17:10:58.622 INFO  com.example.wiki.aspect.LogAspect                 :42   [32m                  [0;39m 类名方法: com.example.wiki.controller.EbookController.list
+2023-01-18 17:10:58.623 INFO  com.example.wiki.aspect.LogAspect                 :43   [32m                  [0;39m 远程地址: 127.0.0.1
+2023-01-18 17:10:58.623 INFO  com.example.wiki.aspect.LogAspect                 :63   [32m                  [0;39m 请求参数: [{"name":"Spring","page":0,"size":0}]
+2023-01-18 17:10:58.625 DEBUG c.e.wiki.mapper.EbookMapper.selectByExample_COUNT :137  [32m                  [0;39m ==>  Preparing: SELECT count(0) FROM ebook WHERE (`name` LIKE ?)
+2023-01-18 17:10:58.625 DEBUG c.e.wiki.mapper.EbookMapper.selectByExample_COUNT :137  [32m                  [0;39m ==> Parameters: %Spring%(String)
+2023-01-18 17:10:58.627 TRACE c.e.wiki.mapper.EbookMapper.selectByExample_COUNT :143  [32m                  [0;39m <==    Columns: count(0)
+2023-01-18 17:10:58.627 TRACE c.e.wiki.mapper.EbookMapper.selectByExample_COUNT :143  [32m                  [0;39m <==        Row: 1
+2023-01-18 17:10:58.627 DEBUG c.e.wiki.mapper.EbookMapper.selectByExample_COUNT :137  [32m                  [0;39m <==      Total: 1
+2023-01-18 17:10:58.627 DEBUG c.example.wiki.mapper.EbookMapper.selectByExample :137  [32m                  [0;39m ==>  Preparing: select id, `name`, category1_id, category2_id, description, cover, doc_count, view_count, vote_count from ebook WHERE ( `name` like ? )
+2023-01-18 17:10:58.628 DEBUG c.example.wiki.mapper.EbookMapper.selectByExample :137  [32m                  [0;39m ==> Parameters: %Spring%(String)
+2023-01-18 17:10:58.629 TRACE c.example.wiki.mapper.EbookMapper.selectByExample :143  [32m                  [0;39m <==    Columns: id, name, category1_id, category2_id, description, cover, doc_count, view_count, vote_count
+2023-01-18 17:10:58.629 TRACE c.example.wiki.mapper.EbookMapper.selectByExample :143  [32m                  [0;39m <==        Row: 1, Spring Boot 入门教程, null, null, 零基础入门 Java 开发，企业级应用开发最佳首选框架, null, 0, 0, 0
+2023-01-18 17:10:58.630 DEBUG c.example.wiki.mapper.EbookMapper.selectByExample :137  [32m                  [0;39m <==      Total: 1
+2023-01-18 17:10:58.630 INFO  com.example.wiki.service.EbookService             :51   [32m                  [0;39m 总行数 1
+2023-01-18 17:10:58.630 INFO  com.example.wiki.service.EbookService             :52   [32m                  [0;39m 总页数 0
+2023-01-18 17:10:58.631 INFO  com.example.wiki.aspect.LogAspect                 :75   [32m                  [0;39m 返回结果: {"content":{"list":[{"description":"零基础入门 Java 开发，企业级应用开发最佳首选框架","docCount":0,"id":1,"name":"Spring Boot 入门教程","viewCount":0,"voteCount":0}],"total":1},"success":true}
+2023-01-18 17:10:58.631 INFO  com.example.wiki.aspect.LogAspect                 :76   [32m                  [0;39m ------------- 结束 耗时：10 ms -------------
+2023-01-18 17:12:49.388 INFO  com.example.wiki.aspect.LogAspect                 :40   [32m                  [0;39m ------------- 开始 -------------
+2023-01-18 17:12:49.389 INFO  com.example.wiki.aspect.LogAspect                 :41   [32m                  [0;39m 请求地址: http://127.0.0.1:8080/ebook/list GET
+2023-01-18 17:12:49.389 INFO  com.example.wiki.aspect.LogAspect                 :42   [32m                  [0;39m 类名方法: com.example.wiki.controller.EbookController.list
+2023-01-18 17:12:49.389 INFO  com.example.wiki.aspect.LogAspect                 :43   [32m                  [0;39m 远程地址: 127.0.0.1
+2023-01-18 17:12:49.389 INFO  com.example.wiki.aspect.LogAspect                 :63   [32m                  [0;39m 请求参数: [{"name":"Spring","page":0,"size":0}]
+2023-01-18 17:12:49.393 DEBUG c.e.wiki.mapper.EbookMapper.selectByExample_COUNT :137  [32m                  [0;39m ==>  Preparing: SELECT count(0) FROM ebook WHERE (`name` LIKE ?)
+2023-01-18 17:12:49.393 DEBUG c.e.wiki.mapper.EbookMapper.selectByExample_COUNT :137  [32m                  [0;39m ==> Parameters: %Spring%(String)
+2023-01-18 17:12:49.395 TRACE c.e.wiki.mapper.EbookMapper.selectByExample_COUNT :143  [32m                  [0;39m <==    Columns: count(0)
+2023-01-18 17:12:49.395 TRACE c.e.wiki.mapper.EbookMapper.selectByExample_COUNT :143  [32m                  [0;39m <==        Row: 1
+2023-01-18 17:12:49.395 DEBUG c.e.wiki.mapper.EbookMapper.selectByExample_COUNT :137  [32m                  [0;39m <==      Total: 1
+2023-01-18 17:12:49.396 DEBUG c.example.wiki.mapper.EbookMapper.selectByExample :137  [32m                  [0;39m ==>  Preparing: select id, `name`, category1_id, category2_id, description, cover, doc_count, view_count, vote_count from ebook WHERE ( `name` like ? )
+2023-01-18 17:12:49.396 DEBUG c.example.wiki.mapper.EbookMapper.selectByExample :137  [32m                  [0;39m ==> Parameters: %Spring%(String)
+2023-01-18 17:12:49.397 TRACE c.example.wiki.mapper.EbookMapper.selectByExample :143  [32m                  [0;39m <==    Columns: id, name, category1_id, category2_id, description, cover, doc_count, view_count, vote_count
+2023-01-18 17:12:49.398 TRACE c.example.wiki.mapper.EbookMapper.selectByExample :143  [32m                  [0;39m <==        Row: 1, Spring Boot 入门教程, null, null, 零基础入门 Java 开发，企业级应用开发最佳首选框架, null, 0, 0, 0
+2023-01-18 17:12:49.398 DEBUG c.example.wiki.mapper.EbookMapper.selectByExample :137  [32m                  [0;39m <==      Total: 1
+2023-01-18 17:12:49.398 INFO  com.example.wiki.service.EbookService             :51   [32m                  [0;39m 总行数 1
+2023-01-18 17:12:49.398 INFO  com.example.wiki.service.EbookService             :52   [32m                  [0;39m 总页数 0
+2023-01-18 17:12:49.399 INFO  com.example.wiki.aspect.LogAspect                 :75   [32m                  [0;39m 返回结果: {"content":{"list":[{"description":"零基础入门 Java 开发，企业级应用开发最佳首选框架","docCount":0,"id":1,"name":"Spring Boot 入门教程","viewCount":0,"voteCount":0}],"total":1},"success":true}
+2023-01-18 17:12:49.399 INFO  com.example.wiki.aspect.LogAspect                 :76   [32m                  [0;39m ------------- 结束 耗时：11 ms -------------
+2023-01-18 17:46:40.468 INFO  com.example.wiki.aspect.LogAspect                 :40   [32m                  [0;39m ------------- 开始 -------------
+2023-01-18 17:46:40.469 INFO  com.example.wiki.aspect.LogAspect                 :41   [32m                  [0;39m 请求地址: http://127.0.0.1:8080/ebook/list GET
+2023-01-18 17:46:40.469 INFO  com.example.wiki.aspect.LogAspect                 :42   [32m                  [0;39m 类名方法: com.example.wiki.controller.EbookController.list
+2023-01-18 17:46:40.469 INFO  com.example.wiki.aspect.LogAspect                 :43   [32m                  [0;39m 远程地址: 127.0.0.1
+2023-01-18 17:46:40.469 INFO  com.example.wiki.aspect.LogAspect                 :63   [32m                  [0;39m 请求参数: [{"name":"Spring","page":0,"size":0}]
+2023-01-18 17:46:40.472 DEBUG c.e.wiki.mapper.EbookMapper.selectByExample_COUNT :137  [32m                  [0;39m ==>  Preparing: SELECT count(0) FROM ebook WHERE (`name` LIKE ?)
+2023-01-18 17:46:40.473 DEBUG c.e.wiki.mapper.EbookMapper.selectByExample_COUNT :137  [32m                  [0;39m ==> Parameters: %Spring%(String)
+2023-01-18 17:46:40.475 TRACE c.e.wiki.mapper.EbookMapper.selectByExample_COUNT :143  [32m                  [0;39m <==    Columns: count(0)
+2023-01-18 17:46:40.476 TRACE c.e.wiki.mapper.EbookMapper.selectByExample_COUNT :143  [32m                  [0;39m <==        Row: 1
+2023-01-18 17:46:40.476 DEBUG c.e.wiki.mapper.EbookMapper.selectByExample_COUNT :137  [32m                  [0;39m <==      Total: 1
+2023-01-18 17:46:40.476 DEBUG c.example.wiki.mapper.EbookMapper.selectByExample :137  [32m                  [0;39m ==>  Preparing: select id, `name`, category1_id, category2_id, description, cover, doc_count, view_count, vote_count from ebook WHERE ( `name` like ? )
+2023-01-18 17:46:40.477 DEBUG c.example.wiki.mapper.EbookMapper.selectByExample :137  [32m                  [0;39m ==> Parameters: %Spring%(String)
+2023-01-18 17:46:40.478 TRACE c.example.wiki.mapper.EbookMapper.selectByExample :143  [32m                  [0;39m <==    Columns: id, name, category1_id, category2_id, description, cover, doc_count, view_count, vote_count
+2023-01-18 17:46:40.478 TRACE c.example.wiki.mapper.EbookMapper.selectByExample :143  [32m                  [0;39m <==        Row: 1, Spring Boot 入门教程, null, null, 零基础入门 Java 开发，企业级应用开发最佳首选框架, null, 0, 0, 0
+2023-01-18 17:46:40.478 DEBUG c.example.wiki.mapper.EbookMapper.selectByExample :137  [32m                  [0;39m <==      Total: 1
+2023-01-18 17:46:40.479 INFO  com.example.wiki.service.EbookService             :51   [32m                  [0;39m 总行数 1
+2023-01-18 17:46:40.479 INFO  com.example.wiki.service.EbookService             :52   [32m                  [0;39m 总页数 0
+2023-01-18 17:46:40.479 INFO  com.example.wiki.aspect.LogAspect                 :75   [32m                  [0;39m 返回结果: {"content":{"list":[{"description":"零基础入门 Java 开发，企业级应用开发最佳首选框架","docCount":0,"id":1,"name":"Spring Boot 入门教程","viewCount":0,"voteCount":0}],"total":1},"success":true}
+2023-01-18 17:46:40.479 INFO  com.example.wiki.aspect.LogAspect                 :76   [32m                  [0;39m ------------- 结束 耗时：11 ms -------------
+2023-01-18 17:48:15.283 INFO  com.example.wiki.aspect.LogAspect                 :40   [32m                  [0;39m ------------- 开始 -------------
+2023-01-18 17:48:15.284 INFO  com.example.wiki.aspect.LogAspect                 :41   [32m                  [0;39m 请求地址: http://127.0.0.1:8080/ebook/list GET
+2023-01-18 17:48:15.284 INFO  com.example.wiki.aspect.LogAspect                 :42   [32m                  [0;39m 类名方法: com.example.wiki.controller.EbookController.list
+2023-01-18 17:48:15.284 INFO  com.example.wiki.aspect.LogAspect                 :43   [32m                  [0;39m 远程地址: 127.0.0.1
+2023-01-18 17:48:15.284 INFO  com.example.wiki.aspect.LogAspect                 :63   [32m                  [0;39m 请求参数: [{"name":"Spring","page":0,"size":0}]
+2023-01-18 17:48:15.295 DEBUG c.e.wiki.mapper.EbookMapper.selectByExample_COUNT :137  [32m                  [0;39m ==>  Preparing: SELECT count(0) FROM ebook WHERE (`name` LIKE ?)
+2023-01-18 17:48:15.295 DEBUG c.e.wiki.mapper.EbookMapper.selectByExample_COUNT :137  [32m                  [0;39m ==> Parameters: %Spring%(String)
+2023-01-18 17:48:15.296 TRACE c.e.wiki.mapper.EbookMapper.selectByExample_COUNT :143  [32m                  [0;39m <==    Columns: count(0)
+2023-01-18 17:48:15.296 TRACE c.e.wiki.mapper.EbookMapper.selectByExample_COUNT :143  [32m                  [0;39m <==        Row: 1
+2023-01-18 17:48:15.297 DEBUG c.e.wiki.mapper.EbookMapper.selectByExample_COUNT :137  [32m                  [0;39m <==      Total: 1
+2023-01-18 17:48:15.297 DEBUG c.example.wiki.mapper.EbookMapper.selectByExample :137  [32m                  [0;39m ==>  Preparing: select id, `name`, category1_id, category2_id, description, cover, doc_count, view_count, vote_count from ebook WHERE ( `name` like ? )
+2023-01-18 17:48:15.297 DEBUG c.example.wiki.mapper.EbookMapper.selectByExample :137  [32m                  [0;39m ==> Parameters: %Spring%(String)
+2023-01-18 17:48:15.299 TRACE c.example.wiki.mapper.EbookMapper.selectByExample :143  [32m                  [0;39m <==    Columns: id, name, category1_id, category2_id, description, cover, doc_count, view_count, vote_count
+2023-01-18 17:48:15.299 TRACE c.example.wiki.mapper.EbookMapper.selectByExample :143  [32m                  [0;39m <==        Row: 1, Spring Boot 入门教程, null, null, 零基础入门 Java 开发，企业级应用开发最佳首选框架, null, 0, 0, 0
+2023-01-18 17:48:15.299 DEBUG c.example.wiki.mapper.EbookMapper.selectByExample :137  [32m                  [0;39m <==      Total: 1
+2023-01-18 17:48:15.300 INFO  com.example.wiki.service.EbookService             :51   [32m                  [0;39m 总行数 1
+2023-01-18 17:48:15.300 INFO  com.example.wiki.service.EbookService             :52   [32m                  [0;39m 总页数 0
+2023-01-18 17:48:15.300 INFO  com.example.wiki.aspect.LogAspect                 :75   [32m                  [0;39m 返回结果: {"content":{"list":[{"description":"零基础入门 Java 开发，企业级应用开发最佳首选框架","docCount":0,"id":1,"name":"Spring Boot 入门教程","viewCount":0,"voteCount":0}],"total":1},"success":true}
+2023-01-18 17:48:15.300 INFO  com.example.wiki.aspect.LogAspect                 :76   [32m                  [0;39m ------------- 结束 耗时：17 ms -------------
+2023-01-18 17:48:28.244 INFO  com.example.wiki.aspect.LogAspect                 :40   [32m                  [0;39m ------------- 开始 -------------
+2023-01-18 17:48:28.244 INFO  com.example.wiki.aspect.LogAspect                 :41   [32m                  [0;39m 请求地址: http://127.0.0.1:8080/ebook/list GET
+2023-01-18 17:48:28.244 INFO  com.example.wiki.aspect.LogAspect                 :42   [32m                  [0;39m 类名方法: com.example.wiki.controller.EbookController.list
+2023-01-18 17:48:28.244 INFO  com.example.wiki.aspect.LogAspect                 :43   [32m                  [0;39m 远程地址: 127.0.0.1
+2023-01-18 17:48:28.245 INFO  com.example.wiki.aspect.LogAspect                 :63   [32m                  [0;39m 请求参数: [{"name":"Spring","page":0,"size":0}]
+2023-01-18 17:48:28.246 DEBUG c.e.wiki.mapper.EbookMapper.selectByExample_COUNT :137  [32m                  [0;39m ==>  Preparing: SELECT count(0) FROM ebook WHERE (`name` LIKE ?)
+2023-01-18 17:48:28.247 DEBUG c.e.wiki.mapper.EbookMapper.selectByExample_COUNT :137  [32m                  [0;39m ==> Parameters: %Spring%(String)
+2023-01-18 17:48:28.248 TRACE c.e.wiki.mapper.EbookMapper.selectByExample_COUNT :143  [32m                  [0;39m <==    Columns: count(0)
+2023-01-18 17:48:28.248 TRACE c.e.wiki.mapper.EbookMapper.selectByExample_COUNT :143  [32m                  [0;39m <==        Row: 1
+2023-01-18 17:48:28.248 DEBUG c.e.wiki.mapper.EbookMapper.selectByExample_COUNT :137  [32m                  [0;39m <==      Total: 1
+2023-01-18 17:48:28.250 DEBUG c.example.wiki.mapper.EbookMapper.selectByExample :137  [32m                  [0;39m ==>  Preparing: select id, `name`, category1_id, category2_id, description, cover, doc_count, view_count, vote_count from ebook WHERE ( `name` like ? )
+2023-01-18 17:48:28.250 DEBUG c.example.wiki.mapper.EbookMapper.selectByExample :137  [32m                  [0;39m ==> Parameters: %Spring%(String)
+2023-01-18 17:48:28.251 TRACE c.example.wiki.mapper.EbookMapper.selectByExample :143  [32m                  [0;39m <==    Columns: id, name, category1_id, category2_id, description, cover, doc_count, view_count, vote_count
+2023-01-18 17:48:28.251 TRACE c.example.wiki.mapper.EbookMapper.selectByExample :143  [32m                  [0;39m <==        Row: 1, Spring Boot 入门教程, null, null, 零基础入门 Java 开发，企业级应用开发最佳首选框架, null, 0, 0, 0
+2023-01-18 17:48:28.252 DEBUG c.example.wiki.mapper.EbookMapper.selectByExample :137  [32m                  [0;39m <==      Total: 1
+2023-01-18 17:48:28.252 INFO  com.example.wiki.service.EbookService             :51   [32m                  [0;39m 总行数 1
+2023-01-18 17:48:28.252 INFO  com.example.wiki.service.EbookService             :52   [32m                  [0;39m 总页数 0
+2023-01-18 17:48:28.253 INFO  com.example.wiki.aspect.LogAspect                 :75   [32m                  [0;39m 返回结果: {"content":{"list":[{"description":"零基础入门 Java 开发，企业级应用开发最佳首选框架","docCount":0,"id":1,"name":"Spring Boot 入门教程","viewCount":0,"voteCount":0}],"total":1},"success":true}
+2023-01-18 17:48:28.253 INFO  com.example.wiki.aspect.LogAspect                 :76   [32m                  [0;39m ------------- 结束 耗时：9 ms -------------
+2023-01-18 17:48:35.271 INFO  com.example.wiki.aspect.LogAspect                 :40   [32m                  [0;39m ------------- 开始 -------------
+2023-01-18 17:48:35.272 INFO  com.example.wiki.aspect.LogAspect                 :41   [32m                  [0;39m 请求地址: http://127.0.0.1:8080/ebook/list GET
+2023-01-18 17:48:35.272 INFO  com.example.wiki.aspect.LogAspect                 :42   [32m                  [0;39m 类名方法: com.example.wiki.controller.EbookController.list
+2023-01-18 17:48:35.272 INFO  com.example.wiki.aspect.LogAspect                 :43   [32m                  [0;39m 远程地址: 127.0.0.1
+2023-01-18 17:48:35.273 INFO  com.example.wiki.aspect.LogAspect                 :63   [32m                  [0;39m 请求参数: [{"name":"Spring","page":0,"size":0}]
+2023-01-18 17:48:35.276 DEBUG c.e.wiki.mapper.EbookMapper.selectByExample_COUNT :137  [32m                  [0;39m ==>  Preparing: SELECT count(0) FROM ebook WHERE (`name` LIKE ?)
+2023-01-18 17:48:35.277 DEBUG c.e.wiki.mapper.EbookMapper.selectByExample_COUNT :137  [32m                  [0;39m ==> Parameters: %Spring%(String)
+2023-01-18 17:48:35.282 TRACE c.e.wiki.mapper.EbookMapper.selectByExample_COUNT :143  [32m                  [0;39m <==    Columns: count(0)
+2023-01-18 17:48:35.283 TRACE c.e.wiki.mapper.EbookMapper.selectByExample_COUNT :143  [32m                  [0;39m <==        Row: 1
+2023-01-18 17:48:35.283 DEBUG c.e.wiki.mapper.EbookMapper.selectByExample_COUNT :137  [32m                  [0;39m <==      Total: 1
+2023-01-18 17:48:35.283 DEBUG c.example.wiki.mapper.EbookMapper.selectByExample :137  [32m                  [0;39m ==>  Preparing: select id, `name`, category1_id, category2_id, description, cover, doc_count, view_count, vote_count from ebook WHERE ( `name` like ? )
+2023-01-18 17:48:35.284 DEBUG c.example.wiki.mapper.EbookMapper.selectByExample :137  [32m                  [0;39m ==> Parameters: %Spring%(String)
+2023-01-18 17:48:35.285 TRACE c.example.wiki.mapper.EbookMapper.selectByExample :143  [32m                  [0;39m <==    Columns: id, name, category1_id, category2_id, description, cover, doc_count, view_count, vote_count
+2023-01-18 17:48:35.285 TRACE c.example.wiki.mapper.EbookMapper.selectByExample :143  [32m                  [0;39m <==        Row: 1, Spring Boot 入门教程, null, null, 零基础入门 Java 开发，企业级应用开发最佳首选框架, null, 0, 0, 0
+2023-01-18 17:48:35.286 DEBUG c.example.wiki.mapper.EbookMapper.selectByExample :137  [32m                  [0;39m <==      Total: 1
+2023-01-18 17:48:35.286 INFO  com.example.wiki.service.EbookService             :51   [32m                  [0;39m 总行数 1
+2023-01-18 17:48:35.286 INFO  com.example.wiki.service.EbookService             :52   [32m                  [0;39m 总页数 0
+2023-01-18 17:48:35.286 INFO  com.example.wiki.aspect.LogAspect                 :75   [32m                  [0;39m 返回结果: {"content":{"list":[{"description":"零基础入门 Java 开发，企业级应用开发最佳首选框架","docCount":0,"id":1,"name":"Spring Boot 入门教程","viewCount":0,"voteCount":0}],"total":1},"success":true}
+2023-01-18 17:48:35.286 INFO  com.example.wiki.aspect.LogAspect                 :76   [32m                  [0;39m ------------- 结束 耗时：15 ms -------------
