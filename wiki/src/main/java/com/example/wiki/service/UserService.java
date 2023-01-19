@@ -83,7 +83,8 @@ public class UserService {
                 throw new BusinessException(BusinessExceptionCode.USER_LOGIN_NAME_EXIST);
             }
         } else {
-            // 更新
+            // 更新时不修改密码与loginname
+            user.setPassword(null);
             user.setLoginName(null);
             userMapper.updateByPrimaryKeySelective(user);
         }
