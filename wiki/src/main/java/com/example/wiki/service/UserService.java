@@ -2,6 +2,7 @@ package com.example.wiki.service;
 
 import com.example.wiki.exception.BusinessException;
 import com.example.wiki.exception.BusinessExceptionCode;
+import com.example.wiki.req.UserResetPasswordReq;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.example.wiki.domain.User;
@@ -88,6 +89,13 @@ public class UserService {
             user.setLoginName(null);
             userMapper.updateByPrimaryKeySelective(user);
         }
+    }
+    /*
+    * 修改密码
+    * */
+    public void resetPassword(UserResetPasswordReq req) {
+        User user = CopyUtil.copy(req, User.class);
+        userMapper.updateByPrimaryKeySelective(user);
     }
 
     public void delete(Long id) {
