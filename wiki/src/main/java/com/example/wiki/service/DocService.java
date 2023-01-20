@@ -6,6 +6,7 @@ import com.example.wiki.domain.Content;
 import com.example.wiki.domain.ContentExample;
 import com.example.wiki.mapper.ContentMapper;
 import com.example.wiki.mapper.DocMapper;
+import com.example.wiki.mapper.DocMapperCust;
 import com.example.wiki.req.DocQueryReq;
 import com.example.wiki.req.DocSaveReq;
 import com.example.wiki.resp.DocQueryResp;
@@ -27,6 +28,8 @@ public class DocService {
 
     @Resource
     private DocMapper docMapper;
+    @Resource
+    private DocMapperCust docMapperCust;
     @Resource
     private ContentMapper contentMapper;
 
@@ -91,6 +94,8 @@ public class DocService {
         if(ObjectUtils.isEmpty(req.getId())){
             //add new
             doc.setId(snowFlake.nextId());
+            doc.setViewCount(0);
+            doc.setVoteCount(0);
             docMapper.insert(doc);
 
             content.setId(doc.getId());
@@ -115,6 +120,8 @@ public class DocService {
     }
     public String findContent(Long id){
         Content content = contentMapper.selectByPrimaryKey(id);
+        //add view count of doc
+        docMapperCust.increaseViewCount(id);
         if (ObjectUtils.isEmpty(content)) {
             return "";
         } else {
