@@ -12,3 +12,15 @@ name=Test
 
 GET http://127.0.0.1:8080/test/list
 Accept: application/json
+
+###
+
+GET http://localhost:8080/redis/set/123/test
+Accept: application/json
+
+###
+
+GET http://localhost:8080/redis/get/123
+Accept: application/json
+
+###
