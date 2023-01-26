@@ -4,13 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="da40c7e0-5646-4fec-96d9-4c54c107b589" name="Changes" comment="5-5 Axios interceptors">
-      <change afterPath="$PROJECT_DIR$/wiki/web/src/views/admin/admin-ebook.vue" afterDir="false" />
+    <list default="true" id="da40c7e0-5646-4fec-96d9-4c54c107b589" name="Changes" comment="6-2 add ebook management page &amp; router, menu">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/log/trace.log" beforeDir="false" afterPath="$PROJECT_DIR$/log/trace.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/wiki/src/main/java/com/example/wiki/service/EbookService.java" beforeDir="false" afterPath="$PROJECT_DIR$/wiki/src/main/java/com/example/wiki/service/EbookService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wiki/web/src/components/the-header.vue" beforeDir="false" afterPath="$PROJECT_DIR$/wiki/web/src/components/the-header.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wiki/web/src/router/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/wiki/web/src/router/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wiki/web/src/views/admin/admin-ebook.vue" beforeDir="false" afterPath="$PROJECT_DIR$/wiki/web/src/views/admin/admin-ebook.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -157,7 +155,7 @@
       <workItem from="1674079760025" duration="6696000" />
       <workItem from="1674103922937" duration="1789000" />
       <workItem from="1674112645644" duration="3000" />
-      <workItem from="1674540907218" duration="18298000" />
+      <workItem from="1674540907218" duration="19763000" />
     </task>
     <task id="LOCAL-00001" summary="edit folder name">
       <created>1673111664367</created>
@@ -292,7 +290,14 @@
       <option name="project" value="LOCAL" />
       <updated>1674714851645</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="6-2 add ebook management page &amp; router, menu">
+      <created>1674717012903</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1674717012903</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -330,7 +335,8 @@
     <MESSAGE value="5-5 Axios HttpServletRequest request -&gt;read configuration from file" />
     <MESSAGE value="5-5 modify Axios baseURL configuration" />
     <MESSAGE value="5-5 Axios interceptors" />
-    <option name="LAST_COMMIT_MESSAGE" value="5-5 Axios interceptors" />
+    <MESSAGE value="6-2 add ebook management page &amp; router, menu" />
+    <option name="LAST_COMMIT_MESSAGE" value="6-2 add ebook management page &amp; router, menu" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
