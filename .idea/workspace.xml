@@ -4,10 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="da40c7e0-5646-4fec-96d9-4c54c107b589" name="Changes" comment="5-5 add --port in package.json to modify port">
+    <list default="true" id="da40c7e0-5646-4fec-96d9-4c54c107b589" name="Changes" comment="5-5 Axios HttpServletRequest request -&gt;read configuration from file">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/log/trace.log" beforeDir="false" afterPath="$PROJECT_DIR$/log/trace.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/wiki/src/main/java/com/example/wiki/service/EbookService.java" beforeDir="false" afterPath="$PROJECT_DIR$/wiki/src/main/java/com/example/wiki/service/EbookService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wiki/web/src/main.ts" beforeDir="false" afterPath="$PROJECT_DIR$/wiki/web/src/main.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/wiki/web/src/views/Home.vue" beforeDir="false" afterPath="$PROJECT_DIR$/wiki/web/src/views/Home.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -152,7 +153,7 @@
       <workItem from="1674079760025" duration="6696000" />
       <workItem from="1674103922937" duration="1789000" />
       <workItem from="1674112645644" duration="3000" />
-      <workItem from="1674540907218" duration="13501000" />
+      <workItem from="1674540907218" duration="13737000" />
     </task>
     <task id="LOCAL-00001" summary="edit folder name">
       <created>1673111664367</created>
@@ -266,7 +267,14 @@
       <option name="project" value="LOCAL" />
       <updated>1674705211142</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="5-5 Axios HttpServletRequest request -&gt;read configuration from file">
+      <created>1674705930776</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1674705930776</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -301,7 +309,8 @@
     <MESSAGE value="5-4 support dynamic SQL" />
     <MESSAGE value="5-4 VUE multi-env, add dev and prod configuration" />
     <MESSAGE value="5-5 add --port in package.json to modify port" />
-    <option name="LAST_COMMIT_MESSAGE" value="5-5 add --port in package.json to modify port" />
+    <MESSAGE value="5-5 Axios HttpServletRequest request -&gt;read configuration from file" />
+    <option name="LAST_COMMIT_MESSAGE" value="5-5 Axios HttpServletRequest request -&gt;read configuration from file" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
