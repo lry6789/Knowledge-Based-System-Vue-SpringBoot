@@ -4,15 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="da40c7e0-5646-4fec-96d9-4c54c107b589" name="Changes" comment="5-4 support dynamic SQL">
-      <change afterPath="$PROJECT_DIR$/wiki/web/.env.dev" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/wiki/web/.env.prod" afterDir="false" />
+    <list default="true" id="da40c7e0-5646-4fec-96d9-4c54c107b589" name="Changes" comment="5-4 VUE multi-env, add dev and prod configuration">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/log/error.log" beforeDir="false" afterPath="$PROJECT_DIR$/log/error.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/log/trace.log" beforeDir="false" afterPath="$PROJECT_DIR$/log/trace.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/wiki/src/main/java/com/example/wiki/service/EbookService.java" beforeDir="false" afterPath="$PROJECT_DIR$/wiki/src/main/java/com/example/wiki/service/EbookService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/wiki/web/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/wiki/web/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wiki/web/src/main.ts" beforeDir="false" afterPath="$PROJECT_DIR$/wiki/web/src/main.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wiki/web/vue.config.js" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -110,6 +107,16 @@
       <envs />
       <method v="2" />
     </configuration>
+    <configuration name="serve-dev" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/wiki/web/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="serve-dev" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
     <configuration name="serve" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
       <package-json value="$PROJECT_DIR$/wiki/web/package.json" />
       <command value="run" />
@@ -122,6 +129,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="npm.serve-dev" />
         <item itemvalue="npm.serve -- dev" />
         <item itemvalue="npm.serve" />
         <item itemvalue="Node.js.vue.config.js" />
@@ -145,7 +153,7 @@
       <workItem from="1674079760025" duration="6696000" />
       <workItem from="1674103922937" duration="1789000" />
       <workItem from="1674112645644" duration="3000" />
-      <workItem from="1674540907218" duration="12301000" />
+      <workItem from="1674540907218" duration="12785000" />
     </task>
     <task id="LOCAL-00001" summary="edit folder name">
       <created>1673111664367</created>
@@ -245,7 +253,14 @@
       <option name="project" value="LOCAL" />
       <updated>1674606918695</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="5-4 VUE multi-env, add dev and prod configuration">
+      <created>1674704875881</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1674704875881</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -278,7 +293,8 @@
     <MESSAGE value="integrate icon components" />
     <MESSAGE value="ebooks layout modification" />
     <MESSAGE value="5-4 support dynamic SQL" />
-    <option name="LAST_COMMIT_MESSAGE" value="5-4 support dynamic SQL" />
+    <MESSAGE value="5-4 VUE multi-env, add dev and prod configuration" />
+    <option name="LAST_COMMIT_MESSAGE" value="5-4 VUE multi-env, add dev and prod configuration" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
