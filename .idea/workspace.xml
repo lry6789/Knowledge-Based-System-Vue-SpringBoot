@@ -4,10 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="da40c7e0-5646-4fec-96d9-4c54c107b589" name="Changes" comment="6-3 ebook management display data">
+    <list default="true" id="da40c7e0-5646-4fec-96d9-4c54c107b589" name="Changes" comment="6-6 use ebook list &amp; pagination parameters">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/log/trace.log" beforeDir="false" afterPath="$PROJECT_DIR$/log/trace.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/wiki/src/main/java/com/example/wiki/service/EbookService.java" beforeDir="false" afterPath="$PROJECT_DIR$/wiki/src/main/java/com/example/wiki/service/EbookService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wiki/web/src/views/Home.vue" beforeDir="false" afterPath="$PROJECT_DIR$/wiki/web/src/views/Home.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/wiki/web/src/views/admin/admin-ebook.vue" beforeDir="false" afterPath="$PROJECT_DIR$/wiki/web/src/views/admin/admin-ebook.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -158,7 +158,7 @@
       <workItem from="1674079760025" duration="6696000" />
       <workItem from="1674103922937" duration="1789000" />
       <workItem from="1674112645644" duration="3000" />
-      <workItem from="1674540907218" duration="27957000" />
+      <workItem from="1674540907218" duration="28193000" />
     </task>
     <task id="LOCAL-00001" summary="edit folder name">
       <created>1673111664367</created>
@@ -314,7 +314,14 @@
       <option name="project" value="LOCAL" />
       <updated>1674797334339</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="6-6 use ebook list &amp; pagination parameters">
+      <created>1674798169685</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1674798169685</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -355,7 +362,8 @@
     <MESSAGE value="6-2 add ebook management page &amp; router, menu" />
     <MESSAGE value="6-3 edit ebook management page" />
     <MESSAGE value="6-3 ebook management display data" />
-    <option name="LAST_COMMIT_MESSAGE" value="6-3 ebook management display data" />
+    <MESSAGE value="6-6 use ebook list &amp; pagination parameters" />
+    <option name="LAST_COMMIT_MESSAGE" value="6-6 use ebook list &amp; pagination parameters" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
