@@ -4,10 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="da40c7e0-5646-4fec-96d9-4c54c107b589" name="Changes" comment="6-2 add ebook management page &amp; router, menu">
+    <list default="true" id="da40c7e0-5646-4fec-96d9-4c54c107b589" name="Changes" comment="6-3 edit ebook management page">
+      <change afterPath="$PROJECT_DIR$/wiki/web/public/image/cover1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/wiki/web/public/image/cover2.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/log/error.log" beforeDir="false" afterPath="$PROJECT_DIR$/log/error.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/log/trace.log" beforeDir="false" afterPath="$PROJECT_DIR$/log/trace.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/wiki/src/main/java/com/example/wiki/service/EbookService.java" beforeDir="false" afterPath="$PROJECT_DIR$/wiki/src/main/java/com/example/wiki/service/EbookService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wiki/web/.eslintrc.js" beforeDir="false" afterPath="$PROJECT_DIR$/wiki/web/.eslintrc.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wiki/web/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/wiki/web/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wiki/web/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/wiki/web/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wiki/web/src/main.ts" beforeDir="false" afterPath="$PROJECT_DIR$/wiki/web/src/main.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wiki/web/src/router/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/wiki/web/src/router/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wiki/web/src/views/Home.vue" beforeDir="false" afterPath="$PROJECT_DIR$/wiki/web/src/views/Home.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/wiki/web/src/views/admin/admin-ebook.vue" beforeDir="false" afterPath="$PROJECT_DIR$/wiki/web/src/views/admin/admin-ebook.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -46,6 +55,9 @@
         <option name="workspaceImportEnabled" value="true" />
       </MavenImportingSettings>
     </option>
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="ProjectErrors" />
   </component>
   <component name="ProjectId" id="2Jk8UdHZ7hYRp1B2baGw1I7fOF2" />
   <component name="ProjectLevelVcsManager">
@@ -155,7 +167,7 @@
       <workItem from="1674079760025" duration="6696000" />
       <workItem from="1674103922937" duration="1789000" />
       <workItem from="1674112645644" duration="3000" />
-      <workItem from="1674540907218" duration="19763000" />
+      <workItem from="1674540907218" duration="27172000" />
     </task>
     <task id="LOCAL-00001" summary="edit folder name">
       <created>1673111664367</created>
@@ -297,7 +309,14 @@
       <option name="project" value="LOCAL" />
       <updated>1674717012903</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="6-3 edit ebook management page">
+      <created>1674777353629</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1674777353629</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -336,7 +355,8 @@
     <MESSAGE value="5-5 modify Axios baseURL configuration" />
     <MESSAGE value="5-5 Axios interceptors" />
     <MESSAGE value="6-2 add ebook management page &amp; router, menu" />
-    <option name="LAST_COMMIT_MESSAGE" value="6-2 add ebook management page &amp; router, menu" />
+    <MESSAGE value="6-3 edit ebook management page" />
+    <option name="LAST_COMMIT_MESSAGE" value="6-3 edit ebook management page" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
