@@ -112,7 +112,7 @@ export default defineComponent({
      **/
     const handleQuery = (params: any) => {
       loading.value = true;
-      axios.get("/ebook/list", {
+      axios.get("http://127.0.0.1:8080/ebook/list", {
         params: {
           page: params.page,
           size: params.size
