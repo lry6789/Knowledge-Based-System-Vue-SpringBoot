@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="da40c7e0-5646-4fec-96d9-4c54c107b589" name="Changes" comment="6-7 ebook update func">
+    <list default="true" id="da40c7e0-5646-4fec-96d9-4c54c107b589" name="Changes" comment="6-7 integrate snowflake with front-end">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/log/trace.log" beforeDir="false" afterPath="$PROJECT_DIR$/log/trace.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/wiki/src/main/java/com/example/wiki/service/EbookService.java" beforeDir="false" afterPath="$PROJECT_DIR$/wiki/src/main/java/com/example/wiki/service/EbookService.java" afterDir="false" />
@@ -158,7 +158,7 @@
       <workItem from="1674079760025" duration="6696000" />
       <workItem from="1674103922937" duration="1789000" />
       <workItem from="1674112645644" duration="3000" />
-      <workItem from="1674540907218" duration="29750000" />
+      <workItem from="1674540907218" duration="29928000" />
     </task>
     <task id="LOCAL-00001" summary="edit folder name">
       <created>1673111664367</created>
@@ -356,7 +356,14 @@
       <option name="project" value="LOCAL" />
       <updated>1674799849349</updated>
     </task>
-    <option name="localTasksCounter" value="29" />
+    <task id="LOCAL-00029" summary="6-7 integrate snowflake with front-end">
+      <created>1674800003170</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1674800003170</updated>
+    </task>
+    <option name="localTasksCounter" value="30" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -375,7 +382,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="integrated Ant Design Vue" />
     <MESSAGE value="web homepage development" />
     <MESSAGE value="implement homepage router and close vue/no-unused-components" />
     <MESSAGE value="create component footer and header" />
@@ -400,7 +406,8 @@
     <MESSAGE value="6-7 Modal Dialogue Box" />
     <MESSAGE value="6-7 Modal Dialogue Box when press modify button" />
     <MESSAGE value="6-7 ebook update func" />
-    <option name="LAST_COMMIT_MESSAGE" value="6-7 ebook update func" />
+    <MESSAGE value="6-7 integrate snowflake with front-end" />
+    <option name="LAST_COMMIT_MESSAGE" value="6-7 integrate snowflake with front-end" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
