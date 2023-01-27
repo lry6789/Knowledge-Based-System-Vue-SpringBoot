@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="da40c7e0-5646-4fec-96d9-4c54c107b589" name="Changes" comment="6-7 Modal Dialogue Box when press modify button">
+    <list default="true" id="da40c7e0-5646-4fec-96d9-4c54c107b589" name="Changes" comment="6-7 ebook update func">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/log/trace.log" beforeDir="false" afterPath="$PROJECT_DIR$/log/trace.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/wiki/src/main/java/com/example/wiki/service/EbookService.java" beforeDir="false" afterPath="$PROJECT_DIR$/wiki/src/main/java/com/example/wiki/service/EbookService.java" afterDir="false" />
@@ -158,7 +158,7 @@
       <workItem from="1674079760025" duration="6696000" />
       <workItem from="1674103922937" duration="1789000" />
       <workItem from="1674112645644" duration="3000" />
-      <workItem from="1674540907218" duration="29000000" />
+      <workItem from="1674540907218" duration="29750000" />
     </task>
     <task id="LOCAL-00001" summary="edit folder name">
       <created>1673111664367</created>
@@ -349,7 +349,14 @@
       <option name="project" value="LOCAL" />
       <updated>1674798810815</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL-00028" summary="6-7 ebook update func">
+      <created>1674799849349</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1674799849349</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -368,7 +375,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="create web using Vue CLI" />
     <MESSAGE value="integrated Ant Design Vue" />
     <MESSAGE value="web homepage development" />
     <MESSAGE value="implement homepage router and close vue/no-unused-components" />
@@ -393,7 +399,8 @@
     <MESSAGE value="6-6 edit ebook management pagination" />
     <MESSAGE value="6-7 Modal Dialogue Box" />
     <MESSAGE value="6-7 Modal Dialogue Box when press modify button" />
-    <option name="LAST_COMMIT_MESSAGE" value="6-7 Modal Dialogue Box when press modify button" />
+    <MESSAGE value="6-7 ebook update func" />
+    <option name="LAST_COMMIT_MESSAGE" value="6-7 ebook update func" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
