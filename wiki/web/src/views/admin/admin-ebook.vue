@@ -87,7 +87,7 @@ export default defineComponent({
      **/
     const handleQuery = (params: any) => {
       loading.value = true;
-      axios.get("/ebook/list", params).then((response) => {
+      axios.get("http://127.0.0.1:8080/ebook/list", params).then((response) => {
         loading.value = false;
         const data = response.data;
         ebooks.value = data.content;
