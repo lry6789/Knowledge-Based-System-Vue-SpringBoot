@@ -8,16 +8,17 @@
       >
         <a-menu-item key="welcome">
           <router-link :to="'/'">
-            <MailOutlined />
+            <MailOutlined/>
             <span>欢迎</span>
           </router-link>
         </a-menu-item>
         <a-sub-menu v-for="item in level1" :key="item.id">
           <template v-slot:title>
-            <span><user-outlined />{{item.name}}</span>
+            <span><user-outlined/>{{ item.name }}</span>
           </template>
           <a-menu-item v-for="child in item.children" :key="child.id">
-            <MailOutlined /><span>{{child.name}}</span>
+            <MailOutlined/>
+            <span>{{ child.name }}</span>
           </a-menu-item>
         </a-sub-menu>
       </a-menu>
@@ -30,7 +31,7 @@
           <a-list-item key="item.name">
             <template #actions>
               <span v-for="{ type, text } in actions" :key="type">
-                <component v-bind:is="type" style="margin-right: 8px" />
+                <component v-bind:is="type" style="margin-right: 8px"/>
                 {{ text }}
               </span>
             </template>
@@ -38,7 +39,9 @@
               <template #title>
                 <a :href="item.href">{{ item.name }}</a>
               </template>
-              <template #avatar><a-avatar :src="item.cover"/></template>
+              <template #avatar>
+                <a-avatar :src="item.cover"/>
+              </template>
             </a-list-item-meta>
           </a-list-item>
         </template>
@@ -48,9 +51,9 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted, ref, reactive, toRef } from 'vue';
+import {defineComponent, onMounted, ref, reactive, toRef} from 'vue';
 import axios from 'axios';
-import { message } from 'ant-design-vue';
+import {message} from 'ant-design-vue';
 import {Tool} from "@/util/tool";
 
 export default defineComponent({
@@ -58,29 +61,29 @@ export default defineComponent({
   setup() {
 
     const ebooks = ref();
-    const level1 =  ref();
+    const level1 = ref();
     let categorys: any;
-        /**
-          * 查询所有分类
-          **/
-        const handleQueryCategory = () => {
-          axios.get("http://127.0.0.1:8080/category/all").then((response) => {
-            const data = response.data;
-            if (data.success) {
-              categorys = data.content;
-              console.log("原始数组：", categorys);
+    /**
+     * 查询所有分类
+     **/
+    const handleQueryCategory = () => {
+      axios.get("http://127.0.0.1:8080/category/all").then((response) => {
+        const data = response.data;
+        if (data.success) {
+          categorys = data.content;
+          console.log("原始数组：", categorys);
 
-              level1.value = [];
-              level1.value = Tool.array2Tree(categorys, 0);
-              console.log("树形结构：", level1.value);
-            } else {
-              message.error(data.message);
-            }
-              });
-          };
-        const handleClick = () => {
-           console.log("menu click")
-          };
+          level1.value = [];
+          level1.value = Tool.array2Tree(categorys, 0);
+          console.log("树形结构：", level1.value);
+        } else {
+          message.error(data.message);
+        }
+      });
+    };
+    const handleClick = () => {
+      console.log("menu click")
+    };
 
     onMounted(() => {
       handleQueryCategory();
@@ -89,8 +92,8 @@ export default defineComponent({
         params: {
           page: 1,
           size: 1000
-                }
-            }).then((response) => {
+        }
+      }).then((response) => {
         const data = response.data;
         ebooks.value = data.content.list;
         console.log(response);
@@ -107,9 +110,9 @@ export default defineComponent({
         pageSize: 3,
       },
       actions: [
-        { type: 'StarOutlined', text: '156' },
-        { type: 'LikeOutlined', text: '156' },
-        { type: 'MessageOutlined', text: '2' },
+        {type: 'StarOutlined', text: '156'},
+        {type: 'LikeOutlined', text: '156'},
+        {type: 'MessageOutlined', text: '2'},
       ],
       handleClick,
       level1,

@@ -30,7 +30,7 @@
           @change="handleTableChange"
       >
         <template #cover="{ text: cover }">
-          <img v-if="cover" :src="cover" alt="avatar" />
+          <img v-if="cover" :src="cover" alt="avatar"/>
         </template>
         <template v-slot:category="{ text, record }">
           <span>{{ getCategoryName(record.category1Id) }} / {{ getCategoryName(record.category2Id) }}</span>
@@ -64,10 +64,10 @@
   >
     <a-form :model="ebook" :label-col="{ span: 6 }" :wrapper-col="{ span: 18 }">
       <a-form-item label="封面">
-        <a-input v-model:value="ebook.cover" />
+        <a-input v-model:value="ebook.cover"/>
       </a-form-item>
       <a-form-item label="名称">
-        <a-input v-model:value="ebook.name" />
+        <a-input v-model:value="ebook.name"/>
       </a-form-item>
       <a-form-item label="分类">
         <a-cascader
@@ -77,16 +77,16 @@
         />
       </a-form-item>
       <a-form-item label="描述">
-        <a-input v-model:value="ebook.description" type="textarea" />
+        <a-input v-model:value="ebook.description" type="textarea"/>
       </a-form-item>
     </a-form>
   </a-modal>
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted, ref } from 'vue';
+import {defineComponent, onMounted, ref} from 'vue';
 import axios from 'axios';
-import { message } from 'ant-design-vue';
+import {message} from 'ant-design-vue';
 import {Tool} from "@/util/tool";
 
 export default defineComponent({
@@ -106,7 +106,7 @@ export default defineComponent({
       {
         title: '封面',
         dataIndex: 'cover',
-        slots: { customRender: 'cover' }
+        slots: {customRender: 'cover'}
       },
       {
         title: '名称',
@@ -114,7 +114,7 @@ export default defineComponent({
       },
       {
         title: '分类',
-        slots: { customRender: 'category' }
+        slots: {customRender: 'category'}
       },
       {
         title: '文档数',
@@ -131,7 +131,7 @@ export default defineComponent({
       {
         title: 'Action',
         key: 'action',
-        slots: { customRender: 'action' }
+        slots: {customRender: 'action'}
       }
     ];
 
@@ -233,7 +233,7 @@ export default defineComponent({
       });
     };
 
-    const level1 =  ref();
+    const level1 = ref();
     let categorys: any;
     /**
      * 查询所有分类
@@ -250,6 +250,12 @@ export default defineComponent({
           level1.value = [];
           level1.value = Tool.array2Tree(categorys, 0);
           console.log("树形结构：", level1.value);
+
+          // 加载完分类后，再加载电子书，否则如果分类树加载很慢，则电子书渲染会报错
+          handleQuery({
+            page: 1,
+            size: pagination.value.pageSize,
+          });
         } else {
           message.error(data.message);
         }
@@ -270,10 +276,6 @@ export default defineComponent({
 
     onMounted(() => {
       handleQueryCategory();
-      handleQuery({
-        page: 1,
-        size: pagination.value.pageSize,
-      });
     });
 
     return {
