@@ -7,7 +7,7 @@ import  'ant-design-vue/dist/antd.css';
 import  * as Icon from '@ant-design/icons-vue';
 import axios from "axios";
 
-
+axios.defaults.baseURL = process.env.VUE_APP_SERVER;
 
 /**
  + * axios拦截器
@@ -36,5 +36,5 @@ for (const i in icons){
     app.component(i,icons[i]);
 }
 
-console.log('env:',process.env.NODE_ENV)
-console.log('server:',process.env.VUE_APP_SERVER)
+console.log('环境：', process.env.NODE_ENV);
+console.log('服务端：', process.env.VUE_APP_SERVER);

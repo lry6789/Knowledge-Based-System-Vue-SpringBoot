@@ -13,6 +13,9 @@
       <a-menu-item key="/ebook">
         <router-link to="/ebook">Ebook</router-link>
       </a-menu-item>
+      <a-menu-item key="/admin/category">
+        <router-link to="/admin/category">Classification management</router-link>
+      </a-menu-item>
       <a-menu-item key="/about">
         <router-link to="/about">About</router-link>
       </a-menu-item>

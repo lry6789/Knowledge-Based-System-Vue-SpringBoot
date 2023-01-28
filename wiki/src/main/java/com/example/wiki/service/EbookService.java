@@ -73,6 +73,7 @@ public class EbookService {
     /*
     * Save
     * */
+
     public void save(EbookSaveReq req){
         Ebook ebook = CopyUtil.copy(req, Ebook.class);
         if(ObjectUtils.isEmpty(req.getId())){

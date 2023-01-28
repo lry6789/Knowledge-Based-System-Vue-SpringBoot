@@ -4,13 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="da40c7e0-5646-4fec-96d9-4c54c107b589" name="Changes" comment="6-11 integrate validation">
-      <change afterPath="$PROJECT_DIR$/wiki/web/src/util/tool.ts" afterDir="false" />
+    <list default="true" id="da40c7e0-5646-4fec-96d9-4c54c107b589" name="Changes" comment="6-11 search book by name">
+      <change afterPath="$PROJECT_DIR$/wiki/web/src/views/admin/admin-category.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/log/trace.log" beforeDir="false" afterPath="$PROJECT_DIR$/log/trace.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wiki/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/wiki/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/wiki/src/main/java/com/example/wiki/service/EbookService.java" beforeDir="false" afterPath="$PROJECT_DIR$/wiki/src/main/java/com/example/wiki/service/EbookService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wiki/web/src/views/admin/admin-ebook.vue" beforeDir="false" afterPath="$PROJECT_DIR$/wiki/web/src/views/admin/admin-ebook.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wiki/web/.env.dev" beforeDir="false" afterPath="$PROJECT_DIR$/wiki/web/.env.dev" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wiki/web/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/wiki/web/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wiki/web/src/components/the-header.vue" beforeDir="false" afterPath="$PROJECT_DIR$/wiki/web/src/components/the-header.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wiki/web/src/main.ts" beforeDir="false" afterPath="$PROJECT_DIR$/wiki/web/src/main.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wiki/web/src/router/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/wiki/web/src/router/index.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -60,31 +63,31 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "RequestMappingsPanelOrder0": "0",
-    "RequestMappingsPanelOrder1": "1",
-    "RequestMappingsPanelWidth0": "75",
-    "RequestMappingsPanelWidth1": "75",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/Users/amper/project/Wiki/Knowledge-Based-System/wiki/web/src/views/admin",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "MavenSettings",
-    "spring.configuration.checksum": "bf111e3622a72a3b5dc784b5903983ca",
-    "ts.external.directory.path": "C:\\Users\\amper\\project\\Wiki\\Knowledge-Based-System\\wiki\\web\\node_modules\\typescript\\lib",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/amper/project/Wiki/Knowledge-Based-System/wiki/web/src/views/admin&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;MavenSettings&quot;,
+    &quot;spring.configuration.checksum&quot;: &quot;bf111e3622a72a3b5dc784b5903983ca&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;C:\\Users\\amper\\project\\Wiki\\Knowledge-Based-System\\wiki\\web\\node_modules\\typescript\\lib&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\amper\project\Wiki\Knowledge-Based-System\wiki\web\src\views\admin" />
@@ -93,7 +96,7 @@
       <recent name="C:\Users\amper\project\Wiki\Knowledge-Based-System\wiki\web" />
     </key>
   </component>
-  <component name="RunManager" selected="npm.serve">
+  <component name="RunManager" selected="npm.serve-dev">
     <configuration name="vue.config.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/wiki/web/vue.config.js" working-dir="$PROJECT_DIR$/wiki/web">
       <method v="2" />
     </configuration>
@@ -160,7 +163,8 @@
       <workItem from="1674079760025" duration="6696000" />
       <workItem from="1674103922937" duration="1789000" />
       <workItem from="1674112645644" duration="3000" />
-      <workItem from="1674540907218" duration="30527000" />
+      <workItem from="1674540907218" duration="30673000" />
+      <workItem from="1674856877462" duration="5404000" />
     </task>
     <task id="LOCAL-00001" summary="edit folder name">
       <created>1673111664367</created>
@@ -372,7 +376,14 @@
       <option name="project" value="LOCAL" />
       <updated>1674800203394</updated>
     </task>
-    <option name="localTasksCounter" value="31" />
+    <task id="LOCAL-00031" summary="6-11 search book by name">
+      <created>1674800796524</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1674800796524</updated>
+    </task>
+    <option name="localTasksCounter" value="32" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -391,7 +402,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="delete HelloWorld.vue and related code" />
     <MESSAGE value="integrated axios" />
     <MESSAGE value="modify port address for frontend" />
     <MESSAGE value="use axios to call api ebook/list" />
@@ -416,14 +426,15 @@
     <MESSAGE value="6-7 add delete func" />
     <MESSAGE value="6-10 add delete func" />
     <MESSAGE value="6-11 integrate validation" />
-    <option name="LAST_COMMIT_MESSAGE" value="6-11 integrate validation" />
+    <MESSAGE value="6-11 search book by name" />
+    <option name="LAST_COMMIT_MESSAGE" value="6-11 search book by name" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/wiki/web/src/components/the-header.vue</url>
-          <line>22</line>
+          <line>25</line>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
       </breakpoints>
