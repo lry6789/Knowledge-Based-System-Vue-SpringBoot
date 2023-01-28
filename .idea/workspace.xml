@@ -4,11 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="da40c7e0-5646-4fec-96d9-4c54c107b589" name="Changes" comment="7-5 drop-down list for parent node">
+    <list default="true" id="da40c7e0-5646-4fec-96d9-4c54c107b589" name="Changes" comment="7-6">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/log/error.log" beforeDir="false" afterPath="$PROJECT_DIR$/log/error.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/log/trace.log" beforeDir="false" afterPath="$PROJECT_DIR$/log/trace.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wiki/web/src/views/admin/admin-category.vue" beforeDir="false" afterPath="$PROJECT_DIR$/wiki/web/src/views/admin/admin-category.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wiki/web/src/views/Home.vue" beforeDir="false" afterPath="$PROJECT_DIR$/wiki/web/src/views/Home.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -159,7 +158,7 @@
       <workItem from="1674103922937" duration="1789000" />
       <workItem from="1674112645644" duration="3000" />
       <workItem from="1674540907218" duration="30673000" />
-      <workItem from="1674856877462" duration="8032000" />
+      <workItem from="1674856877462" duration="8726000" />
     </task>
     <task id="LOCAL-00001" summary="edit folder name">
       <created>1673111664367</created>
@@ -406,7 +405,14 @@
       <option name="project" value="LOCAL" />
       <updated>1674878358411</updated>
     </task>
-    <option name="localTasksCounter" value="36" />
+    <task id="LOCAL-00036" summary="7-6">
+      <created>1674879263492</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1674879263492</updated>
+    </task>
+    <option name="localTasksCounter" value="37" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -425,7 +431,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="ebooks layout modification" />
     <MESSAGE value="5-4 support dynamic SQL" />
     <MESSAGE value="5-4 VUE multi-env, add dev and prod configuration" />
     <MESSAGE value="5-5 add --port in package.json to modify port" />
@@ -450,7 +455,8 @@
     <MESSAGE value="7-4 tree structure for category" />
     <MESSAGE value="7-4 drop-down list for parent node" />
     <MESSAGE value="7-5 drop-down list for parent node" />
-    <option name="LAST_COMMIT_MESSAGE" value="7-5 drop-down list for parent node" />
+    <MESSAGE value="7-6" />
+    <option name="LAST_COMMIT_MESSAGE" value="7-6" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

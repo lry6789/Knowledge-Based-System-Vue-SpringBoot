@@ -9878,3 +9878,1296 @@ Caused by: java.sql.SQLIntegrityConstraintViolationException: Column 'view_count
 2023-01-27 22:14:05.005 DEBUG c.e.wiki.mapper.DocMapperCust.updateEbookInfo     :137  [32m274391556440592384[0;39m ==> Parameters: 
 2023-01-27 22:14:05.006 DEBUG c.e.wiki.mapper.DocMapperCust.updateEbookInfo     :137  [32m274391556440592384[0;39m <==    Updates: 1
 2023-01-27 22:14:05.006 INFO  com.example.wiki.job.DocJob                       :35   [32m274391556440592384[0;39m 更新电子书下的文档数据结束，耗时：2毫秒
+2023-01-27 22:14:35.012 INFO  com.example.wiki.job.DocJob                       :32   [32m274391682303266816[0;39m 更新电子书下的文档数据开始
+2023-01-27 22:14:35.014 DEBUG c.e.wiki.mapper.DocMapperCust.updateEbookInfo     :137  [32m274391682303266816[0;39m ==>  Preparing: update ebook t1, (select ebook_id, count(1) doc_count, sum(view_count) view_count, sum(vote_count) vote_count from doc group by ebook_id) t2 set t1.doc_count = t2.doc_count, t1.view_count = t2.view_count, t1.vote_count = t2.vote_count where t1.id = t2.ebook_id
+2023-01-27 22:14:35.014 DEBUG c.e.wiki.mapper.DocMapperCust.updateEbookInfo     :137  [32m274391682303266816[0;39m ==> Parameters: 
+2023-01-27 22:14:35.015 DEBUG c.e.wiki.mapper.DocMapperCust.updateEbookInfo     :137  [32m274391682303266816[0;39m <==    Updates: 1
+2023-01-27 22:14:35.015 INFO  com.example.wiki.job.DocJob                       :35   [32m274391682303266816[0;39m 更新电子书下的文档数据结束，耗时：3毫秒
+2023-01-27 22:15:00.002 INFO  com.example.wiki.job.EbookSnapshotJob             :32   [32m274391787118923776[0;39m 生成今日电子书快照开始
+2023-01-27 22:15:00.003 DEBUG c.e.w.mapper.EbookSnapshotMapperCust.genSnapshot  :137  [32m274391787118923776[0;39m ==>  Preparing: insert into ebook_snapshot(ebook_id, `date`, view_count, vote_count, view_increase, vote_increase) select t1.id, curdate(), 0, 0, 0, 0 from ebook t1 where not exists(select 1 from ebook_snapshot t2 where t1.id = t2.ebook_id and t2.`date` = curdate()); update ebook_snapshot t1, ebook t2 set t1.view_count = t2.view_count, t1.vote_count = t2.vote_count where t1.`date` = curdate() and t1.ebook_id = t2.id; update ebook_snapshot t1 left join (select ebook_id, view_count, vote_count from ebook_snapshot where `date` = date_sub(curdate(), interval 1 day)) t2 on t1.ebook_id = t2.ebook_id set t1.view_increase = (t1.view_count - ifnull(t2.view_count, 0)), t1.vote_increase = (t1.vote_count - ifnull(t2.vote_count, 0)) where t1.`date` = curdate();
+2023-01-27 22:15:00.004 DEBUG c.e.w.mapper.EbookSnapshotMapperCust.genSnapshot  :137  [32m274391787118923776[0;39m ==> Parameters: 
+2023-01-27 22:15:00.006 ERROR o.s.s.support.TaskUtils$LoggingErrorHandler       :95   [32m274391787118923776[0;39m Unexpected error occurred in scheduled task
+org.springframework.dao.DataIntegrityViolationException: 
+### Error updating database.  Cause: java.sql.SQLIntegrityConstraintViolationException: Column 'view_count' cannot be null
+### The error may exist in file [C:\Users\amper\project\Wiki\Knowledge-Based-System\wiki\target\classes\mapper\EbookSnapshotMapperCust.xml]
+### The error may involve defaultParameterMap
+### The error occurred while setting parameters
+### SQL: insert into ebook_snapshot(ebook_id, `date`, view_count, vote_count, view_increase, vote_increase)         select t1.id, curdate(), 0, 0, 0, 0         from ebook t1         where not exists(select 1                          from ebook_snapshot t2                          where t1.id = t2.ebook_id                            and t2.`date` = curdate());          update ebook_snapshot t1, ebook t2         set t1.view_count = t2.view_count,             t1.vote_count = t2.vote_count         where t1.`date` = curdate()           and t1.ebook_id = t2.id;          update ebook_snapshot t1 left join (select ebook_id, view_count, vote_count             from ebook_snapshot             where `date` = date_sub(curdate(), interval 1 day)) t2         on t1.ebook_id = t2.ebook_id             set t1.view_increase = (t1.view_count - ifnull(t2.view_count, 0)),                 t1.vote_increase = (t1.vote_count - ifnull(t2.vote_count, 0))         where t1.`date` = curdate();
+### Cause: java.sql.SQLIntegrityConstraintViolationException: Column 'view_count' cannot be null
+; Column 'view_count' cannot be null; nested exception is java.sql.SQLIntegrityConstraintViolationException: Column 'view_count' cannot be null
+	at org.springframework.jdbc.support.SQLExceptionSubclassTranslator.doTranslate(SQLExceptionSubclassTranslator.java:87)
+	at org.springframework.jdbc.support.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:70)
+	at org.springframework.jdbc.support.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:79)
+	at org.mybatis.spring.MyBatisExceptionTranslator.translateExceptionIfPossible(MyBatisExceptionTranslator.java:88)
+	at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:440)
+	at com.sun.proxy.$Proxy91.update(Unknown Source)
+	at org.mybatis.spring.SqlSessionTemplate.update(SqlSessionTemplate.java:287)
+	at org.apache.ibatis.binding.MapperMethod.execute(MapperMethod.java:67)
+	at org.apache.ibatis.binding.MapperProxy$PlainMethodInvoker.invoke(MapperProxy.java:152)
+	at org.apache.ibatis.binding.MapperProxy.invoke(MapperProxy.java:85)
+	at com.sun.proxy.$Proxy105.genSnapshot(Unknown Source)
+	at com.example.wiki.service.EbookSnapshotService.genSnapshot(EbookSnapshotService.java:16)
+	at com.example.wiki.job.EbookSnapshotJob.doSnapshot(EbookSnapshotJob.java:34)
+	at sun.reflect.GeneratedMethodAccessor121.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.springframework.scheduling.support.ScheduledMethodRunnable.run(ScheduledMethodRunnable.java:84)
+	at org.springframework.scheduling.support.DelegatingErrorHandlingRunnable.run(DelegatingErrorHandlingRunnable.java:54)
+	at org.springframework.scheduling.concurrent.ReschedulingRunnable.run(ReschedulingRunnable.java:95)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:750)
+Caused by: java.sql.SQLIntegrityConstraintViolationException: Column 'view_count' cannot be null
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:117)
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:97)
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:122)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeInternal(ClientPreparedStatement.java:953)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.execute(ClientPreparedStatement.java:370)
+	at com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+	at com.zaxxer.hikari.pool.HikariProxyPreparedStatement.execute(HikariProxyPreparedStatement.java)
+	at sun.reflect.GeneratedMethodAccessor66.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.apache.ibatis.logging.jdbc.PreparedStatementLogger.invoke(PreparedStatementLogger.java:59)
+	at com.sun.proxy.$Proxy130.execute(Unknown Source)
+	at org.apache.ibatis.executor.statement.PreparedStatementHandler.update(PreparedStatementHandler.java:47)
+	at org.apache.ibatis.executor.statement.RoutingStatementHandler.update(RoutingStatementHandler.java:74)
+	at org.apache.ibatis.executor.SimpleExecutor.doUpdate(SimpleExecutor.java:50)
+	at org.apache.ibatis.executor.BaseExecutor.update(BaseExecutor.java:117)
+	at org.apache.ibatis.executor.CachingExecutor.update(CachingExecutor.java:76)
+	at sun.reflect.GeneratedMethodAccessor71.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.apache.ibatis.plugin.Plugin.invoke(Plugin.java:63)
+	at com.sun.proxy.$Proxy128.update(Unknown Source)
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.update(DefaultSqlSession.java:197)
+	at sun.reflect.GeneratedMethodAccessor70.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:426)
+	... 21 common frames omitted
+2023-01-27 22:15:05.009 INFO  com.example.wiki.job.DocJob                       :32   [32m274391808119803904[0;39m 更新电子书下的文档数据开始
+2023-01-27 22:15:05.010 DEBUG c.e.wiki.mapper.DocMapperCust.updateEbookInfo     :137  [32m274391808119803904[0;39m ==>  Preparing: update ebook t1, (select ebook_id, count(1) doc_count, sum(view_count) view_count, sum(vote_count) vote_count from doc group by ebook_id) t2 set t1.doc_count = t2.doc_count, t1.view_count = t2.view_count, t1.vote_count = t2.vote_count where t1.id = t2.ebook_id
+2023-01-27 22:15:05.010 DEBUG c.e.wiki.mapper.DocMapperCust.updateEbookInfo     :137  [32m274391808119803904[0;39m ==> Parameters: 
+2023-01-27 22:15:05.011 DEBUG c.e.wiki.mapper.DocMapperCust.updateEbookInfo     :137  [32m274391808119803904[0;39m <==    Updates: 1
+2023-01-27 22:15:05.011 INFO  com.example.wiki.job.DocJob                       :35   [32m274391808119803904[0;39m 更新电子书下的文档数据结束，耗时：2毫秒
+2023-01-27 22:15:12.244 INFO  com.example.wiki.aspect.LogAspect                 :50   [32m274391838465593344[0;39m ------------- 开始 -------------
+2023-01-27 22:15:12.244 INFO  com.example.wiki.aspect.LogAspect                 :51   [32m274391838465593344[0;39m 请求地址: http://127.0.0.1:8080/ebook/list GET
+2023-01-27 22:15:12.245 INFO  com.example.wiki.aspect.LogAspect                 :52   [32m274391838465593344[0;39m 类名方法: com.example.wiki.controller.EbookController.list
+2023-01-27 22:15:12.245 INFO  com.example.wiki.aspect.LogAspect                 :53   [32m274391838465593344[0;39m 远程地址: 127.0.0.1
+2023-01-27 22:15:12.245 INFO  com.example.wiki.aspect.LogAspect                 :75   [32m274391838465593344[0;39m 请求参数: [{"page":1,"size":1000}]
+2023-01-27 22:15:12.247 DEBUG c.e.wiki.mapper.EbookMapper.selectByExample_COUNT :137  [32m274391838465593344[0;39m ==>  Preparing: SELECT count(0) FROM ebook
+2023-01-27 22:15:12.247 DEBUG c.e.wiki.mapper.EbookMapper.selectByExample_COUNT :137  [32m274391838465593344[0;39m ==> Parameters: 
+2023-01-27 22:15:12.249 TRACE c.e.wiki.mapper.EbookMapper.selectByExample_COUNT :143  [32m274391838465593344[0;39m <==    Columns: count(0)
+2023-01-27 22:15:12.250 TRACE c.e.wiki.mapper.EbookMapper.selectByExample_COUNT :143  [32m274391838465593344[0;39m <==        Row: 5
+2023-01-27 22:15:12.250 DEBUG c.e.wiki.mapper.EbookMapper.selectByExample_COUNT :137  [32m274391838465593344[0;39m <==      Total: 1
+2023-01-27 22:15:12.251 DEBUG c.example.wiki.mapper.EbookMapper.selectByExample :137  [32m274391838465593344[0;39m ==>  Preparing: select id, `name`, category1_id, category2_id, description, cover, doc_count, view_count, vote_count from ebook LIMIT ?
+2023-01-27 22:15:12.251 DEBUG c.example.wiki.mapper.EbookMapper.selectByExample :137  [32m274391838465593344[0;39m ==> Parameters: 1000(Integer)
+2023-01-27 22:15:12.252 TRACE c.example.wiki.mapper.EbookMapper.selectByExample :143  [32m274391838465593344[0;39m <==    Columns: id, name, category1_id, category2_id, description, cover, doc_count, view_count, vote_count
+2023-01-27 22:15:12.253 TRACE c.example.wiki.mapper.EbookMapper.selectByExample :143  [32m274391838465593344[0;39m <==        Row: 1, Spring Boot 入门教程, null, null, 零基础入门 Java 开发，企业级应用开发最佳首选框架, null, 6, 0, 0
+2023-01-27 22:15:12.253 TRACE c.example.wiki.mapper.EbookMapper.selectByExample :143  [32m274391838465593344[0;39m <==        Row: 2, Vue 入门教程, null, null, 零基础入门 Vue 开发，企业级应用开发最佳首选框架, null, null, null, null
+2023-01-27 22:15:12.253 TRACE c.example.wiki.mapper.EbookMapper.selectByExample :143  [32m274391838465593344[0;39m <==        Row: 3, Python 入门教程, null, null, 零基础入门 Python 开发，企业级应用开发最佳首选框架, null, null, null, null
+2023-01-27 22:15:12.253 TRACE c.example.wiki.mapper.EbookMapper.selectByExample :143  [32m274391838465593344[0;39m <==        Row: 4, Mysql 入门教程, null, null, 零基础入门 Mysql 开发，企业级应用开发最佳首选框架, null, null, null, null
+2023-01-27 22:15:12.253 TRACE c.example.wiki.mapper.EbookMapper.selectByExample :143  [32m274391838465593344[0;39m <==        Row: 5, Oracle 入门教程, null, null, 零基础入门 Oracle 开发，企业级应用开发最佳首选框架, null, null, null, null
+2023-01-27 22:15:12.253 DEBUG c.example.wiki.mapper.EbookMapper.selectByExample :137  [32m274391838465593344[0;39m <==      Total: 5
+2023-01-27 22:15:12.254 INFO  com.example.wiki.service.EbookService             :51   [32m274391838465593344[0;39m 总行数 5
+2023-01-27 22:15:12.254 INFO  com.example.wiki.service.EbookService             :52   [32m274391838465593344[0;39m 总页数 1
+2023-01-27 22:15:12.254 INFO  com.example.wiki.aspect.LogAspect                 :87   [32m274391838465593344[0;39m 返回结果: {"content":{"list":[{"description":"零基础入门 Java 开发，企业级应用开发最佳首选框架","docCount":6,"id":1,"name":"Spring Boot 入门教程","viewCount":0,"voteCount":0},{"description":"零基础入门 Vue 开发，企业级应用开发最佳首选框架","id":2,"name":"Vue 入门教程"},{"description":"零基础入门 Python 开发，企业级应用开发最佳首选框架","id":3,"name":"Python 入门教程"},{"description":"零基础入门 Mysql 开发，企业级应用开发最佳首选框架","id":4,"name":"Mysql 入门教程"},{"description":"零基础入门 Oracle 开发，企业级应用开发最佳首选框架","id":5,"name":"Oracle 入门教程"}],"total":5},"success":true}
+2023-01-27 22:15:12.254 INFO  com.example.wiki.aspect.LogAspect                 :88   [32m274391838465593344[0;39m ------------- 结束 耗时：10 ms -------------
+2023-01-27 22:15:35.003 INFO  com.example.wiki.job.DocJob                       :32   [32m274391933923758080[0;39m 更新电子书下的文档数据开始
+2023-01-27 22:15:35.004 DEBUG c.e.wiki.mapper.DocMapperCust.updateEbookInfo     :137  [32m274391933923758080[0;39m ==>  Preparing: update ebook t1, (select ebook_id, count(1) doc_count, sum(view_count) view_count, sum(vote_count) vote_count from doc group by ebook_id) t2 set t1.doc_count = t2.doc_count, t1.view_count = t2.view_count, t1.vote_count = t2.vote_count where t1.id = t2.ebook_id
+2023-01-27 22:15:35.004 DEBUG c.e.wiki.mapper.DocMapperCust.updateEbookInfo     :137  [32m274391933923758080[0;39m ==> Parameters: 
+2023-01-27 22:15:35.005 DEBUG c.e.wiki.mapper.DocMapperCust.updateEbookInfo     :137  [32m274391933923758080[0;39m <==    Updates: 1
+2023-01-27 22:15:35.005 INFO  com.example.wiki.job.DocJob                       :35   [32m274391933923758080[0;39m 更新电子书下的文档数据结束，耗时：2毫秒
+2023-01-27 22:16:00.011 INFO  com.example.wiki.job.EbookSnapshotJob             :32   [32m274392038814912512[0;39m 生成今日电子书快照开始
+2023-01-27 22:16:00.013 DEBUG c.e.w.mapper.EbookSnapshotMapperCust.genSnapshot  :137  [32m274392038814912512[0;39m ==>  Preparing: insert into ebook_snapshot(ebook_id, `date`, view_count, vote_count, view_increase, vote_increase) select t1.id, curdate(), 0, 0, 0, 0 from ebook t1 where not exists(select 1 from ebook_snapshot t2 where t1.id = t2.ebook_id and t2.`date` = curdate()); update ebook_snapshot t1, ebook t2 set t1.view_count = t2.view_count, t1.vote_count = t2.vote_count where t1.`date` = curdate() and t1.ebook_id = t2.id; update ebook_snapshot t1 left join (select ebook_id, view_count, vote_count from ebook_snapshot where `date` = date_sub(curdate(), interval 1 day)) t2 on t1.ebook_id = t2.ebook_id set t1.view_increase = (t1.view_count - ifnull(t2.view_count, 0)), t1.vote_increase = (t1.vote_count - ifnull(t2.vote_count, 0)) where t1.`date` = curdate();
+2023-01-27 22:16:00.014 DEBUG c.e.w.mapper.EbookSnapshotMapperCust.genSnapshot  :137  [32m274392038814912512[0;39m ==> Parameters: 
+2023-01-27 22:16:00.018 ERROR o.s.s.support.TaskUtils$LoggingErrorHandler       :95   [32m274392038814912512[0;39m Unexpected error occurred in scheduled task
+org.springframework.dao.DataIntegrityViolationException: 
+### Error updating database.  Cause: java.sql.SQLIntegrityConstraintViolationException: Column 'view_count' cannot be null
+### The error may exist in file [C:\Users\amper\project\Wiki\Knowledge-Based-System\wiki\target\classes\mapper\EbookSnapshotMapperCust.xml]
+### The error may involve defaultParameterMap
+### The error occurred while setting parameters
+### SQL: insert into ebook_snapshot(ebook_id, `date`, view_count, vote_count, view_increase, vote_increase)         select t1.id, curdate(), 0, 0, 0, 0         from ebook t1         where not exists(select 1                          from ebook_snapshot t2                          where t1.id = t2.ebook_id                            and t2.`date` = curdate());          update ebook_snapshot t1, ebook t2         set t1.view_count = t2.view_count,             t1.vote_count = t2.vote_count         where t1.`date` = curdate()           and t1.ebook_id = t2.id;          update ebook_snapshot t1 left join (select ebook_id, view_count, vote_count             from ebook_snapshot             where `date` = date_sub(curdate(), interval 1 day)) t2         on t1.ebook_id = t2.ebook_id             set t1.view_increase = (t1.view_count - ifnull(t2.view_count, 0)),                 t1.vote_increase = (t1.vote_count - ifnull(t2.vote_count, 0))         where t1.`date` = curdate();
+### Cause: java.sql.SQLIntegrityConstraintViolationException: Column 'view_count' cannot be null
+; Column 'view_count' cannot be null; nested exception is java.sql.SQLIntegrityConstraintViolationException: Column 'view_count' cannot be null
+	at org.springframework.jdbc.support.SQLExceptionSubclassTranslator.doTranslate(SQLExceptionSubclassTranslator.java:87)
+	at org.springframework.jdbc.support.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:70)
+	at org.springframework.jdbc.support.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:79)
+	at org.mybatis.spring.MyBatisExceptionTranslator.translateExceptionIfPossible(MyBatisExceptionTranslator.java:88)
+	at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:440)
+	at com.sun.proxy.$Proxy91.update(Unknown Source)
+	at org.mybatis.spring.SqlSessionTemplate.update(SqlSessionTemplate.java:287)
+	at org.apache.ibatis.binding.MapperMethod.execute(MapperMethod.java:67)
+	at org.apache.ibatis.binding.MapperProxy$PlainMethodInvoker.invoke(MapperProxy.java:152)
+	at org.apache.ibatis.binding.MapperProxy.invoke(MapperProxy.java:85)
+	at com.sun.proxy.$Proxy105.genSnapshot(Unknown Source)
+	at com.example.wiki.service.EbookSnapshotService.genSnapshot(EbookSnapshotService.java:16)
+	at com.example.wiki.job.EbookSnapshotJob.doSnapshot(EbookSnapshotJob.java:34)
+	at sun.reflect.GeneratedMethodAccessor121.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.springframework.scheduling.support.ScheduledMethodRunnable.run(ScheduledMethodRunnable.java:84)
+	at org.springframework.scheduling.support.DelegatingErrorHandlingRunnable.run(DelegatingErrorHandlingRunnable.java:54)
+	at org.springframework.scheduling.concurrent.ReschedulingRunnable.run(ReschedulingRunnable.java:95)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:750)
+Caused by: java.sql.SQLIntegrityConstraintViolationException: Column 'view_count' cannot be null
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:117)
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:97)
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:122)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeInternal(ClientPreparedStatement.java:953)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.execute(ClientPreparedStatement.java:370)
+	at com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+	at com.zaxxer.hikari.pool.HikariProxyPreparedStatement.execute(HikariProxyPreparedStatement.java)
+	at sun.reflect.GeneratedMethodAccessor66.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.apache.ibatis.logging.jdbc.PreparedStatementLogger.invoke(PreparedStatementLogger.java:59)
+	at com.sun.proxy.$Proxy130.execute(Unknown Source)
+	at org.apache.ibatis.executor.statement.PreparedStatementHandler.update(PreparedStatementHandler.java:47)
+	at org.apache.ibatis.executor.statement.RoutingStatementHandler.update(RoutingStatementHandler.java:74)
+	at org.apache.ibatis.executor.SimpleExecutor.doUpdate(SimpleExecutor.java:50)
+	at org.apache.ibatis.executor.BaseExecutor.update(BaseExecutor.java:117)
+	at org.apache.ibatis.executor.CachingExecutor.update(CachingExecutor.java:76)
+	at sun.reflect.GeneratedMethodAccessor71.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.apache.ibatis.plugin.Plugin.invoke(Plugin.java:63)
+	at com.sun.proxy.$Proxy128.update(Unknown Source)
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.update(DefaultSqlSession.java:197)
+	at sun.reflect.GeneratedMethodAccessor70.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:426)
+	... 21 common frames omitted
+2023-01-27 22:16:05.006 INFO  com.example.wiki.job.DocJob                       :32   [32m274392059765460992[0;39m 更新电子书下的文档数据开始
+2023-01-27 22:16:05.007 DEBUG c.e.wiki.mapper.DocMapperCust.updateEbookInfo     :137  [32m274392059765460992[0;39m ==>  Preparing: update ebook t1, (select ebook_id, count(1) doc_count, sum(view_count) view_count, sum(vote_count) vote_count from doc group by ebook_id) t2 set t1.doc_count = t2.doc_count, t1.view_count = t2.view_count, t1.vote_count = t2.vote_count where t1.id = t2.ebook_id
+2023-01-27 22:16:05.007 DEBUG c.e.wiki.mapper.DocMapperCust.updateEbookInfo     :137  [32m274392059765460992[0;39m ==> Parameters: 
+2023-01-27 22:16:05.008 DEBUG c.e.wiki.mapper.DocMapperCust.updateEbookInfo     :137  [32m274392059765460992[0;39m <==    Updates: 1
+2023-01-27 22:16:05.009 INFO  com.example.wiki.job.DocJob                       :35   [32m274392059765460992[0;39m 更新电子书下的文档数据结束，耗时：3毫秒
+2023-01-27 22:16:35.001 INFO  com.example.wiki.job.DocJob                       :32   [32m274392185573609472[0;39m 更新电子书下的文档数据开始
+2023-01-27 22:16:35.003 DEBUG c.e.wiki.mapper.DocMapperCust.updateEbookInfo     :137  [32m274392185573609472[0;39m ==>  Preparing: update ebook t1, (select ebook_id, count(1) doc_count, sum(view_count) view_count, sum(vote_count) vote_count from doc group by ebook_id) t2 set t1.doc_count = t2.doc_count, t1.view_count = t2.view_count, t1.vote_count = t2.vote_count where t1.id = t2.ebook_id
+2023-01-27 22:16:35.003 DEBUG c.e.wiki.mapper.DocMapperCust.updateEbookInfo     :137  [32m274392185573609472[0;39m ==> Parameters: 
+2023-01-27 22:16:35.006 DEBUG c.e.wiki.mapper.DocMapperCust.updateEbookInfo     :137  [32m274392185573609472[0;39m <==    Updates: 1
+2023-01-27 22:16:35.006 INFO  com.example.wiki.job.DocJob                       :35   [32m274392185573609472[0;39m 更新电子书下的文档数据结束，耗时：4毫秒
+2023-01-27 22:17:00.014 INFO  com.example.wiki.job.EbookSnapshotJob             :32   [32m274392290485735424[0;39m 生成今日电子书快照开始
+2023-01-27 22:17:00.015 DEBUG c.e.w.mapper.EbookSnapshotMapperCust.genSnapshot  :137  [32m274392290485735424[0;39m ==>  Preparing: insert into ebook_snapshot(ebook_id, `date`, view_count, vote_count, view_increase, vote_increase) select t1.id, curdate(), 0, 0, 0, 0 from ebook t1 where not exists(select 1 from ebook_snapshot t2 where t1.id = t2.ebook_id and t2.`date` = curdate()); update ebook_snapshot t1, ebook t2 set t1.view_count = t2.view_count, t1.vote_count = t2.vote_count where t1.`date` = curdate() and t1.ebook_id = t2.id; update ebook_snapshot t1 left join (select ebook_id, view_count, vote_count from ebook_snapshot where `date` = date_sub(curdate(), interval 1 day)) t2 on t1.ebook_id = t2.ebook_id set t1.view_increase = (t1.view_count - ifnull(t2.view_count, 0)), t1.vote_increase = (t1.vote_count - ifnull(t2.vote_count, 0)) where t1.`date` = curdate();
+2023-01-27 22:17:00.016 DEBUG c.e.w.mapper.EbookSnapshotMapperCust.genSnapshot  :137  [32m274392290485735424[0;39m ==> Parameters: 
+2023-01-27 22:17:00.018 ERROR o.s.s.support.TaskUtils$LoggingErrorHandler       :95   [32m274392290485735424[0;39m Unexpected error occurred in scheduled task
+org.springframework.dao.DataIntegrityViolationException: 
+### Error updating database.  Cause: java.sql.SQLIntegrityConstraintViolationException: Column 'view_count' cannot be null
+### The error may exist in file [C:\Users\amper\project\Wiki\Knowledge-Based-System\wiki\target\classes\mapper\EbookSnapshotMapperCust.xml]
+### The error may involve defaultParameterMap
+### The error occurred while setting parameters
+### SQL: insert into ebook_snapshot(ebook_id, `date`, view_count, vote_count, view_increase, vote_increase)         select t1.id, curdate(), 0, 0, 0, 0         from ebook t1         where not exists(select 1                          from ebook_snapshot t2                          where t1.id = t2.ebook_id                            and t2.`date` = curdate());          update ebook_snapshot t1, ebook t2         set t1.view_count = t2.view_count,             t1.vote_count = t2.vote_count         where t1.`date` = curdate()           and t1.ebook_id = t2.id;          update ebook_snapshot t1 left join (select ebook_id, view_count, vote_count             from ebook_snapshot             where `date` = date_sub(curdate(), interval 1 day)) t2         on t1.ebook_id = t2.ebook_id             set t1.view_increase = (t1.view_count - ifnull(t2.view_count, 0)),                 t1.vote_increase = (t1.vote_count - ifnull(t2.vote_count, 0))         where t1.`date` = curdate();
+### Cause: java.sql.SQLIntegrityConstraintViolationException: Column 'view_count' cannot be null
+; Column 'view_count' cannot be null; nested exception is java.sql.SQLIntegrityConstraintViolationException: Column 'view_count' cannot be null
+	at org.springframework.jdbc.support.SQLExceptionSubclassTranslator.doTranslate(SQLExceptionSubclassTranslator.java:87)
+	at org.springframework.jdbc.support.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:70)
+	at org.springframework.jdbc.support.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:79)
+	at org.mybatis.spring.MyBatisExceptionTranslator.translateExceptionIfPossible(MyBatisExceptionTranslator.java:88)
+	at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:440)
+	at com.sun.proxy.$Proxy91.update(Unknown Source)
+	at org.mybatis.spring.SqlSessionTemplate.update(SqlSessionTemplate.java:287)
+	at org.apache.ibatis.binding.MapperMethod.execute(MapperMethod.java:67)
+	at org.apache.ibatis.binding.MapperProxy$PlainMethodInvoker.invoke(MapperProxy.java:152)
+	at org.apache.ibatis.binding.MapperProxy.invoke(MapperProxy.java:85)
+	at com.sun.proxy.$Proxy105.genSnapshot(Unknown Source)
+	at com.example.wiki.service.EbookSnapshotService.genSnapshot(EbookSnapshotService.java:16)
+	at com.example.wiki.job.EbookSnapshotJob.doSnapshot(EbookSnapshotJob.java:34)
+	at sun.reflect.GeneratedMethodAccessor121.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.springframework.scheduling.support.ScheduledMethodRunnable.run(ScheduledMethodRunnable.java:84)
+	at org.springframework.scheduling.support.DelegatingErrorHandlingRunnable.run(DelegatingErrorHandlingRunnable.java:54)
+	at org.springframework.scheduling.concurrent.ReschedulingRunnable.run(ReschedulingRunnable.java:95)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:750)
+Caused by: java.sql.SQLIntegrityConstraintViolationException: Column 'view_count' cannot be null
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:117)
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:97)
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:122)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeInternal(ClientPreparedStatement.java:953)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.execute(ClientPreparedStatement.java:370)
+	at com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+	at com.zaxxer.hikari.pool.HikariProxyPreparedStatement.execute(HikariProxyPreparedStatement.java)
+	at sun.reflect.GeneratedMethodAccessor66.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.apache.ibatis.logging.jdbc.PreparedStatementLogger.invoke(PreparedStatementLogger.java:59)
+	at com.sun.proxy.$Proxy130.execute(Unknown Source)
+	at org.apache.ibatis.executor.statement.PreparedStatementHandler.update(PreparedStatementHandler.java:47)
+	at org.apache.ibatis.executor.statement.RoutingStatementHandler.update(RoutingStatementHandler.java:74)
+	at org.apache.ibatis.executor.SimpleExecutor.doUpdate(SimpleExecutor.java:50)
+	at org.apache.ibatis.executor.BaseExecutor.update(BaseExecutor.java:117)
+	at org.apache.ibatis.executor.CachingExecutor.update(CachingExecutor.java:76)
+	at sun.reflect.GeneratedMethodAccessor71.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.apache.ibatis.plugin.Plugin.invoke(Plugin.java:63)
+	at com.sun.proxy.$Proxy128.update(Unknown Source)
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.update(DefaultSqlSession.java:197)
+	at sun.reflect.GeneratedMethodAccessor70.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:426)
+	... 21 common frames omitted
+2023-01-27 22:17:05.009 INFO  com.example.wiki.job.DocJob                       :32   [32m274392311436283904[0;39m 更新电子书下的文档数据开始
+2023-01-27 22:17:05.010 DEBUG c.e.wiki.mapper.DocMapperCust.updateEbookInfo     :137  [32m274392311436283904[0;39m ==>  Preparing: update ebook t1, (select ebook_id, count(1) doc_count, sum(view_count) view_count, sum(vote_count) vote_count from doc group by ebook_id) t2 set t1.doc_count = t2.doc_count, t1.view_count = t2.view_count, t1.vote_count = t2.vote_count where t1.id = t2.ebook_id
+2023-01-27 22:17:05.010 DEBUG c.e.wiki.mapper.DocMapperCust.updateEbookInfo     :137  [32m274392311436283904[0;39m ==> Parameters: 
+2023-01-27 22:17:05.011 DEBUG c.e.wiki.mapper.DocMapperCust.updateEbookInfo     :137  [32m274392311436283904[0;39m <==    Updates: 1
+2023-01-27 22:17:05.012 INFO  com.example.wiki.job.DocJob                       :35   [32m274392311436283904[0;39m 更新电子书下的文档数据结束，耗时：3毫秒
+2023-01-27 22:17:31.862 INFO  com.example.wiki.aspect.LogAspect                 :50   [32m274392424065929216[0;39m ------------- 开始 -------------
+2023-01-27 22:17:31.863 INFO  com.example.wiki.aspect.LogAspect                 :51   [32m274392424065929216[0;39m 请求地址: http://127.0.0.1:8080/ebook/list GET
+2023-01-27 22:17:31.863 INFO  com.example.wiki.aspect.LogAspect                 :52   [32m274392424065929216[0;39m 类名方法: com.example.wiki.controller.EbookController.list
+2023-01-27 22:17:31.863 INFO  com.example.wiki.aspect.LogAspect                 :53   [32m274392424065929216[0;39m 远程地址: 127.0.0.1
+2023-01-27 22:17:31.863 INFO  com.example.wiki.aspect.LogAspect                 :75   [32m274392424065929216[0;39m 请求参数: [{"page":1,"size":1000}]
+2023-01-27 22:17:31.865 DEBUG c.e.wiki.mapper.EbookMapper.selectByExample_COUNT :137  [32m274392424065929216[0;39m ==>  Preparing: SELECT count(0) FROM ebook
+2023-01-27 22:17:31.865 DEBUG c.e.wiki.mapper.EbookMapper.selectByExample_COUNT :137  [32m274392424065929216[0;39m ==> Parameters: 
+2023-01-27 22:17:31.868 TRACE c.e.wiki.mapper.EbookMapper.selectByExample_COUNT :143  [32m274392424065929216[0;39m <==    Columns: count(0)
+2023-01-27 22:17:31.868 TRACE c.e.wiki.mapper.EbookMapper.selectByExample_COUNT :143  [32m274392424065929216[0;39m <==        Row: 5
+2023-01-27 22:17:31.869 DEBUG c.e.wiki.mapper.EbookMapper.selectByExample_COUNT :137  [32m274392424065929216[0;39m <==      Total: 1
+2023-01-27 22:17:31.869 DEBUG c.example.wiki.mapper.EbookMapper.selectByExample :137  [32m274392424065929216[0;39m ==>  Preparing: select id, `name`, category1_id, category2_id, description, cover, doc_count, view_count, vote_count from ebook LIMIT ?
+2023-01-27 22:17:31.870 DEBUG c.example.wiki.mapper.EbookMapper.selectByExample :137  [32m274392424065929216[0;39m ==> Parameters: 1000(Integer)
+2023-01-27 22:17:31.870 TRACE c.example.wiki.mapper.EbookMapper.selectByExample :143  [32m274392424065929216[0;39m <==    Columns: id, name, category1_id, category2_id, description, cover, doc_count, view_count, vote_count
+2023-01-27 22:17:31.872 TRACE c.example.wiki.mapper.EbookMapper.selectByExample :143  [32m274392424065929216[0;39m <==        Row: 1, Spring Boot 入门教程, null, null, 零基础入门 Java 开发，企业级应用开发最佳首选框架, null, 6, 0, 0
+2023-01-27 22:17:31.872 TRACE c.example.wiki.mapper.EbookMapper.selectByExample :143  [32m274392424065929216[0;39m <==        Row: 2, Vue 入门教程, null, null, 零基础入门 Vue 开发，企业级应用开发最佳首选框架, null, null, null, null
+2023-01-27 22:17:31.872 TRACE c.example.wiki.mapper.EbookMapper.selectByExample :143  [32m274392424065929216[0;39m <==        Row: 3, Python 入门教程, null, null, 零基础入门 Python 开发，企业级应用开发最佳首选框架, null, null, null, null
+2023-01-27 22:17:31.873 TRACE c.example.wiki.mapper.EbookMapper.selectByExample :143  [32m274392424065929216[0;39m <==        Row: 4, Mysql 入门教程, null, null, 零基础入门 Mysql 开发，企业级应用开发最佳首选框架, null, null, null, null
+2023-01-27 22:17:31.873 TRACE c.example.wiki.mapper.EbookMapper.selectByExample :143  [32m274392424065929216[0;39m <==        Row: 5, Oracle 入门教程, null, null, 零基础入门 Oracle 开发，企业级应用开发最佳首选框架, null, null, null, null
+2023-01-27 22:17:31.873 DEBUG c.example.wiki.mapper.EbookMapper.selectByExample :137  [32m274392424065929216[0;39m <==      Total: 5
+2023-01-27 22:17:31.873 INFO  com.example.wiki.service.EbookService             :51   [32m274392424065929216[0;39m 总行数 5
+2023-01-27 22:17:31.874 INFO  com.example.wiki.service.EbookService             :52   [32m274392424065929216[0;39m 总页数 1
+2023-01-27 22:17:31.874 INFO  com.example.wiki.aspect.LogAspect                 :87   [32m274392424065929216[0;39m 返回结果: {"content":{"list":[{"description":"零基础入门 Java 开发，企业级应用开发最佳首选框架","docCount":6,"id":1,"name":"Spring Boot 入门教程","viewCount":0,"voteCount":0},{"description":"零基础入门 Vue 开发，企业级应用开发最佳首选框架","id":2,"name":"Vue 入门教程"},{"description":"零基础入门 Python 开发，企业级应用开发最佳首选框架","id":3,"name":"Python 入门教程"},{"description":"零基础入门 Mysql 开发，企业级应用开发最佳首选框架","id":4,"name":"Mysql 入门教程"},{"description":"零基础入门 Oracle 开发，企业级应用开发最佳首选框架","id":5,"name":"Oracle 入门教程"}],"total":5},"success":true}
+2023-01-27 22:17:31.874 INFO  com.example.wiki.aspect.LogAspect                 :88   [32m274392424065929216[0;39m ------------- 结束 耗时：12 ms -------------
+2023-01-27 22:17:35.006 INFO  com.example.wiki.job.DocJob                       :32   [32m274392437252820992[0;39m 更新电子书下的文档数据开始
+2023-01-27 22:17:35.007 DEBUG c.e.wiki.mapper.DocMapperCust.updateEbookInfo     :137  [32m274392437252820992[0;39m ==>  Preparing: update ebook t1, (select ebook_id, count(1) doc_count, sum(view_count) view_count, sum(vote_count) vote_count from doc group by ebook_id) t2 set t1.doc_count = t2.doc_count, t1.view_count = t2.view_count, t1.vote_count = t2.vote_count where t1.id = t2.ebook_id
+2023-01-27 22:17:35.007 DEBUG c.e.wiki.mapper.DocMapperCust.updateEbookInfo     :137  [32m274392437252820992[0;39m ==> Parameters: 
+2023-01-27 22:17:35.008 DEBUG c.e.wiki.mapper.DocMapperCust.updateEbookInfo     :137  [32m274392437252820992[0;39m <==    Updates: 1
+2023-01-27 22:17:35.008 INFO  com.example.wiki.job.DocJob                       :35   [32m274392437252820992[0;39m 更新电子书下的文档数据结束，耗时：2毫秒
+2023-01-27 22:18:00.001 INFO  com.example.wiki.job.EbookSnapshotJob             :32   [32m274392542089449472[0;39m 生成今日电子书快照开始
+2023-01-27 22:18:00.002 DEBUG c.e.w.mapper.EbookSnapshotMapperCust.genSnapshot  :137  [32m274392542089449472[0;39m ==>  Preparing: insert into ebook_snapshot(ebook_id, `date`, view_count, vote_count, view_increase, vote_increase) select t1.id, curdate(), 0, 0, 0, 0 from ebook t1 where not exists(select 1 from ebook_snapshot t2 where t1.id = t2.ebook_id and t2.`date` = curdate()); update ebook_snapshot t1, ebook t2 set t1.view_count = t2.view_count, t1.vote_count = t2.vote_count where t1.`date` = curdate() and t1.ebook_id = t2.id; update ebook_snapshot t1 left join (select ebook_id, view_count, vote_count from ebook_snapshot where `date` = date_sub(curdate(), interval 1 day)) t2 on t1.ebook_id = t2.ebook_id set t1.view_increase = (t1.view_count - ifnull(t2.view_count, 0)), t1.vote_increase = (t1.vote_count - ifnull(t2.vote_count, 0)) where t1.`date` = curdate();
+2023-01-27 22:18:00.002 DEBUG c.e.w.mapper.EbookSnapshotMapperCust.genSnapshot  :137  [32m274392542089449472[0;39m ==> Parameters: 
+2023-01-27 22:18:00.004 ERROR o.s.s.support.TaskUtils$LoggingErrorHandler       :95   [32m274392542089449472[0;39m Unexpected error occurred in scheduled task
+org.springframework.dao.DataIntegrityViolationException: 
+### Error updating database.  Cause: java.sql.SQLIntegrityConstraintViolationException: Column 'view_count' cannot be null
+### The error may exist in file [C:\Users\amper\project\Wiki\Knowledge-Based-System\wiki\target\classes\mapper\EbookSnapshotMapperCust.xml]
+### The error may involve defaultParameterMap
+### The error occurred while setting parameters
+### SQL: insert into ebook_snapshot(ebook_id, `date`, view_count, vote_count, view_increase, vote_increase)         select t1.id, curdate(), 0, 0, 0, 0         from ebook t1         where not exists(select 1                          from ebook_snapshot t2                          where t1.id = t2.ebook_id                            and t2.`date` = curdate());          update ebook_snapshot t1, ebook t2         set t1.view_count = t2.view_count,             t1.vote_count = t2.vote_count         where t1.`date` = curdate()           and t1.ebook_id = t2.id;          update ebook_snapshot t1 left join (select ebook_id, view_count, vote_count             from ebook_snapshot             where `date` = date_sub(curdate(), interval 1 day)) t2         on t1.ebook_id = t2.ebook_id             set t1.view_increase = (t1.view_count - ifnull(t2.view_count, 0)),                 t1.vote_increase = (t1.vote_count - ifnull(t2.vote_count, 0))         where t1.`date` = curdate();
+### Cause: java.sql.SQLIntegrityConstraintViolationException: Column 'view_count' cannot be null
+; Column 'view_count' cannot be null; nested exception is java.sql.SQLIntegrityConstraintViolationException: Column 'view_count' cannot be null
+	at org.springframework.jdbc.support.SQLExceptionSubclassTranslator.doTranslate(SQLExceptionSubclassTranslator.java:87)
+	at org.springframework.jdbc.support.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:70)
+	at org.springframework.jdbc.support.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:79)
+	at org.mybatis.spring.MyBatisExceptionTranslator.translateExceptionIfPossible(MyBatisExceptionTranslator.java:88)
+	at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:440)
+	at com.sun.proxy.$Proxy91.update(Unknown Source)
+	at org.mybatis.spring.SqlSessionTemplate.update(SqlSessionTemplate.java:287)
+	at org.apache.ibatis.binding.MapperMethod.execute(MapperMethod.java:67)
+	at org.apache.ibatis.binding.MapperProxy$PlainMethodInvoker.invoke(MapperProxy.java:152)
+	at org.apache.ibatis.binding.MapperProxy.invoke(MapperProxy.java:85)
+	at com.sun.proxy.$Proxy105.genSnapshot(Unknown Source)
+	at com.example.wiki.service.EbookSnapshotService.genSnapshot(EbookSnapshotService.java:16)
+	at com.example.wiki.job.EbookSnapshotJob.doSnapshot(EbookSnapshotJob.java:34)
+	at sun.reflect.GeneratedMethodAccessor121.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.springframework.scheduling.support.ScheduledMethodRunnable.run(ScheduledMethodRunnable.java:84)
+	at org.springframework.scheduling.support.DelegatingErrorHandlingRunnable.run(DelegatingErrorHandlingRunnable.java:54)
+	at org.springframework.scheduling.concurrent.ReschedulingRunnable.run(ReschedulingRunnable.java:95)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:750)
+Caused by: java.sql.SQLIntegrityConstraintViolationException: Column 'view_count' cannot be null
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:117)
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:97)
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:122)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeInternal(ClientPreparedStatement.java:953)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.execute(ClientPreparedStatement.java:370)
+	at com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+	at com.zaxxer.hikari.pool.HikariProxyPreparedStatement.execute(HikariProxyPreparedStatement.java)
+	at sun.reflect.GeneratedMethodAccessor66.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.apache.ibatis.logging.jdbc.PreparedStatementLogger.invoke(PreparedStatementLogger.java:59)
+	at com.sun.proxy.$Proxy130.execute(Unknown Source)
+	at org.apache.ibatis.executor.statement.PreparedStatementHandler.update(PreparedStatementHandler.java:47)
+	at org.apache.ibatis.executor.statement.RoutingStatementHandler.update(RoutingStatementHandler.java:74)
+	at org.apache.ibatis.executor.SimpleExecutor.doUpdate(SimpleExecutor.java:50)
+	at org.apache.ibatis.executor.BaseExecutor.update(BaseExecutor.java:117)
+	at org.apache.ibatis.executor.CachingExecutor.update(CachingExecutor.java:76)
+	at sun.reflect.GeneratedMethodAccessor71.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.apache.ibatis.plugin.Plugin.invoke(Plugin.java:63)
+	at com.sun.proxy.$Proxy128.update(Unknown Source)
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.update(DefaultSqlSession.java:197)
+	at sun.reflect.GeneratedMethodAccessor70.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:426)
+	... 21 common frames omitted
+2023-01-27 22:18:05.008 INFO  com.example.wiki.job.DocJob                       :32   [32m274392563090329600[0;39m 更新电子书下的文档数据开始
+2023-01-27 22:18:05.009 DEBUG c.e.wiki.mapper.DocMapperCust.updateEbookInfo     :137  [32m274392563090329600[0;39m ==>  Preparing: update ebook t1, (select ebook_id, count(1) doc_count, sum(view_count) view_count, sum(vote_count) vote_count from doc group by ebook_id) t2 set t1.doc_count = t2.doc_count, t1.view_count = t2.view_count, t1.vote_count = t2.vote_count where t1.id = t2.ebook_id
+2023-01-27 22:18:05.009 DEBUG c.e.wiki.mapper.DocMapperCust.updateEbookInfo     :137  [32m274392563090329600[0;39m ==> Parameters: 
+2023-01-27 22:18:05.011 DEBUG c.e.wiki.mapper.DocMapperCust.updateEbookInfo     :137  [32m274392563090329600[0;39m <==    Updates: 1
+2023-01-27 22:18:05.011 INFO  com.example.wiki.job.DocJob                       :35   [32m274392563090329600[0;39m 更新电子书下的文档数据结束，耗时：3毫秒
+2023-01-27 22:18:31.731 INFO  com.example.wiki.aspect.LogAspect                 :50   [32m274392675174715392[0;39m ------------- 开始 -------------
+2023-01-27 22:18:31.732 INFO  com.example.wiki.aspect.LogAspect                 :51   [32m274392675174715392[0;39m 请求地址: http://127.0.0.1:8080/ebook/list GET
+2023-01-27 22:18:31.732 INFO  com.example.wiki.aspect.LogAspect                 :52   [32m274392675174715392[0;39m 类名方法: com.example.wiki.controller.EbookController.list
+2023-01-27 22:18:31.732 INFO  com.example.wiki.aspect.LogAspect                 :53   [32m274392675174715392[0;39m 远程地址: 127.0.0.1
+2023-01-27 22:18:31.733 INFO  com.example.wiki.aspect.LogAspect                 :75   [32m274392675174715392[0;39m 请求参数: [{"page":1,"size":1000}]
+2023-01-27 22:18:31.734 DEBUG c.e.wiki.mapper.EbookMapper.selectByExample_COUNT :137  [32m274392675174715392[0;39m ==>  Preparing: SELECT count(0) FROM ebook
+2023-01-27 22:18:31.734 DEBUG c.e.wiki.mapper.EbookMapper.selectByExample_COUNT :137  [32m274392675174715392[0;39m ==> Parameters: 
+2023-01-27 22:18:31.746 TRACE c.e.wiki.mapper.EbookMapper.selectByExample_COUNT :143  [32m274392675174715392[0;39m <==    Columns: count(0)
+2023-01-27 22:18:31.746 TRACE c.e.wiki.mapper.EbookMapper.selectByExample_COUNT :143  [32m274392675174715392[0;39m <==        Row: 5
+2023-01-27 22:18:31.746 DEBUG c.e.wiki.mapper.EbookMapper.selectByExample_COUNT :137  [32m274392675174715392[0;39m <==      Total: 1
+2023-01-27 22:18:31.747 DEBUG c.example.wiki.mapper.EbookMapper.selectByExample :137  [32m274392675174715392[0;39m ==>  Preparing: select id, `name`, category1_id, category2_id, description, cover, doc_count, view_count, vote_count from ebook LIMIT ?
+2023-01-27 22:18:31.747 DEBUG c.example.wiki.mapper.EbookMapper.selectByExample :137  [32m274392675174715392[0;39m ==> Parameters: 1000(Integer)
+2023-01-27 22:18:31.748 TRACE c.example.wiki.mapper.EbookMapper.selectByExample :143  [32m274392675174715392[0;39m <==    Columns: id, name, category1_id, category2_id, description, cover, doc_count, view_count, vote_count
+2023-01-27 22:18:31.748 TRACE c.example.wiki.mapper.EbookMapper.selectByExample :143  [32m274392675174715392[0;39m <==        Row: 1, Spring Boot 入门教程, null, null, 零基础入门 Java 开发，企业级应用开发最佳首选框架, null, 6, 0, 0
+2023-01-27 22:18:31.748 TRACE c.example.wiki.mapper.EbookMapper.selectByExample :143  [32m274392675174715392[0;39m <==        Row: 2, Vue 入门教程, null, null, 零基础入门 Vue 开发，企业级应用开发最佳首选框架, null, null, null, null
+2023-01-27 22:18:31.749 TRACE c.example.wiki.mapper.EbookMapper.selectByExample :143  [32m274392675174715392[0;39m <==        Row: 3, Python 入门教程, null, null, 零基础入门 Python 开发，企业级应用开发最佳首选框架, null, null, null, null
+2023-01-27 22:18:31.749 TRACE c.example.wiki.mapper.EbookMapper.selectByExample :143  [32m274392675174715392[0;39m <==        Row: 4, Mysql 入门教程, null, null, 零基础入门 Mysql 开发，企业级应用开发最佳首选框架, null, null, null, null
+2023-01-27 22:18:31.749 TRACE c.example.wiki.mapper.EbookMapper.selectByExample :143  [32m274392675174715392[0;39m <==        Row: 5, Oracle 入门教程, null, null, 零基础入门 Oracle 开发，企业级应用开发最佳首选框架, null, null, null, null
+2023-01-27 22:18:31.749 DEBUG c.example.wiki.mapper.EbookMapper.selectByExample :137  [32m274392675174715392[0;39m <==      Total: 5
+2023-01-27 22:18:31.749 INFO  com.example.wiki.service.EbookService             :51   [32m274392675174715392[0;39m 总行数 5
+2023-01-27 22:18:31.749 INFO  com.example.wiki.service.EbookService             :52   [32m274392675174715392[0;39m 总页数 1
+2023-01-27 22:18:31.750 INFO  com.example.wiki.aspect.LogAspect                 :87   [32m274392675174715392[0;39m 返回结果: {"content":{"list":[{"description":"零基础入门 Java 开发，企业级应用开发最佳首选框架","docCount":6,"id":1,"name":"Spring Boot 入门教程","viewCount":0,"voteCount":0},{"description":"零基础入门 Vue 开发，企业级应用开发最佳首选框架","id":2,"name":"Vue 入门教程"},{"description":"零基础入门 Python 开发，企业级应用开发最佳首选框架","id":3,"name":"Python 入门教程"},{"description":"零基础入门 Mysql 开发，企业级应用开发最佳首选框架","id":4,"name":"Mysql 入门教程"},{"description":"零基础入门 Oracle 开发，企业级应用开发最佳首选框架","id":5,"name":"Oracle 入门教程"}],"total":5},"success":true}
+2023-01-27 22:18:31.750 INFO  com.example.wiki.aspect.LogAspect                 :88   [32m274392675174715392[0;39m ------------- 结束 耗时：19 ms -------------
+2023-01-27 22:18:35.009 INFO  com.example.wiki.job.DocJob                       :32   [32m274392688923643904[0;39m 更新电子书下的文档数据开始
+2023-01-27 22:18:35.010 DEBUG c.e.wiki.mapper.DocMapperCust.updateEbookInfo     :137  [32m274392688923643904[0;39m ==>  Preparing: update ebook t1, (select ebook_id, count(1) doc_count, sum(view_count) view_count, sum(vote_count) vote_count from doc group by ebook_id) t2 set t1.doc_count = t2.doc_count, t1.view_count = t2.view_count, t1.vote_count = t2.vote_count where t1.id = t2.ebook_id
+2023-01-27 22:18:35.010 DEBUG c.e.wiki.mapper.DocMapperCust.updateEbookInfo     :137  [32m274392688923643904[0;39m ==> Parameters: 
+2023-01-27 22:18:35.011 DEBUG c.e.wiki.mapper.DocMapperCust.updateEbookInfo     :137  [32m274392688923643904[0;39m <==    Updates: 1
+2023-01-27 22:18:35.012 INFO  com.example.wiki.job.DocJob                       :35   [32m274392688923643904[0;39m 更新电子书下的文档数据结束，耗时：3毫秒
+2023-01-27 22:18:47.864 INFO  com.example.wiki.aspect.LogAspect                 :50   [32m274392742841421824[0;39m ------------- 开始 -------------
+2023-01-27 22:18:47.864 INFO  com.example.wiki.aspect.LogAspect                 :51   [32m274392742841421824[0;39m 请求地址: http://127.0.0.1:8080/ebook/list GET
+2023-01-27 22:18:47.865 INFO  com.example.wiki.aspect.LogAspect                 :52   [32m274392742841421824[0;39m 类名方法: com.example.wiki.controller.EbookController.list
+2023-01-27 22:18:47.865 INFO  com.example.wiki.aspect.LogAspect                 :53   [32m274392742841421824[0;39m 远程地址: 127.0.0.1
+2023-01-27 22:18:47.865 INFO  com.example.wiki.aspect.LogAspect                 :75   [32m274392742841421824[0;39m 请求参数: [{"page":1,"size":1000}]
+2023-01-27 22:18:47.866 DEBUG c.e.wiki.mapper.EbookMapper.selectByExample_COUNT :137  [32m274392742841421824[0;39m ==>  Preparing: SELECT count(0) FROM ebook
+2023-01-27 22:18:47.867 DEBUG c.e.wiki.mapper.EbookMapper.selectByExample_COUNT :137  [32m274392742841421824[0;39m ==> Parameters: 
+2023-01-27 22:18:47.868 TRACE c.e.wiki.mapper.EbookMapper.selectByExample_COUNT :143  [32m274392742841421824[0;39m <==    Columns: count(0)
+2023-01-27 22:18:47.869 TRACE c.e.wiki.mapper.EbookMapper.selectByExample_COUNT :143  [32m274392742841421824[0;39m <==        Row: 5
+2023-01-27 22:18:47.869 DEBUG c.e.wiki.mapper.EbookMapper.selectByExample_COUNT :137  [32m274392742841421824[0;39m <==      Total: 1
+2023-01-27 22:18:47.870 DEBUG c.example.wiki.mapper.EbookMapper.selectByExample :137  [32m274392742841421824[0;39m ==>  Preparing: select id, `name`, category1_id, category2_id, description, cover, doc_count, view_count, vote_count from ebook LIMIT ?
+2023-01-27 22:18:47.870 DEBUG c.example.wiki.mapper.EbookMapper.selectByExample :137  [32m274392742841421824[0;39m ==> Parameters: 1000(Integer)
+2023-01-27 22:18:47.871 TRACE c.example.wiki.mapper.EbookMapper.selectByExample :143  [32m274392742841421824[0;39m <==    Columns: id, name, category1_id, category2_id, description, cover, doc_count, view_count, vote_count
+2023-01-27 22:18:47.871 TRACE c.example.wiki.mapper.EbookMapper.selectByExample :143  [32m274392742841421824[0;39m <==        Row: 1, Spring Boot 入门教程, null, null, 零基础入门 Java 开发，企业级应用开发最佳首选框架, null, 6, 0, 0
+2023-01-27 22:18:47.872 TRACE c.example.wiki.mapper.EbookMapper.selectByExample :143  [32m274392742841421824[0;39m <==        Row: 2, Vue 入门教程, null, null, 零基础入门 Vue 开发，企业级应用开发最佳首选框架, null, null, null, null
+2023-01-27 22:18:47.872 TRACE c.example.wiki.mapper.EbookMapper.selectByExample :143  [32m274392742841421824[0;39m <==        Row: 3, Python 入门教程, null, null, 零基础入门 Python 开发，企业级应用开发最佳首选框架, null, null, null, null
+2023-01-27 22:18:47.872 TRACE c.example.wiki.mapper.EbookMapper.selectByExample :143  [32m274392742841421824[0;39m <==        Row: 4, Mysql 入门教程, null, null, 零基础入门 Mysql 开发，企业级应用开发最佳首选框架, null, null, null, null
+2023-01-27 22:18:47.873 TRACE c.example.wiki.mapper.EbookMapper.selectByExample :143  [32m274392742841421824[0;39m <==        Row: 5, Oracle 入门教程, null, null, 零基础入门 Oracle 开发，企业级应用开发最佳首选框架, null, null, null, null
+2023-01-27 22:18:47.873 DEBUG c.example.wiki.mapper.EbookMapper.selectByExample :137  [32m274392742841421824[0;39m <==      Total: 5
+2023-01-27 22:18:47.873 INFO  com.example.wiki.service.EbookService             :51   [32m274392742841421824[0;39m 总行数 5
+2023-01-27 22:18:47.873 INFO  com.example.wiki.service.EbookService             :52   [32m274392742841421824[0;39m 总页数 1
+2023-01-27 22:18:47.874 INFO  com.example.wiki.aspect.LogAspect                 :87   [32m274392742841421824[0;39m 返回结果: {"content":{"list":[{"description":"零基础入门 Java 开发，企业级应用开发最佳首选框架","docCount":6,"id":1,"name":"Spring Boot 入门教程","viewCount":0,"voteCount":0},{"description":"零基础入门 Vue 开发，企业级应用开发最佳首选框架","id":2,"name":"Vue 入门教程"},{"description":"零基础入门 Python 开发，企业级应用开发最佳首选框架","id":3,"name":"Python 入门教程"},{"description":"零基础入门 Mysql 开发，企业级应用开发最佳首选框架","id":4,"name":"Mysql 入门教程"},{"description":"零基础入门 Oracle 开发，企业级应用开发最佳首选框架","id":5,"name":"Oracle 入门教程"}],"total":5},"success":true}
+2023-01-27 22:18:47.874 INFO  com.example.wiki.aspect.LogAspect                 :88   [32m274392742841421824[0;39m ------------- 结束 耗时：10 ms -------------
+2023-01-27 22:19:00.005 INFO  com.example.wiki.job.EbookSnapshotJob             :32   [32m274392793764466688[0;39m 生成今日电子书快照开始
+2023-01-27 22:19:00.006 DEBUG c.e.w.mapper.EbookSnapshotMapperCust.genSnapshot  :137  [32m274392793764466688[0;39m ==>  Preparing: insert into ebook_snapshot(ebook_id, `date`, view_count, vote_count, view_increase, vote_increase) select t1.id, curdate(), 0, 0, 0, 0 from ebook t1 where not exists(select 1 from ebook_snapshot t2 where t1.id = t2.ebook_id and t2.`date` = curdate()); update ebook_snapshot t1, ebook t2 set t1.view_count = t2.view_count, t1.vote_count = t2.vote_count where t1.`date` = curdate() and t1.ebook_id = t2.id; update ebook_snapshot t1 left join (select ebook_id, view_count, vote_count from ebook_snapshot where `date` = date_sub(curdate(), interval 1 day)) t2 on t1.ebook_id = t2.ebook_id set t1.view_increase = (t1.view_count - ifnull(t2.view_count, 0)), t1.vote_increase = (t1.vote_count - ifnull(t2.vote_count, 0)) where t1.`date` = curdate();
+2023-01-27 22:19:00.006 DEBUG c.e.w.mapper.EbookSnapshotMapperCust.genSnapshot  :137  [32m274392793764466688[0;39m ==> Parameters: 
+2023-01-27 22:19:00.009 ERROR o.s.s.support.TaskUtils$LoggingErrorHandler       :95   [32m274392793764466688[0;39m Unexpected error occurred in scheduled task
+org.springframework.dao.DataIntegrityViolationException: 
+### Error updating database.  Cause: java.sql.SQLIntegrityConstraintViolationException: Column 'view_count' cannot be null
+### The error may exist in file [C:\Users\amper\project\Wiki\Knowledge-Based-System\wiki\target\classes\mapper\EbookSnapshotMapperCust.xml]
+### The error may involve defaultParameterMap
+### The error occurred while setting parameters
+### SQL: insert into ebook_snapshot(ebook_id, `date`, view_count, vote_count, view_increase, vote_increase)         select t1.id, curdate(), 0, 0, 0, 0         from ebook t1         where not exists(select 1                          from ebook_snapshot t2                          where t1.id = t2.ebook_id                            and t2.`date` = curdate());          update ebook_snapshot t1, ebook t2         set t1.view_count = t2.view_count,             t1.vote_count = t2.vote_count         where t1.`date` = curdate()           and t1.ebook_id = t2.id;          update ebook_snapshot t1 left join (select ebook_id, view_count, vote_count             from ebook_snapshot             where `date` = date_sub(curdate(), interval 1 day)) t2         on t1.ebook_id = t2.ebook_id             set t1.view_increase = (t1.view_count - ifnull(t2.view_count, 0)),                 t1.vote_increase = (t1.vote_count - ifnull(t2.vote_count, 0))         where t1.`date` = curdate();
+### Cause: java.sql.SQLIntegrityConstraintViolationException: Column 'view_count' cannot be null
+; Column 'view_count' cannot be null; nested exception is java.sql.SQLIntegrityConstraintViolationException: Column 'view_count' cannot be null
+	at org.springframework.jdbc.support.SQLExceptionSubclassTranslator.doTranslate(SQLExceptionSubclassTranslator.java:87)
+	at org.springframework.jdbc.support.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:70)
+	at org.springframework.jdbc.support.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:79)
+	at org.mybatis.spring.MyBatisExceptionTranslator.translateExceptionIfPossible(MyBatisExceptionTranslator.java:88)
+	at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:440)
+	at com.sun.proxy.$Proxy91.update(Unknown Source)
+	at org.mybatis.spring.SqlSessionTemplate.update(SqlSessionTemplate.java:287)
+	at org.apache.ibatis.binding.MapperMethod.execute(MapperMethod.java:67)
+	at org.apache.ibatis.binding.MapperProxy$PlainMethodInvoker.invoke(MapperProxy.java:152)
+	at org.apache.ibatis.binding.MapperProxy.invoke(MapperProxy.java:85)
+	at com.sun.proxy.$Proxy105.genSnapshot(Unknown Source)
+	at com.example.wiki.service.EbookSnapshotService.genSnapshot(EbookSnapshotService.java:16)
+	at com.example.wiki.job.EbookSnapshotJob.doSnapshot(EbookSnapshotJob.java:34)
+	at sun.reflect.GeneratedMethodAccessor121.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.springframework.scheduling.support.ScheduledMethodRunnable.run(ScheduledMethodRunnable.java:84)
+	at org.springframework.scheduling.support.DelegatingErrorHandlingRunnable.run(DelegatingErrorHandlingRunnable.java:54)
+	at org.springframework.scheduling.concurrent.ReschedulingRunnable.run(ReschedulingRunnable.java:95)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:750)
+Caused by: java.sql.SQLIntegrityConstraintViolationException: Column 'view_count' cannot be null
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:117)
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:97)
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:122)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeInternal(ClientPreparedStatement.java:953)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.execute(ClientPreparedStatement.java:370)
+	at com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+	at com.zaxxer.hikari.pool.HikariProxyPreparedStatement.execute(HikariProxyPreparedStatement.java)
+	at sun.reflect.GeneratedMethodAccessor66.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.apache.ibatis.logging.jdbc.PreparedStatementLogger.invoke(PreparedStatementLogger.java:59)
+	at com.sun.proxy.$Proxy130.execute(Unknown Source)
+	at org.apache.ibatis.executor.statement.PreparedStatementHandler.update(PreparedStatementHandler.java:47)
+	at org.apache.ibatis.executor.statement.RoutingStatementHandler.update(RoutingStatementHandler.java:74)
+	at org.apache.ibatis.executor.SimpleExecutor.doUpdate(SimpleExecutor.java:50)
+	at org.apache.ibatis.executor.BaseExecutor.update(BaseExecutor.java:117)
+	at org.apache.ibatis.executor.CachingExecutor.update(CachingExecutor.java:76)
+	at sun.reflect.GeneratedMethodAccessor71.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.apache.ibatis.plugin.Plugin.invoke(Plugin.java:63)
+	at com.sun.proxy.$Proxy128.update(Unknown Source)
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.update(DefaultSqlSession.java:197)
+	at sun.reflect.GeneratedMethodAccessor70.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:426)
+	... 21 common frames omitted
+2023-01-27 22:19:02.895 INFO  com.example.wiki.aspect.LogAspect                 :50   [32m274392805886005248[0;39m ------------- 开始 -------------
+2023-01-27 22:19:02.895 INFO  com.example.wiki.aspect.LogAspect                 :51   [32m274392805886005248[0;39m 请求地址: http://127.0.0.1:8080/ebook/list GET
+2023-01-27 22:19:02.895 INFO  com.example.wiki.aspect.LogAspect                 :52   [32m274392805886005248[0;39m 类名方法: com.example.wiki.controller.EbookController.list
+2023-01-27 22:19:02.896 INFO  com.example.wiki.aspect.LogAspect                 :53   [32m274392805886005248[0;39m 远程地址: 127.0.0.1
+2023-01-27 22:19:02.896 INFO  com.example.wiki.aspect.LogAspect                 :75   [32m274392805886005248[0;39m 请求参数: [{"page":1,"size":1000}]
+2023-01-27 22:19:02.897 DEBUG c.e.wiki.mapper.EbookMapper.selectByExample_COUNT :137  [32m274392805886005248[0;39m ==>  Preparing: SELECT count(0) FROM ebook
+2023-01-27 22:19:02.897 DEBUG c.e.wiki.mapper.EbookMapper.selectByExample_COUNT :137  [32m274392805886005248[0;39m ==> Parameters: 
+2023-01-27 22:19:02.900 TRACE c.e.wiki.mapper.EbookMapper.selectByExample_COUNT :143  [32m274392805886005248[0;39m <==    Columns: count(0)
+2023-01-27 22:19:02.901 TRACE c.e.wiki.mapper.EbookMapper.selectByExample_COUNT :143  [32m274392805886005248[0;39m <==        Row: 5
+2023-01-27 22:19:02.901 DEBUG c.e.wiki.mapper.EbookMapper.selectByExample_COUNT :137  [32m274392805886005248[0;39m <==      Total: 1
+2023-01-27 22:19:02.901 DEBUG c.example.wiki.mapper.EbookMapper.selectByExample :137  [32m274392805886005248[0;39m ==>  Preparing: select id, `name`, category1_id, category2_id, description, cover, doc_count, view_count, vote_count from ebook LIMIT ?
+2023-01-27 22:19:02.902 DEBUG c.example.wiki.mapper.EbookMapper.selectByExample :137  [32m274392805886005248[0;39m ==> Parameters: 1000(Integer)
+2023-01-27 22:19:02.902 TRACE c.example.wiki.mapper.EbookMapper.selectByExample :143  [32m274392805886005248[0;39m <==    Columns: id, name, category1_id, category2_id, description, cover, doc_count, view_count, vote_count
+2023-01-27 22:19:02.903 TRACE c.example.wiki.mapper.EbookMapper.selectByExample :143  [32m274392805886005248[0;39m <==        Row: 1, Spring Boot 入门教程, null, null, 零基础入门 Java 开发，企业级应用开发最佳首选框架, null, 6, 0, 0
+2023-01-27 22:19:02.903 TRACE c.example.wiki.mapper.EbookMapper.selectByExample :143  [32m274392805886005248[0;39m <==        Row: 2, Vue 入门教程, null, null, 零基础入门 Vue 开发，企业级应用开发最佳首选框架, null, null, null, null
+2023-01-27 22:19:02.903 TRACE c.example.wiki.mapper.EbookMapper.selectByExample :143  [32m274392805886005248[0;39m <==        Row: 3, Python 入门教程, null, null, 零基础入门 Python 开发，企业级应用开发最佳首选框架, null, null, null, null
+2023-01-27 22:19:02.904 TRACE c.example.wiki.mapper.EbookMapper.selectByExample :143  [32m274392805886005248[0;39m <==        Row: 4, Mysql 入门教程, null, null, 零基础入门 Mysql 开发，企业级应用开发最佳首选框架, null, null, null, null
+2023-01-27 22:19:02.904 TRACE c.example.wiki.mapper.EbookMapper.selectByExample :143  [32m274392805886005248[0;39m <==        Row: 5, Oracle 入门教程, null, null, 零基础入门 Oracle 开发，企业级应用开发最佳首选框架, null, null, null, null
+2023-01-27 22:19:02.904 DEBUG c.example.wiki.mapper.EbookMapper.selectByExample :137  [32m274392805886005248[0;39m <==      Total: 5
+2023-01-27 22:19:02.904 INFO  com.example.wiki.service.EbookService             :51   [32m274392805886005248[0;39m 总行数 5
+2023-01-27 22:19:02.905 INFO  com.example.wiki.service.EbookService             :52   [32m274392805886005248[0;39m 总页数 1
+2023-01-27 22:19:02.905 INFO  com.example.wiki.aspect.LogAspect                 :87   [32m274392805886005248[0;39m 返回结果: {"content":{"list":[{"description":"零基础入门 Java 开发，企业级应用开发最佳首选框架","docCount":6,"id":1,"name":"Spring Boot 入门教程","viewCount":0,"voteCount":0},{"description":"零基础入门 Vue 开发，企业级应用开发最佳首选框架","id":2,"name":"Vue 入门教程"},{"description":"零基础入门 Python 开发，企业级应用开发最佳首选框架","id":3,"name":"Python 入门教程"},{"description":"零基础入门 Mysql 开发，企业级应用开发最佳首选框架","id":4,"name":"Mysql 入门教程"},{"description":"零基础入门 Oracle 开发，企业级应用开发最佳首选框架","id":5,"name":"Oracle 入门教程"}],"total":5},"success":true}
+2023-01-27 22:19:02.905 INFO  com.example.wiki.aspect.LogAspect                 :88   [32m274392805886005248[0;39m ------------- 结束 耗时：10 ms -------------
+2023-01-27 22:19:05.008 INFO  com.example.wiki.job.DocJob                       :32   [32m274392814748569600[0;39m 更新电子书下的文档数据开始
+2023-01-27 22:19:05.009 DEBUG c.e.wiki.mapper.DocMapperCust.updateEbookInfo     :137  [32m274392814748569600[0;39m ==>  Preparing: update ebook t1, (select ebook_id, count(1) doc_count, sum(view_count) view_count, sum(vote_count) vote_count from doc group by ebook_id) t2 set t1.doc_count = t2.doc_count, t1.view_count = t2.view_count, t1.vote_count = t2.vote_count where t1.id = t2.ebook_id
+2023-01-27 22:19:05.009 DEBUG c.e.wiki.mapper.DocMapperCust.updateEbookInfo     :137  [32m274392814748569600[0;39m ==> Parameters: 
+2023-01-27 22:19:05.010 DEBUG c.e.wiki.mapper.DocMapperCust.updateEbookInfo     :137  [32m274392814748569600[0;39m <==    Updates: 1
+2023-01-27 22:19:05.010 INFO  com.example.wiki.job.DocJob                       :35   [32m274392814748569600[0;39m 更新电子书下的文档数据结束，耗时：2毫秒
+2023-01-27 22:19:35.006 INFO  com.example.wiki.job.DocJob                       :32   [32m274392940569300992[0;39m 更新电子书下的文档数据开始
+2023-01-27 22:19:35.007 DEBUG c.e.wiki.mapper.DocMapperCust.updateEbookInfo     :137  [32m274392940569300992[0;39m ==>  Preparing: update ebook t1, (select ebook_id, count(1) doc_count, sum(view_count) view_count, sum(vote_count) vote_count from doc group by ebook_id) t2 set t1.doc_count = t2.doc_count, t1.view_count = t2.view_count, t1.vote_count = t2.vote_count where t1.id = t2.ebook_id
+2023-01-27 22:19:35.007 DEBUG c.e.wiki.mapper.DocMapperCust.updateEbookInfo     :137  [32m274392940569300992[0;39m ==> Parameters: 
+2023-01-27 22:19:35.008 DEBUG c.e.wiki.mapper.DocMapperCust.updateEbookInfo     :137  [32m274392940569300992[0;39m <==    Updates: 1
+2023-01-27 22:19:35.008 INFO  com.example.wiki.job.DocJob                       :35   [32m274392940569300992[0;39m 更新电子书下的文档数据结束，耗时：2毫秒
+2023-01-27 22:20:00.014 INFO  com.example.wiki.job.EbookSnapshotJob             :32   [32m274393045460455424[0;39m 生成今日电子书快照开始
+2023-01-27 22:20:00.015 DEBUG c.e.w.mapper.EbookSnapshotMapperCust.genSnapshot  :137  [32m274393045460455424[0;39m ==>  Preparing: insert into ebook_snapshot(ebook_id, `date`, view_count, vote_count, view_increase, vote_increase) select t1.id, curdate(), 0, 0, 0, 0 from ebook t1 where not exists(select 1 from ebook_snapshot t2 where t1.id = t2.ebook_id and t2.`date` = curdate()); update ebook_snapshot t1, ebook t2 set t1.view_count = t2.view_count, t1.vote_count = t2.vote_count where t1.`date` = curdate() and t1.ebook_id = t2.id; update ebook_snapshot t1 left join (select ebook_id, view_count, vote_count from ebook_snapshot where `date` = date_sub(curdate(), interval 1 day)) t2 on t1.ebook_id = t2.ebook_id set t1.view_increase = (t1.view_count - ifnull(t2.view_count, 0)), t1.vote_increase = (t1.vote_count - ifnull(t2.vote_count, 0)) where t1.`date` = curdate();
+2023-01-27 22:20:00.015 DEBUG c.e.w.mapper.EbookSnapshotMapperCust.genSnapshot  :137  [32m274393045460455424[0;39m ==> Parameters: 
+2023-01-27 22:20:00.017 ERROR o.s.s.support.TaskUtils$LoggingErrorHandler       :95   [32m274393045460455424[0;39m Unexpected error occurred in scheduled task
+org.springframework.dao.DataIntegrityViolationException: 
+### Error updating database.  Cause: java.sql.SQLIntegrityConstraintViolationException: Column 'view_count' cannot be null
+### The error may exist in file [C:\Users\amper\project\Wiki\Knowledge-Based-System\wiki\target\classes\mapper\EbookSnapshotMapperCust.xml]
+### The error may involve defaultParameterMap
+### The error occurred while setting parameters
+### SQL: insert into ebook_snapshot(ebook_id, `date`, view_count, vote_count, view_increase, vote_increase)         select t1.id, curdate(), 0, 0, 0, 0         from ebook t1         where not exists(select 1                          from ebook_snapshot t2                          where t1.id = t2.ebook_id                            and t2.`date` = curdate());          update ebook_snapshot t1, ebook t2         set t1.view_count = t2.view_count,             t1.vote_count = t2.vote_count         where t1.`date` = curdate()           and t1.ebook_id = t2.id;          update ebook_snapshot t1 left join (select ebook_id, view_count, vote_count             from ebook_snapshot             where `date` = date_sub(curdate(), interval 1 day)) t2         on t1.ebook_id = t2.ebook_id             set t1.view_increase = (t1.view_count - ifnull(t2.view_count, 0)),                 t1.vote_increase = (t1.vote_count - ifnull(t2.vote_count, 0))         where t1.`date` = curdate();
+### Cause: java.sql.SQLIntegrityConstraintViolationException: Column 'view_count' cannot be null
+; Column 'view_count' cannot be null; nested exception is java.sql.SQLIntegrityConstraintViolationException: Column 'view_count' cannot be null
+	at org.springframework.jdbc.support.SQLExceptionSubclassTranslator.doTranslate(SQLExceptionSubclassTranslator.java:87)
+	at org.springframework.jdbc.support.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:70)
+	at org.springframework.jdbc.support.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:79)
+	at org.mybatis.spring.MyBatisExceptionTranslator.translateExceptionIfPossible(MyBatisExceptionTranslator.java:88)
+	at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:440)
+	at com.sun.proxy.$Proxy91.update(Unknown Source)
+	at org.mybatis.spring.SqlSessionTemplate.update(SqlSessionTemplate.java:287)
+	at org.apache.ibatis.binding.MapperMethod.execute(MapperMethod.java:67)
+	at org.apache.ibatis.binding.MapperProxy$PlainMethodInvoker.invoke(MapperProxy.java:152)
+	at org.apache.ibatis.binding.MapperProxy.invoke(MapperProxy.java:85)
+	at com.sun.proxy.$Proxy105.genSnapshot(Unknown Source)
+	at com.example.wiki.service.EbookSnapshotService.genSnapshot(EbookSnapshotService.java:16)
+	at com.example.wiki.job.EbookSnapshotJob.doSnapshot(EbookSnapshotJob.java:34)
+	at sun.reflect.GeneratedMethodAccessor121.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.springframework.scheduling.support.ScheduledMethodRunnable.run(ScheduledMethodRunnable.java:84)
+	at org.springframework.scheduling.support.DelegatingErrorHandlingRunnable.run(DelegatingErrorHandlingRunnable.java:54)
+	at org.springframework.scheduling.concurrent.ReschedulingRunnable.run(ReschedulingRunnable.java:95)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:750)
+Caused by: java.sql.SQLIntegrityConstraintViolationException: Column 'view_count' cannot be null
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:117)
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:97)
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:122)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeInternal(ClientPreparedStatement.java:953)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.execute(ClientPreparedStatement.java:370)
+	at com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+	at com.zaxxer.hikari.pool.HikariProxyPreparedStatement.execute(HikariProxyPreparedStatement.java)
+	at sun.reflect.GeneratedMethodAccessor66.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.apache.ibatis.logging.jdbc.PreparedStatementLogger.invoke(PreparedStatementLogger.java:59)
+	at com.sun.proxy.$Proxy130.execute(Unknown Source)
+	at org.apache.ibatis.executor.statement.PreparedStatementHandler.update(PreparedStatementHandler.java:47)
+	at org.apache.ibatis.executor.statement.RoutingStatementHandler.update(RoutingStatementHandler.java:74)
+	at org.apache.ibatis.executor.SimpleExecutor.doUpdate(SimpleExecutor.java:50)
+	at org.apache.ibatis.executor.BaseExecutor.update(BaseExecutor.java:117)
+	at org.apache.ibatis.executor.CachingExecutor.update(CachingExecutor.java:76)
+	at sun.reflect.GeneratedMethodAccessor71.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.apache.ibatis.plugin.Plugin.invoke(Plugin.java:63)
+	at com.sun.proxy.$Proxy128.update(Unknown Source)
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.update(DefaultSqlSession.java:197)
+	at sun.reflect.GeneratedMethodAccessor70.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:426)
+	... 21 common frames omitted
+2023-01-27 22:20:05.006 INFO  com.example.wiki.job.DocJob                       :32   [32m274393066398420992[0;39m 更新电子书下的文档数据开始
+2023-01-27 22:20:05.009 DEBUG c.e.wiki.mapper.DocMapperCust.updateEbookInfo     :137  [32m274393066398420992[0;39m ==>  Preparing: update ebook t1, (select ebook_id, count(1) doc_count, sum(view_count) view_count, sum(vote_count) vote_count from doc group by ebook_id) t2 set t1.doc_count = t2.doc_count, t1.view_count = t2.view_count, t1.vote_count = t2.vote_count where t1.id = t2.ebook_id
+2023-01-27 22:20:05.009 DEBUG c.e.wiki.mapper.DocMapperCust.updateEbookInfo     :137  [32m274393066398420992[0;39m ==> Parameters: 
+2023-01-27 22:20:05.011 DEBUG c.e.wiki.mapper.DocMapperCust.updateEbookInfo     :137  [32m274393066398420992[0;39m <==    Updates: 1
+2023-01-27 22:20:05.011 INFO  com.example.wiki.job.DocJob                       :35   [32m274393066398420992[0;39m 更新电子书下的文档数据结束，耗时：4毫秒
+2023-01-27 22:20:35.002 INFO  com.example.wiki.job.DocJob                       :32   [32m274393192210763776[0;39m 更新电子书下的文档数据开始
+2023-01-27 22:20:35.004 DEBUG c.e.wiki.mapper.DocMapperCust.updateEbookInfo     :137  [32m274393192210763776[0;39m ==>  Preparing: update ebook t1, (select ebook_id, count(1) doc_count, sum(view_count) view_count, sum(vote_count) vote_count from doc group by ebook_id) t2 set t1.doc_count = t2.doc_count, t1.view_count = t2.view_count, t1.vote_count = t2.vote_count where t1.id = t2.ebook_id
+2023-01-27 22:20:35.004 DEBUG c.e.wiki.mapper.DocMapperCust.updateEbookInfo     :137  [32m274393192210763776[0;39m ==> Parameters: 
+2023-01-27 22:20:35.007 DEBUG c.e.wiki.mapper.DocMapperCust.updateEbookInfo     :137  [32m274393192210763776[0;39m <==    Updates: 1
+2023-01-27 22:20:35.007 INFO  com.example.wiki.job.DocJob                       :35   [32m274393192210763776[0;39m 更新电子书下的文档数据结束，耗时：4毫秒
+2023-01-27 22:21:00.012 INFO  com.example.wiki.job.EbookSnapshotJob             :32   [32m274393297110306816[0;39m 生成今日电子书快照开始
+2023-01-27 22:21:00.013 DEBUG c.e.w.mapper.EbookSnapshotMapperCust.genSnapshot  :137  [32m274393297110306816[0;39m ==>  Preparing: insert into ebook_snapshot(ebook_id, `date`, view_count, vote_count, view_increase, vote_increase) select t1.id, curdate(), 0, 0, 0, 0 from ebook t1 where not exists(select 1 from ebook_snapshot t2 where t1.id = t2.ebook_id and t2.`date` = curdate()); update ebook_snapshot t1, ebook t2 set t1.view_count = t2.view_count, t1.vote_count = t2.vote_count where t1.`date` = curdate() and t1.ebook_id = t2.id; update ebook_snapshot t1 left join (select ebook_id, view_count, vote_count from ebook_snapshot where `date` = date_sub(curdate(), interval 1 day)) t2 on t1.ebook_id = t2.ebook_id set t1.view_increase = (t1.view_count - ifnull(t2.view_count, 0)), t1.vote_increase = (t1.vote_count - ifnull(t2.vote_count, 0)) where t1.`date` = curdate();
+2023-01-27 22:21:00.014 DEBUG c.e.w.mapper.EbookSnapshotMapperCust.genSnapshot  :137  [32m274393297110306816[0;39m ==> Parameters: 
+2023-01-27 22:21:00.017 ERROR o.s.s.support.TaskUtils$LoggingErrorHandler       :95   [32m274393297110306816[0;39m Unexpected error occurred in scheduled task
+org.springframework.dao.DataIntegrityViolationException: 
+### Error updating database.  Cause: java.sql.SQLIntegrityConstraintViolationException: Column 'view_count' cannot be null
+### The error may exist in file [C:\Users\amper\project\Wiki\Knowledge-Based-System\wiki\target\classes\mapper\EbookSnapshotMapperCust.xml]
+### The error may involve defaultParameterMap
+### The error occurred while setting parameters
+### SQL: insert into ebook_snapshot(ebook_id, `date`, view_count, vote_count, view_increase, vote_increase)         select t1.id, curdate(), 0, 0, 0, 0         from ebook t1         where not exists(select 1                          from ebook_snapshot t2                          where t1.id = t2.ebook_id                            and t2.`date` = curdate());          update ebook_snapshot t1, ebook t2         set t1.view_count = t2.view_count,             t1.vote_count = t2.vote_count         where t1.`date` = curdate()           and t1.ebook_id = t2.id;          update ebook_snapshot t1 left join (select ebook_id, view_count, vote_count             from ebook_snapshot             where `date` = date_sub(curdate(), interval 1 day)) t2         on t1.ebook_id = t2.ebook_id             set t1.view_increase = (t1.view_count - ifnull(t2.view_count, 0)),                 t1.vote_increase = (t1.vote_count - ifnull(t2.vote_count, 0))         where t1.`date` = curdate();
+### Cause: java.sql.SQLIntegrityConstraintViolationException: Column 'view_count' cannot be null
+; Column 'view_count' cannot be null; nested exception is java.sql.SQLIntegrityConstraintViolationException: Column 'view_count' cannot be null
+	at org.springframework.jdbc.support.SQLExceptionSubclassTranslator.doTranslate(SQLExceptionSubclassTranslator.java:87)
+	at org.springframework.jdbc.support.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:70)
+	at org.springframework.jdbc.support.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:79)
+	at org.mybatis.spring.MyBatisExceptionTranslator.translateExceptionIfPossible(MyBatisExceptionTranslator.java:88)
+	at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:440)
+	at com.sun.proxy.$Proxy91.update(Unknown Source)
+	at org.mybatis.spring.SqlSessionTemplate.update(SqlSessionTemplate.java:287)
+	at org.apache.ibatis.binding.MapperMethod.execute(MapperMethod.java:67)
+	at org.apache.ibatis.binding.MapperProxy$PlainMethodInvoker.invoke(MapperProxy.java:152)
+	at org.apache.ibatis.binding.MapperProxy.invoke(MapperProxy.java:85)
+	at com.sun.proxy.$Proxy105.genSnapshot(Unknown Source)
+	at com.example.wiki.service.EbookSnapshotService.genSnapshot(EbookSnapshotService.java:16)
+	at com.example.wiki.job.EbookSnapshotJob.doSnapshot(EbookSnapshotJob.java:34)
+	at sun.reflect.GeneratedMethodAccessor121.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.springframework.scheduling.support.ScheduledMethodRunnable.run(ScheduledMethodRunnable.java:84)
+	at org.springframework.scheduling.support.DelegatingErrorHandlingRunnable.run(DelegatingErrorHandlingRunnable.java:54)
+	at org.springframework.scheduling.concurrent.ReschedulingRunnable.run(ReschedulingRunnable.java:95)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:750)
+Caused by: java.sql.SQLIntegrityConstraintViolationException: Column 'view_count' cannot be null
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:117)
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:97)
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:122)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeInternal(ClientPreparedStatement.java:953)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.execute(ClientPreparedStatement.java:370)
+	at com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+	at com.zaxxer.hikari.pool.HikariProxyPreparedStatement.execute(HikariProxyPreparedStatement.java)
+	at sun.reflect.GeneratedMethodAccessor66.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.apache.ibatis.logging.jdbc.PreparedStatementLogger.invoke(PreparedStatementLogger.java:59)
+	at com.sun.proxy.$Proxy130.execute(Unknown Source)
+	at org.apache.ibatis.executor.statement.PreparedStatementHandler.update(PreparedStatementHandler.java:47)
+	at org.apache.ibatis.executor.statement.RoutingStatementHandler.update(RoutingStatementHandler.java:74)
+	at org.apache.ibatis.executor.SimpleExecutor.doUpdate(SimpleExecutor.java:50)
+	at org.apache.ibatis.executor.BaseExecutor.update(BaseExecutor.java:117)
+	at org.apache.ibatis.executor.CachingExecutor.update(CachingExecutor.java:76)
+	at sun.reflect.GeneratedMethodAccessor71.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.apache.ibatis.plugin.Plugin.invoke(Plugin.java:63)
+	at com.sun.proxy.$Proxy128.update(Unknown Source)
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.update(DefaultSqlSession.java:197)
+	at sun.reflect.GeneratedMethodAccessor70.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:426)
+	... 21 common frames omitted
+2023-01-27 22:21:05.016 INFO  com.example.wiki.job.DocJob                       :32   [32m274393318098604032[0;39m 更新电子书下的文档数据开始
+2023-01-27 22:21:05.018 DEBUG c.e.wiki.mapper.DocMapperCust.updateEbookInfo     :137  [32m274393318098604032[0;39m ==>  Preparing: update ebook t1, (select ebook_id, count(1) doc_count, sum(view_count) view_count, sum(vote_count) vote_count from doc group by ebook_id) t2 set t1.doc_count = t2.doc_count, t1.view_count = t2.view_count, t1.vote_count = t2.vote_count where t1.id = t2.ebook_id
+2023-01-27 22:21:05.019 DEBUG c.e.wiki.mapper.DocMapperCust.updateEbookInfo     :137  [32m274393318098604032[0;39m ==> Parameters: 
+2023-01-27 22:21:05.021 DEBUG c.e.wiki.mapper.DocMapperCust.updateEbookInfo     :137  [32m274393318098604032[0;39m <==    Updates: 1
+2023-01-27 22:21:05.021 INFO  com.example.wiki.job.DocJob                       :35   [32m274393318098604032[0;39m 更新电子书下的文档数据结束，耗时：4毫秒
+2023-01-27 22:21:35.010 INFO  com.example.wiki.job.DocJob                       :32   [32m274393443902558208[0;39m 更新电子书下的文档数据开始
+2023-01-27 22:21:35.011 DEBUG c.e.wiki.mapper.DocMapperCust.updateEbookInfo     :137  [32m274393443902558208[0;39m ==>  Preparing: update ebook t1, (select ebook_id, count(1) doc_count, sum(view_count) view_count, sum(vote_count) vote_count from doc group by ebook_id) t2 set t1.doc_count = t2.doc_count, t1.view_count = t2.view_count, t1.vote_count = t2.vote_count where t1.id = t2.ebook_id
+2023-01-27 22:21:35.011 DEBUG c.e.wiki.mapper.DocMapperCust.updateEbookInfo     :137  [32m274393443902558208[0;39m ==> Parameters: 
+2023-01-27 22:21:35.012 DEBUG c.e.wiki.mapper.DocMapperCust.updateEbookInfo     :137  [32m274393443902558208[0;39m <==    Updates: 1
+2023-01-27 22:21:35.012 INFO  com.example.wiki.job.DocJob                       :35   [32m274393443902558208[0;39m 更新电子书下的文档数据结束，耗时：2毫秒
+2023-01-27 22:22:00.003 INFO  com.example.wiki.job.EbookSnapshotJob             :32   [32m274393548730798080[0;39m 生成今日电子书快照开始
+2023-01-27 22:22:00.004 DEBUG c.e.w.mapper.EbookSnapshotMapperCust.genSnapshot  :137  [32m274393548730798080[0;39m ==>  Preparing: insert into ebook_snapshot(ebook_id, `date`, view_count, vote_count, view_increase, vote_increase) select t1.id, curdate(), 0, 0, 0, 0 from ebook t1 where not exists(select 1 from ebook_snapshot t2 where t1.id = t2.ebook_id and t2.`date` = curdate()); update ebook_snapshot t1, ebook t2 set t1.view_count = t2.view_count, t1.vote_count = t2.vote_count where t1.`date` = curdate() and t1.ebook_id = t2.id; update ebook_snapshot t1 left join (select ebook_id, view_count, vote_count from ebook_snapshot where `date` = date_sub(curdate(), interval 1 day)) t2 on t1.ebook_id = t2.ebook_id set t1.view_increase = (t1.view_count - ifnull(t2.view_count, 0)), t1.vote_increase = (t1.vote_count - ifnull(t2.vote_count, 0)) where t1.`date` = curdate();
+2023-01-27 22:22:00.004 DEBUG c.e.w.mapper.EbookSnapshotMapperCust.genSnapshot  :137  [32m274393548730798080[0;39m ==> Parameters: 
+2023-01-27 22:22:00.006 ERROR o.s.s.support.TaskUtils$LoggingErrorHandler       :95   [32m274393548730798080[0;39m Unexpected error occurred in scheduled task
+org.springframework.dao.DataIntegrityViolationException: 
+### Error updating database.  Cause: java.sql.SQLIntegrityConstraintViolationException: Column 'view_count' cannot be null
+### The error may exist in file [C:\Users\amper\project\Wiki\Knowledge-Based-System\wiki\target\classes\mapper\EbookSnapshotMapperCust.xml]
+### The error may involve defaultParameterMap
+### The error occurred while setting parameters
+### SQL: insert into ebook_snapshot(ebook_id, `date`, view_count, vote_count, view_increase, vote_increase)         select t1.id, curdate(), 0, 0, 0, 0         from ebook t1         where not exists(select 1                          from ebook_snapshot t2                          where t1.id = t2.ebook_id                            and t2.`date` = curdate());          update ebook_snapshot t1, ebook t2         set t1.view_count = t2.view_count,             t1.vote_count = t2.vote_count         where t1.`date` = curdate()           and t1.ebook_id = t2.id;          update ebook_snapshot t1 left join (select ebook_id, view_count, vote_count             from ebook_snapshot             where `date` = date_sub(curdate(), interval 1 day)) t2         on t1.ebook_id = t2.ebook_id             set t1.view_increase = (t1.view_count - ifnull(t2.view_count, 0)),                 t1.vote_increase = (t1.vote_count - ifnull(t2.vote_count, 0))         where t1.`date` = curdate();
+### Cause: java.sql.SQLIntegrityConstraintViolationException: Column 'view_count' cannot be null
+; Column 'view_count' cannot be null; nested exception is java.sql.SQLIntegrityConstraintViolationException: Column 'view_count' cannot be null
+	at org.springframework.jdbc.support.SQLExceptionSubclassTranslator.doTranslate(SQLExceptionSubclassTranslator.java:87)
+	at org.springframework.jdbc.support.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:70)
+	at org.springframework.jdbc.support.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:79)
+	at org.mybatis.spring.MyBatisExceptionTranslator.translateExceptionIfPossible(MyBatisExceptionTranslator.java:88)
+	at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:440)
+	at com.sun.proxy.$Proxy91.update(Unknown Source)
+	at org.mybatis.spring.SqlSessionTemplate.update(SqlSessionTemplate.java:287)
+	at org.apache.ibatis.binding.MapperMethod.execute(MapperMethod.java:67)
+	at org.apache.ibatis.binding.MapperProxy$PlainMethodInvoker.invoke(MapperProxy.java:152)
+	at org.apache.ibatis.binding.MapperProxy.invoke(MapperProxy.java:85)
+	at com.sun.proxy.$Proxy105.genSnapshot(Unknown Source)
+	at com.example.wiki.service.EbookSnapshotService.genSnapshot(EbookSnapshotService.java:16)
+	at com.example.wiki.job.EbookSnapshotJob.doSnapshot(EbookSnapshotJob.java:34)
+	at sun.reflect.GeneratedMethodAccessor121.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.springframework.scheduling.support.ScheduledMethodRunnable.run(ScheduledMethodRunnable.java:84)
+	at org.springframework.scheduling.support.DelegatingErrorHandlingRunnable.run(DelegatingErrorHandlingRunnable.java:54)
+	at org.springframework.scheduling.concurrent.ReschedulingRunnable.run(ReschedulingRunnable.java:95)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:750)
+Caused by: java.sql.SQLIntegrityConstraintViolationException: Column 'view_count' cannot be null
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:117)
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:97)
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:122)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeInternal(ClientPreparedStatement.java:953)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.execute(ClientPreparedStatement.java:370)
+	at com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+	at com.zaxxer.hikari.pool.HikariProxyPreparedStatement.execute(HikariProxyPreparedStatement.java)
+	at sun.reflect.GeneratedMethodAccessor66.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.apache.ibatis.logging.jdbc.PreparedStatementLogger.invoke(PreparedStatementLogger.java:59)
+	at com.sun.proxy.$Proxy130.execute(Unknown Source)
+	at org.apache.ibatis.executor.statement.PreparedStatementHandler.update(PreparedStatementHandler.java:47)
+	at org.apache.ibatis.executor.statement.RoutingStatementHandler.update(RoutingStatementHandler.java:74)
+	at org.apache.ibatis.executor.SimpleExecutor.doUpdate(SimpleExecutor.java:50)
+	at org.apache.ibatis.executor.BaseExecutor.update(BaseExecutor.java:117)
+	at org.apache.ibatis.executor.CachingExecutor.update(CachingExecutor.java:76)
+	at sun.reflect.GeneratedMethodAccessor71.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.apache.ibatis.plugin.Plugin.invoke(Plugin.java:63)
+	at com.sun.proxy.$Proxy128.update(Unknown Source)
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.update(DefaultSqlSession.java:197)
+	at sun.reflect.GeneratedMethodAccessor70.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:426)
+	... 21 common frames omitted
+2023-01-27 22:22:05.001 INFO  com.example.wiki.job.DocJob                       :32   [32m274393569693929472[0;39m 更新电子书下的文档数据开始
+2023-01-27 22:22:05.002 DEBUG c.e.wiki.mapper.DocMapperCust.updateEbookInfo     :137  [32m274393569693929472[0;39m ==>  Preparing: update ebook t1, (select ebook_id, count(1) doc_count, sum(view_count) view_count, sum(vote_count) vote_count from doc group by ebook_id) t2 set t1.doc_count = t2.doc_count, t1.view_count = t2.view_count, t1.vote_count = t2.vote_count where t1.id = t2.ebook_id
+2023-01-27 22:22:05.003 DEBUG c.e.wiki.mapper.DocMapperCust.updateEbookInfo     :137  [32m274393569693929472[0;39m ==> Parameters: 
+2023-01-27 22:22:05.004 DEBUG c.e.wiki.mapper.DocMapperCust.updateEbookInfo     :137  [32m274393569693929472[0;39m <==    Updates: 1
+2023-01-27 22:22:05.005 INFO  com.example.wiki.job.DocJob                       :35   [32m274393569693929472[0;39m 更新电子书下的文档数据结束，耗时：4毫秒
+2023-01-27 22:22:31.942 INFO  com.example.wiki.aspect.LogAspect                 :50   [32m274393682692673536[0;39m ------------- 开始 -------------
+2023-01-27 22:22:31.943 INFO  com.example.wiki.aspect.LogAspect                 :51   [32m274393682692673536[0;39m 请求地址: http://127.0.0.1:8080/ebook/list GET
+2023-01-27 22:22:31.943 INFO  com.example.wiki.aspect.LogAspect                 :52   [32m274393682692673536[0;39m 类名方法: com.example.wiki.controller.EbookController.list
+2023-01-27 22:22:31.943 INFO  com.example.wiki.aspect.LogAspect                 :53   [32m274393682692673536[0;39m 远程地址: 127.0.0.1
+2023-01-27 22:22:31.943 INFO  com.example.wiki.aspect.LogAspect                 :75   [32m274393682692673536[0;39m 请求参数: [{"page":1,"size":1000}]
+2023-01-27 22:22:31.945 DEBUG c.e.wiki.mapper.EbookMapper.selectByExample_COUNT :137  [32m274393682692673536[0;39m ==>  Preparing: SELECT count(0) FROM ebook
+2023-01-27 22:22:31.945 DEBUG c.e.wiki.mapper.EbookMapper.selectByExample_COUNT :137  [32m274393682692673536[0;39m ==> Parameters: 
+2023-01-27 22:22:31.960 TRACE c.e.wiki.mapper.EbookMapper.selectByExample_COUNT :143  [32m274393682692673536[0;39m <==    Columns: count(0)
+2023-01-27 22:22:31.960 TRACE c.e.wiki.mapper.EbookMapper.selectByExample_COUNT :143  [32m274393682692673536[0;39m <==        Row: 5
+2023-01-27 22:22:31.961 DEBUG c.e.wiki.mapper.EbookMapper.selectByExample_COUNT :137  [32m274393682692673536[0;39m <==      Total: 1
+2023-01-27 22:22:31.961 DEBUG c.example.wiki.mapper.EbookMapper.selectByExample :137  [32m274393682692673536[0;39m ==>  Preparing: select id, `name`, category1_id, category2_id, description, cover, doc_count, view_count, vote_count from ebook LIMIT ?
+2023-01-27 22:22:31.962 DEBUG c.example.wiki.mapper.EbookMapper.selectByExample :137  [32m274393682692673536[0;39m ==> Parameters: 1000(Integer)
+2023-01-27 22:22:31.963 TRACE c.example.wiki.mapper.EbookMapper.selectByExample :143  [32m274393682692673536[0;39m <==    Columns: id, name, category1_id, category2_id, description, cover, doc_count, view_count, vote_count
+2023-01-27 22:22:31.963 TRACE c.example.wiki.mapper.EbookMapper.selectByExample :143  [32m274393682692673536[0;39m <==        Row: 1, Spring Boot 入门教程, null, null, 零基础入门 Java 开发，企业级应用开发最佳首选框架, null, 6, 0, 0
+2023-01-27 22:22:31.963 TRACE c.example.wiki.mapper.EbookMapper.selectByExample :143  [32m274393682692673536[0;39m <==        Row: 2, Vue 入门教程, null, null, 零基础入门 Vue 开发，企业级应用开发最佳首选框架, null, null, null, null
+2023-01-27 22:22:31.964 TRACE c.example.wiki.mapper.EbookMapper.selectByExample :143  [32m274393682692673536[0;39m <==        Row: 3, Python 入门教程, null, null, 零基础入门 Python 开发，企业级应用开发最佳首选框架, null, null, null, null
+2023-01-27 22:22:31.964 TRACE c.example.wiki.mapper.EbookMapper.selectByExample :143  [32m274393682692673536[0;39m <==        Row: 4, Mysql 入门教程, null, null, 零基础入门 Mysql 开发，企业级应用开发最佳首选框架, null, null, null, null
+2023-01-27 22:22:31.964 TRACE c.example.wiki.mapper.EbookMapper.selectByExample :143  [32m274393682692673536[0;39m <==        Row: 5, Oracle 入门教程, null, null, 零基础入门 Oracle 开发，企业级应用开发最佳首选框架, null, null, null, null
+2023-01-27 22:22:31.964 DEBUG c.example.wiki.mapper.EbookMapper.selectByExample :137  [32m274393682692673536[0;39m <==      Total: 5
+2023-01-27 22:22:31.965 INFO  com.example.wiki.service.EbookService             :51   [32m274393682692673536[0;39m 总行数 5
+2023-01-27 22:22:31.965 INFO  com.example.wiki.service.EbookService             :52   [32m274393682692673536[0;39m 总页数 1
+2023-01-27 22:22:31.965 INFO  com.example.wiki.aspect.LogAspect                 :87   [32m274393682692673536[0;39m 返回结果: {"content":{"list":[{"description":"零基础入门 Java 开发，企业级应用开发最佳首选框架","docCount":6,"id":1,"name":"Spring Boot 入门教程","viewCount":0,"voteCount":0},{"description":"零基础入门 Vue 开发，企业级应用开发最佳首选框架","id":2,"name":"Vue 入门教程"},{"description":"零基础入门 Python 开发，企业级应用开发最佳首选框架","id":3,"name":"Python 入门教程"},{"description":"零基础入门 Mysql 开发，企业级应用开发最佳首选框架","id":4,"name":"Mysql 入门教程"},{"description":"零基础入门 Oracle 开发，企业级应用开发最佳首选框架","id":5,"name":"Oracle 入门教程"}],"total":5},"success":true}
+2023-01-27 22:22:31.965 INFO  com.example.wiki.aspect.LogAspect                 :88   [32m274393682692673536[0;39m ------------- 结束 耗时：23 ms -------------
+2023-01-27 22:22:35.008 INFO  com.example.wiki.job.DocJob                       :32   [32m274393695552409600[0;39m 更新电子书下的文档数据开始
+2023-01-27 22:22:35.011 DEBUG c.e.wiki.mapper.DocMapperCust.updateEbookInfo     :137  [32m274393695552409600[0;39m ==>  Preparing: update ebook t1, (select ebook_id, count(1) doc_count, sum(view_count) view_count, sum(vote_count) vote_count from doc group by ebook_id) t2 set t1.doc_count = t2.doc_count, t1.view_count = t2.view_count, t1.vote_count = t2.vote_count where t1.id = t2.ebook_id
+2023-01-27 22:22:35.011 DEBUG c.e.wiki.mapper.DocMapperCust.updateEbookInfo     :137  [32m274393695552409600[0;39m ==> Parameters: 
+2023-01-27 22:22:35.027 DEBUG c.e.wiki.mapper.DocMapperCust.updateEbookInfo     :137  [32m274393695552409600[0;39m <==    Updates: 1
+2023-01-27 22:22:35.027 INFO  com.example.wiki.job.DocJob                       :35   [32m274393695552409600[0;39m 更新电子书下的文档数据结束，耗时：19毫秒
+2023-01-27 22:22:35.970 INFO  com.example.wiki.aspect.LogAspect                 :50   [32m274393699587330048[0;39m ------------- 开始 -------------
+2023-01-27 22:22:35.971 INFO  com.example.wiki.aspect.LogAspect                 :51   [32m274393699587330048[0;39m 请求地址: http://127.0.0.1:8080/ebook/list GET
+2023-01-27 22:22:35.971 INFO  com.example.wiki.aspect.LogAspect                 :52   [32m274393699587330048[0;39m 类名方法: com.example.wiki.controller.EbookController.list
+2023-01-27 22:22:35.971 INFO  com.example.wiki.aspect.LogAspect                 :53   [32m274393699587330048[0;39m 远程地址: 127.0.0.1
+2023-01-27 22:22:35.971 INFO  com.example.wiki.aspect.LogAspect                 :75   [32m274393699587330048[0;39m 请求参数: [{"page":1,"size":1000}]
+2023-01-27 22:22:35.973 DEBUG c.e.wiki.mapper.EbookMapper.selectByExample_COUNT :137  [32m274393699587330048[0;39m ==>  Preparing: SELECT count(0) FROM ebook
+2023-01-27 22:22:35.974 DEBUG c.e.wiki.mapper.EbookMapper.selectByExample_COUNT :137  [32m274393699587330048[0;39m ==> Parameters: 
+2023-01-27 22:22:35.975 TRACE c.e.wiki.mapper.EbookMapper.selectByExample_COUNT :143  [32m274393699587330048[0;39m <==    Columns: count(0)
+2023-01-27 22:22:35.976 TRACE c.e.wiki.mapper.EbookMapper.selectByExample_COUNT :143  [32m274393699587330048[0;39m <==        Row: 5
+2023-01-27 22:22:35.976 DEBUG c.e.wiki.mapper.EbookMapper.selectByExample_COUNT :137  [32m274393699587330048[0;39m <==      Total: 1
+2023-01-27 22:22:35.976 DEBUG c.example.wiki.mapper.EbookMapper.selectByExample :137  [32m274393699587330048[0;39m ==>  Preparing: select id, `name`, category1_id, category2_id, description, cover, doc_count, view_count, vote_count from ebook LIMIT ?
+2023-01-27 22:22:35.977 DEBUG c.example.wiki.mapper.EbookMapper.selectByExample :137  [32m274393699587330048[0;39m ==> Parameters: 1000(Integer)
+2023-01-27 22:22:35.978 TRACE c.example.wiki.mapper.EbookMapper.selectByExample :143  [32m274393699587330048[0;39m <==    Columns: id, name, category1_id, category2_id, description, cover, doc_count, view_count, vote_count
+2023-01-27 22:22:35.978 TRACE c.example.wiki.mapper.EbookMapper.selectByExample :143  [32m274393699587330048[0;39m <==        Row: 1, Spring Boot 入门教程, null, null, 零基础入门 Java 开发，企业级应用开发最佳首选框架, null, 6, 0, 0
+2023-01-27 22:22:35.978 TRACE c.example.wiki.mapper.EbookMapper.selectByExample :143  [32m274393699587330048[0;39m <==        Row: 2, Vue 入门教程, null, null, 零基础入门 Vue 开发，企业级应用开发最佳首选框架, null, null, null, null
+2023-01-27 22:22:35.978 TRACE c.example.wiki.mapper.EbookMapper.selectByExample :143  [32m274393699587330048[0;39m <==        Row: 3, Python 入门教程, null, null, 零基础入门 Python 开发，企业级应用开发最佳首选框架, null, null, null, null
+2023-01-27 22:22:35.979 TRACE c.example.wiki.mapper.EbookMapper.selectByExample :143  [32m274393699587330048[0;39m <==        Row: 4, Mysql 入门教程, null, null, 零基础入门 Mysql 开发，企业级应用开发最佳首选框架, null, null, null, null
+2023-01-27 22:22:35.979 TRACE c.example.wiki.mapper.EbookMapper.selectByExample :143  [32m274393699587330048[0;39m <==        Row: 5, Oracle 入门教程, null, null, 零基础入门 Oracle 开发，企业级应用开发最佳首选框架, null, null, null, null
+2023-01-27 22:22:35.979 DEBUG c.example.wiki.mapper.EbookMapper.selectByExample :137  [32m274393699587330048[0;39m <==      Total: 5
+2023-01-27 22:22:35.979 INFO  com.example.wiki.service.EbookService             :51   [32m274393699587330048[0;39m 总行数 5
+2023-01-27 22:22:35.980 INFO  com.example.wiki.service.EbookService             :52   [32m274393699587330048[0;39m 总页数 1
+2023-01-27 22:22:35.980 INFO  com.example.wiki.aspect.LogAspect                 :87   [32m274393699587330048[0;39m 返回结果: {"content":{"list":[{"description":"零基础入门 Java 开发，企业级应用开发最佳首选框架","docCount":6,"id":1,"name":"Spring Boot 入门教程","viewCount":0,"voteCount":0},{"description":"零基础入门 Vue 开发，企业级应用开发最佳首选框架","id":2,"name":"Vue 入门教程"},{"description":"零基础入门 Python 开发，企业级应用开发最佳首选框架","id":3,"name":"Python 入门教程"},{"description":"零基础入门 Mysql 开发，企业级应用开发最佳首选框架","id":4,"name":"Mysql 入门教程"},{"description":"零基础入门 Oracle 开发，企业级应用开发最佳首选框架","id":5,"name":"Oracle 入门教程"}],"total":5},"success":true}
+2023-01-27 22:22:35.980 INFO  com.example.wiki.aspect.LogAspect                 :88   [32m274393699587330048[0;39m ------------- 结束 耗时：10 ms -------------
+2023-01-27 22:22:39.036 INFO  com.example.wiki.aspect.LogAspect                 :50   [32m274393712447066112[0;39m ------------- 开始 -------------
+2023-01-27 22:22:39.036 INFO  com.example.wiki.aspect.LogAspect                 :51   [32m274393712447066112[0;39m 请求地址: http://127.0.0.1:8080/category/all GET
+2023-01-27 22:22:39.037 INFO  com.example.wiki.aspect.LogAspect                 :52   [32m274393712447066112[0;39m 类名方法: com.example.wiki.controller.CategoryController.all
+2023-01-27 22:22:39.037 INFO  com.example.wiki.aspect.LogAspect                 :53   [32m274393712447066112[0;39m 远程地址: 127.0.0.1
+2023-01-27 22:22:39.037 INFO  com.example.wiki.aspect.LogAspect                 :75   [32m274393712447066112[0;39m 请求参数: []
+2023-01-27 22:22:39.038 INFO  com.example.wiki.aspect.LogAspect                 :50   [32m274393712455454720[0;39m ------------- 开始 -------------
+2023-01-27 22:22:39.038 DEBUG c.e.wiki.mapper.CategoryMapper.selectByExample    :137  [32m274393712447066112[0;39m ==>  Preparing: select id, parent, `name`, sort from category order by sort asc
+2023-01-27 22:22:39.038 INFO  com.example.wiki.aspect.LogAspect                 :51   [32m274393712455454720[0;39m 请求地址: http://127.0.0.1:8080/ebook/list GET
+2023-01-27 22:22:39.039 INFO  com.example.wiki.aspect.LogAspect                 :52   [32m274393712455454720[0;39m 类名方法: com.example.wiki.controller.EbookController.list
+2023-01-27 22:22:39.039 DEBUG c.e.wiki.mapper.CategoryMapper.selectByExample    :137  [32m274393712447066112[0;39m ==> Parameters: 
+2023-01-27 22:22:39.039 INFO  com.example.wiki.aspect.LogAspect                 :53   [32m274393712455454720[0;39m 远程地址: 127.0.0.1
+2023-01-27 22:22:39.039 INFO  com.example.wiki.aspect.LogAspect                 :75   [32m274393712455454720[0;39m 请求参数: [{"page":1,"size":10}]
+2023-01-27 22:22:39.039 TRACE c.e.wiki.mapper.CategoryMapper.selectByExample    :143  [32m274393712447066112[0;39m <==    Columns: id, parent, name, sort
+2023-01-27 22:22:39.039 TRACE c.e.wiki.mapper.CategoryMapper.selectByExample    :143  [32m274393712447066112[0;39m <==        Row: 100, 0, 前端开发, 100
+2023-01-27 22:22:39.041 DEBUG c.e.wiki.mapper.EbookMapper.selectByExample_COUNT :137  [32m274393712455454720[0;39m ==>  Preparing: SELECT count(0) FROM ebook
+2023-01-27 22:22:39.041 TRACE c.e.wiki.mapper.CategoryMapper.selectByExample    :143  [32m274393712447066112[0;39m <==        Row: 101, 100, Vue, 101
+2023-01-27 22:22:39.041 DEBUG c.e.wiki.mapper.EbookMapper.selectByExample_COUNT :137  [32m274393712455454720[0;39m ==> Parameters: 
+2023-01-27 22:22:39.041 TRACE c.e.wiki.mapper.CategoryMapper.selectByExample    :143  [32m274393712447066112[0;39m <==        Row: 102, 100, HTML & CSS, 102
+2023-01-27 22:22:39.041 TRACE c.e.wiki.mapper.CategoryMapper.selectByExample    :143  [32m274393712447066112[0;39m <==        Row: 200, 0, Java, 200
+2023-01-27 22:22:39.041 TRACE c.e.wiki.mapper.CategoryMapper.selectByExample    :143  [32m274393712447066112[0;39m <==        Row: 201, 200, 基础应用, 201
+2023-01-27 22:22:39.041 TRACE c.e.wiki.mapper.CategoryMapper.selectByExample    :143  [32m274393712447066112[0;39m <==        Row: 202, 200, 框架应用, 202
+2023-01-27 22:22:39.042 TRACE c.e.wiki.mapper.CategoryMapper.selectByExample    :143  [32m274393712447066112[0;39m <==        Row: 300, 0, Python, 300
+2023-01-27 22:22:39.042 TRACE c.e.wiki.mapper.CategoryMapper.selectByExample    :143  [32m274393712447066112[0;39m <==        Row: 301, 300, 基础应用, 301
+2023-01-27 22:22:39.042 TRACE c.e.wiki.mapper.CategoryMapper.selectByExample    :143  [32m274393712447066112[0;39m <==        Row: 302, 300, 进阶方向应用, 302
+2023-01-27 22:22:39.042 TRACE c.e.wiki.mapper.CategoryMapper.selectByExample    :143  [32m274393712447066112[0;39m <==        Row: 400, 0, 数据库, 400
+2023-01-27 22:22:39.042 TRACE c.e.wiki.mapper.CategoryMapper.selectByExample    :143  [32m274393712447066112[0;39m <==        Row: 401, 400, MySQL, 401
+2023-01-27 22:22:39.043 TRACE c.e.wiki.mapper.CategoryMapper.selectByExample    :143  [32m274393712447066112[0;39m <==        Row: 500, 0, 其它, 500
+2023-01-27 22:22:39.043 TRACE c.e.wiki.mapper.CategoryMapper.selectByExample    :143  [32m274393712447066112[0;39m <==        Row: 501, 500, 服务器, 501
+2023-01-27 22:22:39.043 TRACE c.e.wiki.mapper.CategoryMapper.selectByExample    :143  [32m274393712447066112[0;39m <==        Row: 502, 500, 开发工具, 502
+2023-01-27 22:22:39.043 TRACE c.e.wiki.mapper.CategoryMapper.selectByExample    :143  [32m274393712447066112[0;39m <==        Row: 503, 500, 热门服务端语言, 503
+2023-01-27 22:22:39.043 DEBUG c.e.wiki.mapper.CategoryMapper.selectByExample    :137  [32m274393712447066112[0;39m <==      Total: 15
+2023-01-27 22:22:39.044 INFO  com.example.wiki.aspect.LogAspect                 :87   [32m274393712447066112[0;39m 返回结果: {"content":[{"id":100,"name":"前端开发","parent":0,"sort":100},{"id":101,"name":"Vue","parent":100,"sort":101},{"id":102,"name":"HTML & CSS","parent":100,"sort":102},{"id":200,"name":"Java","parent":0,"sort":200},{"id":201,"name":"基础应用","parent":200,"sort":201},{"id":202,"name":"框架应用","parent":200,"sort":202},{"id":300,"name":"Python","parent":0,"sort":300},{"id":301,"name":"基础应用","parent":300,"sort":301},{"id":302,"name":"进阶方向应用","parent":300,"sort":302},{"id":400,"name":"数据库","parent":0,"sort":400},{"id":401,"name":"MySQL","parent":400,"sort":401},{"id":500,"name":"其它","parent":0,"sort":500},{"id":501,"name":"服务器","parent":500,"sort":501},{"id":502,"name":"开发工具","parent":500,"sort":502},{"id":503,"name":"热门服务端语言","parent":500,"sort":503}],"success":true}
+2023-01-27 22:22:39.044 INFO  com.example.wiki.aspect.LogAspect                 :88   [32m274393712447066112[0;39m ------------- 结束 耗时：8 ms -------------
+2023-01-27 22:22:39.044 TRACE c.e.wiki.mapper.EbookMapper.selectByExample_COUNT :143  [32m274393712455454720[0;39m <==    Columns: count(0)
+2023-01-27 22:22:39.044 TRACE c.e.wiki.mapper.EbookMapper.selectByExample_COUNT :143  [32m274393712455454720[0;39m <==        Row: 5
+2023-01-27 22:22:39.044 DEBUG c.e.wiki.mapper.EbookMapper.selectByExample_COUNT :137  [32m274393712455454720[0;39m <==      Total: 1
+2023-01-27 22:22:39.045 DEBUG c.example.wiki.mapper.EbookMapper.selectByExample :137  [32m274393712455454720[0;39m ==>  Preparing: select id, `name`, category1_id, category2_id, description, cover, doc_count, view_count, vote_count from ebook LIMIT ?
+2023-01-27 22:22:39.045 DEBUG c.example.wiki.mapper.EbookMapper.selectByExample :137  [32m274393712455454720[0;39m ==> Parameters: 10(Integer)
+2023-01-27 22:22:39.046 TRACE c.example.wiki.mapper.EbookMapper.selectByExample :143  [32m274393712455454720[0;39m <==    Columns: id, name, category1_id, category2_id, description, cover, doc_count, view_count, vote_count
+2023-01-27 22:22:39.046 TRACE c.example.wiki.mapper.EbookMapper.selectByExample :143  [32m274393712455454720[0;39m <==        Row: 1, Spring Boot 入门教程, null, null, 零基础入门 Java 开发，企业级应用开发最佳首选框架, null, 6, 0, 0
+2023-01-27 22:22:39.046 TRACE c.example.wiki.mapper.EbookMapper.selectByExample :143  [32m274393712455454720[0;39m <==        Row: 2, Vue 入门教程, null, null, 零基础入门 Vue 开发，企业级应用开发最佳首选框架, null, null, null, null
+2023-01-27 22:22:39.047 TRACE c.example.wiki.mapper.EbookMapper.selectByExample :143  [32m274393712455454720[0;39m <==        Row: 3, Python 入门教程, null, null, 零基础入门 Python 开发，企业级应用开发最佳首选框架, null, null, null, null
+2023-01-27 22:22:39.047 TRACE c.example.wiki.mapper.EbookMapper.selectByExample :143  [32m274393712455454720[0;39m <==        Row: 4, Mysql 入门教程, null, null, 零基础入门 Mysql 开发，企业级应用开发最佳首选框架, null, null, null, null
+2023-01-27 22:22:39.047 TRACE c.example.wiki.mapper.EbookMapper.selectByExample :143  [32m274393712455454720[0;39m <==        Row: 5, Oracle 入门教程, null, null, 零基础入门 Oracle 开发，企业级应用开发最佳首选框架, null, null, null, null
+2023-01-27 22:22:39.047 DEBUG c.example.wiki.mapper.EbookMapper.selectByExample :137  [32m274393712455454720[0;39m <==      Total: 5
+2023-01-27 22:22:39.048 INFO  com.example.wiki.service.EbookService             :51   [32m274393712455454720[0;39m 总行数 5
+2023-01-27 22:22:39.048 INFO  com.example.wiki.service.EbookService             :52   [32m274393712455454720[0;39m 总页数 1
+2023-01-27 22:22:39.048 INFO  com.example.wiki.aspect.LogAspect                 :87   [32m274393712455454720[0;39m 返回结果: {"content":{"list":[{"description":"零基础入门 Java 开发，企业级应用开发最佳首选框架","docCount":6,"id":1,"name":"Spring Boot 入门教程","viewCount":0,"voteCount":0},{"description":"零基础入门 Vue 开发，企业级应用开发最佳首选框架","id":2,"name":"Vue 入门教程"},{"description":"零基础入门 Python 开发，企业级应用开发最佳首选框架","id":3,"name":"Python 入门教程"},{"description":"零基础入门 Mysql 开发，企业级应用开发最佳首选框架","id":4,"name":"Mysql 入门教程"},{"description":"零基础入门 Oracle 开发，企业级应用开发最佳首选框架","id":5,"name":"Oracle 入门教程"}],"total":5},"success":true}
+2023-01-27 22:22:39.048 INFO  com.example.wiki.aspect.LogAspect                 :88   [32m274393712455454720[0;39m ------------- 结束 耗时：10 ms -------------
+2023-01-27 22:22:42.815 INFO  com.example.wiki.aspect.LogAspect                 :50   [32m274393728297340928[0;39m ------------- 开始 -------------
+2023-01-27 22:22:42.815 INFO  com.example.wiki.aspect.LogAspect                 :51   [32m274393728297340928[0;39m 请求地址: http://127.0.0.1:8080/ebook/list GET
+2023-01-27 22:22:42.815 INFO  com.example.wiki.aspect.LogAspect                 :52   [32m274393728297340928[0;39m 类名方法: com.example.wiki.controller.EbookController.list
+2023-01-27 22:22:42.815 INFO  com.example.wiki.aspect.LogAspect                 :53   [32m274393728297340928[0;39m 远程地址: 127.0.0.1
+2023-01-27 22:22:42.816 INFO  com.example.wiki.aspect.LogAspect                 :75   [32m274393728297340928[0;39m 请求参数: [{"page":1,"size":1000}]
+2023-01-27 22:22:42.817 DEBUG c.e.wiki.mapper.EbookMapper.selectByExample_COUNT :137  [32m274393728297340928[0;39m ==>  Preparing: SELECT count(0) FROM ebook
+2023-01-27 22:22:42.817 DEBUG c.e.wiki.mapper.EbookMapper.selectByExample_COUNT :137  [32m274393728297340928[0;39m ==> Parameters: 
+2023-01-27 22:22:42.821 TRACE c.e.wiki.mapper.EbookMapper.selectByExample_COUNT :143  [32m274393728297340928[0;39m <==    Columns: count(0)
+2023-01-27 22:22:42.822 TRACE c.e.wiki.mapper.EbookMapper.selectByExample_COUNT :143  [32m274393728297340928[0;39m <==        Row: 5
+2023-01-27 22:22:42.822 DEBUG c.e.wiki.mapper.EbookMapper.selectByExample_COUNT :137  [32m274393728297340928[0;39m <==      Total: 1
+2023-01-27 22:22:42.823 DEBUG c.example.wiki.mapper.EbookMapper.selectByExample :137  [32m274393728297340928[0;39m ==>  Preparing: select id, `name`, category1_id, category2_id, description, cover, doc_count, view_count, vote_count from ebook LIMIT ?
+2023-01-27 22:22:42.825 DEBUG c.example.wiki.mapper.EbookMapper.selectByExample :137  [32m274393728297340928[0;39m ==> Parameters: 1000(Integer)
+2023-01-27 22:22:42.826 TRACE c.example.wiki.mapper.EbookMapper.selectByExample :143  [32m274393728297340928[0;39m <==    Columns: id, name, category1_id, category2_id, description, cover, doc_count, view_count, vote_count
+2023-01-27 22:22:42.827 TRACE c.example.wiki.mapper.EbookMapper.selectByExample :143  [32m274393728297340928[0;39m <==        Row: 1, Spring Boot 入门教程, null, null, 零基础入门 Java 开发，企业级应用开发最佳首选框架, null, 6, 0, 0
+2023-01-27 22:22:42.827 TRACE c.example.wiki.mapper.EbookMapper.selectByExample :143  [32m274393728297340928[0;39m <==        Row: 2, Vue 入门教程, null, null, 零基础入门 Vue 开发，企业级应用开发最佳首选框架, null, null, null, null
+2023-01-27 22:22:42.827 TRACE c.example.wiki.mapper.EbookMapper.selectByExample :143  [32m274393728297340928[0;39m <==        Row: 3, Python 入门教程, null, null, 零基础入门 Python 开发，企业级应用开发最佳首选框架, null, null, null, null
+2023-01-27 22:22:42.828 TRACE c.example.wiki.mapper.EbookMapper.selectByExample :143  [32m274393728297340928[0;39m <==        Row: 4, Mysql 入门教程, null, null, 零基础入门 Mysql 开发，企业级应用开发最佳首选框架, null, null, null, null
+2023-01-27 22:22:42.828 TRACE c.example.wiki.mapper.EbookMapper.selectByExample :143  [32m274393728297340928[0;39m <==        Row: 5, Oracle 入门教程, null, null, 零基础入门 Oracle 开发，企业级应用开发最佳首选框架, null, null, null, null
+2023-01-27 22:22:42.828 DEBUG c.example.wiki.mapper.EbookMapper.selectByExample :137  [32m274393728297340928[0;39m <==      Total: 5
+2023-01-27 22:22:42.829 INFO  com.example.wiki.service.EbookService             :51   [32m274393728297340928[0;39m 总行数 5
+2023-01-27 22:22:42.829 INFO  com.example.wiki.service.EbookService             :52   [32m274393728297340928[0;39m 总页数 1
+2023-01-27 22:22:42.829 INFO  com.example.wiki.aspect.LogAspect                 :87   [32m274393728297340928[0;39m 返回结果: {"content":{"list":[{"description":"零基础入门 Java 开发，企业级应用开发最佳首选框架","docCount":6,"id":1,"name":"Spring Boot 入门教程","viewCount":0,"voteCount":0},{"description":"零基础入门 Vue 开发，企业级应用开发最佳首选框架","id":2,"name":"Vue 入门教程"},{"description":"零基础入门 Python 开发，企业级应用开发最佳首选框架","id":3,"name":"Python 入门教程"},{"description":"零基础入门 Mysql 开发，企业级应用开发最佳首选框架","id":4,"name":"Mysql 入门教程"},{"description":"零基础入门 Oracle 开发，企业级应用开发最佳首选框架","id":5,"name":"Oracle 入门教程"}],"total":5},"success":true}
+2023-01-27 22:22:42.830 INFO  com.example.wiki.aspect.LogAspect                 :88   [32m274393728297340928[0;39m ------------- 结束 耗时：15 ms -------------
+2023-01-27 22:22:58.683 INFO  com.example.wiki.aspect.LogAspect                 :50   [32m274393794852556800[0;39m ------------- 开始 -------------
+2023-01-27 22:22:58.684 INFO  com.example.wiki.aspect.LogAspect                 :51   [32m274393794852556800[0;39m 请求地址: http://127.0.0.1:8080/ebook/list GET
+2023-01-27 22:22:58.684 INFO  com.example.wiki.aspect.LogAspect                 :52   [32m274393794852556800[0;39m 类名方法: com.example.wiki.controller.EbookController.list
+2023-01-27 22:22:58.684 INFO  com.example.wiki.aspect.LogAspect                 :53   [32m274393794852556800[0;39m 远程地址: 127.0.0.1
+2023-01-27 22:22:58.684 INFO  com.example.wiki.aspect.LogAspect                 :75   [32m274393794852556800[0;39m 请求参数: [{"page":1,"size":1000}]
+2023-01-27 22:22:58.686 DEBUG c.e.wiki.mapper.EbookMapper.selectByExample_COUNT :137  [32m274393794852556800[0;39m ==>  Preparing: SELECT count(0) FROM ebook
+2023-01-27 22:22:58.687 DEBUG c.e.wiki.mapper.EbookMapper.selectByExample_COUNT :137  [32m274393794852556800[0;39m ==> Parameters: 
+2023-01-27 22:22:58.694 TRACE c.e.wiki.mapper.EbookMapper.selectByExample_COUNT :143  [32m274393794852556800[0;39m <==    Columns: count(0)
+2023-01-27 22:22:58.695 TRACE c.e.wiki.mapper.EbookMapper.selectByExample_COUNT :143  [32m274393794852556800[0;39m <==        Row: 5
+2023-01-27 22:22:58.695 DEBUG c.e.wiki.mapper.EbookMapper.selectByExample_COUNT :137  [32m274393794852556800[0;39m <==      Total: 1
+2023-01-27 22:22:58.695 DEBUG c.example.wiki.mapper.EbookMapper.selectByExample :137  [32m274393794852556800[0;39m ==>  Preparing: select id, `name`, category1_id, category2_id, description, cover, doc_count, view_count, vote_count from ebook LIMIT ?
+2023-01-27 22:22:58.697 DEBUG c.example.wiki.mapper.EbookMapper.selectByExample :137  [32m274393794852556800[0;39m ==> Parameters: 1000(Integer)
+2023-01-27 22:22:58.698 TRACE c.example.wiki.mapper.EbookMapper.selectByExample :143  [32m274393794852556800[0;39m <==    Columns: id, name, category1_id, category2_id, description, cover, doc_count, view_count, vote_count
+2023-01-27 22:22:58.698 TRACE c.example.wiki.mapper.EbookMapper.selectByExample :143  [32m274393794852556800[0;39m <==        Row: 1, Spring Boot 入门教程, null, null, 零基础入门 Java 开发，企业级应用开发最佳首选框架, null, 6, 0, 0
+2023-01-27 22:22:58.698 TRACE c.example.wiki.mapper.EbookMapper.selectByExample :143  [32m274393794852556800[0;39m <==        Row: 2, Vue 入门教程, null, null, 零基础入门 Vue 开发，企业级应用开发最佳首选框架, null, null, null, null
+2023-01-27 22:22:58.699 TRACE c.example.wiki.mapper.EbookMapper.selectByExample :143  [32m274393794852556800[0;39m <==        Row: 3, Python 入门教程, null, null, 零基础入门 Python 开发，企业级应用开发最佳首选框架, null, null, null, null
+2023-01-27 22:22:58.699 TRACE c.example.wiki.mapper.EbookMapper.selectByExample :143  [32m274393794852556800[0;39m <==        Row: 4, Mysql 入门教程, null, null, 零基础入门 Mysql 开发，企业级应用开发最佳首选框架, null, null, null, null
+2023-01-27 22:22:58.699 TRACE c.example.wiki.mapper.EbookMapper.selectByExample :143  [32m274393794852556800[0;39m <==        Row: 5, Oracle 入门教程, null, null, 零基础入门 Oracle 开发，企业级应用开发最佳首选框架, null, null, null, null
+2023-01-27 22:22:58.699 DEBUG c.example.wiki.mapper.EbookMapper.selectByExample :137  [32m274393794852556800[0;39m <==      Total: 5
+2023-01-27 22:22:58.700 INFO  com.example.wiki.service.EbookService             :51   [32m274393794852556800[0;39m 总行数 5
+2023-01-27 22:22:58.700 INFO  com.example.wiki.service.EbookService             :52   [32m274393794852556800[0;39m 总页数 1
+2023-01-27 22:22:58.700 INFO  com.example.wiki.aspect.LogAspect                 :87   [32m274393794852556800[0;39m 返回结果: {"content":{"list":[{"description":"零基础入门 Java 开发，企业级应用开发最佳首选框架","docCount":6,"id":1,"name":"Spring Boot 入门教程","viewCount":0,"voteCount":0},{"description":"零基础入门 Vue 开发，企业级应用开发最佳首选框架","id":2,"name":"Vue 入门教程"},{"description":"零基础入门 Python 开发，企业级应用开发最佳首选框架","id":3,"name":"Python 入门教程"},{"description":"零基础入门 Mysql 开发，企业级应用开发最佳首选框架","id":4,"name":"Mysql 入门教程"},{"description":"零基础入门 Oracle 开发，企业级应用开发最佳首选框架","id":5,"name":"Oracle 入门教程"}],"total":5},"success":true}
+2023-01-27 22:22:58.700 INFO  com.example.wiki.aspect.LogAspect                 :88   [32m274393794852556800[0;39m ------------- 结束 耗时：17 ms -------------
+2023-01-27 22:23:00.010 INFO  com.example.wiki.job.EbookSnapshotJob             :32   [32m274393800418398208[0;39m 生成今日电子书快照开始
+2023-01-27 22:23:00.011 DEBUG c.e.w.mapper.EbookSnapshotMapperCust.genSnapshot  :137  [32m274393800418398208[0;39m ==>  Preparing: insert into ebook_snapshot(ebook_id, `date`, view_count, vote_count, view_increase, vote_increase) select t1.id, curdate(), 0, 0, 0, 0 from ebook t1 where not exists(select 1 from ebook_snapshot t2 where t1.id = t2.ebook_id and t2.`date` = curdate()); update ebook_snapshot t1, ebook t2 set t1.view_count = t2.view_count, t1.vote_count = t2.vote_count where t1.`date` = curdate() and t1.ebook_id = t2.id; update ebook_snapshot t1 left join (select ebook_id, view_count, vote_count from ebook_snapshot where `date` = date_sub(curdate(), interval 1 day)) t2 on t1.ebook_id = t2.ebook_id set t1.view_increase = (t1.view_count - ifnull(t2.view_count, 0)), t1.vote_increase = (t1.vote_count - ifnull(t2.vote_count, 0)) where t1.`date` = curdate();
+2023-01-27 22:23:00.012 DEBUG c.e.w.mapper.EbookSnapshotMapperCust.genSnapshot  :137  [32m274393800418398208[0;39m ==> Parameters: 
+2023-01-27 22:23:00.028 ERROR o.s.s.support.TaskUtils$LoggingErrorHandler       :95   [32m274393800418398208[0;39m Unexpected error occurred in scheduled task
+org.springframework.dao.DataIntegrityViolationException: 
+### Error updating database.  Cause: java.sql.SQLIntegrityConstraintViolationException: Column 'view_count' cannot be null
+### The error may exist in file [C:\Users\amper\project\Wiki\Knowledge-Based-System\wiki\target\classes\mapper\EbookSnapshotMapperCust.xml]
+### The error may involve defaultParameterMap
+### The error occurred while setting parameters
+### SQL: insert into ebook_snapshot(ebook_id, `date`, view_count, vote_count, view_increase, vote_increase)         select t1.id, curdate(), 0, 0, 0, 0         from ebook t1         where not exists(select 1                          from ebook_snapshot t2                          where t1.id = t2.ebook_id                            and t2.`date` = curdate());          update ebook_snapshot t1, ebook t2         set t1.view_count = t2.view_count,             t1.vote_count = t2.vote_count         where t1.`date` = curdate()           and t1.ebook_id = t2.id;          update ebook_snapshot t1 left join (select ebook_id, view_count, vote_count             from ebook_snapshot             where `date` = date_sub(curdate(), interval 1 day)) t2         on t1.ebook_id = t2.ebook_id             set t1.view_increase = (t1.view_count - ifnull(t2.view_count, 0)),                 t1.vote_increase = (t1.vote_count - ifnull(t2.vote_count, 0))         where t1.`date` = curdate();
+### Cause: java.sql.SQLIntegrityConstraintViolationException: Column 'view_count' cannot be null
+; Column 'view_count' cannot be null; nested exception is java.sql.SQLIntegrityConstraintViolationException: Column 'view_count' cannot be null
+	at org.springframework.jdbc.support.SQLExceptionSubclassTranslator.doTranslate(SQLExceptionSubclassTranslator.java:87)
+	at org.springframework.jdbc.support.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:70)
+	at org.springframework.jdbc.support.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:79)
+	at org.mybatis.spring.MyBatisExceptionTranslator.translateExceptionIfPossible(MyBatisExceptionTranslator.java:88)
+	at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:440)
+	at com.sun.proxy.$Proxy91.update(Unknown Source)
+	at org.mybatis.spring.SqlSessionTemplate.update(SqlSessionTemplate.java:287)
+	at org.apache.ibatis.binding.MapperMethod.execute(MapperMethod.java:67)
+	at org.apache.ibatis.binding.MapperProxy$PlainMethodInvoker.invoke(MapperProxy.java:152)
+	at org.apache.ibatis.binding.MapperProxy.invoke(MapperProxy.java:85)
+	at com.sun.proxy.$Proxy105.genSnapshot(Unknown Source)
+	at com.example.wiki.service.EbookSnapshotService.genSnapshot(EbookSnapshotService.java:16)
+	at com.example.wiki.job.EbookSnapshotJob.doSnapshot(EbookSnapshotJob.java:34)
+	at sun.reflect.GeneratedMethodAccessor121.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.springframework.scheduling.support.ScheduledMethodRunnable.run(ScheduledMethodRunnable.java:84)
+	at org.springframework.scheduling.support.DelegatingErrorHandlingRunnable.run(DelegatingErrorHandlingRunnable.java:54)
+	at org.springframework.scheduling.concurrent.ReschedulingRunnable.run(ReschedulingRunnable.java:95)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:750)
+Caused by: java.sql.SQLIntegrityConstraintViolationException: Column 'view_count' cannot be null
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:117)
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:97)
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:122)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeInternal(ClientPreparedStatement.java:953)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.execute(ClientPreparedStatement.java:370)
+	at com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+	at com.zaxxer.hikari.pool.HikariProxyPreparedStatement.execute(HikariProxyPreparedStatement.java)
+	at sun.reflect.GeneratedMethodAccessor66.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.apache.ibatis.logging.jdbc.PreparedStatementLogger.invoke(PreparedStatementLogger.java:59)
+	at com.sun.proxy.$Proxy130.execute(Unknown Source)
+	at org.apache.ibatis.executor.statement.PreparedStatementHandler.update(PreparedStatementHandler.java:47)
+	at org.apache.ibatis.executor.statement.RoutingStatementHandler.update(RoutingStatementHandler.java:74)
+	at org.apache.ibatis.executor.SimpleExecutor.doUpdate(SimpleExecutor.java:50)
+	at org.apache.ibatis.executor.BaseExecutor.update(BaseExecutor.java:117)
+	at org.apache.ibatis.executor.CachingExecutor.update(CachingExecutor.java:76)
+	at sun.reflect.GeneratedMethodAccessor71.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.apache.ibatis.plugin.Plugin.invoke(Plugin.java:63)
+	at com.sun.proxy.$Proxy128.update(Unknown Source)
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.update(DefaultSqlSession.java:197)
+	at sun.reflect.GeneratedMethodAccessor70.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:426)
+	... 21 common frames omitted
+2023-01-27 22:23:05.009 INFO  com.example.wiki.job.DocJob                       :32   [32m274393821385723904[0;39m 更新电子书下的文档数据开始
+2023-01-27 22:23:05.010 DEBUG c.e.wiki.mapper.DocMapperCust.updateEbookInfo     :137  [32m274393821385723904[0;39m ==>  Preparing: update ebook t1, (select ebook_id, count(1) doc_count, sum(view_count) view_count, sum(vote_count) vote_count from doc group by ebook_id) t2 set t1.doc_count = t2.doc_count, t1.view_count = t2.view_count, t1.vote_count = t2.vote_count where t1.id = t2.ebook_id
+2023-01-27 22:23:05.011 DEBUG c.e.wiki.mapper.DocMapperCust.updateEbookInfo     :137  [32m274393821385723904[0;39m ==> Parameters: 
+2023-01-27 22:23:05.012 DEBUG c.e.wiki.mapper.DocMapperCust.updateEbookInfo     :137  [32m274393821385723904[0;39m <==    Updates: 1
+2023-01-27 22:23:05.012 INFO  com.example.wiki.job.DocJob                       :35   [32m274393821385723904[0;39m 更新电子书下的文档数据结束，耗时：3毫秒
+2023-01-27 22:23:35.007 INFO  com.example.wiki.job.DocJob                       :32   [32m274393947206455296[0;39m 更新电子书下的文档数据开始
+2023-01-27 22:23:35.008 DEBUG c.e.wiki.mapper.DocMapperCust.updateEbookInfo     :137  [32m274393947206455296[0;39m ==>  Preparing: update ebook t1, (select ebook_id, count(1) doc_count, sum(view_count) view_count, sum(vote_count) vote_count from doc group by ebook_id) t2 set t1.doc_count = t2.doc_count, t1.view_count = t2.view_count, t1.vote_count = t2.vote_count where t1.id = t2.ebook_id
+2023-01-27 22:23:35.009 DEBUG c.e.wiki.mapper.DocMapperCust.updateEbookInfo     :137  [32m274393947206455296[0;39m ==> Parameters: 
+2023-01-27 22:23:35.011 DEBUG c.e.wiki.mapper.DocMapperCust.updateEbookInfo     :137  [32m274393947206455296[0;39m <==    Updates: 1
+2023-01-27 22:23:35.011 INFO  com.example.wiki.job.DocJob                       :35   [32m274393947206455296[0;39m 更新电子书下的文档数据结束，耗时：3毫秒
+2023-01-27 22:23:51.313 INFO  com.example.wiki.aspect.LogAspect                 :50   [32m274394015598776320[0;39m ------------- 开始 -------------
+2023-01-27 22:23:51.314 INFO  com.example.wiki.aspect.LogAspect                 :51   [32m274394015598776320[0;39m 请求地址: http://127.0.0.1:8080/ebook/list GET
+2023-01-27 22:23:51.314 INFO  com.example.wiki.aspect.LogAspect                 :52   [32m274394015598776320[0;39m 类名方法: com.example.wiki.controller.EbookController.list
+2023-01-27 22:23:51.314 INFO  com.example.wiki.aspect.LogAspect                 :53   [32m274394015598776320[0;39m 远程地址: 127.0.0.1
+2023-01-27 22:23:51.314 INFO  com.example.wiki.aspect.LogAspect                 :75   [32m274394015598776320[0;39m 请求参数: [{"page":1,"size":1000}]
+2023-01-27 22:23:51.315 DEBUG c.e.wiki.mapper.EbookMapper.selectByExample_COUNT :137  [32m274394015598776320[0;39m ==>  Preparing: SELECT count(0) FROM ebook
+2023-01-27 22:23:51.316 DEBUG c.e.wiki.mapper.EbookMapper.selectByExample_COUNT :137  [32m274394015598776320[0;39m ==> Parameters: 
+2023-01-27 22:23:51.318 TRACE c.e.wiki.mapper.EbookMapper.selectByExample_COUNT :143  [32m274394015598776320[0;39m <==    Columns: count(0)
+2023-01-27 22:23:51.318 TRACE c.e.wiki.mapper.EbookMapper.selectByExample_COUNT :143  [32m274394015598776320[0;39m <==        Row: 5
+2023-01-27 22:23:51.318 DEBUG c.e.wiki.mapper.EbookMapper.selectByExample_COUNT :137  [32m274394015598776320[0;39m <==      Total: 1
+2023-01-27 22:23:51.319 DEBUG c.example.wiki.mapper.EbookMapper.selectByExample :137  [32m274394015598776320[0;39m ==>  Preparing: select id, `name`, category1_id, category2_id, description, cover, doc_count, view_count, vote_count from ebook LIMIT ?
+2023-01-27 22:23:51.319 DEBUG c.example.wiki.mapper.EbookMapper.selectByExample :137  [32m274394015598776320[0;39m ==> Parameters: 1000(Integer)
+2023-01-27 22:23:51.320 TRACE c.example.wiki.mapper.EbookMapper.selectByExample :143  [32m274394015598776320[0;39m <==    Columns: id, name, category1_id, category2_id, description, cover, doc_count, view_count, vote_count
+2023-01-27 22:23:51.320 TRACE c.example.wiki.mapper.EbookMapper.selectByExample :143  [32m274394015598776320[0;39m <==        Row: 1, Spring Boot 入门教程, null, null, 零基础入门 Java 开发，企业级应用开发最佳首选框架, null, 6, 0, 0
+2023-01-27 22:23:51.321 TRACE c.example.wiki.mapper.EbookMapper.selectByExample :143  [32m274394015598776320[0;39m <==        Row: 2, Vue 入门教程, null, null, 零基础入门 Vue 开发，企业级应用开发最佳首选框架, null, null, null, null
+2023-01-27 22:23:51.321 TRACE c.example.wiki.mapper.EbookMapper.selectByExample :143  [32m274394015598776320[0;39m <==        Row: 3, Python 入门教程, null, null, 零基础入门 Python 开发，企业级应用开发最佳首选框架, null, null, null, null
+2023-01-27 22:23:51.321 TRACE c.example.wiki.mapper.EbookMapper.selectByExample :143  [32m274394015598776320[0;39m <==        Row: 4, Mysql 入门教程, null, null, 零基础入门 Mysql 开发，企业级应用开发最佳首选框架, null, null, null, null
+2023-01-27 22:23:51.321 TRACE c.example.wiki.mapper.EbookMapper.selectByExample :143  [32m274394015598776320[0;39m <==        Row: 5, Oracle 入门教程, null, null, 零基础入门 Oracle 开发，企业级应用开发最佳首选框架, null, null, null, null
+2023-01-27 22:23:51.322 DEBUG c.example.wiki.mapper.EbookMapper.selectByExample :137  [32m274394015598776320[0;39m <==      Total: 5
+2023-01-27 22:23:51.322 INFO  com.example.wiki.service.EbookService             :51   [32m274394015598776320[0;39m 总行数 5
+2023-01-27 22:23:51.322 INFO  com.example.wiki.service.EbookService             :52   [32m274394015598776320[0;39m 总页数 1
+2023-01-27 22:23:51.323 INFO  com.example.wiki.aspect.LogAspect                 :87   [32m274394015598776320[0;39m 返回结果: {"content":{"list":[{"description":"零基础入门 Java 开发，企业级应用开发最佳首选框架","docCount":6,"id":1,"name":"Spring Boot 入门教程","viewCount":0,"voteCount":0},{"description":"零基础入门 Vue 开发，企业级应用开发最佳首选框架","id":2,"name":"Vue 入门教程"},{"description":"零基础入门 Python 开发，企业级应用开发最佳首选框架","id":3,"name":"Python 入门教程"},{"description":"零基础入门 Mysql 开发，企业级应用开发最佳首选框架","id":4,"name":"Mysql 入门教程"},{"description":"零基础入门 Oracle 开发，企业级应用开发最佳首选框架","id":5,"name":"Oracle 入门教程"}],"total":5},"success":true}
+2023-01-27 22:23:51.323 INFO  com.example.wiki.aspect.LogAspect                 :88   [32m274394015598776320[0;39m ------------- 结束 耗时：10 ms -------------
+2023-01-27 22:23:55.622 INFO  com.example.wiki.aspect.LogAspect                 :50   [32m274394033672032256[0;39m ------------- 开始 -------------
+2023-01-27 22:23:55.623 INFO  com.example.wiki.aspect.LogAspect                 :51   [32m274394033672032256[0;39m 请求地址: http://127.0.0.1:8080/ebook/list GET
+2023-01-27 22:23:55.623 INFO  com.example.wiki.aspect.LogAspect                 :52   [32m274394033672032256[0;39m 类名方法: com.example.wiki.controller.EbookController.list
+2023-01-27 22:23:55.623 INFO  com.example.wiki.aspect.LogAspect                 :53   [32m274394033672032256[0;39m 远程地址: 127.0.0.1
+2023-01-27 22:23:55.623 INFO  com.example.wiki.aspect.LogAspect                 :75   [32m274394033672032256[0;39m 请求参数: [{"page":1,"size":1000}]
+2023-01-27 22:23:55.624 DEBUG c.e.wiki.mapper.EbookMapper.selectByExample_COUNT :137  [32m274394033672032256[0;39m ==>  Preparing: SELECT count(0) FROM ebook
+2023-01-27 22:23:55.624 DEBUG c.e.wiki.mapper.EbookMapper.selectByExample_COUNT :137  [32m274394033672032256[0;39m ==> Parameters: 
+2023-01-27 22:23:55.626 TRACE c.e.wiki.mapper.EbookMapper.selectByExample_COUNT :143  [32m274394033672032256[0;39m <==    Columns: count(0)
+2023-01-27 22:23:55.627 TRACE c.e.wiki.mapper.EbookMapper.selectByExample_COUNT :143  [32m274394033672032256[0;39m <==        Row: 5
+2023-01-27 22:23:55.627 DEBUG c.e.wiki.mapper.EbookMapper.selectByExample_COUNT :137  [32m274394033672032256[0;39m <==      Total: 1
+2023-01-27 22:23:55.627 DEBUG c.example.wiki.mapper.EbookMapper.selectByExample :137  [32m274394033672032256[0;39m ==>  Preparing: select id, `name`, category1_id, category2_id, description, cover, doc_count, view_count, vote_count from ebook LIMIT ?
+2023-01-27 22:23:55.627 DEBUG c.example.wiki.mapper.EbookMapper.selectByExample :137  [32m274394033672032256[0;39m ==> Parameters: 1000(Integer)
+2023-01-27 22:23:55.629 TRACE c.example.wiki.mapper.EbookMapper.selectByExample :143  [32m274394033672032256[0;39m <==    Columns: id, name, category1_id, category2_id, description, cover, doc_count, view_count, vote_count
+2023-01-27 22:23:55.629 TRACE c.example.wiki.mapper.EbookMapper.selectByExample :143  [32m274394033672032256[0;39m <==        Row: 1, Spring Boot 入门教程, null, null, 零基础入门 Java 开发，企业级应用开发最佳首选框架, null, 6, 0, 0
+2023-01-27 22:23:55.629 TRACE c.example.wiki.mapper.EbookMapper.selectByExample :143  [32m274394033672032256[0;39m <==        Row: 2, Vue 入门教程, null, null, 零基础入门 Vue 开发，企业级应用开发最佳首选框架, null, null, null, null
+2023-01-27 22:23:55.630 TRACE c.example.wiki.mapper.EbookMapper.selectByExample :143  [32m274394033672032256[0;39m <==        Row: 3, Python 入门教程, null, null, 零基础入门 Python 开发，企业级应用开发最佳首选框架, null, null, null, null
+2023-01-27 22:23:55.630 TRACE c.example.wiki.mapper.EbookMapper.selectByExample :143  [32m274394033672032256[0;39m <==        Row: 4, Mysql 入门教程, null, null, 零基础入门 Mysql 开发，企业级应用开发最佳首选框架, null, null, null, null
+2023-01-27 22:23:55.630 TRACE c.example.wiki.mapper.EbookMapper.selectByExample :143  [32m274394033672032256[0;39m <==        Row: 5, Oracle 入门教程, null, null, 零基础入门 Oracle 开发，企业级应用开发最佳首选框架, null, null, null, null
+2023-01-27 22:23:55.630 DEBUG c.example.wiki.mapper.EbookMapper.selectByExample :137  [32m274394033672032256[0;39m <==      Total: 5
+2023-01-27 22:23:55.630 INFO  com.example.wiki.service.EbookService             :51   [32m274394033672032256[0;39m 总行数 5
+2023-01-27 22:23:55.631 INFO  com.example.wiki.service.EbookService             :52   [32m274394033672032256[0;39m 总页数 1
+2023-01-27 22:23:55.631 INFO  com.example.wiki.aspect.LogAspect                 :87   [32m274394033672032256[0;39m 返回结果: {"content":{"list":[{"description":"零基础入门 Java 开发，企业级应用开发最佳首选框架","docCount":6,"id":1,"name":"Spring Boot 入门教程","viewCount":0,"voteCount":0},{"description":"零基础入门 Vue 开发，企业级应用开发最佳首选框架","id":2,"name":"Vue 入门教程"},{"description":"零基础入门 Python 开发，企业级应用开发最佳首选框架","id":3,"name":"Python 入门教程"},{"description":"零基础入门 Mysql 开发，企业级应用开发最佳首选框架","id":4,"name":"Mysql 入门教程"},{"description":"零基础入门 Oracle 开发，企业级应用开发最佳首选框架","id":5,"name":"Oracle 入门教程"}],"total":5},"success":true}
+2023-01-27 22:23:55.631 INFO  com.example.wiki.aspect.LogAspect                 :88   [32m274394033672032256[0;39m ------------- 结束 耗时：9 ms -------------
+2023-01-27 22:24:00.007 INFO  com.example.wiki.job.EbookSnapshotJob             :32   [32m274394052064055296[0;39m 生成今日电子书快照开始
+2023-01-27 22:24:00.008 DEBUG c.e.w.mapper.EbookSnapshotMapperCust.genSnapshot  :137  [32m274394052064055296[0;39m ==>  Preparing: insert into ebook_snapshot(ebook_id, `date`, view_count, vote_count, view_increase, vote_increase) select t1.id, curdate(), 0, 0, 0, 0 from ebook t1 where not exists(select 1 from ebook_snapshot t2 where t1.id = t2.ebook_id and t2.`date` = curdate()); update ebook_snapshot t1, ebook t2 set t1.view_count = t2.view_count, t1.vote_count = t2.vote_count where t1.`date` = curdate() and t1.ebook_id = t2.id; update ebook_snapshot t1 left join (select ebook_id, view_count, vote_count from ebook_snapshot where `date` = date_sub(curdate(), interval 1 day)) t2 on t1.ebook_id = t2.ebook_id set t1.view_increase = (t1.view_count - ifnull(t2.view_count, 0)), t1.vote_increase = (t1.vote_count - ifnull(t2.vote_count, 0)) where t1.`date` = curdate();
+2023-01-27 22:24:00.009 DEBUG c.e.w.mapper.EbookSnapshotMapperCust.genSnapshot  :137  [32m274394052064055296[0;39m ==> Parameters: 
+2023-01-27 22:24:00.015 ERROR o.s.s.support.TaskUtils$LoggingErrorHandler       :95   [32m274394052064055296[0;39m Unexpected error occurred in scheduled task
+org.springframework.dao.DataIntegrityViolationException: 
+### Error updating database.  Cause: java.sql.SQLIntegrityConstraintViolationException: Column 'view_count' cannot be null
+### The error may exist in file [C:\Users\amper\project\Wiki\Knowledge-Based-System\wiki\target\classes\mapper\EbookSnapshotMapperCust.xml]
+### The error may involve defaultParameterMap
+### The error occurred while setting parameters
+### SQL: insert into ebook_snapshot(ebook_id, `date`, view_count, vote_count, view_increase, vote_increase)         select t1.id, curdate(), 0, 0, 0, 0         from ebook t1         where not exists(select 1                          from ebook_snapshot t2                          where t1.id = t2.ebook_id                            and t2.`date` = curdate());          update ebook_snapshot t1, ebook t2         set t1.view_count = t2.view_count,             t1.vote_count = t2.vote_count         where t1.`date` = curdate()           and t1.ebook_id = t2.id;          update ebook_snapshot t1 left join (select ebook_id, view_count, vote_count             from ebook_snapshot             where `date` = date_sub(curdate(), interval 1 day)) t2         on t1.ebook_id = t2.ebook_id             set t1.view_increase = (t1.view_count - ifnull(t2.view_count, 0)),                 t1.vote_increase = (t1.vote_count - ifnull(t2.vote_count, 0))         where t1.`date` = curdate();
+### Cause: java.sql.SQLIntegrityConstraintViolationException: Column 'view_count' cannot be null
+; Column 'view_count' cannot be null; nested exception is java.sql.SQLIntegrityConstraintViolationException: Column 'view_count' cannot be null
+	at org.springframework.jdbc.support.SQLExceptionSubclassTranslator.doTranslate(SQLExceptionSubclassTranslator.java:87)
+	at org.springframework.jdbc.support.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:70)
+	at org.springframework.jdbc.support.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:79)
+	at org.mybatis.spring.MyBatisExceptionTranslator.translateExceptionIfPossible(MyBatisExceptionTranslator.java:88)
+	at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:440)
+	at com.sun.proxy.$Proxy91.update(Unknown Source)
+	at org.mybatis.spring.SqlSessionTemplate.update(SqlSessionTemplate.java:287)
+	at org.apache.ibatis.binding.MapperMethod.execute(MapperMethod.java:67)
+	at org.apache.ibatis.binding.MapperProxy$PlainMethodInvoker.invoke(MapperProxy.java:152)
+	at org.apache.ibatis.binding.MapperProxy.invoke(MapperProxy.java:85)
+	at com.sun.proxy.$Proxy105.genSnapshot(Unknown Source)
+	at com.example.wiki.service.EbookSnapshotService.genSnapshot(EbookSnapshotService.java:16)
+	at com.example.wiki.job.EbookSnapshotJob.doSnapshot(EbookSnapshotJob.java:34)
+	at sun.reflect.GeneratedMethodAccessor121.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.springframework.scheduling.support.ScheduledMethodRunnable.run(ScheduledMethodRunnable.java:84)
+	at org.springframework.scheduling.support.DelegatingErrorHandlingRunnable.run(DelegatingErrorHandlingRunnable.java:54)
+	at org.springframework.scheduling.concurrent.ReschedulingRunnable.run(ReschedulingRunnable.java:95)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:750)
+Caused by: java.sql.SQLIntegrityConstraintViolationException: Column 'view_count' cannot be null
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:117)
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:97)
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:122)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeInternal(ClientPreparedStatement.java:953)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.execute(ClientPreparedStatement.java:370)
+	at com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+	at com.zaxxer.hikari.pool.HikariProxyPreparedStatement.execute(HikariProxyPreparedStatement.java)
+	at sun.reflect.GeneratedMethodAccessor66.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.apache.ibatis.logging.jdbc.PreparedStatementLogger.invoke(PreparedStatementLogger.java:59)
+	at com.sun.proxy.$Proxy130.execute(Unknown Source)
+	at org.apache.ibatis.executor.statement.PreparedStatementHandler.update(PreparedStatementHandler.java:47)
+	at org.apache.ibatis.executor.statement.RoutingStatementHandler.update(RoutingStatementHandler.java:74)
+	at org.apache.ibatis.executor.SimpleExecutor.doUpdate(SimpleExecutor.java:50)
+	at org.apache.ibatis.executor.BaseExecutor.update(BaseExecutor.java:117)
+	at org.apache.ibatis.executor.CachingExecutor.update(CachingExecutor.java:76)
+	at sun.reflect.GeneratedMethodAccessor71.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.apache.ibatis.plugin.Plugin.invoke(Plugin.java:63)
+	at com.sun.proxy.$Proxy128.update(Unknown Source)
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.update(DefaultSqlSession.java:197)
+	at sun.reflect.GeneratedMethodAccessor70.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:426)
+	... 21 common frames omitted
+2023-01-27 22:24:05.009 INFO  com.example.wiki.job.DocJob                       :32   [32m274394073043963904[0;39m 更新电子书下的文档数据开始
+2023-01-27 22:24:05.011 DEBUG c.e.wiki.mapper.DocMapperCust.updateEbookInfo     :137  [32m274394073043963904[0;39m ==>  Preparing: update ebook t1, (select ebook_id, count(1) doc_count, sum(view_count) view_count, sum(vote_count) vote_count from doc group by ebook_id) t2 set t1.doc_count = t2.doc_count, t1.view_count = t2.view_count, t1.vote_count = t2.vote_count where t1.id = t2.ebook_id
+2023-01-27 22:24:05.011 DEBUG c.e.wiki.mapper.DocMapperCust.updateEbookInfo     :137  [32m274394073043963904[0;39m ==> Parameters: 
+2023-01-27 22:24:05.012 DEBUG c.e.wiki.mapper.DocMapperCust.updateEbookInfo     :137  [32m274394073043963904[0;39m <==    Updates: 1
+2023-01-27 22:24:05.012 INFO  com.example.wiki.job.DocJob                       :35   [32m274394073043963904[0;39m 更新电子书下的文档数据结束，耗时：3毫秒
+2023-01-27 22:24:19.353 INFO  com.example.wiki.aspect.LogAspect                 :50   [32m274394133207060480[0;39m ------------- 开始 -------------
+2023-01-27 22:24:19.354 INFO  com.example.wiki.aspect.LogAspect                 :51   [32m274394133207060480[0;39m 请求地址: http://127.0.0.1:8080/ebook/list GET
+2023-01-27 22:24:19.354 INFO  com.example.wiki.aspect.LogAspect                 :52   [32m274394133207060480[0;39m 类名方法: com.example.wiki.controller.EbookController.list
+2023-01-27 22:24:19.354 INFO  com.example.wiki.aspect.LogAspect                 :53   [32m274394133207060480[0;39m 远程地址: 127.0.0.1
+2023-01-27 22:24:19.354 INFO  com.example.wiki.aspect.LogAspect                 :75   [32m274394133207060480[0;39m 请求参数: [{"page":1,"size":1000}]
+2023-01-27 22:24:19.355 DEBUG c.e.wiki.mapper.EbookMapper.selectByExample_COUNT :137  [32m274394133207060480[0;39m ==>  Preparing: SELECT count(0) FROM ebook
+2023-01-27 22:24:19.356 DEBUG c.e.wiki.mapper.EbookMapper.selectByExample_COUNT :137  [32m274394133207060480[0;39m ==> Parameters: 
+2023-01-27 22:24:19.357 TRACE c.e.wiki.mapper.EbookMapper.selectByExample_COUNT :143  [32m274394133207060480[0;39m <==    Columns: count(0)
+2023-01-27 22:24:19.358 TRACE c.e.wiki.mapper.EbookMapper.selectByExample_COUNT :143  [32m274394133207060480[0;39m <==        Row: 5
+2023-01-27 22:24:19.358 DEBUG c.e.wiki.mapper.EbookMapper.selectByExample_COUNT :137  [32m274394133207060480[0;39m <==      Total: 1
+2023-01-27 22:24:19.358 DEBUG c.example.wiki.mapper.EbookMapper.selectByExample :137  [32m274394133207060480[0;39m ==>  Preparing: select id, `name`, category1_id, category2_id, description, cover, doc_count, view_count, vote_count from ebook LIMIT ?
+2023-01-27 22:24:19.358 DEBUG c.example.wiki.mapper.EbookMapper.selectByExample :137  [32m274394133207060480[0;39m ==> Parameters: 1000(Integer)
+2023-01-27 22:24:19.359 TRACE c.example.wiki.mapper.EbookMapper.selectByExample :143  [32m274394133207060480[0;39m <==    Columns: id, name, category1_id, category2_id, description, cover, doc_count, view_count, vote_count
+2023-01-27 22:24:19.359 TRACE c.example.wiki.mapper.EbookMapper.selectByExample :143  [32m274394133207060480[0;39m <==        Row: 1, Spring Boot 入门教程, null, null, 零基础入门 Java 开发，企业级应用开发最佳首选框架, null, 6, 0, 0
+2023-01-27 22:24:19.359 TRACE c.example.wiki.mapper.EbookMapper.selectByExample :143  [32m274394133207060480[0;39m <==        Row: 2, Vue 入门教程, null, null, 零基础入门 Vue 开发，企业级应用开发最佳首选框架, null, null, null, null
+2023-01-27 22:24:19.359 TRACE c.example.wiki.mapper.EbookMapper.selectByExample :143  [32m274394133207060480[0;39m <==        Row: 3, Python 入门教程, null, null, 零基础入门 Python 开发，企业级应用开发最佳首选框架, null, null, null, null
+2023-01-27 22:24:19.360 TRACE c.example.wiki.mapper.EbookMapper.selectByExample :143  [32m274394133207060480[0;39m <==        Row: 4, Mysql 入门教程, null, null, 零基础入门 Mysql 开发，企业级应用开发最佳首选框架, null, null, null, null
+2023-01-27 22:24:19.360 TRACE c.example.wiki.mapper.EbookMapper.selectByExample :143  [32m274394133207060480[0;39m <==        Row: 5, Oracle 入门教程, null, null, 零基础入门 Oracle 开发，企业级应用开发最佳首选框架, null, null, null, null
+2023-01-27 22:24:19.360 DEBUG c.example.wiki.mapper.EbookMapper.selectByExample :137  [32m274394133207060480[0;39m <==      Total: 5
+2023-01-27 22:24:19.360 INFO  com.example.wiki.service.EbookService             :51   [32m274394133207060480[0;39m 总行数 5
+2023-01-27 22:24:19.360 INFO  com.example.wiki.service.EbookService             :52   [32m274394133207060480[0;39m 总页数 1
+2023-01-27 22:24:19.360 INFO  com.example.wiki.aspect.LogAspect                 :87   [32m274394133207060480[0;39m 返回结果: {"content":{"list":[{"description":"零基础入门 Java 开发，企业级应用开发最佳首选框架","docCount":6,"id":1,"name":"Spring Boot 入门教程","viewCount":0,"voteCount":0},{"description":"零基础入门 Vue 开发，企业级应用开发最佳首选框架","id":2,"name":"Vue 入门教程"},{"description":"零基础入门 Python 开发，企业级应用开发最佳首选框架","id":3,"name":"Python 入门教程"},{"description":"零基础入门 Mysql 开发，企业级应用开发最佳首选框架","id":4,"name":"Mysql 入门教程"},{"description":"零基础入门 Oracle 开发，企业级应用开发最佳首选框架","id":5,"name":"Oracle 入门教程"}],"total":5},"success":true}
+2023-01-27 22:24:19.360 INFO  com.example.wiki.aspect.LogAspect                 :88   [32m274394133207060480[0;39m ------------- 结束 耗时：7 ms -------------
+2023-01-27 22:24:21.607 INFO  com.example.wiki.aspect.LogAspect                 :50   [32m274394142661021696[0;39m ------------- 开始 -------------
+2023-01-27 22:24:21.608 INFO  com.example.wiki.aspect.LogAspect                 :51   [32m274394142661021696[0;39m 请求地址: http://127.0.0.1:8080/ebook/list GET
+2023-01-27 22:24:21.608 INFO  com.example.wiki.aspect.LogAspect                 :52   [32m274394142661021696[0;39m 类名方法: com.example.wiki.controller.EbookController.list
+2023-01-27 22:24:21.608 INFO  com.example.wiki.aspect.LogAspect                 :53   [32m274394142661021696[0;39m 远程地址: 127.0.0.1
+2023-01-27 22:24:21.608 INFO  com.example.wiki.aspect.LogAspect                 :75   [32m274394142661021696[0;39m 请求参数: [{"page":1,"size":1000}]
+2023-01-27 22:24:21.609 DEBUG c.e.wiki.mapper.EbookMapper.selectByExample_COUNT :137  [32m274394142661021696[0;39m ==>  Preparing: SELECT count(0) FROM ebook
+2023-01-27 22:24:21.609 DEBUG c.e.wiki.mapper.EbookMapper.selectByExample_COUNT :137  [32m274394142661021696[0;39m ==> Parameters: 
+2023-01-27 22:24:21.611 TRACE c.e.wiki.mapper.EbookMapper.selectByExample_COUNT :143  [32m274394142661021696[0;39m <==    Columns: count(0)
+2023-01-27 22:24:21.611 TRACE c.e.wiki.mapper.EbookMapper.selectByExample_COUNT :143  [32m274394142661021696[0;39m <==        Row: 5
+2023-01-27 22:24:21.612 DEBUG c.e.wiki.mapper.EbookMapper.selectByExample_COUNT :137  [32m274394142661021696[0;39m <==      Total: 1
+2023-01-27 22:24:21.612 DEBUG c.example.wiki.mapper.EbookMapper.selectByExample :137  [32m274394142661021696[0;39m ==>  Preparing: select id, `name`, category1_id, category2_id, description, cover, doc_count, view_count, vote_count from ebook LIMIT ?
+2023-01-27 22:24:21.613 DEBUG c.example.wiki.mapper.EbookMapper.selectByExample :137  [32m274394142661021696[0;39m ==> Parameters: 1000(Integer)
+2023-01-27 22:24:21.614 TRACE c.example.wiki.mapper.EbookMapper.selectByExample :143  [32m274394142661021696[0;39m <==    Columns: id, name, category1_id, category2_id, description, cover, doc_count, view_count, vote_count
+2023-01-27 22:24:21.614 TRACE c.example.wiki.mapper.EbookMapper.selectByExample :143  [32m274394142661021696[0;39m <==        Row: 1, Spring Boot 入门教程, null, null, 零基础入门 Java 开发，企业级应用开发最佳首选框架, null, 6, 0, 0
+2023-01-27 22:24:21.614 TRACE c.example.wiki.mapper.EbookMapper.selectByExample :143  [32m274394142661021696[0;39m <==        Row: 2, Vue 入门教程, null, null, 零基础入门 Vue 开发，企业级应用开发最佳首选框架, null, null, null, null
+2023-01-27 22:24:21.614 TRACE c.example.wiki.mapper.EbookMapper.selectByExample :143  [32m274394142661021696[0;39m <==        Row: 3, Python 入门教程, null, null, 零基础入门 Python 开发，企业级应用开发最佳首选框架, null, null, null, null
+2023-01-27 22:24:21.615 TRACE c.example.wiki.mapper.EbookMapper.selectByExample :143  [32m274394142661021696[0;39m <==        Row: 4, Mysql 入门教程, null, null, 零基础入门 Mysql 开发，企业级应用开发最佳首选框架, null, null, null, null
+2023-01-27 22:24:21.615 TRACE c.example.wiki.mapper.EbookMapper.selectByExample :143  [32m274394142661021696[0;39m <==        Row: 5, Oracle 入门教程, null, null, 零基础入门 Oracle 开发，企业级应用开发最佳首选框架, null, null, null, null
+2023-01-27 22:24:21.615 DEBUG c.example.wiki.mapper.EbookMapper.selectByExample :137  [32m274394142661021696[0;39m <==      Total: 5
+2023-01-27 22:24:21.616 INFO  com.example.wiki.service.EbookService             :51   [32m274394142661021696[0;39m 总行数 5
+2023-01-27 22:24:21.616 INFO  com.example.wiki.service.EbookService             :52   [32m274394142661021696[0;39m 总页数 1
+2023-01-27 22:24:21.616 INFO  com.example.wiki.aspect.LogAspect                 :87   [32m274394142661021696[0;39m 返回结果: {"content":{"list":[{"description":"零基础入门 Java 开发，企业级应用开发最佳首选框架","docCount":6,"id":1,"name":"Spring Boot 入门教程","viewCount":0,"voteCount":0},{"description":"零基础入门 Vue 开发，企业级应用开发最佳首选框架","id":2,"name":"Vue 入门教程"},{"description":"零基础入门 Python 开发，企业级应用开发最佳首选框架","id":3,"name":"Python 入门教程"},{"description":"零基础入门 Mysql 开发，企业级应用开发最佳首选框架","id":4,"name":"Mysql 入门教程"},{"description":"零基础入门 Oracle 开发，企业级应用开发最佳首选框架","id":5,"name":"Oracle 入门教程"}],"total":5},"success":true}
+2023-01-27 22:24:21.616 INFO  com.example.wiki.aspect.LogAspect                 :88   [32m274394142661021696[0;39m ------------- 结束 耗时：9 ms -------------
+2023-01-27 22:24:35.010 INFO  com.example.wiki.job.DocJob                       :32   [32m274394198877278208[0;39m 更新电子书下的文档数据开始
+2023-01-27 22:24:35.012 DEBUG c.e.wiki.mapper.DocMapperCust.updateEbookInfo     :137  [32m274394198877278208[0;39m ==>  Preparing: update ebook t1, (select ebook_id, count(1) doc_count, sum(view_count) view_count, sum(vote_count) vote_count from doc group by ebook_id) t2 set t1.doc_count = t2.doc_count, t1.view_count = t2.view_count, t1.vote_count = t2.vote_count where t1.id = t2.ebook_id
+2023-01-27 22:24:35.013 DEBUG c.e.wiki.mapper.DocMapperCust.updateEbookInfo     :137  [32m274394198877278208[0;39m ==> Parameters: 
+2023-01-27 22:24:35.015 DEBUG c.e.wiki.mapper.DocMapperCust.updateEbookInfo     :137  [32m274394198877278208[0;39m <==    Updates: 1
+2023-01-27 22:24:35.016 INFO  com.example.wiki.job.DocJob                       :35   [32m274394198877278208[0;39m 更新电子书下的文档数据结束，耗时：5毫秒
+2023-01-27 22:24:39.305 INFO  com.example.wiki.aspect.LogAspect                 :50   [32m274394216891813888[0;39m ------------- 开始 -------------
+2023-01-27 22:24:39.306 INFO  com.example.wiki.aspect.LogAspect                 :51   [32m274394216891813888[0;39m 请求地址: http://127.0.0.1:8080/category/all GET
+2023-01-27 22:24:39.306 INFO  com.example.wiki.aspect.LogAspect                 :52   [32m274394216891813888[0;39m 类名方法: com.example.wiki.controller.CategoryController.all
+2023-01-27 22:24:39.306 INFO  com.example.wiki.aspect.LogAspect                 :53   [32m274394216891813888[0;39m 远程地址: 127.0.0.1
+2023-01-27 22:24:39.307 INFO  com.example.wiki.aspect.LogAspect                 :75   [32m274394216891813888[0;39m 请求参数: []
+2023-01-27 22:24:39.307 INFO  com.example.wiki.aspect.LogAspect                 :50   [32m274394216900202496[0;39m ------------- 开始 -------------
+2023-01-27 22:24:39.307 INFO  com.example.wiki.aspect.LogAspect                 :51   [32m274394216900202496[0;39m 请求地址: http://127.0.0.1:8080/ebook/list GET
+2023-01-27 22:24:39.308 INFO  com.example.wiki.aspect.LogAspect                 :52   [32m274394216900202496[0;39m 类名方法: com.example.wiki.controller.EbookController.list
+2023-01-27 22:24:39.307 DEBUG c.e.wiki.mapper.CategoryMapper.selectByExample    :137  [32m274394216891813888[0;39m ==>  Preparing: select id, parent, `name`, sort from category order by sort asc
+2023-01-27 22:24:39.308 INFO  com.example.wiki.aspect.LogAspect                 :53   [32m274394216900202496[0;39m 远程地址: 127.0.0.1
+2023-01-27 22:24:39.308 DEBUG c.e.wiki.mapper.CategoryMapper.selectByExample    :137  [32m274394216891813888[0;39m ==> Parameters: 
+2023-01-27 22:24:39.308 INFO  com.example.wiki.aspect.LogAspect                 :75   [32m274394216900202496[0;39m 请求参数: [{"page":1,"size":1000}]
+2023-01-27 22:24:39.309 TRACE c.e.wiki.mapper.CategoryMapper.selectByExample    :143  [32m274394216891813888[0;39m <==    Columns: id, parent, name, sort
+2023-01-27 22:24:39.311 TRACE c.e.wiki.mapper.CategoryMapper.selectByExample    :143  [32m274394216891813888[0;39m <==        Row: 100, 0, 前端开发, 100
+2023-01-27 22:24:39.311 DEBUG c.e.wiki.mapper.EbookMapper.selectByExample_COUNT :137  [32m274394216900202496[0;39m ==>  Preparing: SELECT count(0) FROM ebook
+2023-01-27 22:24:39.311 TRACE c.e.wiki.mapper.CategoryMapper.selectByExample    :143  [32m274394216891813888[0;39m <==        Row: 101, 100, Vue, 101
+2023-01-27 22:24:39.311 DEBUG c.e.wiki.mapper.EbookMapper.selectByExample_COUNT :137  [32m274394216900202496[0;39m ==> Parameters: 
+2023-01-27 22:24:39.311 TRACE c.e.wiki.mapper.CategoryMapper.selectByExample    :143  [32m274394216891813888[0;39m <==        Row: 102, 100, HTML & CSS, 102
+2023-01-27 22:24:39.312 TRACE c.e.wiki.mapper.CategoryMapper.selectByExample    :143  [32m274394216891813888[0;39m <==        Row: 200, 0, Java, 200
+2023-01-27 22:24:39.312 TRACE c.e.wiki.mapper.CategoryMapper.selectByExample    :143  [32m274394216891813888[0;39m <==        Row: 201, 200, 基础应用, 201
+2023-01-27 22:24:39.312 TRACE c.e.wiki.mapper.CategoryMapper.selectByExample    :143  [32m274394216891813888[0;39m <==        Row: 202, 200, 框架应用, 202
+2023-01-27 22:24:39.312 TRACE c.e.wiki.mapper.CategoryMapper.selectByExample    :143  [32m274394216891813888[0;39m <==        Row: 300, 0, Python, 300
+2023-01-27 22:24:39.312 TRACE c.e.wiki.mapper.EbookMapper.selectByExample_COUNT :143  [32m274394216900202496[0;39m <==    Columns: count(0)
+2023-01-27 22:24:39.313 TRACE c.e.wiki.mapper.CategoryMapper.selectByExample    :143  [32m274394216891813888[0;39m <==        Row: 301, 300, 基础应用, 301
+2023-01-27 22:24:39.313 TRACE c.e.wiki.mapper.EbookMapper.selectByExample_COUNT :143  [32m274394216900202496[0;39m <==        Row: 5
+2023-01-27 22:24:39.313 DEBUG c.e.wiki.mapper.EbookMapper.selectByExample_COUNT :137  [32m274394216900202496[0;39m <==      Total: 1
+2023-01-27 22:24:39.313 TRACE c.e.wiki.mapper.CategoryMapper.selectByExample    :143  [32m274394216891813888[0;39m <==        Row: 302, 300, 进阶方向应用, 302
+2023-01-27 22:24:39.313 TRACE c.e.wiki.mapper.CategoryMapper.selectByExample    :143  [32m274394216891813888[0;39m <==        Row: 400, 0, 数据库, 400
+2023-01-27 22:24:39.313 DEBUG c.example.wiki.mapper.EbookMapper.selectByExample :137  [32m274394216900202496[0;39m ==>  Preparing: select id, `name`, category1_id, category2_id, description, cover, doc_count, view_count, vote_count from ebook LIMIT ?
+2023-01-27 22:24:39.313 TRACE c.e.wiki.mapper.CategoryMapper.selectByExample    :143  [32m274394216891813888[0;39m <==        Row: 401, 400, MySQL, 401
+2023-01-27 22:24:39.313 TRACE c.e.wiki.mapper.CategoryMapper.selectByExample    :143  [32m274394216891813888[0;39m <==        Row: 500, 0, 其它, 500
+2023-01-27 22:24:39.313 DEBUG c.example.wiki.mapper.EbookMapper.selectByExample :137  [32m274394216900202496[0;39m ==> Parameters: 1000(Integer)
+2023-01-27 22:24:39.314 TRACE c.e.wiki.mapper.CategoryMapper.selectByExample    :143  [32m274394216891813888[0;39m <==        Row: 501, 500, 服务器, 501
+2023-01-27 22:24:39.314 TRACE c.e.wiki.mapper.CategoryMapper.selectByExample    :143  [32m274394216891813888[0;39m <==        Row: 502, 500, 开发工具, 502
+2023-01-27 22:24:39.314 TRACE c.e.wiki.mapper.CategoryMapper.selectByExample    :143  [32m274394216891813888[0;39m <==        Row: 503, 500, 热门服务端语言, 503
+2023-01-27 22:24:39.314 DEBUG c.e.wiki.mapper.CategoryMapper.selectByExample    :137  [32m274394216891813888[0;39m <==      Total: 15
+2023-01-27 22:24:39.314 TRACE c.example.wiki.mapper.EbookMapper.selectByExample :143  [32m274394216900202496[0;39m <==    Columns: id, name, category1_id, category2_id, description, cover, doc_count, view_count, vote_count
+2023-01-27 22:24:39.315 INFO  com.example.wiki.aspect.LogAspect                 :87   [32m274394216891813888[0;39m 返回结果: {"content":[{"id":100,"name":"前端开发","parent":0,"sort":100},{"id":101,"name":"Vue","parent":100,"sort":101},{"id":102,"name":"HTML & CSS","parent":100,"sort":102},{"id":200,"name":"Java","parent":0,"sort":200},{"id":201,"name":"基础应用","parent":200,"sort":201},{"id":202,"name":"框架应用","parent":200,"sort":202},{"id":300,"name":"Python","parent":0,"sort":300},{"id":301,"name":"基础应用","parent":300,"sort":301},{"id":302,"name":"进阶方向应用","parent":300,"sort":302},{"id":400,"name":"数据库","parent":0,"sort":400},{"id":401,"name":"MySQL","parent":400,"sort":401},{"id":500,"name":"其它","parent":0,"sort":500},{"id":501,"name":"服务器","parent":500,"sort":501},{"id":502,"name":"开发工具","parent":500,"sort":502},{"id":503,"name":"热门服务端语言","parent":500,"sort":503}],"success":true}
+2023-01-27 22:24:39.315 TRACE c.example.wiki.mapper.EbookMapper.selectByExample :143  [32m274394216900202496[0;39m <==        Row: 1, Spring Boot 入门教程, null, null, 零基础入门 Java 开发，企业级应用开发最佳首选框架, null, 6, 0, 0
+2023-01-27 22:24:39.315 INFO  com.example.wiki.aspect.LogAspect                 :88   [32m274394216891813888[0;39m ------------- 结束 耗时：10 ms -------------
+2023-01-27 22:24:39.315 TRACE c.example.wiki.mapper.EbookMapper.selectByExample :143  [32m274394216900202496[0;39m <==        Row: 2, Vue 入门教程, null, null, 零基础入门 Vue 开发，企业级应用开发最佳首选框架, null, null, null, null
+2023-01-27 22:24:39.316 TRACE c.example.wiki.mapper.EbookMapper.selectByExample :143  [32m274394216900202496[0;39m <==        Row: 3, Python 入门教程, null, null, 零基础入门 Python 开发，企业级应用开发最佳首选框架, null, null, null, null
+2023-01-27 22:24:39.316 TRACE c.example.wiki.mapper.EbookMapper.selectByExample :143  [32m274394216900202496[0;39m <==        Row: 4, Mysql 入门教程, null, null, 零基础入门 Mysql 开发，企业级应用开发最佳首选框架, null, null, null, null
+2023-01-27 22:24:39.316 TRACE c.example.wiki.mapper.EbookMapper.selectByExample :143  [32m274394216900202496[0;39m <==        Row: 5, Oracle 入门教程, null, null, 零基础入门 Oracle 开发，企业级应用开发最佳首选框架, null, null, null, null
+2023-01-27 22:24:39.316 DEBUG c.example.wiki.mapper.EbookMapper.selectByExample :137  [32m274394216900202496[0;39m <==      Total: 5
+2023-01-27 22:24:39.317 INFO  com.example.wiki.service.EbookService             :51   [32m274394216900202496[0;39m 总行数 5
+2023-01-27 22:24:39.317 INFO  com.example.wiki.service.EbookService             :52   [32m274394216900202496[0;39m 总页数 1
+2023-01-27 22:24:39.317 INFO  com.example.wiki.aspect.LogAspect                 :87   [32m274394216900202496[0;39m 返回结果: {"content":{"list":[{"description":"零基础入门 Java 开发，企业级应用开发最佳首选框架","docCount":6,"id":1,"name":"Spring Boot 入门教程","viewCount":0,"voteCount":0},{"description":"零基础入门 Vue 开发，企业级应用开发最佳首选框架","id":2,"name":"Vue 入门教程"},{"description":"零基础入门 Python 开发，企业级应用开发最佳首选框架","id":3,"name":"Python 入门教程"},{"description":"零基础入门 Mysql 开发，企业级应用开发最佳首选框架","id":4,"name":"Mysql 入门教程"},{"description":"零基础入门 Oracle 开发，企业级应用开发最佳首选框架","id":5,"name":"Oracle 入门教程"}],"total":5},"success":true}
+2023-01-27 22:24:39.317 INFO  com.example.wiki.aspect.LogAspect                 :88   [32m274394216900202496[0;39m ------------- 结束 耗时：10 ms -------------
+2023-01-27 22:24:50.823 INFO  com.example.wiki.aspect.LogAspect                 :50   [32m274394265201807360[0;39m ------------- 开始 -------------
+2023-01-27 22:24:50.824 INFO  com.example.wiki.aspect.LogAspect                 :51   [32m274394265201807360[0;39m 请求地址: http://127.0.0.1:8080/category/all GET
+2023-01-27 22:24:50.824 INFO  com.example.wiki.aspect.LogAspect                 :52   [32m274394265201807360[0;39m 类名方法: com.example.wiki.controller.CategoryController.all
+2023-01-27 22:24:50.824 INFO  com.example.wiki.aspect.LogAspect                 :53   [32m274394265201807360[0;39m 远程地址: 127.0.0.1
+2023-01-27 22:24:50.825 INFO  com.example.wiki.aspect.LogAspect                 :50   [32m274394265210195968[0;39m ------------- 开始 -------------
+2023-01-27 22:24:50.825 INFO  com.example.wiki.aspect.LogAspect                 :51   [32m274394265210195968[0;39m 请求地址: http://127.0.0.1:8080/ebook/list GET
+2023-01-27 22:24:50.825 INFO  com.example.wiki.aspect.LogAspect                 :75   [32m274394265201807360[0;39m 请求参数: []
+2023-01-27 22:24:50.825 INFO  com.example.wiki.aspect.LogAspect                 :52   [32m274394265210195968[0;39m 类名方法: com.example.wiki.controller.EbookController.list
+2023-01-27 22:24:50.825 INFO  com.example.wiki.aspect.LogAspect                 :53   [32m274394265210195968[0;39m 远程地址: 127.0.0.1
+2023-01-27 22:24:50.825 INFO  com.example.wiki.aspect.LogAspect                 :75   [32m274394265210195968[0;39m 请求参数: [{"page":1,"size":1000}]
+2023-01-27 22:24:50.825 DEBUG c.e.wiki.mapper.CategoryMapper.selectByExample    :137  [32m274394265201807360[0;39m ==>  Preparing: select id, parent, `name`, sort from category order by sort asc
+2023-01-27 22:24:50.826 DEBUG c.e.wiki.mapper.CategoryMapper.selectByExample    :137  [32m274394265201807360[0;39m ==> Parameters: 
+2023-01-27 22:24:50.827 DEBUG c.e.wiki.mapper.EbookMapper.selectByExample_COUNT :137  [32m274394265210195968[0;39m ==>  Preparing: SELECT count(0) FROM ebook
+2023-01-27 22:24:50.827 DEBUG c.e.wiki.mapper.EbookMapper.selectByExample_COUNT :137  [32m274394265210195968[0;39m ==> Parameters: 
+2023-01-27 22:24:50.827 TRACE c.e.wiki.mapper.CategoryMapper.selectByExample    :143  [32m274394265201807360[0;39m <==    Columns: id, parent, name, sort
+2023-01-27 22:24:50.827 TRACE c.e.wiki.mapper.CategoryMapper.selectByExample    :143  [32m274394265201807360[0;39m <==        Row: 100, 0, 前端开发, 100
+2023-01-27 22:24:50.828 TRACE c.e.wiki.mapper.CategoryMapper.selectByExample    :143  [32m274394265201807360[0;39m <==        Row: 101, 100, Vue, 101
+2023-01-27 22:24:50.828 TRACE c.e.wiki.mapper.CategoryMapper.selectByExample    :143  [32m274394265201807360[0;39m <==        Row: 102, 100, HTML & CSS, 102
+2023-01-27 22:24:50.828 TRACE c.e.wiki.mapper.CategoryMapper.selectByExample    :143  [32m274394265201807360[0;39m <==        Row: 200, 0, Java, 200
+2023-01-27 22:24:50.828 TRACE c.e.wiki.mapper.CategoryMapper.selectByExample    :143  [32m274394265201807360[0;39m <==        Row: 201, 200, 基础应用, 201
+2023-01-27 22:24:50.829 TRACE c.e.wiki.mapper.CategoryMapper.selectByExample    :143  [32m274394265201807360[0;39m <==        Row: 202, 200, 框架应用, 202
+2023-01-27 22:24:50.828 TRACE c.e.wiki.mapper.EbookMapper.selectByExample_COUNT :143  [32m274394265210195968[0;39m <==    Columns: count(0)
+2023-01-27 22:24:50.829 TRACE c.e.wiki.mapper.CategoryMapper.selectByExample    :143  [32m274394265201807360[0;39m <==        Row: 300, 0, Python, 300
+2023-01-27 22:24:50.829 TRACE c.e.wiki.mapper.EbookMapper.selectByExample_COUNT :143  [32m274394265210195968[0;39m <==        Row: 5
+2023-01-27 22:24:50.829 TRACE c.e.wiki.mapper.CategoryMapper.selectByExample    :143  [32m274394265201807360[0;39m <==        Row: 301, 300, 基础应用, 301
+2023-01-27 22:24:50.829 DEBUG c.e.wiki.mapper.EbookMapper.selectByExample_COUNT :137  [32m274394265210195968[0;39m <==      Total: 1
+2023-01-27 22:24:50.829 TRACE c.e.wiki.mapper.CategoryMapper.selectByExample    :143  [32m274394265201807360[0;39m <==        Row: 302, 300, 进阶方向应用, 302
+2023-01-27 22:24:50.830 TRACE c.e.wiki.mapper.CategoryMapper.selectByExample    :143  [32m274394265201807360[0;39m <==        Row: 400, 0, 数据库, 400
+2023-01-27 22:24:50.830 TRACE c.e.wiki.mapper.CategoryMapper.selectByExample    :143  [32m274394265201807360[0;39m <==        Row: 401, 400, MySQL, 401
+2023-01-27 22:24:50.830 DEBUG c.example.wiki.mapper.EbookMapper.selectByExample :137  [32m274394265210195968[0;39m ==>  Preparing: select id, `name`, category1_id, category2_id, description, cover, doc_count, view_count, vote_count from ebook LIMIT ?
+2023-01-27 22:24:50.830 TRACE c.e.wiki.mapper.CategoryMapper.selectByExample    :143  [32m274394265201807360[0;39m <==        Row: 500, 0, 其它, 500
+2023-01-27 22:24:50.830 TRACE c.e.wiki.mapper.CategoryMapper.selectByExample    :143  [32m274394265201807360[0;39m <==        Row: 501, 500, 服务器, 501
+2023-01-27 22:24:50.830 DEBUG c.example.wiki.mapper.EbookMapper.selectByExample :137  [32m274394265210195968[0;39m ==> Parameters: 1000(Integer)
+2023-01-27 22:24:50.830 TRACE c.e.wiki.mapper.CategoryMapper.selectByExample    :143  [32m274394265201807360[0;39m <==        Row: 502, 500, 开发工具, 502
+2023-01-27 22:24:50.830 TRACE c.e.wiki.mapper.CategoryMapper.selectByExample    :143  [32m274394265201807360[0;39m <==        Row: 503, 500, 热门服务端语言, 503
+2023-01-27 22:24:50.830 DEBUG c.e.wiki.mapper.CategoryMapper.selectByExample    :137  [32m274394265201807360[0;39m <==      Total: 15
+2023-01-27 22:24:50.832 TRACE c.example.wiki.mapper.EbookMapper.selectByExample :143  [32m274394265210195968[0;39m <==    Columns: id, name, category1_id, category2_id, description, cover, doc_count, view_count, vote_count
+2023-01-27 22:24:50.832 INFO  com.example.wiki.aspect.LogAspect                 :87   [32m274394265201807360[0;39m 返回结果: {"content":[{"id":100,"name":"前端开发","parent":0,"sort":100},{"id":101,"name":"Vue","parent":100,"sort":101},{"id":102,"name":"HTML & CSS","parent":100,"sort":102},{"id":200,"name":"Java","parent":0,"sort":200},{"id":201,"name":"基础应用","parent":200,"sort":201},{"id":202,"name":"框架应用","parent":200,"sort":202},{"id":300,"name":"Python","parent":0,"sort":300},{"id":301,"name":"基础应用","parent":300,"sort":301},{"id":302,"name":"进阶方向应用","parent":300,"sort":302},{"id":400,"name":"数据库","parent":0,"sort":400},{"id":401,"name":"MySQL","parent":400,"sort":401},{"id":500,"name":"其它","parent":0,"sort":500},{"id":501,"name":"服务器","parent":500,"sort":501},{"id":502,"name":"开发工具","parent":500,"sort":502},{"id":503,"name":"热门服务端语言","parent":500,"sort":503}],"success":true}
+2023-01-27 22:24:50.832 TRACE c.example.wiki.mapper.EbookMapper.selectByExample :143  [32m274394265210195968[0;39m <==        Row: 1, Spring Boot 入门教程, null, null, 零基础入门 Java 开发，企业级应用开发最佳首选框架, null, 6, 0, 0
+2023-01-27 22:24:50.832 INFO  com.example.wiki.aspect.LogAspect                 :88   [32m274394265201807360[0;39m ------------- 结束 耗时：9 ms -------------
+2023-01-27 22:24:50.833 TRACE c.example.wiki.mapper.EbookMapper.selectByExample :143  [32m274394265210195968[0;39m <==        Row: 2, Vue 入门教程, null, null, 零基础入门 Vue 开发，企业级应用开发最佳首选框架, null, null, null, null
+2023-01-27 22:24:50.833 TRACE c.example.wiki.mapper.EbookMapper.selectByExample :143  [32m274394265210195968[0;39m <==        Row: 3, Python 入门教程, null, null, 零基础入门 Python 开发，企业级应用开发最佳首选框架, null, null, null, null
+2023-01-27 22:24:50.833 TRACE c.example.wiki.mapper.EbookMapper.selectByExample :143  [32m274394265210195968[0;39m <==        Row: 4, Mysql 入门教程, null, null, 零基础入门 Mysql 开发，企业级应用开发最佳首选框架, null, null, null, null
+2023-01-27 22:24:50.833 TRACE c.example.wiki.mapper.EbookMapper.selectByExample :143  [32m274394265210195968[0;39m <==        Row: 5, Oracle 入门教程, null, null, 零基础入门 Oracle 开发，企业级应用开发最佳首选框架, null, null, null, null
+2023-01-27 22:24:50.833 DEBUG c.example.wiki.mapper.EbookMapper.selectByExample :137  [32m274394265210195968[0;39m <==      Total: 5
+2023-01-27 22:24:50.834 INFO  com.example.wiki.service.EbookService             :51   [32m274394265210195968[0;39m 总行数 5
+2023-01-27 22:24:50.834 INFO  com.example.wiki.service.EbookService             :52   [32m274394265210195968[0;39m 总页数 1
+2023-01-27 22:24:50.834 INFO  com.example.wiki.aspect.LogAspect                 :87   [32m274394265210195968[0;39m 返回结果: {"content":{"list":[{"description":"零基础入门 Java 开发，企业级应用开发最佳首选框架","docCount":6,"id":1,"name":"Spring Boot 入门教程","viewCount":0,"voteCount":0},{"description":"零基础入门 Vue 开发，企业级应用开发最佳首选框架","id":2,"name":"Vue 入门教程"},{"description":"零基础入门 Python 开发，企业级应用开发最佳首选框架","id":3,"name":"Python 入门教程"},{"description":"零基础入门 Mysql 开发，企业级应用开发最佳首选框架","id":4,"name":"Mysql 入门教程"},{"description":"零基础入门 Oracle 开发，企业级应用开发最佳首选框架","id":5,"name":"Oracle 入门教程"}],"total":5},"success":true}
+2023-01-27 22:24:50.834 INFO  com.example.wiki.aspect.LogAspect                 :88   [32m274394265210195968[0;39m ------------- 结束 耗时：9 ms -------------
+2023-01-27 22:25:00.014 INFO  com.example.wiki.job.EbookSnapshotJob             :32   [32m274394303751655424[0;39m 生成今日电子书快照开始
+2023-01-27 22:25:00.016 DEBUG c.e.w.mapper.EbookSnapshotMapperCust.genSnapshot  :137  [32m274394303751655424[0;39m ==>  Preparing: insert into ebook_snapshot(ebook_id, `date`, view_count, vote_count, view_increase, vote_increase) select t1.id, curdate(), 0, 0, 0, 0 from ebook t1 where not exists(select 1 from ebook_snapshot t2 where t1.id = t2.ebook_id and t2.`date` = curdate()); update ebook_snapshot t1, ebook t2 set t1.view_count = t2.view_count, t1.vote_count = t2.vote_count where t1.`date` = curdate() and t1.ebook_id = t2.id; update ebook_snapshot t1 left join (select ebook_id, view_count, vote_count from ebook_snapshot where `date` = date_sub(curdate(), interval 1 day)) t2 on t1.ebook_id = t2.ebook_id set t1.view_increase = (t1.view_count - ifnull(t2.view_count, 0)), t1.vote_increase = (t1.vote_count - ifnull(t2.vote_count, 0)) where t1.`date` = curdate();
+2023-01-27 22:25:00.017 DEBUG c.e.w.mapper.EbookSnapshotMapperCust.genSnapshot  :137  [32m274394303751655424[0;39m ==> Parameters: 
+2023-01-27 22:25:00.022 ERROR o.s.s.support.TaskUtils$LoggingErrorHandler       :95   [32m274394303751655424[0;39m Unexpected error occurred in scheduled task
+org.springframework.dao.DataIntegrityViolationException: 
+### Error updating database.  Cause: java.sql.SQLIntegrityConstraintViolationException: Column 'view_count' cannot be null
+### The error may exist in file [C:\Users\amper\project\Wiki\Knowledge-Based-System\wiki\target\classes\mapper\EbookSnapshotMapperCust.xml]
+### The error may involve defaultParameterMap
+### The error occurred while setting parameters
+### SQL: insert into ebook_snapshot(ebook_id, `date`, view_count, vote_count, view_increase, vote_increase)         select t1.id, curdate(), 0, 0, 0, 0         from ebook t1         where not exists(select 1                          from ebook_snapshot t2                          where t1.id = t2.ebook_id                            and t2.`date` = curdate());          update ebook_snapshot t1, ebook t2         set t1.view_count = t2.view_count,             t1.vote_count = t2.vote_count         where t1.`date` = curdate()           and t1.ebook_id = t2.id;          update ebook_snapshot t1 left join (select ebook_id, view_count, vote_count             from ebook_snapshot             where `date` = date_sub(curdate(), interval 1 day)) t2         on t1.ebook_id = t2.ebook_id             set t1.view_increase = (t1.view_count - ifnull(t2.view_count, 0)),                 t1.vote_increase = (t1.vote_count - ifnull(t2.vote_count, 0))         where t1.`date` = curdate();
+### Cause: java.sql.SQLIntegrityConstraintViolationException: Column 'view_count' cannot be null
+; Column 'view_count' cannot be null; nested exception is java.sql.SQLIntegrityConstraintViolationException: Column 'view_count' cannot be null
+	at org.springframework.jdbc.support.SQLExceptionSubclassTranslator.doTranslate(SQLExceptionSubclassTranslator.java:87)
+	at org.springframework.jdbc.support.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:70)
+	at org.springframework.jdbc.support.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:79)
+	at org.mybatis.spring.MyBatisExceptionTranslator.translateExceptionIfPossible(MyBatisExceptionTranslator.java:88)
+	at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:440)
+	at com.sun.proxy.$Proxy91.update(Unknown Source)
+	at org.mybatis.spring.SqlSessionTemplate.update(SqlSessionTemplate.java:287)
+	at org.apache.ibatis.binding.MapperMethod.execute(MapperMethod.java:67)
+	at org.apache.ibatis.binding.MapperProxy$PlainMethodInvoker.invoke(MapperProxy.java:152)
+	at org.apache.ibatis.binding.MapperProxy.invoke(MapperProxy.java:85)
+	at com.sun.proxy.$Proxy105.genSnapshot(Unknown Source)
+	at com.example.wiki.service.EbookSnapshotService.genSnapshot(EbookSnapshotService.java:16)
+	at com.example.wiki.job.EbookSnapshotJob.doSnapshot(EbookSnapshotJob.java:34)
+	at sun.reflect.GeneratedMethodAccessor121.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.springframework.scheduling.support.ScheduledMethodRunnable.run(ScheduledMethodRunnable.java:84)
+	at org.springframework.scheduling.support.DelegatingErrorHandlingRunnable.run(DelegatingErrorHandlingRunnable.java:54)
+	at org.springframework.scheduling.concurrent.ReschedulingRunnable.run(ReschedulingRunnable.java:95)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:750)
+Caused by: java.sql.SQLIntegrityConstraintViolationException: Column 'view_count' cannot be null
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:117)
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:97)
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:122)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeInternal(ClientPreparedStatement.java:953)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.execute(ClientPreparedStatement.java:370)
+	at com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+	at com.zaxxer.hikari.pool.HikariProxyPreparedStatement.execute(HikariProxyPreparedStatement.java)
+	at sun.reflect.GeneratedMethodAccessor66.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.apache.ibatis.logging.jdbc.PreparedStatementLogger.invoke(PreparedStatementLogger.java:59)
+	at com.sun.proxy.$Proxy130.execute(Unknown Source)
+	at org.apache.ibatis.executor.statement.PreparedStatementHandler.update(PreparedStatementHandler.java:47)
+	at org.apache.ibatis.executor.statement.RoutingStatementHandler.update(RoutingStatementHandler.java:74)
+	at org.apache.ibatis.executor.SimpleExecutor.doUpdate(SimpleExecutor.java:50)
+	at org.apache.ibatis.executor.BaseExecutor.update(BaseExecutor.java:117)
+	at org.apache.ibatis.executor.CachingExecutor.update(CachingExecutor.java:76)
+	at sun.reflect.GeneratedMethodAccessor71.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.apache.ibatis.plugin.Plugin.invoke(Plugin.java:63)
+	at com.sun.proxy.$Proxy128.update(Unknown Source)
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.update(DefaultSqlSession.java:197)
+	at sun.reflect.GeneratedMethodAccessor70.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:426)
+	... 21 common frames omitted
+2023-01-27 22:25:05.004 INFO  com.example.wiki.job.DocJob                       :32   [32m274394324681232384[0;39m 更新电子书下的文档数据开始
+2023-01-27 22:25:05.005 DEBUG c.e.wiki.mapper.DocMapperCust.updateEbookInfo     :137  [32m274394324681232384[0;39m ==>  Preparing: update ebook t1, (select ebook_id, count(1) doc_count, sum(view_count) view_count, sum(vote_count) vote_count from doc group by ebook_id) t2 set t1.doc_count = t2.doc_count, t1.view_count = t2.view_count, t1.vote_count = t2.vote_count where t1.id = t2.ebook_id
+2023-01-27 22:25:05.005 DEBUG c.e.wiki.mapper.DocMapperCust.updateEbookInfo     :137  [32m274394324681232384[0;39m ==> Parameters: 
+2023-01-27 22:25:05.006 DEBUG c.e.wiki.mapper.DocMapperCust.updateEbookInfo     :137  [32m274394324681232384[0;39m <==    Updates: 1
+2023-01-27 22:25:05.006 INFO  com.example.wiki.job.DocJob                       :35   [32m274394324681232384[0;39m 更新电子书下的文档数据结束，耗时：2毫秒
