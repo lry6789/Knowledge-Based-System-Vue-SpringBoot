@@ -4,10 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="da40c7e0-5646-4fec-96d9-4c54c107b589" name="Changes" comment="7-3 add category page">
+    <list default="true" id="da40c7e0-5646-4fec-96d9-4c54c107b589" name="Changes" comment="7-4 no pagination in category management page">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/log/error.log" beforeDir="false" afterPath="$PROJECT_DIR$/log/error.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/log/trace.log" beforeDir="false" afterPath="$PROJECT_DIR$/log/trace.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wiki/web/src/util/tool.ts" beforeDir="false" afterPath="$PROJECT_DIR$/wiki/web/src/util/tool.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/wiki/web/src/views/admin/admin-category.vue" beforeDir="false" afterPath="$PROJECT_DIR$/wiki/web/src/views/admin/admin-category.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -159,7 +159,7 @@
       <workItem from="1674103922937" duration="1789000" />
       <workItem from="1674112645644" duration="3000" />
       <workItem from="1674540907218" duration="30673000" />
-      <workItem from="1674856877462" duration="5924000" />
+      <workItem from="1674856877462" duration="7019000" />
     </task>
     <task id="LOCAL-00001" summary="edit folder name">
       <created>1673111664367</created>
@@ -385,7 +385,14 @@
       <option name="project" value="LOCAL" />
       <updated>1674876542405</updated>
     </task>
-    <option name="localTasksCounter" value="33" />
+    <task id="LOCAL-00033" summary="7-4 no pagination in category management page">
+      <created>1674877084033</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1674877084033</updated>
+    </task>
+    <option name="localTasksCounter" value="34" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -404,7 +411,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="modify port address for frontend" />
     <MESSAGE value="use axios to call api ebook/list" />
     <MESSAGE value="use ref and reactive to implement data binding" />
     <MESSAGE value="integrate icon components" />
@@ -429,7 +435,8 @@
     <MESSAGE value="6-11 integrate validation" />
     <MESSAGE value="6-11 search book by name" />
     <MESSAGE value="7-3 add category page" />
-    <option name="LAST_COMMIT_MESSAGE" value="7-3 add category page" />
+    <MESSAGE value="7-4 no pagination in category management page" />
+    <option name="LAST_COMMIT_MESSAGE" value="7-4 no pagination in category management page" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
