@@ -4,16 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="da40c7e0-5646-4fec-96d9-4c54c107b589" name="Changes" comment="6-11 search book by name">
-      <change afterPath="$PROJECT_DIR$/wiki/web/src/views/admin/admin-category.vue" afterDir="false" />
+    <list default="true" id="da40c7e0-5646-4fec-96d9-4c54c107b589" name="Changes" comment="7-3 add category page">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/log/error.log" beforeDir="false" afterPath="$PROJECT_DIR$/log/error.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/log/trace.log" beforeDir="false" afterPath="$PROJECT_DIR$/log/trace.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wiki/src/main/java/com/example/wiki/service/EbookService.java" beforeDir="false" afterPath="$PROJECT_DIR$/wiki/src/main/java/com/example/wiki/service/EbookService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wiki/web/.env.dev" beforeDir="false" afterPath="$PROJECT_DIR$/wiki/web/.env.dev" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wiki/web/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/wiki/web/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wiki/web/src/components/the-header.vue" beforeDir="false" afterPath="$PROJECT_DIR$/wiki/web/src/components/the-header.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wiki/web/src/main.ts" beforeDir="false" afterPath="$PROJECT_DIR$/wiki/web/src/main.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wiki/web/src/router/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/wiki/web/src/router/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wiki/web/src/views/admin/admin-category.vue" beforeDir="false" afterPath="$PROJECT_DIR$/wiki/web/src/views/admin/admin-category.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -164,7 +159,7 @@
       <workItem from="1674103922937" duration="1789000" />
       <workItem from="1674112645644" duration="3000" />
       <workItem from="1674540907218" duration="30673000" />
-      <workItem from="1674856877462" duration="5404000" />
+      <workItem from="1674856877462" duration="5924000" />
     </task>
     <task id="LOCAL-00001" summary="edit folder name">
       <created>1673111664367</created>
@@ -383,7 +378,14 @@
       <option name="project" value="LOCAL" />
       <updated>1674800796524</updated>
     </task>
-    <option name="localTasksCounter" value="32" />
+    <task id="LOCAL-00032" summary="7-3 add category page">
+      <created>1674876542405</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1674876542405</updated>
+    </task>
+    <option name="localTasksCounter" value="33" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -402,7 +404,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="integrated axios" />
     <MESSAGE value="modify port address for frontend" />
     <MESSAGE value="use axios to call api ebook/list" />
     <MESSAGE value="use ref and reactive to implement data binding" />
@@ -427,7 +428,8 @@
     <MESSAGE value="6-10 add delete func" />
     <MESSAGE value="6-11 integrate validation" />
     <MESSAGE value="6-11 search book by name" />
-    <option name="LAST_COMMIT_MESSAGE" value="6-11 search book by name" />
+    <MESSAGE value="7-3 add category page" />
+    <option name="LAST_COMMIT_MESSAGE" value="7-3 add category page" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
