@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="da40c7e0-5646-4fec-96d9-4c54c107b589" name="Changes" comment="7-4 tree structure for category">
+    <list default="true" id="da40c7e0-5646-4fec-96d9-4c54c107b589" name="Changes" comment="7-5 drop-down list for parent node">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/log/error.log" beforeDir="false" afterPath="$PROJECT_DIR$/log/error.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/log/trace.log" beforeDir="false" afterPath="$PROJECT_DIR$/log/trace.log" afterDir="false" />
@@ -159,7 +159,7 @@
       <workItem from="1674103922937" duration="1789000" />
       <workItem from="1674112645644" duration="3000" />
       <workItem from="1674540907218" duration="30673000" />
-      <workItem from="1674856877462" duration="7210000" />
+      <workItem from="1674856877462" duration="8032000" />
     </task>
     <task id="LOCAL-00001" summary="edit folder name">
       <created>1673111664367</created>
@@ -399,7 +399,14 @@
       <option name="project" value="LOCAL" />
       <updated>1674878234815</updated>
     </task>
-    <option name="localTasksCounter" value="35" />
+    <task id="LOCAL-00035" summary="7-5 drop-down list for parent node">
+      <created>1674878358411</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1674878358411</updated>
+    </task>
+    <option name="localTasksCounter" value="36" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -418,8 +425,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="use ref and reactive to implement data binding" />
-    <MESSAGE value="integrate icon components" />
     <MESSAGE value="ebooks layout modification" />
     <MESSAGE value="5-4 support dynamic SQL" />
     <MESSAGE value="5-4 VUE multi-env, add dev and prod configuration" />
@@ -443,7 +448,9 @@
     <MESSAGE value="7-3 add category page" />
     <MESSAGE value="7-4 no pagination in category management page" />
     <MESSAGE value="7-4 tree structure for category" />
-    <option name="LAST_COMMIT_MESSAGE" value="7-4 tree structure for category" />
+    <MESSAGE value="7-4 drop-down list for parent node" />
+    <MESSAGE value="7-5 drop-down list for parent node" />
+    <option name="LAST_COMMIT_MESSAGE" value="7-5 drop-down list for parent node" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
