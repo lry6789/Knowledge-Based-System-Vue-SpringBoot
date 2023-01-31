@@ -4,9 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="da40c7e0-5646-4fec-96d9-4c54c107b589" name="Changes" comment="9-3">
+    <list default="true" id="da40c7e0-5646-4fec-96d9-4c54c107b589" name="Changes" comment="9-4 user's name cannot be modified">
+      <change afterPath="$PROJECT_DIR$/wiki/web/public/js/md5.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/log/error.log" beforeDir="false" afterPath="$PROJECT_DIR$/log/error.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/log/trace.log" beforeDir="false" afterPath="$PROJECT_DIR$/log/trace.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wiki/web/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/wiki/web/public/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/wiki/web/src/views/admin/admin-user.vue" beforeDir="false" afterPath="$PROJECT_DIR$/wiki/web/src/views/admin/admin-user.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -159,7 +162,7 @@
       <workItem from="1674112645644" duration="3000" />
       <workItem from="1674540907218" duration="30673000" />
       <workItem from="1674856877462" duration="9877000" />
-      <workItem from="1675063988691" duration="8057000" />
+      <workItem from="1675063988691" duration="8258000" />
     </task>
     <task id="LOCAL-00001" summary="edit folder name">
       <created>1673111664367</created>
@@ -497,7 +500,14 @@
       <option name="project" value="LOCAL" />
       <updated>1675138760915</updated>
     </task>
-    <option name="localTasksCounter" value="49" />
+    <task id="LOCAL-00049" summary="9-4 user's name cannot be modified">
+      <created>1675138838677</created>
+      <option name="number" value="00049" />
+      <option name="presentableId" value="LOCAL-00049" />
+      <option name="project" value="LOCAL" />
+      <updated>1675138838677</updated>
+    </task>
+    <option name="localTasksCounter" value="50" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -516,7 +526,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="6-7 Modal Dialogue Box when press modify button" />
     <MESSAGE value="6-7 ebook update func" />
     <MESSAGE value="6-7 integrate snowflake with front-end" />
     <MESSAGE value="6-7 add delete func" />
@@ -541,7 +550,8 @@
     <MESSAGE value="8-11 add save and read doc func" />
     <MESSAGE value="8-12" />
     <MESSAGE value="9-3" />
-    <option name="LAST_COMMIT_MESSAGE" value="9-3" />
+    <MESSAGE value="9-4 user's name cannot be modified" />
+    <option name="LAST_COMMIT_MESSAGE" value="9-4 user's name cannot be modified" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
