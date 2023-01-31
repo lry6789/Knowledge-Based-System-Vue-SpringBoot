@@ -4,12 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="da40c7e0-5646-4fec-96d9-4c54c107b589" name="Changes" comment="9-9 use vuex to integrate sessionStorage">
+    <list default="true" id="da40c7e0-5646-4fec-96d9-4c54c107b589" name="Changes" comment="9-9 front-end - log out func">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/log/error.log" beforeDir="false" afterPath="$PROJECT_DIR$/log/error.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/log/trace.log" beforeDir="false" afterPath="$PROJECT_DIR$/log/trace.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wiki/web/src/components/the-header.vue" beforeDir="false" afterPath="$PROJECT_DIR$/wiki/web/src/components/the-header.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wiki/web/src/store/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/wiki/web/src/store/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wiki/web/src/main.ts" beforeDir="false" afterPath="$PROJECT_DIR$/wiki/web/src/main.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -161,14 +160,7 @@
       <workItem from="1674112645644" duration="3000" />
       <workItem from="1674540907218" duration="30673000" />
       <workItem from="1674856877462" duration="9877000" />
-      <workItem from="1675063988691" duration="9283000" />
-    </task>
-    <task id="LOCAL-00006" summary="create component footer and header">
-      <created>1673930492106</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1673930492106</updated>
+      <workItem from="1675063988691" duration="9386000" />
     </task>
     <task id="LOCAL-00007" summary="delete HelloWorld.vue and related code">
       <created>1673930866724</created>
@@ -506,7 +498,14 @@
       <option name="project" value="LOCAL" />
       <updated>1675140008808</updated>
     </task>
-    <option name="localTasksCounter" value="55" />
+    <task id="LOCAL-00055" summary="9-9 front-end - log out func">
+      <created>1675140102110</created>
+      <option name="number" value="00055" />
+      <option name="presentableId" value="LOCAL-00055" />
+      <option name="project" value="LOCAL" />
+      <updated>1675140102110</updated>
+    </task>
+    <option name="localTasksCounter" value="56" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -525,7 +524,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="6-11 integrate validation" />
     <MESSAGE value="6-11 search book by name" />
     <MESSAGE value="7-3 add category page" />
     <MESSAGE value="7-4 no pagination in category management page" />
@@ -550,7 +548,8 @@
     <MESSAGE value="9-6 reset password func" />
     <MESSAGE value="9-8 login func - front-end" />
     <MESSAGE value="9-9 use vuex to integrate sessionStorage" />
-    <option name="LAST_COMMIT_MESSAGE" value="9-9 use vuex to integrate sessionStorage" />
+    <MESSAGE value="9-9 front-end - log out func" />
+    <option name="LAST_COMMIT_MESSAGE" value="9-9 front-end - log out func" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
