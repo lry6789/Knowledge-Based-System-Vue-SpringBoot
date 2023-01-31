@@ -4,9 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="da40c7e0-5646-4fec-96d9-4c54c107b589" name="Changes" comment="8-7 integrate wangEditor">
+    <list default="true" id="da40c7e0-5646-4fec-96d9-4c54c107b589" name="Changes" comment="8-11 add save and read doc func">
+      <change afterPath="$PROJECT_DIR$/wiki/web/src/views/doc.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/log/error.log" beforeDir="false" afterPath="$PROJECT_DIR$/log/error.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/log/trace.log" beforeDir="false" afterPath="$PROJECT_DIR$/log/trace.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wiki/web/src/router/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/wiki/web/src/router/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wiki/web/src/views/Home.vue" beforeDir="false" afterPath="$PROJECT_DIR$/wiki/web/src/views/Home.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/wiki/web/src/views/admin/admin-doc.vue" beforeDir="false" afterPath="$PROJECT_DIR$/wiki/web/src/views/admin/admin-doc.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -159,7 +163,7 @@
       <workItem from="1674112645644" duration="3000" />
       <workItem from="1674540907218" duration="30673000" />
       <workItem from="1674856877462" duration="9877000" />
-      <workItem from="1675063988691" duration="5845000" />
+      <workItem from="1675063988691" duration="7023000" />
     </task>
     <task id="LOCAL-00001" summary="edit folder name">
       <created>1673111664367</created>
@@ -462,7 +466,28 @@
       <option name="project" value="LOCAL" />
       <updated>1675136003481</updated>
     </task>
-    <option name="localTasksCounter" value="44" />
+    <task id="LOCAL-00044" summary="8-9">
+      <created>1675136208754</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1675136208754</updated>
+    </task>
+    <task id="LOCAL-00045" summary="8-10 add save file func">
+      <created>1675136315964</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1675136315964</updated>
+    </task>
+    <task id="LOCAL-00046" summary="8-11 add save and read doc func">
+      <created>1675136456104</created>
+      <option name="number" value="00046" />
+      <option name="presentableId" value="LOCAL-00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1675136456104</updated>
+    </task>
+    <option name="localTasksCounter" value="47" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -481,9 +506,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="6-3 edit ebook management page" />
-    <MESSAGE value="6-3 ebook management display data" />
-    <MESSAGE value="6-6 use ebook list &amp; pagination parameters" />
     <MESSAGE value="6-6 edit ebook management pagination" />
     <MESSAGE value="6-7 Modal Dialogue Box" />
     <MESSAGE value="6-7 Modal Dialogue Box when press modify button" />
@@ -506,7 +528,10 @@
     <MESSAGE value="8-5" />
     <MESSAGE value="8-6 delete all the child file when the parent node is deleted" />
     <MESSAGE value="8-7 integrate wangEditor" />
-    <option name="LAST_COMMIT_MESSAGE" value="8-7 integrate wangEditor" />
+    <MESSAGE value="8-9" />
+    <MESSAGE value="8-10 add save file func" />
+    <MESSAGE value="8-11 add save and read doc func" />
+    <option name="LAST_COMMIT_MESSAGE" value="8-11 add save and read doc func" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
