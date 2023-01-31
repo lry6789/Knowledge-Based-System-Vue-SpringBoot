@@ -159,7 +159,7 @@ export default defineComponent({
       loading.value = true;
       // 如果不清空现有数据，则编辑保存重新加载数据后，再点编辑，则列表显示的还是编辑前的数据
       level1.value = [];
-      axios.get("http://127.0.0.1:8080/ebook//doc/all").then((response) => {
+      axios.get("http://127.0.0.1:8080/doc/all").then((response) => {
         loading.value = false;
         const data = response.data;
         if (data.success) {
@@ -189,11 +189,12 @@ export default defineComponent({
     const handleSave = () => {
       modalLoading.value = true;
       doc.value.content = editor.txt.html();
-      axios.post("http://127.0.0.1:8080/ebook//doc/save", doc.value).then((response) => {
+      axios.post("http://127.0.0.1:8080/doc/save", doc.value).then((response) => {
         modalLoading.value = false;
         const data = response.data; // data = commonResp
         if (data.success) {
-          modalVisible.value = false;
+          // modalVisible.value = false;
+          message.success("保存成功！");
 
           // 重新加载列表
           handleQuery();
@@ -270,11 +271,28 @@ export default defineComponent({
     };
 
     /**
+     * 内容查询
+     **/
+    const handleQueryContent = () => {
+      axios.get("http://127.0.0.1:8080/doc/find-content/" + doc.value.id).then((response) => {
+        const data = response.data;
+        if (data.success) {
+          editor.txt.html(data.content)
+        } else {
+          message.error(data.message);
+        }
+      });
+    };
+
+    /**
      * 编辑
      */
     const edit = (record: any) => {
+      // 清空富文本框
+      editor.txt.html("");
       modalVisible.value = true;
       doc.value = Tool.copy(record);
+      handleQueryContent();
 
       // 不能选择当前节点及其所有子孙节点，作为父节点，会使树断开
       treeSelectData.value = Tool.copy(level1.value);
@@ -288,6 +306,8 @@ export default defineComponent({
      * 新增
      */
     const add = () => {
+      // 清空富文本框
+      editor.txt.html("");
       modalVisible.value = true;
       doc.value = {
         ebookId: route.query.ebookId
@@ -311,7 +331,7 @@ export default defineComponent({
         content: '将删除：【' + deleteNames.join("，") + "】删除后不可恢复，确认删除？",
         onOk() {
           // console.log(ids)
-          axios.delete("http://127.0.0.1:8080/ebook//doc/delete/" + deleteIds.join(",")).then((response) => {
+          axios.delete("http://127.0.0.1:8080/doc/delete/" + deleteIds.join(",")).then((response) => {
             const data = response.data; // data = commonResp
             if (data.success) {
               // 重新加载列表
