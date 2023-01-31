@@ -4,11 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="da40c7e0-5646-4fec-96d9-4c54c107b589" name="Changes" comment="9-9 front-end - add login interception">
+    <list default="true" id="da40c7e0-5646-4fec-96d9-4c54c107b589" name="Changes" comment="9-12 hide the menu if not login">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/log/error.log" beforeDir="false" afterPath="$PROJECT_DIR$/log/error.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/log/trace.log" beforeDir="false" afterPath="$PROJECT_DIR$/log/trace.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wiki/web/src/components/the-header.vue" beforeDir="false" afterPath="$PROJECT_DIR$/wiki/web/src/components/the-header.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wiki/web/src/router/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/wiki/web/src/router/index.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -160,14 +160,7 @@
       <workItem from="1674112645644" duration="3000" />
       <workItem from="1674540907218" duration="30673000" />
       <workItem from="1674856877462" duration="9877000" />
-      <workItem from="1675063988691" duration="9564000" />
-    </task>
-    <task id="LOCAL-00008" summary="integrated axios">
-      <created>1673931682179</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1673931682179</updated>
+      <workItem from="1675063988691" duration="9666000" />
     </task>
     <task id="LOCAL-00009" summary="modify port address for frontend">
       <created>1673933435410</created>
@@ -505,7 +498,14 @@
       <option name="project" value="LOCAL" />
       <updated>1675140232149</updated>
     </task>
-    <option name="localTasksCounter" value="57" />
+    <task id="LOCAL-00057" summary="9-12 hide the menu if not login">
+      <created>1675140425531</created>
+      <option name="number" value="00057" />
+      <option name="presentableId" value="LOCAL-00057" />
+      <option name="project" value="LOCAL" />
+      <updated>1675140425531</updated>
+    </task>
+    <option name="localTasksCounter" value="58" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -524,7 +524,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="7-3 add category page" />
     <MESSAGE value="7-4 no pagination in category management page" />
     <MESSAGE value="7-4 tree structure for category" />
     <MESSAGE value="7-4 drop-down list for parent node" />
@@ -549,7 +548,8 @@
     <MESSAGE value="9-9 use vuex to integrate sessionStorage" />
     <MESSAGE value="9-9 front-end - log out func" />
     <MESSAGE value="9-9 front-end - add login interception" />
-    <option name="LAST_COMMIT_MESSAGE" value="9-9 front-end - add login interception" />
+    <MESSAGE value="9-12 hide the menu if not login" />
+    <option name="LAST_COMMIT_MESSAGE" value="9-12 hide the menu if not login" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
