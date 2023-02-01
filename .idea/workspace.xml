@@ -4,10 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="da40c7e0-5646-4fec-96d9-4c54c107b589" name="Changes" comment="10-11 add rocketMQ setting at pom.xml">
-      <change afterPath="$PROJECT_DIR$/wiki/web/src/components/the-welcome.vue" afterDir="false" />
+    <list default="true" id="da40c7e0-5646-4fec-96d9-4c54c107b589" name="Changes" comment="11-6 add value count component to show statistics about documents">
+      <change afterPath="$PROJECT_DIR$/wiki/web/public/js/echarts_5.0.2.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/log/error.log" beforeDir="false" afterPath="$PROJECT_DIR$/log/error.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/log/trace.log" beforeDir="false" afterPath="$PROJECT_DIR$/log/trace.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wiki/web/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/wiki/web/public/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wiki/web/src/components/the-welcome.vue" beforeDir="false" afterPath="$PROJECT_DIR$/wiki/web/src/components/the-welcome.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -160,14 +163,7 @@
       <workItem from="1674540907218" duration="30673000" />
       <workItem from="1674856877462" duration="9877000" />
       <workItem from="1675063988691" duration="10019000" />
-      <workItem from="1675216800319" duration="4060000" />
-    </task>
-    <task id="LOCAL-00016" summary="5-5 add --port in package.json to modify port">
-      <created>1674705211142</created>
-      <option name="number" value="00016" />
-      <option name="presentableId" value="LOCAL-00016" />
-      <option name="project" value="LOCAL" />
-      <updated>1674705211142</updated>
+      <workItem from="1675216800319" duration="5460000" />
     </task>
     <task id="LOCAL-00017" summary="5-5 Axios HttpServletRequest request -&gt;read configuration from file">
       <created>1674705930776</created>
@@ -505,7 +501,14 @@
       <option name="project" value="LOCAL" />
       <updated>1675222217206</updated>
     </task>
-    <option name="localTasksCounter" value="65" />
+    <task id="LOCAL-00065" summary="11-6 add value count component to show statistics about documents">
+      <created>1675222494485</created>
+      <option name="number" value="00065" />
+      <option name="presentableId" value="LOCAL-00065" />
+      <option name="project" value="LOCAL" />
+      <updated>1675222494485</updated>
+    </task>
+    <option name="localTasksCounter" value="66" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -524,7 +527,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="7-7 display category in homepage" />
     <MESSAGE value="7-7 render ebooks after render category" />
     <MESSAGE value="7-8" />
     <MESSAGE value="8-3" />
@@ -549,7 +551,8 @@
     <MESSAGE value="10-8 integrate websocket" />
     <MESSAGE value="10-8 implement like func includes web socket related func" />
     <MESSAGE value="10-11 add rocketMQ setting at pom.xml" />
-    <option name="LAST_COMMIT_MESSAGE" value="10-11 add rocketMQ setting at pom.xml" />
+    <MESSAGE value="11-6 add value count component to show statistics about documents" />
+    <option name="LAST_COMMIT_MESSAGE" value="11-6 add value count component to show statistics about documents" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
