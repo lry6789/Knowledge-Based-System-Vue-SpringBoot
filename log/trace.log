@@ -5593,3 +5593,888 @@ Caused by: java.sql.SQLIntegrityConstraintViolationException: Column 'view_count
 2023-01-31 21:13:34.053 TRACE c.e.wiki.mapper.CategoryMapper.selectByExample    :143  [32m275825878565523456[0;39m <==        Row: 400, 0, 数据库, 400
 2023-01-31 21:13:34.054 TRACE c.e.wiki.mapper.CategoryMapper.selectByExample    :143  [32m275825878565523456[0;39m <==        Row: 401, 400, MySQL, 401
 2023-01-31 21:13:34.054 TRACE c.e.wiki.mapper.CategoryMapper.selectByExample    :143  [32m275825878565523456[0;39m <==        Row: 500, 0, 其它, 500
+2023-01-31 21:13:34.054 TRACE c.e.wiki.mapper.CategoryMapper.selectByExample    :143  [32m275825878565523456[0;39m <==        Row: 501, 500, 服务器, 501
+2023-01-31 21:13:34.055 TRACE c.e.wiki.mapper.CategoryMapper.selectByExample    :143  [32m275825878565523456[0;39m <==        Row: 502, 500, 开发工具, 502
+2023-01-31 21:13:34.055 TRACE c.e.wiki.mapper.CategoryMapper.selectByExample    :143  [32m275825878565523456[0;39m <==        Row: 503, 500, 热门服务端语言, 503
+2023-01-31 21:13:34.056 DEBUG c.e.wiki.mapper.CategoryMapper.selectByExample    :137  [32m275825878565523456[0;39m <==      Total: 15
+2023-01-31 21:13:34.057 INFO  com.example.wiki.aspect.LogAspect                 :87   [32m275825878565523456[0;39m 返回结果: {"content":[{"id":100,"name":"前端开发","parent":0,"sort":100},{"id":101,"name":"Vue","parent":100,"sort":101},{"id":102,"name":"HTML & CSS","parent":100,"sort":102},{"id":200,"name":"Java","parent":0,"sort":200},{"id":201,"name":"基础应用","parent":200,"sort":201},{"id":202,"name":"框架应用","parent":200,"sort":202},{"id":300,"name":"Python","parent":0,"sort":300},{"id":301,"name":"基础应用","parent":300,"sort":301},{"id":302,"name":"进阶方向应用","parent":300,"sort":302},{"id":400,"name":"数据库","parent":0,"sort":400},{"id":401,"name":"MySQL","parent":400,"sort":401},{"id":500,"name":"其它","parent":0,"sort":500},{"id":501,"name":"服务器","parent":500,"sort":501},{"id":502,"name":"开发工具","parent":500,"sort":502},{"id":503,"name":"热门服务端语言","parent":500,"sort":503}],"success":true}
+2023-01-31 21:13:34.058 INFO  com.example.wiki.aspect.LogAspect                 :88   [32m275825878565523456[0;39m ------------- 结束 耗时：11 ms -------------
+2023-01-31 21:13:35.012 INFO  com.example.wiki.job.DocJob                       :32   [32m275825882613026816[0;39m 更新电子书下的文档数据开始
+2023-01-31 21:13:35.013 DEBUG c.e.wiki.mapper.DocMapperCust.updateEbookInfo     :137  [32m275825882613026816[0;39m ==>  Preparing: update ebook t1, (select ebook_id, count(1) doc_count, sum(view_count) view_count, sum(vote_count) vote_count from doc group by ebook_id) t2 set t1.doc_count = t2.doc_count, t1.view_count = t2.view_count, t1.vote_count = t2.vote_count where t1.id = t2.ebook_id
+2023-01-31 21:13:35.013 DEBUG c.e.wiki.mapper.DocMapperCust.updateEbookInfo     :137  [32m275825882613026816[0;39m ==> Parameters: 
+2023-01-31 21:13:35.014 DEBUG c.e.wiki.mapper.DocMapperCust.updateEbookInfo     :137  [32m275825882613026816[0;39m <==    Updates: 1
+2023-01-31 21:13:35.015 INFO  com.example.wiki.job.DocJob                       :35   [32m275825882613026816[0;39m 更新电子书下的文档数据结束，耗时：3毫秒
+2023-01-31 21:13:38.531 INFO  com.example.wiki.aspect.LogAspect                 :50   [32m275825897372782592[0;39m ------------- 开始 -------------
+2023-01-31 21:13:38.531 INFO  com.example.wiki.aspect.LogAspect                 :51   [32m275825897372782592[0;39m 请求地址: http://127.0.0.1:8080/ebook/list GET
+2023-01-31 21:13:38.531 INFO  com.example.wiki.aspect.LogAspect                 :52   [32m275825897372782592[0;39m 类名方法: com.example.wiki.controller.EbookController.list
+2023-01-31 21:13:38.531 INFO  com.example.wiki.aspect.LogAspect                 :53   [32m275825897372782592[0;39m 远程地址: 127.0.0.1
+2023-01-31 21:13:38.534 INFO  com.example.wiki.aspect.LogAspect                 :75   [32m275825897372782592[0;39m 请求参数: [{"categoryId2":101,"page":1,"size":1000}]
+2023-01-31 21:13:38.662 DEBUG c.e.wiki.mapper.EbookMapper.selectByExample_COUNT :137  [32m275825897372782592[0;39m ==>  Preparing: SELECT count(0) FROM ebook WHERE (category2_id = ?)
+2023-01-31 21:13:38.662 DEBUG c.e.wiki.mapper.EbookMapper.selectByExample_COUNT :137  [32m275825897372782592[0;39m ==> Parameters: 101(Long)
+2023-01-31 21:13:38.663 TRACE c.e.wiki.mapper.EbookMapper.selectByExample_COUNT :143  [32m275825897372782592[0;39m <==    Columns: count(0)
+2023-01-31 21:13:38.663 TRACE c.e.wiki.mapper.EbookMapper.selectByExample_COUNT :143  [32m275825897372782592[0;39m <==        Row: 0
+2023-01-31 21:13:38.664 DEBUG c.e.wiki.mapper.EbookMapper.selectByExample_COUNT :137  [32m275825897372782592[0;39m <==      Total: 1
+2023-01-31 21:13:38.664 INFO  com.example.wiki.service.EbookService             :51   [32m275825897372782592[0;39m 总行数 0
+2023-01-31 21:13:38.664 INFO  com.example.wiki.service.EbookService             :52   [32m275825897372782592[0;39m 总页数 0
+2023-01-31 21:13:38.674 INFO  com.example.wiki.aspect.LogAspect                 :87   [32m275825897372782592[0;39m 返回结果: {"content":{"list":[],"total":0},"success":true}
+2023-01-31 21:13:38.675 INFO  com.example.wiki.aspect.LogAspect                 :88   [32m275825897372782592[0;39m ------------- 结束 耗时：144 ms -------------
+2023-01-31 21:13:39.084 INFO  com.example.wiki.aspect.LogAspect                 :50   [32m275825899692232704[0;39m ------------- 开始 -------------
+2023-01-31 21:13:39.084 INFO  com.example.wiki.aspect.LogAspect                 :51   [32m275825899692232704[0;39m 请求地址: http://127.0.0.1:8080/ebook/list GET
+2023-01-31 21:13:39.084 INFO  com.example.wiki.aspect.LogAspect                 :52   [32m275825899692232704[0;39m 类名方法: com.example.wiki.controller.EbookController.list
+2023-01-31 21:13:39.084 INFO  com.example.wiki.aspect.LogAspect                 :53   [32m275825899692232704[0;39m 远程地址: 127.0.0.1
+2023-01-31 21:13:39.085 INFO  com.example.wiki.aspect.LogAspect                 :75   [32m275825899692232704[0;39m 请求参数: [{"categoryId2":102,"page":1,"size":1000}]
+2023-01-31 21:13:39.087 DEBUG c.e.wiki.mapper.EbookMapper.selectByExample_COUNT :137  [32m275825899692232704[0;39m ==>  Preparing: SELECT count(0) FROM ebook WHERE (category2_id = ?)
+2023-01-31 21:13:39.087 DEBUG c.e.wiki.mapper.EbookMapper.selectByExample_COUNT :137  [32m275825899692232704[0;39m ==> Parameters: 102(Long)
+2023-01-31 21:13:39.088 TRACE c.e.wiki.mapper.EbookMapper.selectByExample_COUNT :143  [32m275825899692232704[0;39m <==    Columns: count(0)
+2023-01-31 21:13:39.089 TRACE c.e.wiki.mapper.EbookMapper.selectByExample_COUNT :143  [32m275825899692232704[0;39m <==        Row: 0
+2023-01-31 21:13:39.089 DEBUG c.e.wiki.mapper.EbookMapper.selectByExample_COUNT :137  [32m275825899692232704[0;39m <==      Total: 1
+2023-01-31 21:13:39.090 INFO  com.example.wiki.service.EbookService             :51   [32m275825899692232704[0;39m 总行数 0
+2023-01-31 21:13:39.090 INFO  com.example.wiki.service.EbookService             :52   [32m275825899692232704[0;39m 总页数 0
+2023-01-31 21:13:39.090 INFO  com.example.wiki.aspect.LogAspect                 :87   [32m275825899692232704[0;39m 返回结果: {"content":{"list":[],"total":0},"success":true}
+2023-01-31 21:13:39.090 INFO  com.example.wiki.aspect.LogAspect                 :88   [32m275825899692232704[0;39m ------------- 结束 耗时：6 ms -------------
+2023-01-31 21:14:00.007 INFO  com.example.wiki.job.EbookSnapshotJob             :32   [32m275825987449655296[0;39m 生成今日电子书快照开始
+2023-01-31 21:14:00.009 DEBUG c.e.w.mapper.EbookSnapshotMapperCust.genSnapshot  :137  [32m275825987449655296[0;39m ==>  Preparing: insert into ebook_snapshot(ebook_id, `date`, view_count, vote_count, view_increase, vote_increase) select t1.id, curdate(), 0, 0, 0, 0 from ebook t1 where not exists(select 1 from ebook_snapshot t2 where t1.id = t2.ebook_id and t2.`date` = curdate()); update ebook_snapshot t1, ebook t2 set t1.view_count = t2.view_count, t1.vote_count = t2.vote_count where t1.`date` = curdate() and t1.ebook_id = t2.id; update ebook_snapshot t1 left join (select ebook_id, view_count, vote_count from ebook_snapshot where `date` = date_sub(curdate(), interval 1 day)) t2 on t1.ebook_id = t2.ebook_id set t1.view_increase = (t1.view_count - ifnull(t2.view_count, 0)), t1.vote_increase = (t1.vote_count - ifnull(t2.vote_count, 0)) where t1.`date` = curdate();
+2023-01-31 21:14:00.011 DEBUG c.e.w.mapper.EbookSnapshotMapperCust.genSnapshot  :137  [32m275825987449655296[0;39m ==> Parameters: 
+2023-01-31 21:14:00.015 ERROR o.s.s.support.TaskUtils$LoggingErrorHandler       :95   [32m275825987449655296[0;39m Unexpected error occurred in scheduled task
+org.springframework.dao.DataIntegrityViolationException: 
+### Error updating database.  Cause: java.sql.SQLIntegrityConstraintViolationException: Column 'view_count' cannot be null
+### The error may exist in file [C:\Users\amper\project\Wiki\Knowledge-Based-System\wiki\target\classes\mapper\EbookSnapshotMapperCust.xml]
+### The error may involve defaultParameterMap
+### The error occurred while setting parameters
+### SQL: insert into ebook_snapshot(ebook_id, `date`, view_count, vote_count, view_increase, vote_increase)         select t1.id, curdate(), 0, 0, 0, 0         from ebook t1         where not exists(select 1                          from ebook_snapshot t2                          where t1.id = t2.ebook_id                            and t2.`date` = curdate());          update ebook_snapshot t1, ebook t2         set t1.view_count = t2.view_count,             t1.vote_count = t2.vote_count         where t1.`date` = curdate()           and t1.ebook_id = t2.id;          update ebook_snapshot t1 left join (select ebook_id, view_count, vote_count             from ebook_snapshot             where `date` = date_sub(curdate(), interval 1 day)) t2         on t1.ebook_id = t2.ebook_id             set t1.view_increase = (t1.view_count - ifnull(t2.view_count, 0)),                 t1.vote_increase = (t1.vote_count - ifnull(t2.vote_count, 0))         where t1.`date` = curdate();
+### Cause: java.sql.SQLIntegrityConstraintViolationException: Column 'view_count' cannot be null
+; Column 'view_count' cannot be null; nested exception is java.sql.SQLIntegrityConstraintViolationException: Column 'view_count' cannot be null
+	at org.springframework.jdbc.support.SQLExceptionSubclassTranslator.doTranslate(SQLExceptionSubclassTranslator.java:87)
+	at org.springframework.jdbc.support.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:70)
+	at org.springframework.jdbc.support.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:79)
+	at org.mybatis.spring.MyBatisExceptionTranslator.translateExceptionIfPossible(MyBatisExceptionTranslator.java:88)
+	at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:440)
+	at com.sun.proxy.$Proxy91.update(Unknown Source)
+	at org.mybatis.spring.SqlSessionTemplate.update(SqlSessionTemplate.java:287)
+	at org.apache.ibatis.binding.MapperMethod.execute(MapperMethod.java:67)
+	at org.apache.ibatis.binding.MapperProxy$PlainMethodInvoker.invoke(MapperProxy.java:152)
+	at org.apache.ibatis.binding.MapperProxy.invoke(MapperProxy.java:85)
+	at com.sun.proxy.$Proxy105.genSnapshot(Unknown Source)
+	at com.example.wiki.service.EbookSnapshotService.genSnapshot(EbookSnapshotService.java:16)
+	at com.example.wiki.job.EbookSnapshotJob.doSnapshot(EbookSnapshotJob.java:34)
+	at sun.reflect.GeneratedMethodAccessor78.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.springframework.scheduling.support.ScheduledMethodRunnable.run(ScheduledMethodRunnable.java:84)
+	at org.springframework.scheduling.support.DelegatingErrorHandlingRunnable.run(DelegatingErrorHandlingRunnable.java:54)
+	at org.springframework.scheduling.concurrent.ReschedulingRunnable.run(ReschedulingRunnable.java:95)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:750)
+Caused by: java.sql.SQLIntegrityConstraintViolationException: Column 'view_count' cannot be null
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:117)
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:97)
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:122)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeInternal(ClientPreparedStatement.java:953)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.execute(ClientPreparedStatement.java:370)
+	at com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+	at com.zaxxer.hikari.pool.HikariProxyPreparedStatement.execute(HikariProxyPreparedStatement.java)
+	at sun.reflect.GeneratedMethodAccessor71.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.apache.ibatis.logging.jdbc.PreparedStatementLogger.invoke(PreparedStatementLogger.java:59)
+	at com.sun.proxy.$Proxy130.execute(Unknown Source)
+	at org.apache.ibatis.executor.statement.PreparedStatementHandler.update(PreparedStatementHandler.java:47)
+	at org.apache.ibatis.executor.statement.RoutingStatementHandler.update(RoutingStatementHandler.java:74)
+	at org.apache.ibatis.executor.SimpleExecutor.doUpdate(SimpleExecutor.java:50)
+	at org.apache.ibatis.executor.BaseExecutor.update(BaseExecutor.java:117)
+	at org.apache.ibatis.executor.CachingExecutor.update(CachingExecutor.java:76)
+	at sun.reflect.GeneratedMethodAccessor69.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.apache.ibatis.plugin.Plugin.invoke(Plugin.java:63)
+	at com.sun.proxy.$Proxy128.update(Unknown Source)
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.update(DefaultSqlSession.java:197)
+	at sun.reflect.GeneratedMethodAccessor68.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:426)
+	... 21 common frames omitted
+2023-01-31 21:14:05.012 INFO  com.example.wiki.job.DocJob                       :32   [32m275826008442146816[0;39m 更新电子书下的文档数据开始
+2023-01-31 21:14:05.013 DEBUG c.e.wiki.mapper.DocMapperCust.updateEbookInfo     :137  [32m275826008442146816[0;39m ==>  Preparing: update ebook t1, (select ebook_id, count(1) doc_count, sum(view_count) view_count, sum(vote_count) vote_count from doc group by ebook_id) t2 set t1.doc_count = t2.doc_count, t1.view_count = t2.view_count, t1.vote_count = t2.vote_count where t1.id = t2.ebook_id
+2023-01-31 21:14:05.014 DEBUG c.e.wiki.mapper.DocMapperCust.updateEbookInfo     :137  [32m275826008442146816[0;39m ==> Parameters: 
+2023-01-31 21:14:05.016 DEBUG c.e.wiki.mapper.DocMapperCust.updateEbookInfo     :137  [32m275826008442146816[0;39m <==    Updates: 1
+2023-01-31 21:14:05.016 INFO  com.example.wiki.job.DocJob                       :35   [32m275826008442146816[0;39m 更新电子书下的文档数据结束，耗时：4毫秒
+2023-01-31 21:14:35.014 INFO  com.example.wiki.job.DocJob                       :32   [32m275826134279655424[0;39m 更新电子书下的文档数据开始
+2023-01-31 21:14:35.015 DEBUG c.e.wiki.mapper.DocMapperCust.updateEbookInfo     :137  [32m275826134279655424[0;39m ==>  Preparing: update ebook t1, (select ebook_id, count(1) doc_count, sum(view_count) view_count, sum(vote_count) vote_count from doc group by ebook_id) t2 set t1.doc_count = t2.doc_count, t1.view_count = t2.view_count, t1.vote_count = t2.vote_count where t1.id = t2.ebook_id
+2023-01-31 21:14:35.016 DEBUG c.e.wiki.mapper.DocMapperCust.updateEbookInfo     :137  [32m275826134279655424[0;39m ==> Parameters: 
+2023-01-31 21:14:35.019 DEBUG c.e.wiki.mapper.DocMapperCust.updateEbookInfo     :137  [32m275826134279655424[0;39m <==    Updates: 1
+2023-01-31 21:14:35.019 INFO  com.example.wiki.job.DocJob                       :35   [32m275826134279655424[0;39m 更新电子书下的文档数据结束，耗时：5毫秒
+2023-01-31 21:15:00.002 INFO  com.example.wiki.job.EbookSnapshotJob             :32   [32m275826239086923776[0;39m 生成今日电子书快照开始
+2023-01-31 21:15:00.005 DEBUG c.e.w.mapper.EbookSnapshotMapperCust.genSnapshot  :137  [32m275826239086923776[0;39m ==>  Preparing: insert into ebook_snapshot(ebook_id, `date`, view_count, vote_count, view_increase, vote_increase) select t1.id, curdate(), 0, 0, 0, 0 from ebook t1 where not exists(select 1 from ebook_snapshot t2 where t1.id = t2.ebook_id and t2.`date` = curdate()); update ebook_snapshot t1, ebook t2 set t1.view_count = t2.view_count, t1.vote_count = t2.vote_count where t1.`date` = curdate() and t1.ebook_id = t2.id; update ebook_snapshot t1 left join (select ebook_id, view_count, vote_count from ebook_snapshot where `date` = date_sub(curdate(), interval 1 day)) t2 on t1.ebook_id = t2.ebook_id set t1.view_increase = (t1.view_count - ifnull(t2.view_count, 0)), t1.vote_increase = (t1.vote_count - ifnull(t2.vote_count, 0)) where t1.`date` = curdate();
+2023-01-31 21:15:00.009 DEBUG c.e.w.mapper.EbookSnapshotMapperCust.genSnapshot  :137  [32m275826239086923776[0;39m ==> Parameters: 
+2023-01-31 21:15:00.013 ERROR o.s.s.support.TaskUtils$LoggingErrorHandler       :95   [32m275826239086923776[0;39m Unexpected error occurred in scheduled task
+org.springframework.dao.DataIntegrityViolationException: 
+### Error updating database.  Cause: java.sql.SQLIntegrityConstraintViolationException: Column 'view_count' cannot be null
+### The error may exist in file [C:\Users\amper\project\Wiki\Knowledge-Based-System\wiki\target\classes\mapper\EbookSnapshotMapperCust.xml]
+### The error may involve defaultParameterMap
+### The error occurred while setting parameters
+### SQL: insert into ebook_snapshot(ebook_id, `date`, view_count, vote_count, view_increase, vote_increase)         select t1.id, curdate(), 0, 0, 0, 0         from ebook t1         where not exists(select 1                          from ebook_snapshot t2                          where t1.id = t2.ebook_id                            and t2.`date` = curdate());          update ebook_snapshot t1, ebook t2         set t1.view_count = t2.view_count,             t1.vote_count = t2.vote_count         where t1.`date` = curdate()           and t1.ebook_id = t2.id;          update ebook_snapshot t1 left join (select ebook_id, view_count, vote_count             from ebook_snapshot             where `date` = date_sub(curdate(), interval 1 day)) t2         on t1.ebook_id = t2.ebook_id             set t1.view_increase = (t1.view_count - ifnull(t2.view_count, 0)),                 t1.vote_increase = (t1.vote_count - ifnull(t2.vote_count, 0))         where t1.`date` = curdate();
+### Cause: java.sql.SQLIntegrityConstraintViolationException: Column 'view_count' cannot be null
+; Column 'view_count' cannot be null; nested exception is java.sql.SQLIntegrityConstraintViolationException: Column 'view_count' cannot be null
+	at org.springframework.jdbc.support.SQLExceptionSubclassTranslator.doTranslate(SQLExceptionSubclassTranslator.java:87)
+	at org.springframework.jdbc.support.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:70)
+	at org.springframework.jdbc.support.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:79)
+	at org.mybatis.spring.MyBatisExceptionTranslator.translateExceptionIfPossible(MyBatisExceptionTranslator.java:88)
+	at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:440)
+	at com.sun.proxy.$Proxy91.update(Unknown Source)
+	at org.mybatis.spring.SqlSessionTemplate.update(SqlSessionTemplate.java:287)
+	at org.apache.ibatis.binding.MapperMethod.execute(MapperMethod.java:67)
+	at org.apache.ibatis.binding.MapperProxy$PlainMethodInvoker.invoke(MapperProxy.java:152)
+	at org.apache.ibatis.binding.MapperProxy.invoke(MapperProxy.java:85)
+	at com.sun.proxy.$Proxy105.genSnapshot(Unknown Source)
+	at com.example.wiki.service.EbookSnapshotService.genSnapshot(EbookSnapshotService.java:16)
+	at com.example.wiki.job.EbookSnapshotJob.doSnapshot(EbookSnapshotJob.java:34)
+	at sun.reflect.GeneratedMethodAccessor78.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.springframework.scheduling.support.ScheduledMethodRunnable.run(ScheduledMethodRunnable.java:84)
+	at org.springframework.scheduling.support.DelegatingErrorHandlingRunnable.run(DelegatingErrorHandlingRunnable.java:54)
+	at org.springframework.scheduling.concurrent.ReschedulingRunnable.run(ReschedulingRunnable.java:95)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:750)
+Caused by: java.sql.SQLIntegrityConstraintViolationException: Column 'view_count' cannot be null
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:117)
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:97)
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:122)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeInternal(ClientPreparedStatement.java:953)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.execute(ClientPreparedStatement.java:370)
+	at com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+	at com.zaxxer.hikari.pool.HikariProxyPreparedStatement.execute(HikariProxyPreparedStatement.java)
+	at sun.reflect.GeneratedMethodAccessor71.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.apache.ibatis.logging.jdbc.PreparedStatementLogger.invoke(PreparedStatementLogger.java:59)
+	at com.sun.proxy.$Proxy130.execute(Unknown Source)
+	at org.apache.ibatis.executor.statement.PreparedStatementHandler.update(PreparedStatementHandler.java:47)
+	at org.apache.ibatis.executor.statement.RoutingStatementHandler.update(RoutingStatementHandler.java:74)
+	at org.apache.ibatis.executor.SimpleExecutor.doUpdate(SimpleExecutor.java:50)
+	at org.apache.ibatis.executor.BaseExecutor.update(BaseExecutor.java:117)
+	at org.apache.ibatis.executor.CachingExecutor.update(CachingExecutor.java:76)
+	at sun.reflect.GeneratedMethodAccessor69.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.apache.ibatis.plugin.Plugin.invoke(Plugin.java:63)
+	at com.sun.proxy.$Proxy128.update(Unknown Source)
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.update(DefaultSqlSession.java:197)
+	at sun.reflect.GeneratedMethodAccessor68.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:426)
+	... 21 common frames omitted
+2023-01-31 21:15:05.012 INFO  com.example.wiki.job.DocJob                       :32   [32m275826260100386816[0;39m 更新电子书下的文档数据开始
+2023-01-31 21:15:05.013 DEBUG c.e.wiki.mapper.DocMapperCust.updateEbookInfo     :137  [32m275826260100386816[0;39m ==>  Preparing: update ebook t1, (select ebook_id, count(1) doc_count, sum(view_count) view_count, sum(vote_count) vote_count from doc group by ebook_id) t2 set t1.doc_count = t2.doc_count, t1.view_count = t2.view_count, t1.vote_count = t2.vote_count where t1.id = t2.ebook_id
+2023-01-31 21:15:05.014 DEBUG c.e.wiki.mapper.DocMapperCust.updateEbookInfo     :137  [32m275826260100386816[0;39m ==> Parameters: 
+2023-01-31 21:15:05.017 DEBUG c.e.wiki.mapper.DocMapperCust.updateEbookInfo     :137  [32m275826260100386816[0;39m <==    Updates: 1
+2023-01-31 21:15:05.017 INFO  com.example.wiki.job.DocJob                       :35   [32m275826260100386816[0;39m 更新电子书下的文档数据结束，耗时：5毫秒
+2023-01-31 21:15:35.000 INFO  com.example.wiki.job.DocJob                       :32   [32m275826385879175168[0;39m 更新电子书下的文档数据开始
+2023-01-31 21:15:35.002 DEBUG c.e.wiki.mapper.DocMapperCust.updateEbookInfo     :137  [32m275826385879175168[0;39m ==>  Preparing: update ebook t1, (select ebook_id, count(1) doc_count, sum(view_count) view_count, sum(vote_count) vote_count from doc group by ebook_id) t2 set t1.doc_count = t2.doc_count, t1.view_count = t2.view_count, t1.vote_count = t2.vote_count where t1.id = t2.ebook_id
+2023-01-31 21:15:35.003 DEBUG c.e.wiki.mapper.DocMapperCust.updateEbookInfo     :137  [32m275826385879175168[0;39m ==> Parameters: 
+2023-01-31 21:15:35.006 DEBUG c.e.wiki.mapper.DocMapperCust.updateEbookInfo     :137  [32m275826385879175168[0;39m <==    Updates: 1
+2023-01-31 21:15:35.006 INFO  com.example.wiki.job.DocJob                       :35   [32m275826385879175168[0;39m 更新电子书下的文档数据结束，耗时：6毫秒
+2023-01-31 21:16:00.011 INFO  com.example.wiki.job.EbookSnapshotJob             :32   [32m275826490782912512[0;39m 生成今日电子书快照开始
+2023-01-31 21:16:00.012 DEBUG c.e.w.mapper.EbookSnapshotMapperCust.genSnapshot  :137  [32m275826490782912512[0;39m ==>  Preparing: insert into ebook_snapshot(ebook_id, `date`, view_count, vote_count, view_increase, vote_increase) select t1.id, curdate(), 0, 0, 0, 0 from ebook t1 where not exists(select 1 from ebook_snapshot t2 where t1.id = t2.ebook_id and t2.`date` = curdate()); update ebook_snapshot t1, ebook t2 set t1.view_count = t2.view_count, t1.vote_count = t2.vote_count where t1.`date` = curdate() and t1.ebook_id = t2.id; update ebook_snapshot t1 left join (select ebook_id, view_count, vote_count from ebook_snapshot where `date` = date_sub(curdate(), interval 1 day)) t2 on t1.ebook_id = t2.ebook_id set t1.view_increase = (t1.view_count - ifnull(t2.view_count, 0)), t1.vote_increase = (t1.vote_count - ifnull(t2.vote_count, 0)) where t1.`date` = curdate();
+2023-01-31 21:16:00.013 DEBUG c.e.w.mapper.EbookSnapshotMapperCust.genSnapshot  :137  [32m275826490782912512[0;39m ==> Parameters: 
+2023-01-31 21:16:00.015 ERROR o.s.s.support.TaskUtils$LoggingErrorHandler       :95   [32m275826490782912512[0;39m Unexpected error occurred in scheduled task
+org.springframework.dao.DataIntegrityViolationException: 
+### Error updating database.  Cause: java.sql.SQLIntegrityConstraintViolationException: Column 'view_count' cannot be null
+### The error may exist in file [C:\Users\amper\project\Wiki\Knowledge-Based-System\wiki\target\classes\mapper\EbookSnapshotMapperCust.xml]
+### The error may involve defaultParameterMap
+### The error occurred while setting parameters
+### SQL: insert into ebook_snapshot(ebook_id, `date`, view_count, vote_count, view_increase, vote_increase)         select t1.id, curdate(), 0, 0, 0, 0         from ebook t1         where not exists(select 1                          from ebook_snapshot t2                          where t1.id = t2.ebook_id                            and t2.`date` = curdate());          update ebook_snapshot t1, ebook t2         set t1.view_count = t2.view_count,             t1.vote_count = t2.vote_count         where t1.`date` = curdate()           and t1.ebook_id = t2.id;          update ebook_snapshot t1 left join (select ebook_id, view_count, vote_count             from ebook_snapshot             where `date` = date_sub(curdate(), interval 1 day)) t2         on t1.ebook_id = t2.ebook_id             set t1.view_increase = (t1.view_count - ifnull(t2.view_count, 0)),                 t1.vote_increase = (t1.vote_count - ifnull(t2.vote_count, 0))         where t1.`date` = curdate();
+### Cause: java.sql.SQLIntegrityConstraintViolationException: Column 'view_count' cannot be null
+; Column 'view_count' cannot be null; nested exception is java.sql.SQLIntegrityConstraintViolationException: Column 'view_count' cannot be null
+	at org.springframework.jdbc.support.SQLExceptionSubclassTranslator.doTranslate(SQLExceptionSubclassTranslator.java:87)
+	at org.springframework.jdbc.support.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:70)
+	at org.springframework.jdbc.support.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:79)
+	at org.mybatis.spring.MyBatisExceptionTranslator.translateExceptionIfPossible(MyBatisExceptionTranslator.java:88)
+	at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:440)
+	at com.sun.proxy.$Proxy91.update(Unknown Source)
+	at org.mybatis.spring.SqlSessionTemplate.update(SqlSessionTemplate.java:287)
+	at org.apache.ibatis.binding.MapperMethod.execute(MapperMethod.java:67)
+	at org.apache.ibatis.binding.MapperProxy$PlainMethodInvoker.invoke(MapperProxy.java:152)
+	at org.apache.ibatis.binding.MapperProxy.invoke(MapperProxy.java:85)
+	at com.sun.proxy.$Proxy105.genSnapshot(Unknown Source)
+	at com.example.wiki.service.EbookSnapshotService.genSnapshot(EbookSnapshotService.java:16)
+	at com.example.wiki.job.EbookSnapshotJob.doSnapshot(EbookSnapshotJob.java:34)
+	at sun.reflect.GeneratedMethodAccessor78.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.springframework.scheduling.support.ScheduledMethodRunnable.run(ScheduledMethodRunnable.java:84)
+	at org.springframework.scheduling.support.DelegatingErrorHandlingRunnable.run(DelegatingErrorHandlingRunnable.java:54)
+	at org.springframework.scheduling.concurrent.ReschedulingRunnable.run(ReschedulingRunnable.java:95)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:750)
+Caused by: java.sql.SQLIntegrityConstraintViolationException: Column 'view_count' cannot be null
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:117)
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:97)
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:122)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeInternal(ClientPreparedStatement.java:953)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.execute(ClientPreparedStatement.java:370)
+	at com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+	at com.zaxxer.hikari.pool.HikariProxyPreparedStatement.execute(HikariProxyPreparedStatement.java)
+	at sun.reflect.GeneratedMethodAccessor71.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.apache.ibatis.logging.jdbc.PreparedStatementLogger.invoke(PreparedStatementLogger.java:59)
+	at com.sun.proxy.$Proxy130.execute(Unknown Source)
+	at org.apache.ibatis.executor.statement.PreparedStatementHandler.update(PreparedStatementHandler.java:47)
+	at org.apache.ibatis.executor.statement.RoutingStatementHandler.update(RoutingStatementHandler.java:74)
+	at org.apache.ibatis.executor.SimpleExecutor.doUpdate(SimpleExecutor.java:50)
+	at org.apache.ibatis.executor.BaseExecutor.update(BaseExecutor.java:117)
+	at org.apache.ibatis.executor.CachingExecutor.update(CachingExecutor.java:76)
+	at sun.reflect.GeneratedMethodAccessor69.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.apache.ibatis.plugin.Plugin.invoke(Plugin.java:63)
+	at com.sun.proxy.$Proxy128.update(Unknown Source)
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.update(DefaultSqlSession.java:197)
+	at sun.reflect.GeneratedMethodAccessor68.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:426)
+	... 21 common frames omitted
+2023-01-31 21:16:05.000 INFO  com.example.wiki.job.DocJob                       :32   [32m275826511708295168[0;39m 更新电子书下的文档数据开始
+2023-01-31 21:16:05.002 DEBUG c.e.wiki.mapper.DocMapperCust.updateEbookInfo     :137  [32m275826511708295168[0;39m ==>  Preparing: update ebook t1, (select ebook_id, count(1) doc_count, sum(view_count) view_count, sum(vote_count) vote_count from doc group by ebook_id) t2 set t1.doc_count = t2.doc_count, t1.view_count = t2.view_count, t1.vote_count = t2.vote_count where t1.id = t2.ebook_id
+2023-01-31 21:16:05.002 DEBUG c.e.wiki.mapper.DocMapperCust.updateEbookInfo     :137  [32m275826511708295168[0;39m ==> Parameters: 
+2023-01-31 21:16:05.004 DEBUG c.e.wiki.mapper.DocMapperCust.updateEbookInfo     :137  [32m275826511708295168[0;39m <==    Updates: 1
+2023-01-31 21:16:05.005 INFO  com.example.wiki.job.DocJob                       :35   [32m275826511708295168[0;39m 更新电子书下的文档数据结束，耗时：4毫秒
+2023-01-31 21:16:35.004 INFO  com.example.wiki.job.DocJob                       :32   [32m275826637554192384[0;39m 更新电子书下的文档数据开始
+2023-01-31 21:16:35.005 DEBUG c.e.wiki.mapper.DocMapperCust.updateEbookInfo     :137  [32m275826637554192384[0;39m ==>  Preparing: update ebook t1, (select ebook_id, count(1) doc_count, sum(view_count) view_count, sum(vote_count) vote_count from doc group by ebook_id) t2 set t1.doc_count = t2.doc_count, t1.view_count = t2.view_count, t1.vote_count = t2.vote_count where t1.id = t2.ebook_id
+2023-01-31 21:16:35.006 DEBUG c.e.wiki.mapper.DocMapperCust.updateEbookInfo     :137  [32m275826637554192384[0;39m ==> Parameters: 
+2023-01-31 21:16:35.009 DEBUG c.e.wiki.mapper.DocMapperCust.updateEbookInfo     :137  [32m275826637554192384[0;39m <==    Updates: 1
+2023-01-31 21:16:35.009 INFO  com.example.wiki.job.DocJob                       :35   [32m275826637554192384[0;39m 更新电子书下的文档数据结束，耗时：5毫秒
+2023-01-31 21:17:00.014 INFO  com.example.wiki.job.EbookSnapshotJob             :32   [32m275826742453735424[0;39m 生成今日电子书快照开始
+2023-01-31 21:17:00.018 DEBUG c.e.w.mapper.EbookSnapshotMapperCust.genSnapshot  :137  [32m275826742453735424[0;39m ==>  Preparing: insert into ebook_snapshot(ebook_id, `date`, view_count, vote_count, view_increase, vote_increase) select t1.id, curdate(), 0, 0, 0, 0 from ebook t1 where not exists(select 1 from ebook_snapshot t2 where t1.id = t2.ebook_id and t2.`date` = curdate()); update ebook_snapshot t1, ebook t2 set t1.view_count = t2.view_count, t1.vote_count = t2.vote_count where t1.`date` = curdate() and t1.ebook_id = t2.id; update ebook_snapshot t1 left join (select ebook_id, view_count, vote_count from ebook_snapshot where `date` = date_sub(curdate(), interval 1 day)) t2 on t1.ebook_id = t2.ebook_id set t1.view_increase = (t1.view_count - ifnull(t2.view_count, 0)), t1.vote_increase = (t1.vote_count - ifnull(t2.vote_count, 0)) where t1.`date` = curdate();
+2023-01-31 21:17:00.019 DEBUG c.e.w.mapper.EbookSnapshotMapperCust.genSnapshot  :137  [32m275826742453735424[0;39m ==> Parameters: 
+2023-01-31 21:17:00.023 ERROR o.s.s.support.TaskUtils$LoggingErrorHandler       :95   [32m275826742453735424[0;39m Unexpected error occurred in scheduled task
+org.springframework.dao.DataIntegrityViolationException: 
+### Error updating database.  Cause: java.sql.SQLIntegrityConstraintViolationException: Column 'view_count' cannot be null
+### The error may exist in file [C:\Users\amper\project\Wiki\Knowledge-Based-System\wiki\target\classes\mapper\EbookSnapshotMapperCust.xml]
+### The error may involve defaultParameterMap
+### The error occurred while setting parameters
+### SQL: insert into ebook_snapshot(ebook_id, `date`, view_count, vote_count, view_increase, vote_increase)         select t1.id, curdate(), 0, 0, 0, 0         from ebook t1         where not exists(select 1                          from ebook_snapshot t2                          where t1.id = t2.ebook_id                            and t2.`date` = curdate());          update ebook_snapshot t1, ebook t2         set t1.view_count = t2.view_count,             t1.vote_count = t2.vote_count         where t1.`date` = curdate()           and t1.ebook_id = t2.id;          update ebook_snapshot t1 left join (select ebook_id, view_count, vote_count             from ebook_snapshot             where `date` = date_sub(curdate(), interval 1 day)) t2         on t1.ebook_id = t2.ebook_id             set t1.view_increase = (t1.view_count - ifnull(t2.view_count, 0)),                 t1.vote_increase = (t1.vote_count - ifnull(t2.vote_count, 0))         where t1.`date` = curdate();
+### Cause: java.sql.SQLIntegrityConstraintViolationException: Column 'view_count' cannot be null
+; Column 'view_count' cannot be null; nested exception is java.sql.SQLIntegrityConstraintViolationException: Column 'view_count' cannot be null
+	at org.springframework.jdbc.support.SQLExceptionSubclassTranslator.doTranslate(SQLExceptionSubclassTranslator.java:87)
+	at org.springframework.jdbc.support.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:70)
+	at org.springframework.jdbc.support.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:79)
+	at org.mybatis.spring.MyBatisExceptionTranslator.translateExceptionIfPossible(MyBatisExceptionTranslator.java:88)
+	at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:440)
+	at com.sun.proxy.$Proxy91.update(Unknown Source)
+	at org.mybatis.spring.SqlSessionTemplate.update(SqlSessionTemplate.java:287)
+	at org.apache.ibatis.binding.MapperMethod.execute(MapperMethod.java:67)
+	at org.apache.ibatis.binding.MapperProxy$PlainMethodInvoker.invoke(MapperProxy.java:152)
+	at org.apache.ibatis.binding.MapperProxy.invoke(MapperProxy.java:85)
+	at com.sun.proxy.$Proxy105.genSnapshot(Unknown Source)
+	at com.example.wiki.service.EbookSnapshotService.genSnapshot(EbookSnapshotService.java:16)
+	at com.example.wiki.job.EbookSnapshotJob.doSnapshot(EbookSnapshotJob.java:34)
+	at sun.reflect.GeneratedMethodAccessor78.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.springframework.scheduling.support.ScheduledMethodRunnable.run(ScheduledMethodRunnable.java:84)
+	at org.springframework.scheduling.support.DelegatingErrorHandlingRunnable.run(DelegatingErrorHandlingRunnable.java:54)
+	at org.springframework.scheduling.concurrent.ReschedulingRunnable.run(ReschedulingRunnable.java:95)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:750)
+Caused by: java.sql.SQLIntegrityConstraintViolationException: Column 'view_count' cannot be null
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:117)
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:97)
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:122)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeInternal(ClientPreparedStatement.java:953)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.execute(ClientPreparedStatement.java:370)
+	at com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+	at com.zaxxer.hikari.pool.HikariProxyPreparedStatement.execute(HikariProxyPreparedStatement.java)
+	at sun.reflect.GeneratedMethodAccessor71.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.apache.ibatis.logging.jdbc.PreparedStatementLogger.invoke(PreparedStatementLogger.java:59)
+	at com.sun.proxy.$Proxy130.execute(Unknown Source)
+	at org.apache.ibatis.executor.statement.PreparedStatementHandler.update(PreparedStatementHandler.java:47)
+	at org.apache.ibatis.executor.statement.RoutingStatementHandler.update(RoutingStatementHandler.java:74)
+	at org.apache.ibatis.executor.SimpleExecutor.doUpdate(SimpleExecutor.java:50)
+	at org.apache.ibatis.executor.BaseExecutor.update(BaseExecutor.java:117)
+	at org.apache.ibatis.executor.CachingExecutor.update(CachingExecutor.java:76)
+	at sun.reflect.GeneratedMethodAccessor69.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.apache.ibatis.plugin.Plugin.invoke(Plugin.java:63)
+	at com.sun.proxy.$Proxy128.update(Unknown Source)
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.update(DefaultSqlSession.java:197)
+	at sun.reflect.GeneratedMethodAccessor68.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:426)
+	... 21 common frames omitted
+2023-01-31 21:17:05.015 INFO  com.example.wiki.job.DocJob                       :32   [32m275826763429449728[0;39m 更新电子书下的文档数据开始
+2023-01-31 21:17:05.017 DEBUG c.e.wiki.mapper.DocMapperCust.updateEbookInfo     :137  [32m275826763429449728[0;39m ==>  Preparing: update ebook t1, (select ebook_id, count(1) doc_count, sum(view_count) view_count, sum(vote_count) vote_count from doc group by ebook_id) t2 set t1.doc_count = t2.doc_count, t1.view_count = t2.view_count, t1.vote_count = t2.vote_count where t1.id = t2.ebook_id
+2023-01-31 21:17:05.017 DEBUG c.e.wiki.mapper.DocMapperCust.updateEbookInfo     :137  [32m275826763429449728[0;39m ==> Parameters: 
+2023-01-31 21:17:05.020 DEBUG c.e.wiki.mapper.DocMapperCust.updateEbookInfo     :137  [32m275826763429449728[0;39m <==    Updates: 1
+2023-01-31 21:17:05.020 INFO  com.example.wiki.job.DocJob                       :35   [32m275826763429449728[0;39m 更新电子书下的文档数据结束，耗时：5毫秒
+2023-01-31 21:17:35.009 INFO  com.example.wiki.job.DocJob                       :32   [32m275826889233403904[0;39m 更新电子书下的文档数据开始
+2023-01-31 21:17:35.011 DEBUG c.e.wiki.mapper.DocMapperCust.updateEbookInfo     :137  [32m275826889233403904[0;39m ==>  Preparing: update ebook t1, (select ebook_id, count(1) doc_count, sum(view_count) view_count, sum(vote_count) vote_count from doc group by ebook_id) t2 set t1.doc_count = t2.doc_count, t1.view_count = t2.view_count, t1.vote_count = t2.vote_count where t1.id = t2.ebook_id
+2023-01-31 21:17:35.011 DEBUG c.e.wiki.mapper.DocMapperCust.updateEbookInfo     :137  [32m275826889233403904[0;39m ==> Parameters: 
+2023-01-31 21:17:35.014 DEBUG c.e.wiki.mapper.DocMapperCust.updateEbookInfo     :137  [32m275826889233403904[0;39m <==    Updates: 1
+2023-01-31 21:17:35.014 INFO  com.example.wiki.job.DocJob                       :35   [32m275826889233403904[0;39m 更新电子书下的文档数据结束，耗时：4毫秒
+2023-01-31 21:18:00.004 INFO  com.example.wiki.job.EbookSnapshotJob             :32   [32m275826994070032384[0;39m 生成今日电子书快照开始
+2023-01-31 21:18:00.005 DEBUG c.e.w.mapper.EbookSnapshotMapperCust.genSnapshot  :137  [32m275826994070032384[0;39m ==>  Preparing: insert into ebook_snapshot(ebook_id, `date`, view_count, vote_count, view_increase, vote_increase) select t1.id, curdate(), 0, 0, 0, 0 from ebook t1 where not exists(select 1 from ebook_snapshot t2 where t1.id = t2.ebook_id and t2.`date` = curdate()); update ebook_snapshot t1, ebook t2 set t1.view_count = t2.view_count, t1.vote_count = t2.vote_count where t1.`date` = curdate() and t1.ebook_id = t2.id; update ebook_snapshot t1 left join (select ebook_id, view_count, vote_count from ebook_snapshot where `date` = date_sub(curdate(), interval 1 day)) t2 on t1.ebook_id = t2.ebook_id set t1.view_increase = (t1.view_count - ifnull(t2.view_count, 0)), t1.vote_increase = (t1.vote_count - ifnull(t2.vote_count, 0)) where t1.`date` = curdate();
+2023-01-31 21:18:00.005 DEBUG c.e.w.mapper.EbookSnapshotMapperCust.genSnapshot  :137  [32m275826994070032384[0;39m ==> Parameters: 
+2023-01-31 21:18:00.010 ERROR o.s.s.support.TaskUtils$LoggingErrorHandler       :95   [32m275826994070032384[0;39m Unexpected error occurred in scheduled task
+org.springframework.dao.DataIntegrityViolationException: 
+### Error updating database.  Cause: java.sql.SQLIntegrityConstraintViolationException: Column 'view_count' cannot be null
+### The error may exist in file [C:\Users\amper\project\Wiki\Knowledge-Based-System\wiki\target\classes\mapper\EbookSnapshotMapperCust.xml]
+### The error may involve defaultParameterMap
+### The error occurred while setting parameters
+### SQL: insert into ebook_snapshot(ebook_id, `date`, view_count, vote_count, view_increase, vote_increase)         select t1.id, curdate(), 0, 0, 0, 0         from ebook t1         where not exists(select 1                          from ebook_snapshot t2                          where t1.id = t2.ebook_id                            and t2.`date` = curdate());          update ebook_snapshot t1, ebook t2         set t1.view_count = t2.view_count,             t1.vote_count = t2.vote_count         where t1.`date` = curdate()           and t1.ebook_id = t2.id;          update ebook_snapshot t1 left join (select ebook_id, view_count, vote_count             from ebook_snapshot             where `date` = date_sub(curdate(), interval 1 day)) t2         on t1.ebook_id = t2.ebook_id             set t1.view_increase = (t1.view_count - ifnull(t2.view_count, 0)),                 t1.vote_increase = (t1.vote_count - ifnull(t2.vote_count, 0))         where t1.`date` = curdate();
+### Cause: java.sql.SQLIntegrityConstraintViolationException: Column 'view_count' cannot be null
+; Column 'view_count' cannot be null; nested exception is java.sql.SQLIntegrityConstraintViolationException: Column 'view_count' cannot be null
+	at org.springframework.jdbc.support.SQLExceptionSubclassTranslator.doTranslate(SQLExceptionSubclassTranslator.java:87)
+	at org.springframework.jdbc.support.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:70)
+	at org.springframework.jdbc.support.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:79)
+	at org.mybatis.spring.MyBatisExceptionTranslator.translateExceptionIfPossible(MyBatisExceptionTranslator.java:88)
+	at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:440)
+	at com.sun.proxy.$Proxy91.update(Unknown Source)
+	at org.mybatis.spring.SqlSessionTemplate.update(SqlSessionTemplate.java:287)
+	at org.apache.ibatis.binding.MapperMethod.execute(MapperMethod.java:67)
+	at org.apache.ibatis.binding.MapperProxy$PlainMethodInvoker.invoke(MapperProxy.java:152)
+	at org.apache.ibatis.binding.MapperProxy.invoke(MapperProxy.java:85)
+	at com.sun.proxy.$Proxy105.genSnapshot(Unknown Source)
+	at com.example.wiki.service.EbookSnapshotService.genSnapshot(EbookSnapshotService.java:16)
+	at com.example.wiki.job.EbookSnapshotJob.doSnapshot(EbookSnapshotJob.java:34)
+	at sun.reflect.GeneratedMethodAccessor78.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.springframework.scheduling.support.ScheduledMethodRunnable.run(ScheduledMethodRunnable.java:84)
+	at org.springframework.scheduling.support.DelegatingErrorHandlingRunnable.run(DelegatingErrorHandlingRunnable.java:54)
+	at org.springframework.scheduling.concurrent.ReschedulingRunnable.run(ReschedulingRunnable.java:95)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:750)
+Caused by: java.sql.SQLIntegrityConstraintViolationException: Column 'view_count' cannot be null
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:117)
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:97)
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:122)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeInternal(ClientPreparedStatement.java:953)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.execute(ClientPreparedStatement.java:370)
+	at com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+	at com.zaxxer.hikari.pool.HikariProxyPreparedStatement.execute(HikariProxyPreparedStatement.java)
+	at sun.reflect.GeneratedMethodAccessor71.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.apache.ibatis.logging.jdbc.PreparedStatementLogger.invoke(PreparedStatementLogger.java:59)
+	at com.sun.proxy.$Proxy130.execute(Unknown Source)
+	at org.apache.ibatis.executor.statement.PreparedStatementHandler.update(PreparedStatementHandler.java:47)
+	at org.apache.ibatis.executor.statement.RoutingStatementHandler.update(RoutingStatementHandler.java:74)
+	at org.apache.ibatis.executor.SimpleExecutor.doUpdate(SimpleExecutor.java:50)
+	at org.apache.ibatis.executor.BaseExecutor.update(BaseExecutor.java:117)
+	at org.apache.ibatis.executor.CachingExecutor.update(CachingExecutor.java:76)
+	at sun.reflect.GeneratedMethodAccessor69.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.apache.ibatis.plugin.Plugin.invoke(Plugin.java:63)
+	at com.sun.proxy.$Proxy128.update(Unknown Source)
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.update(DefaultSqlSession.java:197)
+	at sun.reflect.GeneratedMethodAccessor68.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:426)
+	... 21 common frames omitted
+2023-01-31 21:18:05.005 INFO  com.example.wiki.job.DocJob                       :32   [32m275827015045746688[0;39m 更新电子书下的文档数据开始
+2023-01-31 21:18:05.006 DEBUG c.e.wiki.mapper.DocMapperCust.updateEbookInfo     :137  [32m275827015045746688[0;39m ==>  Preparing: update ebook t1, (select ebook_id, count(1) doc_count, sum(view_count) view_count, sum(vote_count) vote_count from doc group by ebook_id) t2 set t1.doc_count = t2.doc_count, t1.view_count = t2.view_count, t1.vote_count = t2.vote_count where t1.id = t2.ebook_id
+2023-01-31 21:18:05.006 DEBUG c.e.wiki.mapper.DocMapperCust.updateEbookInfo     :137  [32m275827015045746688[0;39m ==> Parameters: 
+2023-01-31 21:18:05.007 DEBUG c.e.wiki.mapper.DocMapperCust.updateEbookInfo     :137  [32m275827015045746688[0;39m <==    Updates: 1
+2023-01-31 21:18:05.007 INFO  com.example.wiki.job.DocJob                       :35   [32m275827015045746688[0;39m 更新电子书下的文档数据结束，耗时：2毫秒
+2023-01-31 21:18:35.013 INFO  com.example.wiki.job.DocJob                       :32   [32m275827140908421120[0;39m 更新电子书下的文档数据开始
+2023-01-31 21:18:35.014 DEBUG c.e.wiki.mapper.DocMapperCust.updateEbookInfo     :137  [32m275827140908421120[0;39m ==>  Preparing: update ebook t1, (select ebook_id, count(1) doc_count, sum(view_count) view_count, sum(vote_count) vote_count from doc group by ebook_id) t2 set t1.doc_count = t2.doc_count, t1.view_count = t2.view_count, t1.vote_count = t2.vote_count where t1.id = t2.ebook_id
+2023-01-31 21:18:35.015 DEBUG c.e.wiki.mapper.DocMapperCust.updateEbookInfo     :137  [32m275827140908421120[0;39m ==> Parameters: 
+2023-01-31 21:18:35.017 DEBUG c.e.wiki.mapper.DocMapperCust.updateEbookInfo     :137  [32m275827140908421120[0;39m <==    Updates: 1
+2023-01-31 21:18:35.018 INFO  com.example.wiki.job.DocJob                       :35   [32m275827140908421120[0;39m 更新电子书下的文档数据结束，耗时：5毫秒
+2023-01-31 21:19:00.012 INFO  com.example.wiki.job.EbookSnapshotJob             :32   [32m275827245761826816[0;39m 生成今日电子书快照开始
+2023-01-31 21:19:00.013 DEBUG c.e.w.mapper.EbookSnapshotMapperCust.genSnapshot  :137  [32m275827245761826816[0;39m ==>  Preparing: insert into ebook_snapshot(ebook_id, `date`, view_count, vote_count, view_increase, vote_increase) select t1.id, curdate(), 0, 0, 0, 0 from ebook t1 where not exists(select 1 from ebook_snapshot t2 where t1.id = t2.ebook_id and t2.`date` = curdate()); update ebook_snapshot t1, ebook t2 set t1.view_count = t2.view_count, t1.vote_count = t2.vote_count where t1.`date` = curdate() and t1.ebook_id = t2.id; update ebook_snapshot t1 left join (select ebook_id, view_count, vote_count from ebook_snapshot where `date` = date_sub(curdate(), interval 1 day)) t2 on t1.ebook_id = t2.ebook_id set t1.view_increase = (t1.view_count - ifnull(t2.view_count, 0)), t1.vote_increase = (t1.vote_count - ifnull(t2.vote_count, 0)) where t1.`date` = curdate();
+2023-01-31 21:19:00.016 DEBUG c.e.w.mapper.EbookSnapshotMapperCust.genSnapshot  :137  [32m275827245761826816[0;39m ==> Parameters: 
+2023-01-31 21:19:00.019 ERROR o.s.s.support.TaskUtils$LoggingErrorHandler       :95   [32m275827245761826816[0;39m Unexpected error occurred in scheduled task
+org.springframework.dao.DataIntegrityViolationException: 
+### Error updating database.  Cause: java.sql.SQLIntegrityConstraintViolationException: Column 'view_count' cannot be null
+### The error may exist in file [C:\Users\amper\project\Wiki\Knowledge-Based-System\wiki\target\classes\mapper\EbookSnapshotMapperCust.xml]
+### The error may involve defaultParameterMap
+### The error occurred while setting parameters
+### SQL: insert into ebook_snapshot(ebook_id, `date`, view_count, vote_count, view_increase, vote_increase)         select t1.id, curdate(), 0, 0, 0, 0         from ebook t1         where not exists(select 1                          from ebook_snapshot t2                          where t1.id = t2.ebook_id                            and t2.`date` = curdate());          update ebook_snapshot t1, ebook t2         set t1.view_count = t2.view_count,             t1.vote_count = t2.vote_count         where t1.`date` = curdate()           and t1.ebook_id = t2.id;          update ebook_snapshot t1 left join (select ebook_id, view_count, vote_count             from ebook_snapshot             where `date` = date_sub(curdate(), interval 1 day)) t2         on t1.ebook_id = t2.ebook_id             set t1.view_increase = (t1.view_count - ifnull(t2.view_count, 0)),                 t1.vote_increase = (t1.vote_count - ifnull(t2.vote_count, 0))         where t1.`date` = curdate();
+### Cause: java.sql.SQLIntegrityConstraintViolationException: Column 'view_count' cannot be null
+; Column 'view_count' cannot be null; nested exception is java.sql.SQLIntegrityConstraintViolationException: Column 'view_count' cannot be null
+	at org.springframework.jdbc.support.SQLExceptionSubclassTranslator.doTranslate(SQLExceptionSubclassTranslator.java:87)
+	at org.springframework.jdbc.support.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:70)
+	at org.springframework.jdbc.support.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:79)
+	at org.mybatis.spring.MyBatisExceptionTranslator.translateExceptionIfPossible(MyBatisExceptionTranslator.java:88)
+	at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:440)
+	at com.sun.proxy.$Proxy91.update(Unknown Source)
+	at org.mybatis.spring.SqlSessionTemplate.update(SqlSessionTemplate.java:287)
+	at org.apache.ibatis.binding.MapperMethod.execute(MapperMethod.java:67)
+	at org.apache.ibatis.binding.MapperProxy$PlainMethodInvoker.invoke(MapperProxy.java:152)
+	at org.apache.ibatis.binding.MapperProxy.invoke(MapperProxy.java:85)
+	at com.sun.proxy.$Proxy105.genSnapshot(Unknown Source)
+	at com.example.wiki.service.EbookSnapshotService.genSnapshot(EbookSnapshotService.java:16)
+	at com.example.wiki.job.EbookSnapshotJob.doSnapshot(EbookSnapshotJob.java:34)
+	at sun.reflect.GeneratedMethodAccessor78.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.springframework.scheduling.support.ScheduledMethodRunnable.run(ScheduledMethodRunnable.java:84)
+	at org.springframework.scheduling.support.DelegatingErrorHandlingRunnable.run(DelegatingErrorHandlingRunnable.java:54)
+	at org.springframework.scheduling.concurrent.ReschedulingRunnable.run(ReschedulingRunnable.java:95)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:750)
+Caused by: java.sql.SQLIntegrityConstraintViolationException: Column 'view_count' cannot be null
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:117)
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:97)
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:122)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeInternal(ClientPreparedStatement.java:953)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.execute(ClientPreparedStatement.java:370)
+	at com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+	at com.zaxxer.hikari.pool.HikariProxyPreparedStatement.execute(HikariProxyPreparedStatement.java)
+	at sun.reflect.GeneratedMethodAccessor71.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.apache.ibatis.logging.jdbc.PreparedStatementLogger.invoke(PreparedStatementLogger.java:59)
+	at com.sun.proxy.$Proxy130.execute(Unknown Source)
+	at org.apache.ibatis.executor.statement.PreparedStatementHandler.update(PreparedStatementHandler.java:47)
+	at org.apache.ibatis.executor.statement.RoutingStatementHandler.update(RoutingStatementHandler.java:74)
+	at org.apache.ibatis.executor.SimpleExecutor.doUpdate(SimpleExecutor.java:50)
+	at org.apache.ibatis.executor.BaseExecutor.update(BaseExecutor.java:117)
+	at org.apache.ibatis.executor.CachingExecutor.update(CachingExecutor.java:76)
+	at sun.reflect.GeneratedMethodAccessor69.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.apache.ibatis.plugin.Plugin.invoke(Plugin.java:63)
+	at com.sun.proxy.$Proxy128.update(Unknown Source)
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.update(DefaultSqlSession.java:197)
+	at sun.reflect.GeneratedMethodAccessor68.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:426)
+	... 21 common frames omitted
+2023-01-31 21:19:05.008 INFO  com.example.wiki.job.DocJob                       :32   [32m275827266716569600[0;39m 更新电子书下的文档数据开始
+2023-01-31 21:19:05.009 DEBUG c.e.wiki.mapper.DocMapperCust.updateEbookInfo     :137  [32m275827266716569600[0;39m ==>  Preparing: update ebook t1, (select ebook_id, count(1) doc_count, sum(view_count) view_count, sum(vote_count) vote_count from doc group by ebook_id) t2 set t1.doc_count = t2.doc_count, t1.view_count = t2.view_count, t1.vote_count = t2.vote_count where t1.id = t2.ebook_id
+2023-01-31 21:19:05.009 DEBUG c.e.wiki.mapper.DocMapperCust.updateEbookInfo     :137  [32m275827266716569600[0;39m ==> Parameters: 
+2023-01-31 21:19:05.010 DEBUG c.e.wiki.mapper.DocMapperCust.updateEbookInfo     :137  [32m275827266716569600[0;39m <==    Updates: 1
+2023-01-31 21:19:05.011 INFO  com.example.wiki.job.DocJob                       :35   [32m275827266716569600[0;39m 更新电子书下的文档数据结束，耗时：3毫秒
+2023-01-31 21:19:35.014 INFO  com.example.wiki.job.DocJob                       :32   [32m275827392570855424[0;39m 更新电子书下的文档数据开始
+2023-01-31 21:19:35.016 DEBUG c.e.wiki.mapper.DocMapperCust.updateEbookInfo     :137  [32m275827392570855424[0;39m ==>  Preparing: update ebook t1, (select ebook_id, count(1) doc_count, sum(view_count) view_count, sum(vote_count) vote_count from doc group by ebook_id) t2 set t1.doc_count = t2.doc_count, t1.view_count = t2.view_count, t1.vote_count = t2.vote_count where t1.id = t2.ebook_id
+2023-01-31 21:19:35.017 DEBUG c.e.wiki.mapper.DocMapperCust.updateEbookInfo     :137  [32m275827392570855424[0;39m ==> Parameters: 
+2023-01-31 21:19:35.019 DEBUG c.e.wiki.mapper.DocMapperCust.updateEbookInfo     :137  [32m275827392570855424[0;39m <==    Updates: 1
+2023-01-31 21:19:35.020 INFO  com.example.wiki.job.DocJob                       :35   [32m275827392570855424[0;39m 更新电子书下的文档数据结束，耗时：5毫秒
+2023-01-31 21:20:00.014 INFO  com.example.wiki.job.EbookSnapshotJob             :32   [32m275827497428455424[0;39m 生成今日电子书快照开始
+2023-01-31 21:20:00.015 DEBUG c.e.w.mapper.EbookSnapshotMapperCust.genSnapshot  :137  [32m275827497428455424[0;39m ==>  Preparing: insert into ebook_snapshot(ebook_id, `date`, view_count, vote_count, view_increase, vote_increase) select t1.id, curdate(), 0, 0, 0, 0 from ebook t1 where not exists(select 1 from ebook_snapshot t2 where t1.id = t2.ebook_id and t2.`date` = curdate()); update ebook_snapshot t1, ebook t2 set t1.view_count = t2.view_count, t1.vote_count = t2.vote_count where t1.`date` = curdate() and t1.ebook_id = t2.id; update ebook_snapshot t1 left join (select ebook_id, view_count, vote_count from ebook_snapshot where `date` = date_sub(curdate(), interval 1 day)) t2 on t1.ebook_id = t2.ebook_id set t1.view_increase = (t1.view_count - ifnull(t2.view_count, 0)), t1.vote_increase = (t1.vote_count - ifnull(t2.vote_count, 0)) where t1.`date` = curdate();
+2023-01-31 21:20:00.016 DEBUG c.e.w.mapper.EbookSnapshotMapperCust.genSnapshot  :137  [32m275827497428455424[0;39m ==> Parameters: 
+2023-01-31 21:20:00.019 ERROR o.s.s.support.TaskUtils$LoggingErrorHandler       :95   [32m275827497428455424[0;39m Unexpected error occurred in scheduled task
+org.springframework.dao.DataIntegrityViolationException: 
+### Error updating database.  Cause: java.sql.SQLIntegrityConstraintViolationException: Column 'view_count' cannot be null
+### The error may exist in file [C:\Users\amper\project\Wiki\Knowledge-Based-System\wiki\target\classes\mapper\EbookSnapshotMapperCust.xml]
+### The error may involve defaultParameterMap
+### The error occurred while setting parameters
+### SQL: insert into ebook_snapshot(ebook_id, `date`, view_count, vote_count, view_increase, vote_increase)         select t1.id, curdate(), 0, 0, 0, 0         from ebook t1         where not exists(select 1                          from ebook_snapshot t2                          where t1.id = t2.ebook_id                            and t2.`date` = curdate());          update ebook_snapshot t1, ebook t2         set t1.view_count = t2.view_count,             t1.vote_count = t2.vote_count         where t1.`date` = curdate()           and t1.ebook_id = t2.id;          update ebook_snapshot t1 left join (select ebook_id, view_count, vote_count             from ebook_snapshot             where `date` = date_sub(curdate(), interval 1 day)) t2         on t1.ebook_id = t2.ebook_id             set t1.view_increase = (t1.view_count - ifnull(t2.view_count, 0)),                 t1.vote_increase = (t1.vote_count - ifnull(t2.vote_count, 0))         where t1.`date` = curdate();
+### Cause: java.sql.SQLIntegrityConstraintViolationException: Column 'view_count' cannot be null
+; Column 'view_count' cannot be null; nested exception is java.sql.SQLIntegrityConstraintViolationException: Column 'view_count' cannot be null
+	at org.springframework.jdbc.support.SQLExceptionSubclassTranslator.doTranslate(SQLExceptionSubclassTranslator.java:87)
+	at org.springframework.jdbc.support.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:70)
+	at org.springframework.jdbc.support.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:79)
+	at org.mybatis.spring.MyBatisExceptionTranslator.translateExceptionIfPossible(MyBatisExceptionTranslator.java:88)
+	at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:440)
+	at com.sun.proxy.$Proxy91.update(Unknown Source)
+	at org.mybatis.spring.SqlSessionTemplate.update(SqlSessionTemplate.java:287)
+	at org.apache.ibatis.binding.MapperMethod.execute(MapperMethod.java:67)
+	at org.apache.ibatis.binding.MapperProxy$PlainMethodInvoker.invoke(MapperProxy.java:152)
+	at org.apache.ibatis.binding.MapperProxy.invoke(MapperProxy.java:85)
+	at com.sun.proxy.$Proxy105.genSnapshot(Unknown Source)
+	at com.example.wiki.service.EbookSnapshotService.genSnapshot(EbookSnapshotService.java:16)
+	at com.example.wiki.job.EbookSnapshotJob.doSnapshot(EbookSnapshotJob.java:34)
+	at sun.reflect.GeneratedMethodAccessor78.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.springframework.scheduling.support.ScheduledMethodRunnable.run(ScheduledMethodRunnable.java:84)
+	at org.springframework.scheduling.support.DelegatingErrorHandlingRunnable.run(DelegatingErrorHandlingRunnable.java:54)
+	at org.springframework.scheduling.concurrent.ReschedulingRunnable.run(ReschedulingRunnable.java:95)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:750)
+Caused by: java.sql.SQLIntegrityConstraintViolationException: Column 'view_count' cannot be null
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:117)
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:97)
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:122)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeInternal(ClientPreparedStatement.java:953)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.execute(ClientPreparedStatement.java:370)
+	at com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+	at com.zaxxer.hikari.pool.HikariProxyPreparedStatement.execute(HikariProxyPreparedStatement.java)
+	at sun.reflect.GeneratedMethodAccessor71.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.apache.ibatis.logging.jdbc.PreparedStatementLogger.invoke(PreparedStatementLogger.java:59)
+	at com.sun.proxy.$Proxy130.execute(Unknown Source)
+	at org.apache.ibatis.executor.statement.PreparedStatementHandler.update(PreparedStatementHandler.java:47)
+	at org.apache.ibatis.executor.statement.RoutingStatementHandler.update(RoutingStatementHandler.java:74)
+	at org.apache.ibatis.executor.SimpleExecutor.doUpdate(SimpleExecutor.java:50)
+	at org.apache.ibatis.executor.BaseExecutor.update(BaseExecutor.java:117)
+	at org.apache.ibatis.executor.CachingExecutor.update(CachingExecutor.java:76)
+	at sun.reflect.GeneratedMethodAccessor69.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.apache.ibatis.plugin.Plugin.invoke(Plugin.java:63)
+	at com.sun.proxy.$Proxy128.update(Unknown Source)
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.update(DefaultSqlSession.java:197)
+	at sun.reflect.GeneratedMethodAccessor68.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:426)
+	... 21 common frames omitted
+2023-01-31 21:20:05.007 INFO  com.example.wiki.job.DocJob                       :32   [32m275827518370615296[0;39m 更新电子书下的文档数据开始
+2023-01-31 21:20:05.008 DEBUG c.e.wiki.mapper.DocMapperCust.updateEbookInfo     :137  [32m275827518370615296[0;39m ==>  Preparing: update ebook t1, (select ebook_id, count(1) doc_count, sum(view_count) view_count, sum(vote_count) vote_count from doc group by ebook_id) t2 set t1.doc_count = t2.doc_count, t1.view_count = t2.view_count, t1.vote_count = t2.vote_count where t1.id = t2.ebook_id
+2023-01-31 21:20:05.008 DEBUG c.e.wiki.mapper.DocMapperCust.updateEbookInfo     :137  [32m275827518370615296[0;39m ==> Parameters: 
+2023-01-31 21:20:05.009 DEBUG c.e.wiki.mapper.DocMapperCust.updateEbookInfo     :137  [32m275827518370615296[0;39m <==    Updates: 1
+2023-01-31 21:20:05.010 INFO  com.example.wiki.job.DocJob                       :35   [32m275827518370615296[0;39m 更新电子书下的文档数据结束，耗时：3毫秒
+2023-01-31 21:20:35.007 INFO  com.example.wiki.job.DocJob                       :32   [32m275827644199735296[0;39m 更新电子书下的文档数据开始
+2023-01-31 21:20:35.008 DEBUG c.e.wiki.mapper.DocMapperCust.updateEbookInfo     :137  [32m275827644199735296[0;39m ==>  Preparing: update ebook t1, (select ebook_id, count(1) doc_count, sum(view_count) view_count, sum(vote_count) vote_count from doc group by ebook_id) t2 set t1.doc_count = t2.doc_count, t1.view_count = t2.view_count, t1.vote_count = t2.vote_count where t1.id = t2.ebook_id
+2023-01-31 21:20:35.008 DEBUG c.e.wiki.mapper.DocMapperCust.updateEbookInfo     :137  [32m275827644199735296[0;39m ==> Parameters: 
+2023-01-31 21:20:35.009 DEBUG c.e.wiki.mapper.DocMapperCust.updateEbookInfo     :137  [32m275827644199735296[0;39m <==    Updates: 1
+2023-01-31 21:20:35.009 INFO  com.example.wiki.job.DocJob                       :35   [32m275827644199735296[0;39m 更新电子书下的文档数据结束，耗时：2毫秒
+2023-01-31 21:21:00.011 INFO  com.example.wiki.job.EbookSnapshotJob             :32   [32m275827749074112512[0;39m 生成今日电子书快照开始
+2023-01-31 21:21:00.012 DEBUG c.e.w.mapper.EbookSnapshotMapperCust.genSnapshot  :137  [32m275827749074112512[0;39m ==>  Preparing: insert into ebook_snapshot(ebook_id, `date`, view_count, vote_count, view_increase, vote_increase) select t1.id, curdate(), 0, 0, 0, 0 from ebook t1 where not exists(select 1 from ebook_snapshot t2 where t1.id = t2.ebook_id and t2.`date` = curdate()); update ebook_snapshot t1, ebook t2 set t1.view_count = t2.view_count, t1.vote_count = t2.vote_count where t1.`date` = curdate() and t1.ebook_id = t2.id; update ebook_snapshot t1 left join (select ebook_id, view_count, vote_count from ebook_snapshot where `date` = date_sub(curdate(), interval 1 day)) t2 on t1.ebook_id = t2.ebook_id set t1.view_increase = (t1.view_count - ifnull(t2.view_count, 0)), t1.vote_increase = (t1.vote_count - ifnull(t2.vote_count, 0)) where t1.`date` = curdate();
+2023-01-31 21:21:00.014 DEBUG c.e.w.mapper.EbookSnapshotMapperCust.genSnapshot  :137  [32m275827749074112512[0;39m ==> Parameters: 
+2023-01-31 21:21:00.019 ERROR o.s.s.support.TaskUtils$LoggingErrorHandler       :95   [32m275827749074112512[0;39m Unexpected error occurred in scheduled task
+org.springframework.dao.DataIntegrityViolationException: 
+### Error updating database.  Cause: java.sql.SQLIntegrityConstraintViolationException: Column 'view_count' cannot be null
+### The error may exist in file [C:\Users\amper\project\Wiki\Knowledge-Based-System\wiki\target\classes\mapper\EbookSnapshotMapperCust.xml]
+### The error may involve defaultParameterMap
+### The error occurred while setting parameters
+### SQL: insert into ebook_snapshot(ebook_id, `date`, view_count, vote_count, view_increase, vote_increase)         select t1.id, curdate(), 0, 0, 0, 0         from ebook t1         where not exists(select 1                          from ebook_snapshot t2                          where t1.id = t2.ebook_id                            and t2.`date` = curdate());          update ebook_snapshot t1, ebook t2         set t1.view_count = t2.view_count,             t1.vote_count = t2.vote_count         where t1.`date` = curdate()           and t1.ebook_id = t2.id;          update ebook_snapshot t1 left join (select ebook_id, view_count, vote_count             from ebook_snapshot             where `date` = date_sub(curdate(), interval 1 day)) t2         on t1.ebook_id = t2.ebook_id             set t1.view_increase = (t1.view_count - ifnull(t2.view_count, 0)),                 t1.vote_increase = (t1.vote_count - ifnull(t2.vote_count, 0))         where t1.`date` = curdate();
+### Cause: java.sql.SQLIntegrityConstraintViolationException: Column 'view_count' cannot be null
+; Column 'view_count' cannot be null; nested exception is java.sql.SQLIntegrityConstraintViolationException: Column 'view_count' cannot be null
+	at org.springframework.jdbc.support.SQLExceptionSubclassTranslator.doTranslate(SQLExceptionSubclassTranslator.java:87)
+	at org.springframework.jdbc.support.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:70)
+	at org.springframework.jdbc.support.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:79)
+	at org.mybatis.spring.MyBatisExceptionTranslator.translateExceptionIfPossible(MyBatisExceptionTranslator.java:88)
+	at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:440)
+	at com.sun.proxy.$Proxy91.update(Unknown Source)
+	at org.mybatis.spring.SqlSessionTemplate.update(SqlSessionTemplate.java:287)
+	at org.apache.ibatis.binding.MapperMethod.execute(MapperMethod.java:67)
+	at org.apache.ibatis.binding.MapperProxy$PlainMethodInvoker.invoke(MapperProxy.java:152)
+	at org.apache.ibatis.binding.MapperProxy.invoke(MapperProxy.java:85)
+	at com.sun.proxy.$Proxy105.genSnapshot(Unknown Source)
+	at com.example.wiki.service.EbookSnapshotService.genSnapshot(EbookSnapshotService.java:16)
+	at com.example.wiki.job.EbookSnapshotJob.doSnapshot(EbookSnapshotJob.java:34)
+	at sun.reflect.GeneratedMethodAccessor78.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.springframework.scheduling.support.ScheduledMethodRunnable.run(ScheduledMethodRunnable.java:84)
+	at org.springframework.scheduling.support.DelegatingErrorHandlingRunnable.run(DelegatingErrorHandlingRunnable.java:54)
+	at org.springframework.scheduling.concurrent.ReschedulingRunnable.run(ReschedulingRunnable.java:95)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:750)
+Caused by: java.sql.SQLIntegrityConstraintViolationException: Column 'view_count' cannot be null
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:117)
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:97)
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:122)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeInternal(ClientPreparedStatement.java:953)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.execute(ClientPreparedStatement.java:370)
+	at com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+	at com.zaxxer.hikari.pool.HikariProxyPreparedStatement.execute(HikariProxyPreparedStatement.java)
+	at sun.reflect.GeneratedMethodAccessor71.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.apache.ibatis.logging.jdbc.PreparedStatementLogger.invoke(PreparedStatementLogger.java:59)
+	at com.sun.proxy.$Proxy130.execute(Unknown Source)
+	at org.apache.ibatis.executor.statement.PreparedStatementHandler.update(PreparedStatementHandler.java:47)
+	at org.apache.ibatis.executor.statement.RoutingStatementHandler.update(RoutingStatementHandler.java:74)
+	at org.apache.ibatis.executor.SimpleExecutor.doUpdate(SimpleExecutor.java:50)
+	at org.apache.ibatis.executor.BaseExecutor.update(BaseExecutor.java:117)
+	at org.apache.ibatis.executor.CachingExecutor.update(CachingExecutor.java:76)
+	at sun.reflect.GeneratedMethodAccessor69.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.apache.ibatis.plugin.Plugin.invoke(Plugin.java:63)
+	at com.sun.proxy.$Proxy128.update(Unknown Source)
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.update(DefaultSqlSession.java:197)
+	at sun.reflect.GeneratedMethodAccessor68.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:426)
+	... 21 common frames omitted
+2023-01-31 21:21:05.004 INFO  com.example.wiki.job.DocJob                       :32   [32m275827770016272384[0;39m 更新电子书下的文档数据开始
+2023-01-31 21:21:05.005 DEBUG c.e.wiki.mapper.DocMapperCust.updateEbookInfo     :137  [32m275827770016272384[0;39m ==>  Preparing: update ebook t1, (select ebook_id, count(1) doc_count, sum(view_count) view_count, sum(vote_count) vote_count from doc group by ebook_id) t2 set t1.doc_count = t2.doc_count, t1.view_count = t2.view_count, t1.vote_count = t2.vote_count where t1.id = t2.ebook_id
+2023-01-31 21:21:05.006 DEBUG c.e.wiki.mapper.DocMapperCust.updateEbookInfo     :137  [32m275827770016272384[0;39m ==> Parameters: 
+2023-01-31 21:21:05.008 DEBUG c.e.wiki.mapper.DocMapperCust.updateEbookInfo     :137  [32m275827770016272384[0;39m <==    Updates: 1
+2023-01-31 21:21:05.008 INFO  com.example.wiki.job.DocJob                       :35   [32m275827770016272384[0;39m 更新电子书下的文档数据结束，耗时：4毫秒
+2023-01-31 21:21:35.002 INFO  com.example.wiki.job.DocJob                       :32   [32m275827895837003776[0;39m 更新电子书下的文档数据开始
+2023-01-31 21:21:35.004 DEBUG c.e.wiki.mapper.DocMapperCust.updateEbookInfo     :137  [32m275827895837003776[0;39m ==>  Preparing: update ebook t1, (select ebook_id, count(1) doc_count, sum(view_count) view_count, sum(vote_count) vote_count from doc group by ebook_id) t2 set t1.doc_count = t2.doc_count, t1.view_count = t2.view_count, t1.vote_count = t2.vote_count where t1.id = t2.ebook_id
+2023-01-31 21:21:35.004 DEBUG c.e.wiki.mapper.DocMapperCust.updateEbookInfo     :137  [32m275827895837003776[0;39m ==> Parameters: 
+2023-01-31 21:21:35.007 DEBUG c.e.wiki.mapper.DocMapperCust.updateEbookInfo     :137  [32m275827895837003776[0;39m <==    Updates: 1
+2023-01-31 21:21:35.007 INFO  com.example.wiki.job.DocJob                       :35   [32m275827895837003776[0;39m 更新电子书下的文档数据结束，耗时：4毫秒
+2023-01-31 21:22:00.007 INFO  com.example.wiki.job.EbookSnapshotJob             :32   [32m275828000715575296[0;39m 生成今日电子书快照开始
+2023-01-31 21:22:00.014 DEBUG c.e.w.mapper.EbookSnapshotMapperCust.genSnapshot  :137  [32m275828000715575296[0;39m ==>  Preparing: insert into ebook_snapshot(ebook_id, `date`, view_count, vote_count, view_increase, vote_increase) select t1.id, curdate(), 0, 0, 0, 0 from ebook t1 where not exists(select 1 from ebook_snapshot t2 where t1.id = t2.ebook_id and t2.`date` = curdate()); update ebook_snapshot t1, ebook t2 set t1.view_count = t2.view_count, t1.vote_count = t2.vote_count where t1.`date` = curdate() and t1.ebook_id = t2.id; update ebook_snapshot t1 left join (select ebook_id, view_count, vote_count from ebook_snapshot where `date` = date_sub(curdate(), interval 1 day)) t2 on t1.ebook_id = t2.ebook_id set t1.view_increase = (t1.view_count - ifnull(t2.view_count, 0)), t1.vote_increase = (t1.vote_count - ifnull(t2.vote_count, 0)) where t1.`date` = curdate();
+2023-01-31 21:22:00.016 DEBUG c.e.w.mapper.EbookSnapshotMapperCust.genSnapshot  :137  [32m275828000715575296[0;39m ==> Parameters: 
+2023-01-31 21:22:00.019 ERROR o.s.s.support.TaskUtils$LoggingErrorHandler       :95   [32m275828000715575296[0;39m Unexpected error occurred in scheduled task
+org.springframework.dao.DataIntegrityViolationException: 
+### Error updating database.  Cause: java.sql.SQLIntegrityConstraintViolationException: Column 'view_count' cannot be null
+### The error may exist in file [C:\Users\amper\project\Wiki\Knowledge-Based-System\wiki\target\classes\mapper\EbookSnapshotMapperCust.xml]
+### The error may involve defaultParameterMap
+### The error occurred while setting parameters
+### SQL: insert into ebook_snapshot(ebook_id, `date`, view_count, vote_count, view_increase, vote_increase)         select t1.id, curdate(), 0, 0, 0, 0         from ebook t1         where not exists(select 1                          from ebook_snapshot t2                          where t1.id = t2.ebook_id                            and t2.`date` = curdate());          update ebook_snapshot t1, ebook t2         set t1.view_count = t2.view_count,             t1.vote_count = t2.vote_count         where t1.`date` = curdate()           and t1.ebook_id = t2.id;          update ebook_snapshot t1 left join (select ebook_id, view_count, vote_count             from ebook_snapshot             where `date` = date_sub(curdate(), interval 1 day)) t2         on t1.ebook_id = t2.ebook_id             set t1.view_increase = (t1.view_count - ifnull(t2.view_count, 0)),                 t1.vote_increase = (t1.vote_count - ifnull(t2.vote_count, 0))         where t1.`date` = curdate();
+### Cause: java.sql.SQLIntegrityConstraintViolationException: Column 'view_count' cannot be null
+; Column 'view_count' cannot be null; nested exception is java.sql.SQLIntegrityConstraintViolationException: Column 'view_count' cannot be null
+	at org.springframework.jdbc.support.SQLExceptionSubclassTranslator.doTranslate(SQLExceptionSubclassTranslator.java:87)
+	at org.springframework.jdbc.support.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:70)
+	at org.springframework.jdbc.support.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:79)
+	at org.mybatis.spring.MyBatisExceptionTranslator.translateExceptionIfPossible(MyBatisExceptionTranslator.java:88)
+	at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:440)
+	at com.sun.proxy.$Proxy91.update(Unknown Source)
+	at org.mybatis.spring.SqlSessionTemplate.update(SqlSessionTemplate.java:287)
+	at org.apache.ibatis.binding.MapperMethod.execute(MapperMethod.java:67)
+	at org.apache.ibatis.binding.MapperProxy$PlainMethodInvoker.invoke(MapperProxy.java:152)
+	at org.apache.ibatis.binding.MapperProxy.invoke(MapperProxy.java:85)
+	at com.sun.proxy.$Proxy105.genSnapshot(Unknown Source)
+	at com.example.wiki.service.EbookSnapshotService.genSnapshot(EbookSnapshotService.java:16)
+	at com.example.wiki.job.EbookSnapshotJob.doSnapshot(EbookSnapshotJob.java:34)
+	at sun.reflect.GeneratedMethodAccessor78.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.springframework.scheduling.support.ScheduledMethodRunnable.run(ScheduledMethodRunnable.java:84)
+	at org.springframework.scheduling.support.DelegatingErrorHandlingRunnable.run(DelegatingErrorHandlingRunnable.java:54)
+	at org.springframework.scheduling.concurrent.ReschedulingRunnable.run(ReschedulingRunnable.java:95)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:750)
+Caused by: java.sql.SQLIntegrityConstraintViolationException: Column 'view_count' cannot be null
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:117)
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:97)
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:122)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeInternal(ClientPreparedStatement.java:953)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.execute(ClientPreparedStatement.java:370)
+	at com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+	at com.zaxxer.hikari.pool.HikariProxyPreparedStatement.execute(HikariProxyPreparedStatement.java)
+	at sun.reflect.GeneratedMethodAccessor71.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.apache.ibatis.logging.jdbc.PreparedStatementLogger.invoke(PreparedStatementLogger.java:59)
+	at com.sun.proxy.$Proxy130.execute(Unknown Source)
+	at org.apache.ibatis.executor.statement.PreparedStatementHandler.update(PreparedStatementHandler.java:47)
+	at org.apache.ibatis.executor.statement.RoutingStatementHandler.update(RoutingStatementHandler.java:74)
+	at org.apache.ibatis.executor.SimpleExecutor.doUpdate(SimpleExecutor.java:50)
+	at org.apache.ibatis.executor.BaseExecutor.update(BaseExecutor.java:117)
+	at org.apache.ibatis.executor.CachingExecutor.update(CachingExecutor.java:76)
+	at sun.reflect.GeneratedMethodAccessor69.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.apache.ibatis.plugin.Plugin.invoke(Plugin.java:63)
+	at com.sun.proxy.$Proxy128.update(Unknown Source)
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.update(DefaultSqlSession.java:197)
+	at sun.reflect.GeneratedMethodAccessor68.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:426)
+	... 21 common frames omitted
+2023-01-31 21:22:05.011 INFO  com.example.wiki.job.DocJob                       :32   [32m275828021703872512[0;39m 更新电子书下的文档数据开始
+2023-01-31 21:22:05.012 DEBUG c.e.wiki.mapper.DocMapperCust.updateEbookInfo     :137  [32m275828021703872512[0;39m ==>  Preparing: update ebook t1, (select ebook_id, count(1) doc_count, sum(view_count) view_count, sum(vote_count) vote_count from doc group by ebook_id) t2 set t1.doc_count = t2.doc_count, t1.view_count = t2.view_count, t1.vote_count = t2.vote_count where t1.id = t2.ebook_id
+2023-01-31 21:22:05.013 DEBUG c.e.wiki.mapper.DocMapperCust.updateEbookInfo     :137  [32m275828021703872512[0;39m ==> Parameters: 
+2023-01-31 21:22:05.015 DEBUG c.e.wiki.mapper.DocMapperCust.updateEbookInfo     :137  [32m275828021703872512[0;39m <==    Updates: 1
+2023-01-31 21:22:05.016 INFO  com.example.wiki.job.DocJob                       :35   [32m275828021703872512[0;39m 更新电子书下的文档数据结束，耗时：4毫秒
+2023-01-31 21:22:35.003 INFO  com.example.wiki.job.DocJob                       :32   [32m275828147499438080[0;39m 更新电子书下的文档数据开始
+2023-01-31 21:22:35.005 DEBUG c.e.wiki.mapper.DocMapperCust.updateEbookInfo     :137  [32m275828147499438080[0;39m ==>  Preparing: update ebook t1, (select ebook_id, count(1) doc_count, sum(view_count) view_count, sum(vote_count) vote_count from doc group by ebook_id) t2 set t1.doc_count = t2.doc_count, t1.view_count = t2.view_count, t1.vote_count = t2.vote_count where t1.id = t2.ebook_id
+2023-01-31 21:22:35.005 DEBUG c.e.wiki.mapper.DocMapperCust.updateEbookInfo     :137  [32m275828147499438080[0;39m ==> Parameters: 
+2023-01-31 21:22:35.008 DEBUG c.e.wiki.mapper.DocMapperCust.updateEbookInfo     :137  [32m275828147499438080[0;39m <==    Updates: 1
+2023-01-31 21:22:35.008 INFO  com.example.wiki.job.DocJob                       :35   [32m275828147499438080[0;39m 更新电子书下的文档数据结束，耗时：4毫秒
+2023-01-31 21:23:00.001 INFO  com.example.wiki.job.EbookSnapshotJob             :32   [32m275828252348649472[0;39m 生成今日电子书快照开始
+2023-01-31 21:23:00.002 DEBUG c.e.w.mapper.EbookSnapshotMapperCust.genSnapshot  :137  [32m275828252348649472[0;39m ==>  Preparing: insert into ebook_snapshot(ebook_id, `date`, view_count, vote_count, view_increase, vote_increase) select t1.id, curdate(), 0, 0, 0, 0 from ebook t1 where not exists(select 1 from ebook_snapshot t2 where t1.id = t2.ebook_id and t2.`date` = curdate()); update ebook_snapshot t1, ebook t2 set t1.view_count = t2.view_count, t1.vote_count = t2.vote_count where t1.`date` = curdate() and t1.ebook_id = t2.id; update ebook_snapshot t1 left join (select ebook_id, view_count, vote_count from ebook_snapshot where `date` = date_sub(curdate(), interval 1 day)) t2 on t1.ebook_id = t2.ebook_id set t1.view_increase = (t1.view_count - ifnull(t2.view_count, 0)), t1.vote_increase = (t1.vote_count - ifnull(t2.vote_count, 0)) where t1.`date` = curdate();
+2023-01-31 21:23:00.003 DEBUG c.e.w.mapper.EbookSnapshotMapperCust.genSnapshot  :137  [32m275828252348649472[0;39m ==> Parameters: 
+2023-01-31 21:23:00.006 ERROR o.s.s.support.TaskUtils$LoggingErrorHandler       :95   [32m275828252348649472[0;39m Unexpected error occurred in scheduled task
+org.springframework.dao.DataIntegrityViolationException: 
+### Error updating database.  Cause: java.sql.SQLIntegrityConstraintViolationException: Column 'view_count' cannot be null
+### The error may exist in file [C:\Users\amper\project\Wiki\Knowledge-Based-System\wiki\target\classes\mapper\EbookSnapshotMapperCust.xml]
+### The error may involve defaultParameterMap
+### The error occurred while setting parameters
+### SQL: insert into ebook_snapshot(ebook_id, `date`, view_count, vote_count, view_increase, vote_increase)         select t1.id, curdate(), 0, 0, 0, 0         from ebook t1         where not exists(select 1                          from ebook_snapshot t2                          where t1.id = t2.ebook_id                            and t2.`date` = curdate());          update ebook_snapshot t1, ebook t2         set t1.view_count = t2.view_count,             t1.vote_count = t2.vote_count         where t1.`date` = curdate()           and t1.ebook_id = t2.id;          update ebook_snapshot t1 left join (select ebook_id, view_count, vote_count             from ebook_snapshot             where `date` = date_sub(curdate(), interval 1 day)) t2         on t1.ebook_id = t2.ebook_id             set t1.view_increase = (t1.view_count - ifnull(t2.view_count, 0)),                 t1.vote_increase = (t1.vote_count - ifnull(t2.vote_count, 0))         where t1.`date` = curdate();
+### Cause: java.sql.SQLIntegrityConstraintViolationException: Column 'view_count' cannot be null
+; Column 'view_count' cannot be null; nested exception is java.sql.SQLIntegrityConstraintViolationException: Column 'view_count' cannot be null
+	at org.springframework.jdbc.support.SQLExceptionSubclassTranslator.doTranslate(SQLExceptionSubclassTranslator.java:87)
+	at org.springframework.jdbc.support.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:70)
+	at org.springframework.jdbc.support.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:79)
+	at org.mybatis.spring.MyBatisExceptionTranslator.translateExceptionIfPossible(MyBatisExceptionTranslator.java:88)
+	at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:440)
+	at com.sun.proxy.$Proxy91.update(Unknown Source)
+	at org.mybatis.spring.SqlSessionTemplate.update(SqlSessionTemplate.java:287)
+	at org.apache.ibatis.binding.MapperMethod.execute(MapperMethod.java:67)
+	at org.apache.ibatis.binding.MapperProxy$PlainMethodInvoker.invoke(MapperProxy.java:152)
+	at org.apache.ibatis.binding.MapperProxy.invoke(MapperProxy.java:85)
+	at com.sun.proxy.$Proxy105.genSnapshot(Unknown Source)
+	at com.example.wiki.service.EbookSnapshotService.genSnapshot(EbookSnapshotService.java:16)
+	at com.example.wiki.job.EbookSnapshotJob.doSnapshot(EbookSnapshotJob.java:34)
+	at sun.reflect.GeneratedMethodAccessor78.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.springframework.scheduling.support.ScheduledMethodRunnable.run(ScheduledMethodRunnable.java:84)
+	at org.springframework.scheduling.support.DelegatingErrorHandlingRunnable.run(DelegatingErrorHandlingRunnable.java:54)
+	at org.springframework.scheduling.concurrent.ReschedulingRunnable.run(ReschedulingRunnable.java:95)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:750)
+Caused by: java.sql.SQLIntegrityConstraintViolationException: Column 'view_count' cannot be null
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:117)
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:97)
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:122)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeInternal(ClientPreparedStatement.java:953)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.execute(ClientPreparedStatement.java:370)
+	at com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+	at com.zaxxer.hikari.pool.HikariProxyPreparedStatement.execute(HikariProxyPreparedStatement.java)
+	at sun.reflect.GeneratedMethodAccessor71.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.apache.ibatis.logging.jdbc.PreparedStatementLogger.invoke(PreparedStatementLogger.java:59)
+	at com.sun.proxy.$Proxy130.execute(Unknown Source)
+	at org.apache.ibatis.executor.statement.PreparedStatementHandler.update(PreparedStatementHandler.java:47)
+	at org.apache.ibatis.executor.statement.RoutingStatementHandler.update(RoutingStatementHandler.java:74)
+	at org.apache.ibatis.executor.SimpleExecutor.doUpdate(SimpleExecutor.java:50)
+	at org.apache.ibatis.executor.BaseExecutor.update(BaseExecutor.java:117)
+	at org.apache.ibatis.executor.CachingExecutor.update(CachingExecutor.java:76)
+	at sun.reflect.GeneratedMethodAccessor69.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.apache.ibatis.plugin.Plugin.invoke(Plugin.java:63)
+	at com.sun.proxy.$Proxy128.update(Unknown Source)
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.update(DefaultSqlSession.java:197)
+	at sun.reflect.GeneratedMethodAccessor68.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:426)
+	... 21 common frames omitted
+2023-01-31 21:23:05.012 INFO  com.example.wiki.job.DocJob                       :32   [32m275828273366306816[0;39m 更新电子书下的文档数据开始
+2023-01-31 21:23:05.014 DEBUG c.e.wiki.mapper.DocMapperCust.updateEbookInfo     :137  [32m275828273366306816[0;39m ==>  Preparing: update ebook t1, (select ebook_id, count(1) doc_count, sum(view_count) view_count, sum(vote_count) vote_count from doc group by ebook_id) t2 set t1.doc_count = t2.doc_count, t1.view_count = t2.view_count, t1.vote_count = t2.vote_count where t1.id = t2.ebook_id
+2023-01-31 21:23:05.014 DEBUG c.e.wiki.mapper.DocMapperCust.updateEbookInfo     :137  [32m275828273366306816[0;39m ==> Parameters: 
+2023-01-31 21:23:05.017 DEBUG c.e.wiki.mapper.DocMapperCust.updateEbookInfo     :137  [32m275828273366306816[0;39m <==    Updates: 1
+2023-01-31 21:23:05.017 INFO  com.example.wiki.job.DocJob                       :35   [32m275828273366306816[0;39m 更新电子书下的文档数据结束，耗时：4毫秒
+2023-01-31 21:23:35.009 INFO  com.example.wiki.job.DocJob                       :32   [32m275828399182843904[0;39m 更新电子书下的文档数据开始
+2023-01-31 21:23:35.010 DEBUG c.e.wiki.mapper.DocMapperCust.updateEbookInfo     :137  [32m275828399182843904[0;39m ==>  Preparing: update ebook t1, (select ebook_id, count(1) doc_count, sum(view_count) view_count, sum(vote_count) vote_count from doc group by ebook_id) t2 set t1.doc_count = t2.doc_count, t1.view_count = t2.view_count, t1.vote_count = t2.vote_count where t1.id = t2.ebook_id
+2023-01-31 21:23:35.010 DEBUG c.e.wiki.mapper.DocMapperCust.updateEbookInfo     :137  [32m275828399182843904[0;39m ==> Parameters: 
+2023-01-31 21:23:35.012 DEBUG c.e.wiki.mapper.DocMapperCust.updateEbookInfo     :137  [32m275828399182843904[0;39m <==    Updates: 1
+2023-01-31 21:23:35.012 INFO  com.example.wiki.job.DocJob                       :35   [32m275828399182843904[0;39m 更新电子书下的文档数据结束，耗时：3毫秒
+2023-01-31 21:24:00.002 INFO  com.example.wiki.job.EbookSnapshotJob             :32   [32m275828504011083776[0;39m 生成今日电子书快照开始
+2023-01-31 21:24:00.003 DEBUG c.e.w.mapper.EbookSnapshotMapperCust.genSnapshot  :137  [32m275828504011083776[0;39m ==>  Preparing: insert into ebook_snapshot(ebook_id, `date`, view_count, vote_count, view_increase, vote_increase) select t1.id, curdate(), 0, 0, 0, 0 from ebook t1 where not exists(select 1 from ebook_snapshot t2 where t1.id = t2.ebook_id and t2.`date` = curdate()); update ebook_snapshot t1, ebook t2 set t1.view_count = t2.view_count, t1.vote_count = t2.vote_count where t1.`date` = curdate() and t1.ebook_id = t2.id; update ebook_snapshot t1 left join (select ebook_id, view_count, vote_count from ebook_snapshot where `date` = date_sub(curdate(), interval 1 day)) t2 on t1.ebook_id = t2.ebook_id set t1.view_increase = (t1.view_count - ifnull(t2.view_count, 0)), t1.vote_increase = (t1.vote_count - ifnull(t2.vote_count, 0)) where t1.`date` = curdate();
+2023-01-31 21:24:00.004 DEBUG c.e.w.mapper.EbookSnapshotMapperCust.genSnapshot  :137  [32m275828504011083776[0;39m ==> Parameters: 
+2023-01-31 21:24:00.008 ERROR o.s.s.support.TaskUtils$LoggingErrorHandler       :95   [32m275828504011083776[0;39m Unexpected error occurred in scheduled task
+org.springframework.dao.DataIntegrityViolationException: 
+### Error updating database.  Cause: java.sql.SQLIntegrityConstraintViolationException: Column 'view_count' cannot be null
+### The error may exist in file [C:\Users\amper\project\Wiki\Knowledge-Based-System\wiki\target\classes\mapper\EbookSnapshotMapperCust.xml]
+### The error may involve defaultParameterMap
+### The error occurred while setting parameters
+### SQL: insert into ebook_snapshot(ebook_id, `date`, view_count, vote_count, view_increase, vote_increase)         select t1.id, curdate(), 0, 0, 0, 0         from ebook t1         where not exists(select 1                          from ebook_snapshot t2                          where t1.id = t2.ebook_id                            and t2.`date` = curdate());          update ebook_snapshot t1, ebook t2         set t1.view_count = t2.view_count,             t1.vote_count = t2.vote_count         where t1.`date` = curdate()           and t1.ebook_id = t2.id;          update ebook_snapshot t1 left join (select ebook_id, view_count, vote_count             from ebook_snapshot             where `date` = date_sub(curdate(), interval 1 day)) t2         on t1.ebook_id = t2.ebook_id             set t1.view_increase = (t1.view_count - ifnull(t2.view_count, 0)),                 t1.vote_increase = (t1.vote_count - ifnull(t2.vote_count, 0))         where t1.`date` = curdate();
+### Cause: java.sql.SQLIntegrityConstraintViolationException: Column 'view_count' cannot be null
+; Column 'view_count' cannot be null; nested exception is java.sql.SQLIntegrityConstraintViolationException: Column 'view_count' cannot be null
+	at org.springframework.jdbc.support.SQLExceptionSubclassTranslator.doTranslate(SQLExceptionSubclassTranslator.java:87)
+	at org.springframework.jdbc.support.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:70)
+	at org.springframework.jdbc.support.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:79)
+	at org.mybatis.spring.MyBatisExceptionTranslator.translateExceptionIfPossible(MyBatisExceptionTranslator.java:88)
+	at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:440)
+	at com.sun.proxy.$Proxy91.update(Unknown Source)
+	at org.mybatis.spring.SqlSessionTemplate.update(SqlSessionTemplate.java:287)
+	at org.apache.ibatis.binding.MapperMethod.execute(MapperMethod.java:67)
+	at org.apache.ibatis.binding.MapperProxy$PlainMethodInvoker.invoke(MapperProxy.java:152)
+	at org.apache.ibatis.binding.MapperProxy.invoke(MapperProxy.java:85)
+	at com.sun.proxy.$Proxy105.genSnapshot(Unknown Source)
+	at com.example.wiki.service.EbookSnapshotService.genSnapshot(EbookSnapshotService.java:16)
+	at com.example.wiki.job.EbookSnapshotJob.doSnapshot(EbookSnapshotJob.java:34)
+	at sun.reflect.GeneratedMethodAccessor78.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.springframework.scheduling.support.ScheduledMethodRunnable.run(ScheduledMethodRunnable.java:84)
+	at org.springframework.scheduling.support.DelegatingErrorHandlingRunnable.run(DelegatingErrorHandlingRunnable.java:54)
+	at org.springframework.scheduling.concurrent.ReschedulingRunnable.run(ReschedulingRunnable.java:95)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at java.lang.Thread.run(Thread.java:750)
+Caused by: java.sql.SQLIntegrityConstraintViolationException: Column 'view_count' cannot be null
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:117)
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:97)
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:122)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeInternal(ClientPreparedStatement.java:953)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.execute(ClientPreparedStatement.java:370)
+	at com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+	at com.zaxxer.hikari.pool.HikariProxyPreparedStatement.execute(HikariProxyPreparedStatement.java)
+	at sun.reflect.GeneratedMethodAccessor71.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.apache.ibatis.logging.jdbc.PreparedStatementLogger.invoke(PreparedStatementLogger.java:59)
+	at com.sun.proxy.$Proxy130.execute(Unknown Source)
+	at org.apache.ibatis.executor.statement.PreparedStatementHandler.update(PreparedStatementHandler.java:47)
+	at org.apache.ibatis.executor.statement.RoutingStatementHandler.update(RoutingStatementHandler.java:74)
+	at org.apache.ibatis.executor.SimpleExecutor.doUpdate(SimpleExecutor.java:50)
+	at org.apache.ibatis.executor.BaseExecutor.update(BaseExecutor.java:117)
+	at org.apache.ibatis.executor.CachingExecutor.update(CachingExecutor.java:76)
+	at sun.reflect.GeneratedMethodAccessor69.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.apache.ibatis.plugin.Plugin.invoke(Plugin.java:63)
+	at com.sun.proxy.$Proxy128.update(Unknown Source)
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.update(DefaultSqlSession.java:197)
+	at sun.reflect.GeneratedMethodAccessor68.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:426)
+	... 21 common frames omitted
+2023-01-31 21:24:05.003 INFO  com.example.wiki.job.DocJob                       :32   [32m275828524986798080[0;39m 更新电子书下的文档数据开始
+2023-01-31 21:24:05.004 DEBUG c.e.wiki.mapper.DocMapperCust.updateEbookInfo     :137  [32m275828524986798080[0;39m ==>  Preparing: update ebook t1, (select ebook_id, count(1) doc_count, sum(view_count) view_count, sum(vote_count) vote_count from doc group by ebook_id) t2 set t1.doc_count = t2.doc_count, t1.view_count = t2.view_count, t1.vote_count = t2.vote_count where t1.id = t2.ebook_id
+2023-01-31 21:24:05.005 DEBUG c.e.wiki.mapper.DocMapperCust.updateEbookInfo     :137  [32m275828524986798080[0;39m ==> Parameters: 
+2023-01-31 21:24:05.006 DEBUG c.e.wiki.mapper.DocMapperCust.updateEbookInfo     :137  [32m275828524986798080[0;39m <==    Updates: 1
+2023-01-31 21:24:05.006 INFO  com.example.wiki.job.DocJob                       :35   [32m275828524986798080[0;39m 更新电子书下的文档数据结束，耗时：3毫秒
+2023-01-31 21:24:35.002 INFO  com.example.wiki.job.DocJob                       :32   [32m275828650811723776[0;39m 更新电子书下的文档数据开始
+2023-01-31 21:24:35.003 DEBUG c.e.wiki.mapper.DocMapperCust.updateEbookInfo     :137  [32m275828650811723776[0;39m ==>  Preparing: update ebook t1, (select ebook_id, count(1) doc_count, sum(view_count) view_count, sum(vote_count) vote_count from doc group by ebook_id) t2 set t1.doc_count = t2.doc_count, t1.view_count = t2.view_count, t1.vote_count = t2.vote_count where t1.id = t2.ebook_id
+2023-01-31 21:24:35.003 DEBUG c.e.wiki.mapper.DocMapperCust.updateEbookInfo     :137  [32m275828650811723776[0;39m ==> Parameters: 
+2023-01-31 21:24:35.004 DEBUG c.e.wiki.mapper.DocMapperCust.updateEbookInfo     :137  [32m275828650811723776[0;39m <==    Updates: 1

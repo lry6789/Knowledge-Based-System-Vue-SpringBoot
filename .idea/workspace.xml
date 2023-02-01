@@ -4,10 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="da40c7e0-5646-4fec-96d9-4c54c107b589" name="Changes" comment="10-3">
+    <list default="true" id="da40c7e0-5646-4fec-96d9-4c54c107b589" name="Changes" comment="10-8 integrate websocket">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/log/error.log" beforeDir="false" afterPath="$PROJECT_DIR$/log/error.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/log/trace.log" beforeDir="false" afterPath="$PROJECT_DIR$/log/trace.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wiki/web/src/views/Home.vue" beforeDir="false" afterPath="$PROJECT_DIR$/wiki/web/src/views/Home.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wiki/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/wiki/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wiki/web/.env.dev" beforeDir="false" afterPath="$PROJECT_DIR$/wiki/web/.env.dev" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wiki/web/.env.prod" beforeDir="false" afterPath="$PROJECT_DIR$/wiki/web/.env.prod" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wiki/web/src/components/the-footer.vue" beforeDir="false" afterPath="$PROJECT_DIR$/wiki/web/src/components/the-footer.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wiki/web/src/util/tool.ts" beforeDir="false" afterPath="$PROJECT_DIR$/wiki/web/src/util/tool.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -160,14 +165,7 @@
       <workItem from="1674540907218" duration="30673000" />
       <workItem from="1674856877462" duration="9877000" />
       <workItem from="1675063988691" duration="10019000" />
-      <workItem from="1675216800319" duration="2824000" />
-    </task>
-    <task id="LOCAL-00011" summary="use axios to call api ebook/list">
-      <created>1674080555947</created>
-      <option name="number" value="00011" />
-      <option name="presentableId" value="LOCAL-00011" />
-      <option name="project" value="LOCAL" />
-      <updated>1674080555947</updated>
+      <workItem from="1675216800319" duration="3500000" />
     </task>
     <task id="LOCAL-00012" summary="use ref and reactive to implement data binding">
       <created>1674082875491</created>
@@ -505,7 +503,14 @@
       <option name="project" value="LOCAL" />
       <updated>1675221076063</updated>
     </task>
-    <option name="localTasksCounter" value="60" />
+    <task id="LOCAL-00060" summary="10-6 show document number/read/liked data">
+      <created>1675221214843</created>
+      <option name="number" value="00060" />
+      <option name="presentableId" value="LOCAL-00060" />
+      <option name="project" value="LOCAL" />
+      <updated>1675221214843</updated>
+    </task>
+    <option name="localTasksCounter" value="61" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -524,8 +529,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="7-4 tree structure for category" />
-    <MESSAGE value="7-4 drop-down list for parent node" />
     <MESSAGE value="7-5 drop-down list for parent node" />
     <MESSAGE value="7-6" />
     <MESSAGE value="7-7 display category in homepage" />
@@ -549,7 +552,9 @@
     <MESSAGE value="9-9 front-end - add login interception" />
     <MESSAGE value="9-12 hide the menu if not login" />
     <MESSAGE value="10-3" />
-    <option name="LAST_COMMIT_MESSAGE" value="10-3" />
+    <MESSAGE value="10-6 show document number/read/liked data" />
+    <MESSAGE value="10-8 integrate websocket" />
+    <option name="LAST_COMMIT_MESSAGE" value="10-8 integrate websocket" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
