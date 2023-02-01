@@ -5,14 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="da40c7e0-5646-4fec-96d9-4c54c107b589" name="Changes" comment="10-8 integrate websocket">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/log/error.log" beforeDir="false" afterPath="$PROJECT_DIR$/log/error.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/log/trace.log" beforeDir="false" afterPath="$PROJECT_DIR$/log/trace.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wiki/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/wiki/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wiki/web/.env.dev" beforeDir="false" afterPath="$PROJECT_DIR$/wiki/web/.env.dev" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wiki/web/.env.prod" beforeDir="false" afterPath="$PROJECT_DIR$/wiki/web/.env.prod" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/wiki/web/src/components/the-footer.vue" beforeDir="false" afterPath="$PROJECT_DIR$/wiki/web/src/components/the-footer.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wiki/web/src/util/tool.ts" beforeDir="false" afterPath="$PROJECT_DIR$/wiki/web/src/util/tool.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -165,14 +159,7 @@
       <workItem from="1674540907218" duration="30673000" />
       <workItem from="1674856877462" duration="9877000" />
       <workItem from="1675063988691" duration="10019000" />
-      <workItem from="1675216800319" duration="3500000" />
-    </task>
-    <task id="LOCAL-00012" summary="use ref and reactive to implement data binding">
-      <created>1674082875491</created>
-      <option name="number" value="00012" />
-      <option name="presentableId" value="LOCAL-00012" />
-      <option name="project" value="LOCAL" />
-      <updated>1674082875491</updated>
+      <workItem from="1675216800319" duration="3558000" />
     </task>
     <task id="LOCAL-00013" summary="integrate icon components">
       <created>1674085756946</created>
@@ -510,7 +497,14 @@
       <option name="project" value="LOCAL" />
       <updated>1675221214843</updated>
     </task>
-    <option name="localTasksCounter" value="61" />
+    <task id="LOCAL-00061" summary="10-8 integrate websocket">
+      <created>1675221877070</created>
+      <option name="number" value="00061" />
+      <option name="presentableId" value="LOCAL-00061" />
+      <option name="project" value="LOCAL" />
+      <updated>1675221877070</updated>
+    </task>
+    <option name="localTasksCounter" value="62" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
