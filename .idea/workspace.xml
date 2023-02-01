@@ -161,14 +161,7 @@
       <workItem from="1674540907218" duration="30673000" />
       <workItem from="1674856877462" duration="9877000" />
       <workItem from="1675063988691" duration="10019000" />
-      <workItem from="1675216800319" duration="3735000" />
-    </task>
-    <task id="LOCAL-00014" summary="5-4 support dynamic SQL">
-      <created>1674606918695</created>
-      <option name="number" value="00014" />
-      <option name="presentableId" value="LOCAL-00014" />
-      <option name="project" value="LOCAL" />
-      <updated>1674606918695</updated>
+      <workItem from="1675216800319" duration="3827000" />
     </task>
     <task id="LOCAL-00015" summary="5-4 VUE multi-env, add dev and prod configuration">
       <created>1674704875881</created>
@@ -506,7 +499,14 @@
       <option name="project" value="LOCAL" />
       <updated>1675221976723</updated>
     </task>
-    <option name="localTasksCounter" value="63" />
+    <task id="LOCAL-00063" summary="10-11 add rocketMQ setting at pom.xml">
+      <created>1675222117703</created>
+      <option name="number" value="00063" />
+      <option name="presentableId" value="LOCAL-00063" />
+      <option name="project" value="LOCAL" />
+      <updated>1675222117703</updated>
+    </task>
+    <option name="localTasksCounter" value="64" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
